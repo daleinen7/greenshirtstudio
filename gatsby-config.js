@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `new`,
-    siteUrl: `https://www.yourdomain.tld`,
+    siteUrl: `https://greenshirtstudio.com`,
   },
   plugins: [`gatsby-plugin-styled-components`],
 };
