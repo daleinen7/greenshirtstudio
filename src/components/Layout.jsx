@@ -1,12 +1,45 @@
 import React from "react";
 import Nav from "./Nav";
+import Cart from "./Cart";
+import logo from "../images/logo.svg";
+import { StaticImage } from "gatsby-plugin-image";
+import GlobalStyles from "../styles/globalStyles";
+import Reset from "../styles/reset";
+
+import styled from "styled-components";
+
+const StyledHeader = styled.header`
+  background: var(--green);
+  height: 6rem;
+  display: flex;
+  justify-content: center;
+
+  .header-wrapper {
+    height: 6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 81rem;
+    padding: 0 2.375rem 0 1.25rem;
+  }
+`;
 
 const Layout = ({ children }) => {
   return (
     <>
-      <h1>Green Shirt Studio</h1>
-      <Nav />
-      {children}
+      <Reset />
+      <GlobalStyles />
+      <StyledHeader>
+        <div className="header-wrapper">
+          <h1>
+            <img src={logo} alt={`Green Shirt Studio`} />
+          </h1>
+          <Nav />
+          <Cart />
+        </div>
+      </StyledHeader>
+      <main>{children}</main>
       <footer>
         <form>
           <h3>Sign up for our newsletter!</h3>
