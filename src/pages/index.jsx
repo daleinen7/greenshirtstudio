@@ -3,7 +3,8 @@ import Layout from "../components/Layout";
 import HeroBanner from "../components/HeroBanner";
 import Carousel from "../components/Carousel";
 import CTACard from "../components/CTAContentCard";
-import styled from "styled-components";
+import Testimonial from "../components/Testimonial";
+import testimonials from "../lib/testimonials";
 
 const IndexPage = () => {
   return (
@@ -22,9 +23,27 @@ const IndexPage = () => {
         ctaText={"Learn more about us"}
         ctaLink={"/about"}
       />
-      <h3>What classes do we offer?</h3>
-      <h3>How do we help the community?</h3>
-      <section className="reviews"></section>
+      <CTACard
+        headerAlign={"right"}
+        title={"What classes do we offer?"}
+        image={"https://via.placeholder.com/752x494"}
+        imageAltText={"placeholder image"}
+        info={
+          "We offer acting classes in Chicago including our Meisner Acting Program, Specialized Classes, and Workshops."
+        }
+        ctaText={"Learn more about our classes"}
+        ctaLink={"/about"}
+      />
+      <CTACard
+        headerAlign={"left"}
+        title={"How do we help the community?"}
+        image={"https://via.placeholder.com/752x494"}
+        imageAltText={"placeholder image"}
+        info={"Something about scholarships"}
+        ctaText={"Sign-up or contribute to our scholarships"}
+        ctaLink={"/about"}
+      />
+      <Testimonial quotes={testimonials} />
       <h3>Recent Posts</h3>
     </Layout>
   );
