@@ -4,14 +4,30 @@ import HeroBanner from "../components/HeroBanner";
 import Carousel from "../components/Carousel";
 import CTACard from "../components/CTAContentCard";
 import Testimonial from "../components/Testimonial";
+import ClassCard from "../components/ClassCard";
+import BlogCard from "../components/BlogCard";
+import fakeClasses from "../lib/fakeClasses";
+import fakePosts from "../lib/fakePosts";
 import testimonials from "../lib/testimonials";
 
 const IndexPage = () => {
+  const classes = fakeClasses.map((actingClass) => (
+    <ClassCard
+      title={actingClass.title}
+      days={actingClass.days}
+      program={actingClass.program}
+      price={actingClass.price}
+    />
+  ));
+
+  const posts = fakePosts.map((post) => {
+    return <BlogCard title={post.title} author={post.author} />;
+  });
+
   return (
     <Layout>
       <HeroBanner title={"Acting Classes for Everyone"} />
-      <h3>Upcoming Classes & Workshops</h3>
-      <Carousel />
+      <Carousel title="Upcoming Classes & Workshops" items={classes} />
       <CTACard
         headerAlign={"left"}
         title={"Why take classes with us?"}
@@ -44,7 +60,7 @@ const IndexPage = () => {
         ctaLink={"/about"}
       />
       <Testimonial quotes={testimonials} />
-      <h3>Recent Posts</h3>
+      <Carousel title="Recent Posts" items={posts} />
     </Layout>
   );
 };

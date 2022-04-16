@@ -3,9 +3,14 @@ import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import styled from "styled-components";
 
-const StyledCarousel = styled.section``;
+const StyledCarousel = styled.section`
+  padding: 4.75rem 4rem;
+  h3 {
+    font-size: 2rem;
+  }
+`;
 
-const Carousel = ({ title }) => {
+const Carousel = ({ title, items }) => {
   const responsive = {
     0: {
       items: 1,
@@ -18,38 +23,6 @@ const Carousel = ({ title }) => {
     },
   };
 
-  const items = [
-    <article>
-      <img src="https://via.placeholder.com/304x212" alt="tst" />
-      <h4>Title</h4>
-      <small>extra info</small>
-    </article>,
-    <article>
-      <img src="https://via.placeholder.com/304x212" alt="tst" />
-      <h4>Title</h4>
-      <small>extra info</small>
-    </article>,
-    <article>
-      <img src="https://via.placeholder.com/304x212" alt="tst" />
-      <h4>Title</h4>
-      <small>extra info</small>
-    </article>,
-    <article>
-      <img src="https://via.placeholder.com/304x212" alt="tst" />
-      <h4>Title</h4>
-      <small>extra info</small>
-    </article>,
-    <article>
-      <img src="https://via.placeholder.com/304x212" alt="tst" />
-      <h4>Title</h4>
-      <small>extra info</small>
-    </article>,
-    <article>
-      <img src="https://via.placeholder.com/304x212" alt="tst" />
-      <h4>Title</h4>
-      <small>extra info</small>
-    </article>,
-  ];
   return (
     <StyledCarousel>
       <h3>{title}</h3>
