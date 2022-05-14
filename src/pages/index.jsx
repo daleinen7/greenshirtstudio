@@ -25,7 +25,7 @@ const IndexPage = () => {
   });
 
   return (
-    <Layout>
+    <Layout headerColor="green">
       <HeroBanner title={"Acting Classes for Everyone"} />
       <Carousel title="Upcoming Classes & Workshops" items={classes} />
       <CTACard

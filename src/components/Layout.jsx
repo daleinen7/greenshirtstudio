@@ -2,14 +2,22 @@ import React from "react";
 import Nav from "./Nav";
 import Cart from "./Cart";
 import logo from "../images/logo.svg";
+import logoGreen from "../images/logoGreen.svg";
 import { StaticImage } from "gatsby-plugin-image";
 import GlobalStyles from "../styles/globalStyles";
 import Reset from "../styles/reset";
+import facebook from "../images/socialMedia/facebook.svg";
+import instagram from "../images/socialMedia/instagram.svg";
+import twitter from "../images/socialMedia/twitter.svg";
+import yelp from "../images/socialMedia/yelp.svg";
 
 import styled from "styled-components";
 
 const StyledHeader = styled.header`
-  background: var(--green);
+  background: ${(props) =>
+    props.headerColor === "green" ? "var(--green)" : " var(--white)"};
+  color: ${(props) =>
+    props.headerColor === "green" ? "var(--white)" : " var(--black)"};
   height: 6rem;
   display: flex;
   justify-content: center;
@@ -96,19 +104,33 @@ const StyledFooter = styled.footer`
       font-size: 1rem;
     }
   }
+
+  .social-media {
+    display: flex;
+    li {
+      margin-right: 0.5rem;
+    }
+  }
+
+  .copyright {
+    margin-top: 3rem;
+  }
 `;
 
-const Layout = ({ children }) => {
+const Layout = ({ children, headerColor }) => {
   return (
     <>
       <Reset />
       <GlobalStyles />
-      <StyledHeader>
+      <StyledHeader headerColor={headerColor}>
         <div className="header-wrapper">
           <h1>
-            <img src={logo} alt={`Green Shirt Studio`} />
+            <img
+              src={headerColor === "green" ? logo : logoGreen}
+              alt={`Green Shirt Studio`}
+            />
           </h1>
-          <Nav />
+          <Nav headerColor={headerColor} />
           <Cart />
         </div>
       </StyledHeader>
@@ -153,13 +175,41 @@ const Layout = ({ children }) => {
             ></iframe>
           </div>
           <div className="contact">
-            <h3>Contact Us</h3>
-            <small>info@greenshirtstudio.com</small>
-            <small>773-217-9565</small>
+            <div className="contact-info">
+              <h3>Contact Us</h3>
+              <small>info@greenshirtstudio.com</small>
+              <small>773-217-9565</small>
+            </div>
             <h3>Follow Us</h3>
+            <div>
+              <ul className="social-media">
+                <li>
+                  <a href="#">
+                    <img src={facebook} alt="facebook" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <img src={instagram} alt="instagram" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <img src={twitter} alt="twitter" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <img src={yelp} alt="yelp" />
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-        <small>&copy; {new Date().getFullYear()} Green Shirt Studio</small>
+        <small className="copyright">
+          &copy; {new Date().getFullYear()} Green Shirt Studio
+        </small>
       </StyledFooter>
     </>
   );

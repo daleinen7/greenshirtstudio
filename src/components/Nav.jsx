@@ -8,7 +8,8 @@ const StyledNav = styled.nav`
     font-size: 1rem;
     text-decoration: none;
     padding: 0.5rem;
-    color: var(--white);
+    color: ${(props) =>
+      props.headerColor === "green" ? "var(--white)" : " var(--black)"};
   }
   .active {
     font-weight: 900;
@@ -25,9 +26,9 @@ const StyledNav = styled.nav`
   }
 `;
 
-export default function Nav() {
+export default function Nav({ headerColor }) {
   return (
-    <StyledNav>
+    <StyledNav headerColor={headerColor}>
       <ul>
         <li>
           <Link to="/" activeClassName="active">
