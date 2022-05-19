@@ -8,7 +8,6 @@ import ClassCard from "../components/ClassCard";
 import BlogCard from "../components/BlogCard";
 import fakeClasses from "../lib/fakeClasses";
 import fakePosts from "../lib/fakePosts";
-import testimonials from "../lib/testimonials";
 
 const IndexPage = () => {
   const classes = fakeClasses.map((actingClass) => (
@@ -59,7 +58,7 @@ const IndexPage = () => {
         ctaText={"Sign-up or contribute to our scholarships"}
         ctaLink={"/about"}
       />
-      <Testimonial quotes={testimonials} />
+      <Testimonial />
       <Carousel title="Recent Posts" items={posts} />
     </Layout>
   );

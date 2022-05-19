@@ -1,4 +1,5 @@
 import React from "react";
+import { useStaticQuery, graphql } from "gatsby";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import quotationBubble from "../images/quotationBubble.svg";
@@ -38,11 +39,25 @@ const StyledTestimonial = styled.div`
   }
 `;
 
-const Testimonial = ({ quotes }) => {
-  const items = quotes.map((quote) => (
+const Testimonial = () => {
+  const data = useStaticQuery(graphql`
+    query TestimonialQuery {
+      allStrapiTestimonial {
+        edges {
+          node {
+            id
+            Signature
+            Quote
+          }
+        }
+      }
+    }
+  `);
+
+  const items = data.allStrapiTestimonial.edges.map((quote) => (
     <div className="quoteArea">
-      <p className="quote">{quote.quote}</p>
-      <p className="name">{quote.name}</p>
+      <p className="quote">{quote.node.Quote}</p>
+      <p className="name">{quote.node.Signature}</p>
     </div>
   ));
   return (
