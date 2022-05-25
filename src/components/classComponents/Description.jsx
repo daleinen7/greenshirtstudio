@@ -1,20 +1,35 @@
 import React from "react";
-import styled from "styled-components";
+import Accordian from "../Accordian";
 import ReactMarkdown from "react-markdown";
+import styled from "styled-components";
 
 const StyledDescription = styled.section`
-  background: blue;
+  h3 {
+    font-weight: 900;
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 1.25rem;
+  }
+
+  ul {
+    list-style-type: disc;
+    li {
+      font-size: 1.25rem;
+    }
+  }
 `;
 
 const Description = (strapiClass) => {
   console.log("here:", strapiClass.strapiClass.Description.data.Description);
   return (
     <StyledDescription>
-      <h3>Description</h3>
-      <p>this is the:</p>
-      <ReactMarkdown
-        children={strapiClass.strapiClass.Description.data.Description}
-      />
+      <Accordian title="Description">
+        <ReactMarkdown
+          children={strapiClass.strapiClass.Description.data.Description}
+        />
+      </Accordian>
     </StyledDescription>
   );
 };
