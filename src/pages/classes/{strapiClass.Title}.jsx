@@ -15,6 +15,8 @@ const StyledClassPage = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 4.6875rem auto;
+  padding: 0 4rem;
   .main-content {
     display: flex;
     max-width: 1440px;
@@ -71,7 +73,7 @@ export const query = graphql`
       Program
       SpecialMessage {
         data {
-          id
+          SpecialMessage
         }
       }
     }

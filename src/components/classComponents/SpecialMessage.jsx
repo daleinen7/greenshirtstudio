@@ -1,14 +1,20 @@
 import React from "react";
+import ReactMarkdown from "react-markdown";
 import styled from "styled-components";
 
 const StyledSpecialMessage = styled.section`
   background: blue;
 `;
 
-const SpecialMessage = () => {
+const SpecialMessage = (strapiClass) => {
   return (
     <StyledSpecialMessage>
-      <h3>Special Message</h3>
+      hi
+      {
+        <ReactMarkdown
+          children={strapiClass.strapiClass.SpecialMessage.data.id}
+        />
+      }
     </StyledSpecialMessage>
   );
 };
