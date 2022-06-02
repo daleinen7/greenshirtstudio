@@ -19,6 +19,7 @@ const StyledNav = styled.nav`
 
   ul {
     display: flex;
+    list-style-type: none;
 
     li {
       margin: 1.875rem 1rem;

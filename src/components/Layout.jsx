@@ -107,6 +107,7 @@ const StyledFooter = styled.footer`
 
   .social-media {
     display: flex;
+    list-style-type: none;
     li {
       margin-right: 0.5rem;
     }

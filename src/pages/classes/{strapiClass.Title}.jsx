@@ -26,12 +26,18 @@ const StyledClassPage = styled.div`
   .right-column {
     width: 50%;
   }
+
+  .left-column {
+    padding-right: 1rem;
+  }
+
+  .right-column {
+    padding-left: 1rem;
+  }
 `;
 
 const ClassPage = (props) => {
   const { strapiClass } = props.data;
-
-  console.log("Strapi Class: ", strapiClass);
 
   return (
     <Layout>
@@ -75,6 +81,13 @@ export const query = graphql`
         data {
           SpecialMessage
         }
+      }
+      users_permissions_user {
+        Bio {
+          data
+        }
+        Title
+        username
       }
     }
   }

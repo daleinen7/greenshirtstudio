@@ -56,7 +56,7 @@ const IndexPage = () => {
         imageAltText={"placeholder image"}
         info={"Something about scholarships"}
         ctaText={"Sign-up or contribute to our scholarships"}
-        ctaLink={"/about"}
+        ctaLink={"/scholarships"}
       />
       <Testimonial />
       <Carousel title="Recent Posts" items={posts} />
