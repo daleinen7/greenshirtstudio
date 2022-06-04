@@ -1,4 +1,5 @@
 import React from "react";
+import Layout from "../components/Layout";
 import ImageAndContentHeader from "../components/ImageAndContentHeader";
 import ContentCard from "../components/ContentCard";
 import ContentStack from "../components/ContentStack";
@@ -31,7 +32,7 @@ const About = () => {
   ];
 
   return (
-    <>
+    <Layout>
       <ImageAndContentHeader
         title="About"
         content="Green Shirt Studio makes high quality performing arts training accessible for everyone. Our vision is to create a world of courageous, vulnerable, empathetic people empowered to tell their stories well."
@@ -70,7 +71,7 @@ const About = () => {
         link="Sponser a scholarship"
         linkAddress="#"
       />
-    </>
+    </Layout>
   );
 };
 export default About;
