@@ -2,6 +2,7 @@ import React from "react";
 import ImageAndContentHeader from "../components/ImageAndContentHeader";
 import ContentCard from "../components/ContentCard";
 import ContentStack from "../components/ContentStack";
+import TextContent from "../components/TextContent";
 
 const About = () => {
   const coreValues = [
