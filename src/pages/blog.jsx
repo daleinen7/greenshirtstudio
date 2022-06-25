@@ -5,19 +5,18 @@ import ContentStack from "../components/ContentStack";
 import { graphql } from "gatsby";
 
 const Blog = ({ data }) => {
+  console.log(data);
   const blogPosts = data.allWpPost.nodes.map((post) => (
     <>
-      <Link to={`blog/${post.slug}`}>
+      <Link to={`${post.slug}`}>
         <img src={post.featuredImage?.node.sourceUrl} alt={post.title} />
       </Link>
-      <Link to={`blog/${post.slug}`}>
+      <Link to={`${post.slug}`}>
         <h3>{post.title}</h3>
       </Link>
       <small>{post.author.node.name}</small>
     </>
   ));
-
-  console.log("Data: ", data.allWpPost.nodes[0].featuredImage.node.sourceUrl);
 
   return (
     <Layout>
