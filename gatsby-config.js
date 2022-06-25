@@ -22,6 +22,16 @@ module.exports = {
       options: strapiConfig,
     },
     {
+      /*
+       * https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-source-wordpress/README.md
+       */
+      resolve: `gatsby-source-wordpress`,
+      options: {
+        // the only required plugin option for WordPress is the GraphQL url.
+        url: process.env.WPGRAPHQL_URL || `http://greenshirtstudio.com/graphql`,
+      },
+    },
+    {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
         fonts: [

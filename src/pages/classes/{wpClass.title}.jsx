@@ -37,22 +37,26 @@ const StyledClassPage = styled.div`
 `;
 
 const ClassPage = (props) => {
-  const { strapiClass } = props.data;
+  const { wpClass } = props.data;
+  const cancellationPolicy = props.data.allWpPage.edges[1].node.content;
+  const attendancePolicy = props.data.allWpPage.edges[0].node.content;
 
   return (
     <Layout>
       <StyledClassPage>
-        <ClassHeader strapiClass={strapiClass} />
+        <ClassHeader wpClass={wpClass} />
         <div className="main-content">
           <div className="left-column">
-            <Description strapiClass={strapiClass} />
-            <CancellationPolicy strapiClass={strapiClass} />
-            <AttendancePolicy strapiClass={strapiClass} />
+            <Description wpClass={wpClass} />
+            <CancellationPolicy cancellationPolicy={cancellationPolicy} />
+            <AttendancePolicy attendancePolicy={attendancePolicy} />
           </div>
           <div className="right-column">
-            <SpecialMessage strapiClass={strapiClass} />
-            <AboutTeacher strapiClass={strapiClass} />
-            <ClassDetails strapiClass={strapiClass} />
+            {wpClass.classGroup.optionalSpecialMessage && (
+              <SpecialMessage wpClass={wpClass} />
+            )}
+            <AboutTeacher wpClass={wpClass} />
+            {/* <ClassDetails wpClass={wpClass} /> */}
           </div>
         </div>
       </StyledClassPage>
@@ -63,31 +67,38 @@ export default ClassPage;
 
 export const query = graphql`
   query ($id: String!) {
-    strapiClass(id: { eq: $id }) {
-      Title
-      Age
-      AvailableSeats
-      AltPricing
-      DayOfTheWeek
-      Description {
-        data {
-          Description
+    allWpPage(
+      filter: {
+        title: { in: ["Attendance Policy", "Cancellation Policy Gatsby"] }
+      }
+    ) {
+      edges {
+        node {
+          id
+          content
         }
       }
-      Location
-      Price
-      Program
-      SpecialMessage {
-        data {
-          SpecialMessage
+    }
+    wpClass(id: { eq: $id }) {
+      title
+      content
+      author {
+        node {
+          name
+          description
         }
       }
-      users_permissions_user {
-        Bio {
-          data
+      classGroup {
+        age
+        classSize
+        day
+        instructor
+        location
+        optionalSpecialMessage
+        time
+        instructorPhoto {
+          sourceUrl
         }
-        Title
-        username
       }
     }
   }

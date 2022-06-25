@@ -19,16 +19,14 @@ const StyledAboutTeacher = styled.section`
   }
 `;
 
-const AboutTeacher = ({ strapiClass }) => {
-  console.log("This: ", strapiClass.users_permissions_user.Bio.data);
-
+const AboutTeacher = ({ wpClass }) => {
   return (
     <StyledAboutTeacher>
       <img src="https://via.placeholder.com/480" alt="teacher placeholder" />
       <h3>About the Teacher</h3>
-      <div>{strapiClass.users_permissions_user.Bio.data}</div>
+      <div>{wpClass.author.node.description}</div>
       <a href="#" className="learn-more">
-        Learn more about {strapiClass.users_permissions_user.username}
+        Learn more about {wpClass.author.node.name}
       </a>
     </StyledAboutTeacher>
   );

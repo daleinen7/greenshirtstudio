@@ -1,17 +1,13 @@
 import React from "react";
-import ReactMarkdown from "react-markdown";
+import parse from "html-react-parser";
 import styled from "styled-components";
 
 const StyledSpecialMessage = styled.section``;
 
-const SpecialMessage = (strapiClass) => {
+const SpecialMessage = ({ wpClass }) => {
   return (
     <StyledSpecialMessage>
-      {
-        <ReactMarkdown
-          children={strapiClass.strapiClass.SpecialMessage.data.SpecialMessage}
-        />
-      }
+      {parse(wpClass.classGroup.optionalSpecialMessage)}
     </StyledSpecialMessage>
   );
 };

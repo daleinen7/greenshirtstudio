@@ -1,16 +1,19 @@
 import React from "react";
 import Accordian from "../Accordian";
-import ReactMarkdown from "react-markdown";
+import parse from "html-react-parser";
+import styled from "styled-components";
 
-const Description = (strapiClass) => {
+const StyledDescription = styled.section`
+  p {
+    margin-bottom: 1rem;
+  }
+`;
+
+const Description = ({ wpClass }) => {
   return (
-    <section>
-      <Accordian title="Description">
-        <ReactMarkdown
-          children={strapiClass.strapiClass.Description.data.Description}
-        />
-      </Accordian>
-    </section>
+    <StyledDescription>
+      <Accordian title="Description">{parse(wpClass.content)}</Accordian>
+    </StyledDescription>
   );
 };
 export default Description;

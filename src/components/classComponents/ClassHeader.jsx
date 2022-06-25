@@ -27,15 +27,13 @@ const StyledClassHeader = styled.div`
   }
 `;
 
-const ClassHeader = ({ strapiClass }) => {
+const ClassHeader = ({ wpClass }) => {
   return (
     <StyledClassHeader>
-      <img src="https://via.placeholder.com/752x494" alt={strapiClass.Title} />
+      <img src="https://via.placeholder.com/752x494" alt={wpClass.title} />
       <div className="info">
-        <h2>{strapiClass.Title}</h2>
-        <p>{`${
-          strapiClass.DayOfTheWeek
-        }, HARDCODED DATE and TIME with ${"HARDCODED TEACHER"}`}</p>
+        <h2>{wpClass.title}</h2>
+        <p>{`${wpClass.classGroup.day}, HARDCODED DATE and ${wpClass.classGroup.time} with ${wpClass.author.node.name}`}</p>
       </div>
     </StyledClassHeader>
   );
