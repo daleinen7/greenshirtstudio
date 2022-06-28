@@ -1,18 +1,22 @@
 import React from "react";
+import { GatsbyImage } from "gatsby-plugin-image";
 import styled from "styled-components";
 
-const StyledClassCard = styled.article``;
+const StyledClassCard = styled.article`
+  display: flex;
+  flex-direction: column;
+`;
 
-const ClassCard = ({ title, days, program, price }) => {
+const ClassCard = ({ title, days, program, price, image }) => {
   return (
     <StyledClassCard>
-      <img src="https://via.placeholder.com/304x212" alt="tst" />
+      <GatsbyImage image={image} alt={title} />
       <h4>
         {title} <br />
         {days}
       </h4>
       <small>{program}</small>
-      <small>{price}</small>
+      <small>${price}</small>
     </StyledClassCard>
   );
 };

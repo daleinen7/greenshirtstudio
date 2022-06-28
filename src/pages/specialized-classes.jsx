@@ -1,4 +1,5 @@
 import React from "react";
+import SpecializedClassesImg from "../images/SpecializedClasses.png";
 import Layout from "../components/Layout";
 import ImageAndContentHeader from "../components/ImageAndContentHeader";
 
@@ -6,9 +7,9 @@ const SpecializedClasses = () => {
   return (
     <Layout headerColor="white">
       <ImageAndContentHeader
-        image={"https://via.placeholder.com/700x530"}
+        image={SpecializedClassesImg}
         title="Specialized Classes"
-        content="Somethign something apple sauce"
+        content="Something something apple sauce"
       />
     </Layout>
   );

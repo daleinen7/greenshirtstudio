@@ -1,4 +1,6 @@
 import React from "react";
+import MeisnerProgram from "../images/MeisnerProgram.png";
+import Scholarships from "../images/Scholarships.png";
 import Layout from "../components/Layout";
 import HeroBanner from "../components/HeroBanner";
 import CTACard from "../components/CTAContentCard";
@@ -59,7 +61,7 @@ const Classes = () => {
       <CTACard
         headerAlign={"left"}
         title={"Meisner Acting Program"}
-        image={"https://via.placeholder.com/752x494"}
+        image={MeisnerProgram}
         imageAltText={"placeholder image"}
         info={
           "An accessible, step by step approach that demystifies the craft of acting and gives our students a specific process to tackle any script."
@@ -72,7 +74,7 @@ const Classes = () => {
       <CTACard
         headerAlign={"right"}
         title={"Can't pay for classes?"}
-        image={"https://via.placeholder.com/752x494"}
+        image={Scholarships}
         imageAltText={"placeholder image"}
         info={"Learn how we can help you pay for it."}
         ctaText={"Learn more about our scholarships"}

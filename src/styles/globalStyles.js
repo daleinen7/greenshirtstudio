@@ -6,6 +6,7 @@ const GlobalStyles = createGlobalStyle`
     --gray: #333333;
     --light-gray: #efefef;
     --black: #282828;
+    --black2: #141815;
     --white: #FFFFFF;
   }
 
@@ -45,6 +46,7 @@ const GlobalStyles = createGlobalStyle`
     background: var(--green);
     color: var(--white);
     :hover {
+      outline: 2px solid var(--green);
       background: var(--white);
       color: var(--green);
     }

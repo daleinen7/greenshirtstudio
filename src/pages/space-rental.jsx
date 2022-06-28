@@ -5,7 +5,7 @@ import StudioList from "../components/StudioList";
 import ImageAndContentHeader from "../components/ImageAndContentHeader";
 import styled from "styled-components";
 
-const Pricing = styled.div`
+const Pricing = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,6 +14,31 @@ const Pricing = styled.div`
     display: flex;
     justify-content: center;
     align-items: flex-start;
+  }
+
+  .pricing-table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem;
+
+    h4 {
+      font-weight: 900;
+      font-size: 1.5rem;
+    }
+
+    .price {
+      font-size: 1rem;
+    }
+
+    .cost {
+      font-weight: 900;
+      font-size: 3rem;
+    }
+
+    li {
+      margin-bottom: 2rem;
+    }
   }
 `;
 
@@ -51,23 +76,27 @@ const SpaceRental = () => {
         <div className="pricing">
           <div className="pricing-table">
             <h4>303-B</h4>
-            <div className="price">$30/hour</div>
+            <div className="price">
+              <span className="cost">$30</span>/hour
+            </div>
             <ul>
               <li>Space Rental Policies</li>
               <li>Tables & Chairs</li>
               <li>Wifi & Kitchenette</li>
             </ul>
-            <Link to="#">See availability & book now</Link>
+            <button className="button fill">See availability & book now</button>
           </div>
           <div className="pricing-table">
             <h4>401-E</h4>
-            <div className="price">$20/hour</div>
+            <div className="price">
+              <span className="cost">$20</span>/hour
+            </div>
             <ul>
               <li>Space Rental Policies</li>
               <li>Tables & Chairs</li>
               <li>Backdrops available</li>
             </ul>
-            <Link to="#">See availability & book now</Link>
+            <button className="button fill">See availability & book now</button>
           </div>
         </div>
       </Pricing>

@@ -9,13 +9,14 @@ const StyledContentStack = styled.section`
   ul {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    list-style-type: none;
   }
 `;
 
 const ContentStack = ({ title, content }) => {
   return (
     <StyledContentStack>
-      <h3>{title}</h3>
+      {title && <h3>{title}</h3>}
       <ul>
         {content.map((item) => {
           return <li>{item}</li>;
