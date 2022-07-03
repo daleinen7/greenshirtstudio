@@ -34,7 +34,6 @@ const StyledBlogPost = styled.article`
 
 const BlogPostPage = (props) => {
   const { wpPost } = props.data;
-  console.log("POST: ", wpPost);
   return (
     <Layout>
       <StyledBlogPost>
@@ -42,7 +41,7 @@ const BlogPostPage = (props) => {
           <h2>{wpPost.title}</h2>
         </header>
         {wpPost.featuredImage.node.sourceUrl && (
-          <img src={wpPost.featuredImage.node.sourceUrl} alt={wpPost.title} />
+          <img src={wpPost.featuredImage.node?.sourceUrl} alt={wpPost.title} />
         )}
         <div className="content">{parse(wpPost.content)}</div>
       </StyledBlogPost>
