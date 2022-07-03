@@ -27,7 +27,9 @@ const Blog = ({ data }) => {
   const blogPosts = data.allWpPost.nodes.map((post) => (
     <BlogPreview>
       <Link to={`${post.slug}`}>
-        <img src={post.featuredImage?.node.sourceUrl} alt={post.title} />
+        {post.featuredImage?.node.sourceUrl && (
+          <img src={post.featuredImage?.node.sourceUrl} alt={post.title} />
+        )}
       </Link>
       <Link to={`${post.slug}`}>
         <h3>{post.title}</h3>

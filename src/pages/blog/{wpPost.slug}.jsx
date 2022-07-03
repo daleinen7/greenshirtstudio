@@ -41,7 +41,9 @@ const BlogPostPage = (props) => {
         <header>
           <h2>{wpPost.title}</h2>
         </header>
-        <img src={wpPost.featuredImage.node.sourceUrl} alt={wpPost.title} />
+        {wpPost.featuredImage.node.sourceUrl && (
+          <img src={wpPost.featuredImage.node.sourceUrl} alt={wpPost.title} />
+        )}
         <div className="content">{parse(wpPost.content)}</div>
       </StyledBlogPost>
     </Layout>
