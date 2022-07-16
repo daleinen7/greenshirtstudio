@@ -2,28 +2,42 @@ import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
-import quotationBubble from "../images/quotationBubble.svg";
-import { StaticImage } from "gatsby-plugin-image";
 import styled from "styled-components";
 
 const StyledTestimonial = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
 
   height: 35.875rem;
 
-  background: var(--green);
-  color: var(--white);
+  background: var(--neon-green);
 
-  img {
-    margin-top: 9.5rem;
+  .quote-block {
+    max-width: 40rem;
+    position: relative;
+    padding: 3rem;
+    background: var(--black);
+    color: var(--black);
+    transform: rotate(0deg);
+
+    margin: 0 auto;
+    :after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--white);
+      transform: rotate(-4deg);
+      z-index: -1;
+    }
   }
 
-  .quoteArea {
-    max-width: 40rem;
-    margin: auto;
+  .alice-carousel__wrapper {
+    overflow: visible;
   }
 
   p.quote {
@@ -55,14 +69,15 @@ const Testimonial = () => {
   `);
 
   const items = data.allStrapiTestimonial.edges.map((quote) => (
-    <div className="quoteArea">
-      <p className="quote">{quote.node.Quote}</p>
-      <p className="name">{quote.node.Signature}</p>
+    <div className="quote-block">
+      <div className="quote-area">
+        <p className="quote">{quote.node.Quote}</p>
+        <p className="name">{quote.node.Signature}</p>
+      </div>
     </div>
   ));
   return (
     <StyledTestimonial>
-      <img src={quotationBubble} alt="quotations" width="76" />
       <AliceCarousel mouseTracking items={items} />
     </StyledTestimonial>
   );

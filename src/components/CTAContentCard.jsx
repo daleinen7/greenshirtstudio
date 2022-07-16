@@ -32,8 +32,15 @@ const StyledCTACard = styled.div`
 
   a {
     font-weight: 900;
-    color: var(--green);
+    color: var(--black);
+    background: var(--neon-green);
+    text-decoration: none;
     font-size: 1.25rem;
+    padding: 1rem 1.5rem;
+    border: 2px solid var(--neon-green);
+    :hover {
+      background: var(--white);
+    }
   }
 `;
 

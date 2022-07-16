@@ -28,8 +28,8 @@ const IndexPage = ({ data }) => {
   });
 
   return (
-    <Layout headerColor="green">
-      <HeroBanner title={"Acting Classes for Everyone"} />
+    <Layout>
+      <HeroBanner />
       <Carousel title="Upcoming Classes & Workshops" items={classes} />
       <CTACard
         headerAlign={"left"}

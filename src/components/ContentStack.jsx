@@ -2,6 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledContentStack = styled.section`
+  a {
+    text-decoration: none;
+    color: var(--black);
+  }
+
   h3 {
     text-align: center;
   }

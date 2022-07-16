@@ -1,19 +1,32 @@
+import ZonaPro from "../lib/ZonaPro-Bold.otf";
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
+    @font-face {
+      font-family: "Zona Pro";
+      src: url(${ZonaPro});
+    }
   :root {
+    --neon-green: #8CEEA0;
+    --salmon: #F8BCBE;
     --green: #2B5F36;
-    --gray: #333333;
+    --dark-gray: #595959;
+    --gray: #BABABA;
     --light-gray: #efefef;
-    --black: #282828;
-    --black2: #141815;
+    --sand: #E8E0CC;
+    --black: #141815;
     --white: #FFFFFF;
+  }
+
+
+  h2 {
+    font-family: "Zona Pro", serif;
   }
 
   body {
     font-family: 'Lato', sans-serif;
     background: var(--white);
-    color: var(--gray);
+    color: var(--black);
   }
 
   p {

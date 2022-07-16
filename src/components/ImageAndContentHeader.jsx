@@ -1,4 +1,5 @@
 import React from "react";
+import HeadingEffect from "./HeadingEffect";
 import styled from "styled-components";
 
 const StyledImageAndContent = styled.div`
@@ -31,7 +32,7 @@ const ImageAndContentHeader = ({ title, content, image }) => {
   return (
     <StyledImageAndContent>
       <div className="info">
-        <h2>{title}</h2>
+        <HeadingEffect text={title} />
         <p>{content}</p>
       </div>
       <img src={image} alt={title} />

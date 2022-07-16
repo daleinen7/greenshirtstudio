@@ -1,40 +1,58 @@
 import React from "react";
+import { Link } from "gatsby";
 import MeisnerProgram from "../images/MeisnerProgram.png";
+import special from "../images/special.png";
+import workshop from "../images/workshop.png";
 import Scholarships from "../images/Scholarships.png";
 import Layout from "../components/Layout";
-import HeroBanner from "../components/HeroBanner";
+import HeadingEffect from "../components/HeadingEffect";
 import CTACard from "../components/CTAContentCard";
 import ContentStack from "../components/ContentStack";
 import ContentCard from "../components/ContentCard";
 import FAQSection from "../components/FAQSection";
 import Subscribe from "../components/Subscribe";
 
+import styled from "styled-components";
+
+const StyledHero = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-top: 5rem;
+  padding-bottom: 3rem;
+`;
+
 const Classes = () => {
   const otherPrograms = [
-    <ContentCard
-      title={"Specialized Classes"}
-      content={
-        "Students get the benefit of training with highly experienced instructors in a specific method or style of performing arts training without barriers like high costs, large investments of time, or an audition."
-      }
-      image={"https://via.placeholder.com/416x290"}
-      altText="Placeholder image"
-    />,
-    <ContentCard
-      title={"Workshops"}
-      content={
-        "Great for sharpening your skills without committing too much of your time."
-      }
-      image={"https://via.placeholder.com/416x290"}
-      altText="Placeholder image"
-    />,
-    <ContentCard
-      title={"Professional Development"}
-      content={
-        "Private coaching will accelerate your learning experience and get you closer to achieving personal and professional goals. We always offer a free consultation to answer any questions and then charge $70 per 1hr session."
-      }
-      image={"https://via.placeholder.com/416x290"}
-      altText="Placeholder image"
-    />,
+    <Link to={"/specialized-classes"}>
+      <ContentCard
+        title={"Specialized Classes"}
+        content={
+          "Students get the benefit of training with highly experienced instructors in a specific method or style of performing arts training without barriers like high costs, large investments of time, or an audition."
+        }
+        image={special}
+        altText="Placeholder image"
+      />
+    </Link>,
+    <Link to={"/workshops"}>
+      <ContentCard
+        title={"Workshops"}
+        content={
+          "Great for sharpening your skills without committing too much of your time."
+        }
+        image={workshop}
+        altText="Placeholder image"
+      />
+    </Link>,
+    <Link to={"/professional-development"}>
+      <ContentCard
+        title={"Professional Development"}
+        content={
+          "Private coaching will accelerate your learning experience and get you closer to achieving personal and professional goals. We always offer a free consultation to answer any questions and then charge $70 per 1hr session."
+        }
+        image={"https://via.placeholder.com/416x290"}
+        altText="Placeholder image"
+      />
+    </Link>,
   ];
 
   const FAQs = [
@@ -56,8 +74,10 @@ const Classes = () => {
   ];
 
   return (
-    <Layout headerColor="green">
-      <HeroBanner title={"Classes"} />
+    <Layout>
+      <StyledHero>
+        <HeadingEffect text="Classes" />
+      </StyledHero>
       <CTACard
         headerAlign={"left"}
         title={"Meisner Acting Program"}

@@ -14,7 +14,7 @@ const BlogPreview = styled.article`
     text-align: left;
   }
   a {
-    color: var(--black2);
+    color: var(--black);
     text-decoration: none;
     :hover {
       text-decoration: underline;

@@ -1,11 +1,23 @@
 import React from "react";
 import styled from "styled-components";
-import FAQ from "./FAQ";
+import Accordion from "./Accordion";
 
 const StyledFAQSection = styled.section`
-  dt {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 40rem;
+  margin: 0 auto;
+
+  h3 {
+    font-size: 2rem;
     font-weight: 900;
-    font-size: 1.5rem;
+  }
+
+  ul {
+    width: 100%;
+    list-style-type: none;
   }
 `;
 
@@ -13,11 +25,13 @@ const FAQSection = ({ FAQs }) => {
   return (
     <StyledFAQSection>
       <h3>Frequently Asked Questions</h3>
-      <dl>
+      <ul>
         {FAQs.map((faq) => (
-          <FAQ q={faq.question} a={faq.answer} />
+          <li>
+            <Accordion title={faq.question} children={faq.answer} />
+          </li>
         ))}
-      </dl>
+      </ul>
     </StyledFAQSection>
   );
 };

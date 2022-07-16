@@ -1,5 +1,5 @@
 import React from "react";
-import Accordian from "../Accordian";
+import Accordion from "../Accordion";
 import parse from "html-react-parser";
 import styled from "styled-components";
 
@@ -24,7 +24,7 @@ const StyledAttendancePolicy = styled.section`
 const AttendancePolicy = ({ attendancePolicy }) => {
   return (
     <StyledAttendancePolicy>
-      <Accordian title="Attendance Policy">{parse(attendancePolicy)}</Accordian>
+      <Accordion title="Attendance Policy">{parse(attendancePolicy)}</Accordion>
     </StyledAttendancePolicy>
   );
 };

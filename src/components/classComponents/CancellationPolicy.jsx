@@ -1,13 +1,13 @@
 import React from "react";
-import Accordian from "../Accordian";
+import Accordion from "../Accordion";
 import parse from "html-react-parser";
 
 const CancellationPolicy = ({ cancellationPolicy }) => {
   return (
     <section>
-      <Accordian title="Cancellation Policy">
+      <Accordion title="Cancellation Policy" defaultOpen={true}>
         {parse(cancellationPolicy)}
-      </Accordian>
+      </Accordion>
     </section>
   );
 };

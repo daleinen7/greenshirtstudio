@@ -5,12 +5,13 @@ import CTACard from "../components/CTAContentCard";
 import Testimonial from "../components/Testimonial";
 import Subscribe from "../components/Subscribe";
 import testimonials from "../lib/testimonials";
+import special from "../images/special.png";
 
 const ProfessionalDevelopment = () => {
   return (
     <Layout headerColor="white">
       <ImageAndContentHeader
-        image={"https://via.placeholder.com/700x530"}
+        image={special}
         title="Professional Development"
         content="Private coaching will accelerate your learning experience and get you closer to achieving personal and professional goals. We always offer a free consultation to answer any questions and then charge $70 per 1hr session. Package deals are available. We offer private coaching in person and over zoom for:"
       />

@@ -1,5 +1,5 @@
 import React from "react";
-import Accordian from "../Accordian";
+import Accordion from "../Accordion";
 import parse from "html-react-parser";
 import styled from "styled-components";
 
@@ -12,7 +12,9 @@ const StyledDescription = styled.section`
 const Description = ({ wpClass }) => {
   return (
     <StyledDescription>
-      <Accordian title="Description">{parse(wpClass.content)}</Accordian>
+      <Accordion title="Description" defaultOpen={true}>
+        {parse(wpClass.content)}
+      </Accordion>
     </StyledDescription>
   );
 };

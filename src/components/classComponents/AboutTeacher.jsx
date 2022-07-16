@@ -1,5 +1,5 @@
 import React from "react";
-import Accordian from "../Accordian";
+import Accordion from "../Accordion";
 import ReactMarkdown from "react-markdown";
 import styled from "styled-components";
 
