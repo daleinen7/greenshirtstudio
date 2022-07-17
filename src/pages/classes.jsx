@@ -11,6 +11,7 @@ import ContentStack from "../components/ContentStack";
 import ContentCard from "../components/ContentCard";
 import FAQSection from "../components/FAQSection";
 import Subscribe from "../components/Subscribe";
+import { graphql } from "gatsby";
 
 import styled from "styled-components";
 
@@ -21,7 +22,10 @@ const StyledHero = styled.div`
   padding-bottom: 3rem;
 `;
 
-const Classes = () => {
+const Classes = ({ data }) => {
+  const FAQs = data.allWpFaq.nodes.map((faq) => faq);
+  console.log("FAQ: ", FAQs);
+
   const otherPrograms = [
     <Link to={"/specialized-classes"}>
       <ContentCard
@@ -55,23 +59,23 @@ const Classes = () => {
     </Link>,
   ];
 
-  const FAQs = [
-    {
-      question: "What is “The Meisner Technique?”",
-      answer:
-        "Renowned actor and acting instructor Sanford Meisner developed a groundbreaking technique that demystified the craft of acting. The process that he taught to countless professional actors was built on listening, being present and learning to live truthfully under imaginary circumstances.",
-    },
-    {
-      question: "What is “The Meisner Technique?”",
-      answer:
-        "Renowned actor and acting instructor Sanford Meisner developed a groundbreaking technique that demystified the craft of acting. The process that he taught to countless professional actors was built on listening, being present and learning to live truthfully under imaginary circumstances.",
-    },
-    {
-      question: "What is “The Meisner Technique?”",
-      answer:
-        "Renowned actor and acting instructor Sanford Meisner developed a groundbreaking technique that demystified the craft of acting. The process that he taught to countless professional actors was built on listening, being present and learning to live truthfully under imaginary circumstances.",
-    },
-  ];
+  // const FAQs = [
+  //   {
+  //     question: "What is “The Meisner Technique?”",
+  //     answer:
+  //       "Renowned actor and acting instructor Sanford Meisner developed a groundbreaking technique that demystified the craft of acting. The process that he taught to countless professional actors was built on listening, being present and learning to live truthfully under imaginary circumstances.",
+  //   },
+  //   {
+  //     question: "What is “The Meisner Technique?”",
+  //     answer:
+  //       "Renowned actor and acting instructor Sanford Meisner developed a groundbreaking technique that demystified the craft of acting. The process that he taught to countless professional actors was built on listening, being present and learning to live truthfully under imaginary circumstances.",
+  //   },
+  //   {
+  //     question: "What is “The Meisner Technique?”",
+  //     answer:
+  //       "Renowned actor and acting instructor Sanford Meisner developed a groundbreaking technique that demystified the craft of acting. The process that he taught to countless professional actors was built on listening, being present and learning to live truthfully under imaginary circumstances.",
+  //   },
+  // ];
 
   return (
     <Layout>
@@ -105,3 +109,14 @@ const Classes = () => {
   );
 };
 export default Classes;
+
+export const pageQuery = graphql`
+  query FAQuery {
+    allWpFaq {
+      nodes {
+        title
+        content
+      }
+    }
+  }
+`;
