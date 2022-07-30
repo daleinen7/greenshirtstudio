@@ -72,8 +72,8 @@ const Testimonial = () => {
   const items = testimonails.map((quote) => (
     <div className="quote-block">
       <div className="quote-area">
-        <p className="quote">{quote.node.Quote}</p>
-        <p className="name">{quote.node.Signature}</p>
+        <p className="quote">{quote.quote}</p>
+        <p className="name">{quote.name}</p>
       </div>
     </div>
   ));
