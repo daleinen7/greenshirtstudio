@@ -9,7 +9,6 @@ import CTACard from "../components/CTAContentCard";
 import Testimonial from "../components/Testimonial";
 import ClassCard from "../components/ClassCard";
 import BlogCard from "../components/BlogCard";
-import fakePosts from "../lib/fakePosts";
 import { graphql } from "gatsby";
 
 const IndexPage = ({ data }) => {
@@ -23,8 +22,15 @@ const IndexPage = ({ data }) => {
     />
   ));
 
-  const posts = fakePosts.map((post) => {
-    return <BlogCard title={post.title} author={post.author} />;
+  const posts = data.allWpPost.nodes.map((post) => {
+    return (
+      <BlogCard
+        title={post.title}
+        author={post.author.node.name}
+        img={post.featuredImage.node.sourceUrl}
+        slug={post.slug}
+      />
+    );
   });
 
   return (
@@ -84,6 +90,22 @@ export const pageQuery = graphql`
             gatsbyImage(width: 304, height: 212, layout: FIXED)
           }
         }
+      }
+    }
+    allWpPost(limit: 8, sort: { fields: date, order: DESC }) {
+      nodes {
+        title
+        author {
+          node {
+            name
+          }
+        }
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+        slug
       }
     }
   }

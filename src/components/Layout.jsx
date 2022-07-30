@@ -29,7 +29,7 @@ const StyledHeader = styled.header`
     align-items: center;
     width: 100%;
     max-width: 81rem;
-    padding: 0 2.375rem 0 1.25rem;
+    padding: 0 2.375rem 0 0;
   }
 `;
 
@@ -108,6 +108,7 @@ const StyledFooter = styled.footer`
   .social-media {
     display: flex;
     list-style-type: none;
+    padding: 0;
     li {
       margin-right: 0.5rem;
     }
@@ -126,10 +127,7 @@ const Layout = ({ children, headerColor }) => {
       <StyledHeader headerColor={headerColor}>
         <div className="header-wrapper">
           <h1>
-            <img
-              src={headerColor === "green" ? logo : logoGreen}
-              alt={`Green Shirt Studio`}
-            />
+            <img src={logo} alt={`Green Shirt Studio`} />
           </h1>
           <Nav headerColor={headerColor} />
           <Cart />
@@ -170,9 +168,9 @@ const Layout = ({ children, headerColor }) => {
               width="416"
               height="238"
               style={{ border: "0" }}
-              allowfullscreen=""
+              allowFullScreen=""
               loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
+              referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
           </div>
           <div className="contact">

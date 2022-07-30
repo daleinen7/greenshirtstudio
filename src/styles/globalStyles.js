@@ -48,7 +48,7 @@ const GlobalStyles = createGlobalStyle`
   .button {
     padding: 1rem 1.5rem;
     border: 0 solid white;
-    border-radius: 32px;
+    border-radius: 2px;
     font-size: 1.25rem;
     font-weight: 900;
     min-width: 18rem;
@@ -56,12 +56,12 @@ const GlobalStyles = createGlobalStyle`
   }
 
   .fill {
-    background: var(--green);
-    color: var(--white);
+    background: var(--neon-green);
+    color: var(--black);
     :hover {
-      outline: 2px solid var(--green);
+      outline: 2px solid var(--neon-green);
       background: var(--white);
-      color: var(--green);
+      color: var(--black);
     }
   }
 

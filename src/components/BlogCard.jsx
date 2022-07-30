@@ -1,13 +1,30 @@
 import React from "react";
+import { Link } from "gatsby";
 import styled from "styled-components";
 
-const StyledBlogCard = styled.article``;
+const StyledBlogCard = styled.article`
+  h3 {
+    font-size: 1.25rem;
+    line-height: 1.857rem;
+    font-weight: 400;
+    text-align: left;
+  }
+  a {
+    color: var(--black);
+    text-decoration: none;
+    :hover {
+      text-decoration: underline;
+    }
+  }
+`;
 
-const BlogCard = ({ title, author }) => {
+const BlogCard = ({ title, author, img, slug }) => {
   return (
     <StyledBlogCard>
-      <img src="https://via.placeholder.com/304x212" alt="test" />
-      <h4>{title}</h4>
+      <Link to={`${slug}`}>{img && <img src={img} alt={title} />}</Link>
+      <Link to={`${slug}`}>
+        <h3>{title}</h3>
+      </Link>
       <small>{author}</small>
     </StyledBlogCard>
   );
