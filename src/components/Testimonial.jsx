@@ -2,6 +2,7 @@ import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
+import testimonails from "../lib/testimonials";
 import styled from "styled-components";
 
 const StyledTestimonial = styled.div`
@@ -54,21 +55,21 @@ const StyledTestimonial = styled.div`
 `;
 
 const Testimonial = () => {
-  const data = useStaticQuery(graphql`
-    query TestimonialQuery {
-      allStrapiTestimonial {
-        edges {
-          node {
-            id
-            Signature
-            Quote
-          }
-        }
-      }
-    }
-  `);
+  // const data = useStaticQuery(graphql`
+  //   query TestimonialQuery {
+  //     allStrapiTestimonial {
+  //       edges {
+  //         node {
+  //           id
+  //           Signature
+  //           Quote
+  //         }
+  //       }
+  //     }
+  //   }
+  // `);
 
-  const items = data.allStrapiTestimonial.edges.map((quote) => (
+  const items = testimonails.map((quote) => (
     <div className="quote-block">
       <div className="quote-area">
         <p className="quote">{quote.node.Quote}</p>
