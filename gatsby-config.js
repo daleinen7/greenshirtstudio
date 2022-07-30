@@ -2,14 +2,6 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
-const strapiConfig = {
-  apiURL: process.env.STRAPI_API_URL,
-  // accessToken: process.env.STRAPI_TOKEN,
-  collectionTypes: ["blog-post", "class", "faq", "testimonial"],
-  singleTypes: ["attendance-policy", "cancellation-policy"],
-  queryLimit: 1000,
-};
-
 module.exports = {
   siteMetadata: {
     title: `new`,
@@ -17,10 +9,6 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-styled-components`,
-    {
-      resolve: `gatsby-source-strapi`,
-      options: strapiConfig,
-    },
     {
       /*
        * https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-source-wordpress/README.md

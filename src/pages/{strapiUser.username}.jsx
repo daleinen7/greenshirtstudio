@@ -52,14 +52,14 @@ const UserPage = (props) => {
 };
 export default UserPage;
 
-export const query = graphql`
-  query ($id: String!) {
-    strapiUser(id: { eq: $id }) {
-      username
-      Title
-      Bio {
-        data
-      }
-    }
-  }
-`;
+// export const query = graphql`
+//   query ($id: String!) {
+//     strapiUser(id: { eq: $id }) {
+//       username
+//       Title
+//       Bio {
+//         data
+//       }
+//     }
+//   }
+// `;

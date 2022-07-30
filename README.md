@@ -7,4 +7,4 @@ A site to promote a Chicago Acting School
 Built with:
 
 - Gatsby
-- Strapi
+- Wordpress
