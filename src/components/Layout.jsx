@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "gatsby";
 import Nav from "./Nav";
 import Cart from "./Cart";
 import logo from "../images/logo.svg";
@@ -127,7 +128,9 @@ const Layout = ({ children, headerColor }) => {
       <StyledHeader headerColor={headerColor}>
         <div className="header-wrapper">
           <h1>
-            <img src={logo} alt={`Green Shirt Studio`} />
+            <Link to="/">
+              <img src={logo} alt={`Green Shirt Studio`} />
+            </Link>
           </h1>
           <Nav headerColor={headerColor} />
           <Cart />
