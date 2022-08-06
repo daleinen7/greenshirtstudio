@@ -41,6 +41,15 @@ const StyledTestimonial = styled.div`
     overflow: visible;
   }
 
+  .band-aid {
+    padding: 2rem;
+  }
+
+  .hack {
+    overflow: hidden;
+    width: 100%;
+  }
+
   p.quote {
     font-weight: 300;
     font-size: 1.75rem;
@@ -70,16 +79,20 @@ const Testimonial = () => {
   // `);
 
   const items = testimonails.map((quote) => (
-    <div className="quote-block">
-      <div className="quote-area">
-        <p className="quote">{quote.quote}</p>
-        <p className="name">{quote.name}</p>
+    <div className="band-aid">
+      <div className="quote-block">
+        <div className="quote-area">
+          <p className="quote">{quote.quote}</p>
+          <p className="name">{quote.name}</p>
+        </div>
       </div>
     </div>
   ));
   return (
     <StyledTestimonial>
-      <AliceCarousel mouseTracking items={items} />
+      <div className="hack">
+        <AliceCarousel mouseTracking items={items} />
+      </div>
     </StyledTestimonial>
   );
 };
