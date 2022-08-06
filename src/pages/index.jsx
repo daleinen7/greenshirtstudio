@@ -28,7 +28,7 @@ const IndexPage = ({ data }) => {
         title={post.title}
         author={post.author.node.name}
         img={post.featuredImage.node.sourceUrl}
-        slug={post.slug}
+        slug={`blog/${post.slug}`}
       />
     );
   });

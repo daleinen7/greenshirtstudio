@@ -96,6 +96,9 @@ export const query = graphql`
         location
         optionalSpecialMessage
         time
+        classImage {
+          sourceUrl
+        }
         instructorPhoto {
           sourceUrl
         }
