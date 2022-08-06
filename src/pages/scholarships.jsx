@@ -2,6 +2,7 @@ import React from "react";
 import Layout from "../components/Layout";
 import TextContent from "../components/TextContent";
 import ImageAndContentHeader from "../components/ImageAndContentHeader";
+import scholarshipsHome from "../images/scholarships-home.png";
 
 const Scholarships = () => {
   return (
@@ -11,7 +12,7 @@ const Scholarships = () => {
         content="Green Shirt Pay-It-Forward Scholarships support our mission to make high quality performing arts training accessible for everyone and are made possible through generous contributions by sponsors, fellow students, and friends in our community. 
 
 Contributions of any amount are greatly appreciated and will allow us to assist as many students as possible. Your contribution helps support students seeking training in Levels 1 - 5 of our Meisner Acting Program."
-        image="https://via.placeholder.com/703x527"
+        image={scholarshipsHome}
       />
       <TextContent
         title="Mission"

@@ -56,7 +56,7 @@ const IndexPage = ({ data }) => {
         info={
           "We offer acting classes in Chicago including our Meisner Acting Program, Specialized Classes, and Workshops."
         }
-        ctaText={"All Classes & Workshops "}
+        ctaText={"Learn more about our classes"}
         ctaLink={"/about"}
       />
       <CTACard
