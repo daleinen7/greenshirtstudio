@@ -5,6 +5,8 @@ import styled from "styled-components";
 const StyledClassCard = styled.article`
   display: flex;
   flex-direction: column;
+  max-width: 20rem;
+  min-width: 20rem;
 `;
 
 const ClassCard = ({ title, days, program, price, image }) => {

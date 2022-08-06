@@ -9,9 +9,14 @@ const StyledTextContent = styled.div`
   margin: 9.375rem auto 0;
 
   h3 {
+    font-family: "Zona Pro", serif;
     font-weight: 900;
     font-size: 2rem;
     margin-bottom: 1.5rem;
+  }
+
+  .link {
+    margin-top: 2rem;
   }
 `;
 
@@ -20,7 +25,13 @@ const TextContent = ({ title, content, link, linkAddress }) => {
     <StyledTextContent>
       <h3>{title}</h3>
       {content}
-      <Link to={linkAddress}>{link}</Link>
+      {link && (
+        <div className="link">
+          <Link className="button fill" to={linkAddress}>
+            {link}
+          </Link>
+        </div>
+      )}
     </StyledTextContent>
   );
 };

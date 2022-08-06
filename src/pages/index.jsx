@@ -28,7 +28,7 @@ const IndexPage = ({ data }) => {
         title={post.title}
         author={post.author.node.name}
         img={post.featuredImage.node.sourceUrl}
-        slug={post.slug}
+        slug={`blog/${post.slug}`}
       />
     );
   });
@@ -64,8 +64,8 @@ const IndexPage = ({ data }) => {
         title={"How do we help the community?"}
         image={Community}
         imageAltText={"placeholder image"}
-        info={"Something about scholarships"}
-        ctaText={"Sign-up or contribute to our scholarships"}
+        info={"We offer scholarships and host free community events."}
+        ctaText={"Learn More"}
         ctaLink={"/scholarships"}
       />
       <Testimonial />

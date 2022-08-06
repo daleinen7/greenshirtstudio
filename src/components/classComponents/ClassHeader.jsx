@@ -28,9 +28,10 @@ const StyledClassHeader = styled.div`
 `;
 
 const ClassHeader = ({ wpClass }) => {
+  console.log("THAT INFO: ", wpClass);
   return (
     <StyledClassHeader>
-      <img src="https://via.placeholder.com/752x494" alt={wpClass.title} />
+      <img src={wpClass.classGroup.classImage.sourceUrl} alt={wpClass.title} />
       <div className="info">
         <h2>{wpClass.title}</h2>
         <p>{`${wpClass.classGroup.day}, HARDCODED DATE and ${wpClass.classGroup.time} with ${wpClass.author.node.name}`}</p>

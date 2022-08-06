@@ -4,9 +4,14 @@ import "react-alice-carousel/lib/alice-carousel.css";
 import styled from "styled-components";
 
 const StyledCarousel = styled.section`
+  width: 100%;
   padding: 4.75rem 4rem;
   h3 {
     font-size: 2rem;
+  }
+  li.alice-carousel__stage-item :not(.__cloned) {
+    width: auto !important;
+    margin-right: 1rem;
   }
 `;
 
@@ -15,10 +20,13 @@ const Carousel = ({ title, items }) => {
     0: {
       items: 1,
     },
-    800: {
+    600: {
+      items: 2,
+    },
+    900: {
       items: 3,
     },
-    1200: {
+    1300: {
       items: 4,
     },
   };
@@ -26,7 +34,12 @@ const Carousel = ({ title, items }) => {
   return (
     <StyledCarousel>
       <h3>{title}</h3>
-      <AliceCarousel mouseTracking items={items} responsive={responsive} />
+      <AliceCarousel
+        mouseTracking
+        items={items}
+        responsive={responsive}
+        autoWidth
+      />
     </StyledCarousel>
   );
 };

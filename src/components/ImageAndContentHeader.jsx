@@ -6,6 +6,9 @@ const StyledImageAndContent = styled.div`
   background: var(--white);
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  max-width: 90rem;
+  margin: 0 auto;
 
   align-items: center;
 
@@ -19,7 +22,7 @@ const StyledImageAndContent = styled.div`
   }
 
   .info {
-    padding-right: 2.25rem;
+    padding: 0 2.25rem 0 4rem;
     width: 50%;
 
     p {

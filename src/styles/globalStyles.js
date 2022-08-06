@@ -52,6 +52,8 @@ const GlobalStyles = createGlobalStyle`
     font-size: 1.25rem;
     font-weight: 900;
     min-width: 18rem;
+    text-decoration: none;
+    display: inline;
     cursor: pointer;
   }
 
