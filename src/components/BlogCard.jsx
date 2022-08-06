@@ -3,9 +3,7 @@ import { Link } from "gatsby";
 import styled from "styled-components";
 
 const StyledBlogCard = styled.article`
-  width: 19rem;
   max-width: 19rem;
-  min-width: 19rem;
 
   h3 {
     font-size: 1.25rem;
