@@ -7,12 +7,17 @@ const StyledCTACard = styled.div`
   flex-direction: ${(props) =>
     props.headerAlign === "left" ? "row" : "row-reverse"};
   align-items: center;
-  justify-content: space-between;
+  justify-content: ${(props) => ("left" ? "start" : "end")};
 
   max-width: 1440px;
   padding: 4.75rem 4rem;
 
+  .info {
+    width: 100%;
+  }
+
   img.image {
+    width: 63%;
     padding-left: ${(props) => (props.headerAlign === "left" ? "2rem" : "0")};
     padding-right: ${(props) => (props.headerAlign === "left" ? "0" : "2rem")};
   }
@@ -40,6 +45,21 @@ const StyledCTACard = styled.div`
     border: 2px solid var(--neon-green);
     :hover {
       background: var(--white);
+    }
+  }
+
+  @media (max-width: 750px) {
+    flex-direction: column-reverse;
+    padding: 1.875rem 0;
+
+    img.image {
+      width: 100%;
+      padding: 0;
+    }
+
+    .info {
+      width: 100%;
+      padding: 1.25rem 1rem 0;
     }
   }
 `;

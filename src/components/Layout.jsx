@@ -15,6 +15,8 @@ import yelp from "../images/socialMedia/yelp.svg";
 import styled from "styled-components";
 
 const StyledHeader = styled.header`
+  padding: 0 4rem;
+
   background: ${(props) =>
     props.headerColor === "green" ? "var(--green)" : " var(--white)"};
   color: ${(props) =>

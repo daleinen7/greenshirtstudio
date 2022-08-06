@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const StyledCarousel = styled.section`
   width: 100%;
-  padding: 4.75rem 0;
+  padding: 4.75rem 4rem;
   h3 {
     font-size: 2rem;
   }
