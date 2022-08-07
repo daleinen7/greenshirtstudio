@@ -28,7 +28,6 @@ const StyledClassHeader = styled.div`
 `;
 
 const ClassHeader = ({ wpClass }) => {
-  console.log("THAT INFO: ", wpClass);
   return (
     <StyledClassHeader>
       <img src={wpClass.classGroup.classImage.sourceUrl} alt={wpClass.title} />
