@@ -34,7 +34,9 @@ const ClassHeader = ({ wpClass }) => {
       <img src={wpClass.classGroup.classImage.sourceUrl} alt={wpClass.title} />
       <div className="info">
         <h2>{wpClass.title}</h2>
-        <p>{`${wpClass.classGroup.day}, HARDCODED DATE and ${wpClass.classGroup.time} with ${wpClass.author.node.name}`}</p>
+        <p>{`${wpClass.classGroup.day}, ${wpClass.classGroup.dates[0].date} - ${
+          wpClass.classGroup.dates[wpClass.classGroup.dates.length - 1].date
+        }, ${wpClass.classGroup.time} with ${wpClass.author.node.name}`}</p>
       </div>
     </StyledClassHeader>
   );
