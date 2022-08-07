@@ -20,7 +20,10 @@ const StyledAboutTeacher = styled.section`
 const AboutTeacher = ({ wpClass }) => {
   return (
     <StyledAboutTeacher>
-      <img src="https://via.placeholder.com/480" alt="teacher placeholder" />
+      <img
+        src={wpClass.classGroup.instructorPhoto.sourceUrl}
+        alt="teacher placeholder"
+      />
       <h3>About the Teacher</h3>
       <div>{wpClass.author.node.description}</div>
       <a href="#" className="learn-more">

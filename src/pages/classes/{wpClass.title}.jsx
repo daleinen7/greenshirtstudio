@@ -56,7 +56,7 @@ const ClassPage = (props) => {
               <SpecialMessage wpClass={wpClass} />
             )}
             <AboutTeacher wpClass={wpClass} />
-            {/* <ClassDetails wpClass={wpClass} /> */}
+            <ClassDetails wpClass={wpClass} />
           </div>
         </div>
       </StyledClassPage>
@@ -92,6 +92,10 @@ export const query = graphql`
         age
         classSize
         day
+        dates {
+          date
+        }
+        price
         instructor
         location
         optionalSpecialMessage

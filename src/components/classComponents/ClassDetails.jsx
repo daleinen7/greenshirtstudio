@@ -7,32 +7,35 @@ const StyledClassDetails = styled.section`
   }
 `;
 
-const ClassDetails = ({ strapiClass }) => {
-  console.log("Deets, ", strapiClass);
+const ClassDetails = ({ wpClass }) => {
+  console.log("Deets, ", wpClass);
   return (
     <StyledClassDetails>
       <h3>Class Details</h3>
       <div className="details">
         <dl>
           <dt>Day</dt>
-          <dd>{strapiClass.DayOfTheWeek}</dd>
+          <dd>{wpClass.classGroup.day}</dd>
           <dt>Time</dt>
-          <dd>HARDCODED TIME</dd>
+          <dd>{wpClass.classGroup.time}</dd>
           <dt>Dates</dt>
-          <dd>HARDCODED DATES</dd>
-          <dt>Location</dt>
-          <dd>{strapiClass.Location}</dd>
-          <dt>Instructor</dt>
           <dd>
-            {strapiClass.users_permissions_user.username} BUT ALSO FIX
-            HARDCODED-ING
+            <ul>
+              {wpClass.classGroup.dates.map((date) => {
+                return <li>{date.date}</li>;
+              })}
+            </ul>
           </dd>
+          <dt>Location</dt>
+          <dd>{wpClass.classGroup.location}</dd>
+          <dt>Instructor</dt>
+          <dd>{wpClass.classGroup.instructor}</dd>
           <dt>Class Size</dt>
-          <dd>HARDCODED CLASS SIZE</dd>
+          <dd>{wpClass.classGroup.classSize}</dd>
           <dt>Age</dt>
-          <dd>{strapiClass.Age}</dd>
+          <dd>{wpClass.classGroup.age}</dd>
           <dt>Cost</dt>
-          <dd>${strapiClass.Price}</dd>
+          <dd>${wpClass.classGroup.price}</dd>
         </dl>
       </div>
     </StyledClassDetails>
