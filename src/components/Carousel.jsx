@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "gatsby";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import styled from "styled-components";
@@ -9,9 +10,45 @@ const StyledCarousel = styled.section`
   h3 {
     font-size: 2rem;
   }
-  li.alice-carousel__stage-item :not(.__cloned) {
-    width: auto !important;
-    margin-right: 1rem;
+  .alice-carousel{
+    margin-bottom: 40px;
+  }
+  .alice-carousel__stage{
+    display: flex;
+    gap: 32px;
+  }
+  li.alice-carousel__stage-item{
+    min-width: 300px !important;
+  }
+  .alice-carousel__prev-btn-item, .alice-carousel__next-btn-item{
+    color: var(--black);
+    background-color: var(--neon-green);
+  }
+  .alice-carousel__prev-btn, .alice-carousel__next-btn{
+    width: 40px;
+    position: absolute;
+    top: -60px;
+  }
+  .alice-carousel__prev-btn{
+    right: 50px;
+  }
+  .alice-carousel__next-btn{
+    right: 0px;
+  }
+  a[role=button] {
+    font-weight: 900;
+    color: var(--black);
+    background: var(--neon-green);
+    text-decoration: none;
+    font-size: 1.25rem;
+    padding: 1rem 1.5rem;
+    width: fit-content;
+    display: block;
+    margin: auto;
+    border: 2px solid var(--neon-green);
+    :hover {
+      background: var(--white);
+    }
   }
 `;
 
@@ -35,11 +72,13 @@ const Carousel = ({ title, items }) => {
     <StyledCarousel>
       <h3>{title}</h3>
       <AliceCarousel
+        disableDotsControls
         mouseTracking
         items={items}
         responsive={responsive}
         autoWidth
       />
+      <Link role="button" to="/classes">All Classes & Workshops</Link>
     </StyledCarousel>
   );
 };

@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const StyledBlogCard = styled.article`
   max-width: 19rem;
-
+  width: 100%;
   h3 {
     font-size: 1.25rem;
     line-height: 1.857rem;
