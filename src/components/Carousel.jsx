@@ -7,6 +7,7 @@ import styled from "styled-components";
 const StyledCarousel = styled.section`
   width: 100%;
   padding: 4.75rem 4rem;
+  overflow-x: hidden;
   h3 {
     font-size: 2rem;
   }
@@ -48,6 +49,25 @@ const StyledCarousel = styled.section`
     border: 2px solid var(--neon-green);
     :hover {
       background: var(--white);
+    }
+  }
+  @media screen and (max-width: 450px) {
+    width:100%;
+    padding: 4.75rem 1rem;
+    a[role=button] {
+      margin: 0;
+    }
+    h3 {
+      padding-bottom: 5rem;
+    }
+    .alice-carousel__prev-btn, .alice-carousel__next-btn{
+      top: -72px;
+    }
+    .alice-carousel__prev-btn{
+      left: 0px;
+    }
+    .alice-carousel__next-btn{
+      left: 50px;
     }
   }
 `;

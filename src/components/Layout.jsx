@@ -34,6 +34,8 @@ const StyledHeader = styled.header`
     max-width: 81rem;
     padding: 0 2.375rem 0 0;
   }
+  @media screen and (max-width: 450px) {
+  }
 `;
 
 const StyledFooter = styled.footer`
@@ -69,7 +71,7 @@ const StyledFooter = styled.footer`
     input[type="text"],
     input[type="email"] {
       padding: 0.875rem 0.75rem;
-      border-radius: 4px;
+      border-radius: 5px;
       width: 100%;
 
       ::placeholder {
@@ -82,8 +84,11 @@ const StyledFooter = styled.footer`
       color: var(--white);
       background: var(--black);
       border: 2px solid var(--white);
-      border-radius: 50px;
+      border-radius: 5px;
       height: 3.5rem;
+      font-weight: 900;
+      font-size: 1rem;
+      width: 120px;
     }
   }
 
@@ -108,17 +113,45 @@ const StyledFooter = styled.footer`
     }
   }
 
-  .social-media {
+  ul {
     display: flex;
     list-style-type: none;
     padding: 0;
     li {
-      margin-right: 0.5rem;
+      margin-right: 1rem;
     }
   }
 
   .copyright {
     margin-top: 3rem;
+  }
+  .social-media{
+    padding-top: 4rem;
+  }
+  @media screen and (max-width: 450px) {
+    padding: 3.75rem 1.5rem;
+    .main-footer {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    form {
+      max-width: 100%;
+      margin-bottom: 4rem;
+    }
+    .map > a{
+      font-size: .9rem;
+      padding: 1rem 0;
+    }
+    iframe{
+      width: 100%;
+    }
+    .contact{
+      padding: 4rem 0;
+    }
+    .copyright {
+      margin-top: 0;
+    }
   }
 `;
 
@@ -184,9 +217,9 @@ const Layout = ({ children, headerColor }) => {
               <small>info@greenshirtstudio.com</small>
               <small>773-217-9565</small>
             </div>
-            <h3>Follow Us</h3>
-            <div>
-              <ul className="social-media">
+            <div className="social-media">
+              <h3>Follow Us</h3>
+              <ul>
                 <li>
                   <a href="#">
                     <img src={facebook} alt="facebook" />
