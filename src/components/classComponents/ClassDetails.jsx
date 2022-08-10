@@ -8,7 +8,6 @@ const StyledClassDetails = styled.section`
 `;
 
 const ClassDetails = ({ wpClass }) => {
-  console.log("Deets, ", wpClass);
   return (
     <StyledClassDetails>
       <h3>Class Details</h3>
@@ -21,8 +20,8 @@ const ClassDetails = ({ wpClass }) => {
           <dt>Dates</dt>
           <dd>
             <ul>
-              {wpClass.classGroup.dates.map((date) => {
-                return <li>{date.date}</li>;
+              {wpClass.classGroup.dates.map((date, idx) => {
+                return <li key={idx}>{date.date}</li>;
               })}
             </ul>
           </dd>
