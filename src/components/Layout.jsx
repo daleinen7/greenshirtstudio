@@ -125,7 +125,7 @@ const StyledFooter = styled.footer`
   .copyright {
     margin-top: 3rem;
   }
-  .social-media{
+  .social-media {
     padding-top: 4rem;
   }
   @media screen and (max-width: 450px) {
@@ -139,18 +139,25 @@ const StyledFooter = styled.footer`
       max-width: 100%;
       margin-bottom: 4rem;
     }
-    .map > a{
-      font-size: .9rem;
+    .map > a {
+      font-size: 0.9rem;
       padding: 1rem 0;
     }
-    iframe{
+    iframe {
       width: 100%;
     }
-    .contact{
+    .contact {
       padding: 4rem 0;
     }
     .copyright {
       margin-top: 0;
+    }
+  }
+
+  @media (max-width: 1040px) {
+    .main-footer {
+      flex-direction: column;
+      gap: 3.75rem;
     }
   }
 `;
