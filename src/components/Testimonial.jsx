@@ -40,7 +40,41 @@ const StyledTestimonial = styled.div`
   .alice-carousel__wrapper {
     overflow: visible;
   }
-
+  .alice-carousel__dots{
+    position: absolute;
+    left: calc(50vw - 24px); //24px is the width of all the dots
+    top: 275px;
+  }
+  .alice-carousel__dots-item:not(.__custom){
+    width: 10px;
+    height: 10px;
+    background-color: var(--white);
+    border: 1px solid var(--black);
+    &:hover{
+      background-color: var(--salmon);
+    }
+  }
+  .alice-carousel__dots-item:not(.__custom).__active{
+      background-color: var(--black);
+      &:hover{
+        background-color: var(--black);
+      }
+  }
+  .alice-carousel__prev-btn-item, .alice-carousel__next-btn-item{
+    position: absolute;
+    top: calc(50% - 32px);
+    color: var(--neon-green);
+    background: var(--black);
+    &:hover{
+      color: var(--salmon);
+    }
+  }
+  .alice-carousel__next-btn-item{
+    right: 64px;
+  }
+  .alice-carousel__prev-btn-item{
+    left: 64px;
+  }
   .band-aid {
     padding: 2rem;
   }
@@ -61,22 +95,23 @@ const StyledTestimonial = styled.div`
     font-weight: 400;
     font-size: 1rem;
   }
+  @media screen and (max-width: 450px) {
+    width:100%;
+    margin-top: 4rem;
+    .alice-carousel__next-btn-item{
+      right: 14px;
+    }
+    .alice-carousel__prev-btn-item{
+      left: 14px;
+    }
+    .alice-carousel__dots{
+      top: auto;
+      bottom: 15px;
+    }
+  }
 `;
 
 const Testimonial = () => {
-  // const data = useStaticQuery(graphql`
-  //   query TestimonialQuery {
-  //     allStrapiTestimonial {
-  //       edges {
-  //         node {
-  //           id
-  //           Signature
-  //           Quote
-  //         }
-  //       }
-  //     }
-  //   }
-  // `);
 
   const items = testimonails.map((quote) => (
     <div className="band-aid">
@@ -91,7 +126,7 @@ const Testimonial = () => {
   return (
     <StyledTestimonial>
       <div className="hack">
-        <AliceCarousel mouseTracking items={items} />
+        <AliceCarousel mouseTracking items={items}/>
       </div>
     </StyledTestimonial>
   );

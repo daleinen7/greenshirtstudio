@@ -37,7 +37,7 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <HeroBanner />
-      <Carousel title="Upcoming Classes & Workshops" items={classes} />
+      <Carousel title="Upcoming Classes & Workshops" items={classes}/>
       <CTACard
         headerAlign={"left"}
         title={"Why take classes with us?"}

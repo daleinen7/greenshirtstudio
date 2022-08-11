@@ -66,7 +66,21 @@ const GlobalStyles = createGlobalStyle`
       color: var(--black);
     }
   }
-
+  .alice-carousel__prev-btn-item, .alice-carousel__next-btn-item{
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+  }
+  .alice-carousel__next-btn-item{
+    padding: 1px 0 0 12px;
+  }
+  .alice-carousel__prev-btn-item{
+    padding: 1px 12px 0 0;
+  }
+  @media screen and (max-width: 450px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export default GlobalStyles;
