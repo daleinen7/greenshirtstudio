@@ -9,6 +9,7 @@ const StyledStudioList = styled.section`
   h3,
   p {
     max-width: 40rem;
+    text-align: center;
   }
 
   ul {
@@ -27,7 +28,7 @@ const StudioList = ({ title, content, list }) => {
       <ul>
         {list.map((pic) => (
           <li>
-            <img src={pic} alt="studio picture" />
+            <img src={pic} alt="studio picture"/>
           </li>
         ))}
       </ul>

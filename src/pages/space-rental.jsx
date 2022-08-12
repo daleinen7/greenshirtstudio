@@ -59,7 +59,7 @@ const SpaceRental = () => {
 
       <StudioList
         title="Studio 303-B"
-        content="Versatile 800 sq ft loft partially divided by a half wall, featuring a  gathering space with a kitchenette. South facing windows with tons of natural light."
+        content="Versatile 800 sq ft loft partially divided by a half wall, featuring a gathering space with a kitchenette. South facing windows with tons of natural light."
         list={[space3032, space3031, space3033]}
       />
 
