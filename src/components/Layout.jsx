@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "gatsby";
+import useWindowSize from "../lib/useWindowSize";
 import Nav from "./Nav";
+import MobileNav from "./MobileNav";
 import Cart from "./Cart";
 import logo from "../images/logo.svg";
-import logoGreen from "../images/logoGreen.svg";
 import { StaticImage } from "gatsby-plugin-image";
 import GlobalStyles from "../styles/globalStyles";
 import Reset from "../styles/reset";
@@ -34,7 +35,10 @@ const StyledHeader = styled.header`
     max-width: 81rem;
     padding: 0 2.375rem 0 0;
   }
-  @media screen and (max-width: 450px) {
+
+  .layout-balance {
+    width: 4.375rem;
+    height: 1px;
   }
 `;
 
@@ -163,6 +167,9 @@ const StyledFooter = styled.footer`
 `;
 
 const Layout = ({ children, headerColor }) => {
+  const [mobileNav, setMobileNav] = useState(false);
+  const size = useWindowSize();
+
   return (
     <>
       <Reset />
@@ -174,9 +181,11 @@ const Layout = ({ children, headerColor }) => {
               <img src={logo} alt={`Green Shirt Studio`} />
             </Link>
           </h1>
-          <Nav headerColor={headerColor} />
-          <Cart />
+          {size.width > 1024 && <Nav headerColor={headerColor} />}
+          <div className="layout-balance">{size.width <= 1024 && "open"}</div>
+          {/* <Cart /> */}
         </div>
+        {size.width <= 1024 && mobileNav && <MobileNav />}
       </StyledHeader>
       <main>{children}</main>
       <StyledFooter>
