@@ -128,7 +128,8 @@ const StyledFooter = styled.footer`
   .social-media {
     padding-top: 4rem;
   }
-  @media screen (max-width: 450px) {
+
+  @media screen and (max-width: 450px) {
     padding: 3.75rem 1.5rem;
     .main-footer {
       width: 100%;
