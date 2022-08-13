@@ -19,6 +19,7 @@ const StyledImageAndContent = styled.div`
 
   img {
     width: 50%;
+    padding: 0 0 2rem 2rem;
   }
 
   .info {

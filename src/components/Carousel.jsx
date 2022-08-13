@@ -51,7 +51,7 @@ const StyledCarousel = styled.section`
       background: var(--white);
     }
   }
-  @media screen and (max-width: 450px) {
+  @media screen (max-width: 450px) {
     width:100%;
     padding: 4.75rem 1rem;
     a[role=button] {

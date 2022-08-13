@@ -20,13 +20,17 @@ const Pricing = styled.section`
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    gap: 2rem;
+    margin: 3rem 0;
   }
-
+  
   .pricing-table {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 4rem;
+    padding: 3rem;
+    border: 2px solid #EFEFEF;
+    min-height: 438px;
 
     h4 {
       font-weight: 900;
@@ -95,6 +99,11 @@ const SpaceRental = () => {
               <li>Backdrops available</li>
             </ul>
             <button className="button fill">See availability & book now</button>
+          </div>
+          <div className="pricing-table">
+            <h4>Working for a 501-(C)(3)?</h4>
+            <p>Ask about nonprofit pricing.</p>
+            <button className="button fill">Inquire</button>
           </div>
         </div>
       </Pricing>
