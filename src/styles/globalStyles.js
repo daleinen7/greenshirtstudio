@@ -77,7 +77,7 @@ const GlobalStyles = createGlobalStyle`
   .alice-carousel__prev-btn-item{
     padding: 1px 12px 0 0;
   }
-  @media screen and (max-width: 450px) {
+  @media screen (max-width: 450px) {
     display: flex;
     flex-direction: column;
   }
