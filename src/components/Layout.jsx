@@ -34,7 +34,7 @@ const StyledHeader = styled.header`
     max-width: 81rem;
     padding: 0 2.375rem 0 0;
   }
-  @media screen (max-width: 450px) {
+  @media screen and (max-width: 450px) {
   }
 `;
 
