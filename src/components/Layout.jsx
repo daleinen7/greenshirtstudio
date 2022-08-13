@@ -5,6 +5,8 @@ import Nav from "./Nav";
 import MobileNav from "./MobileNav";
 import Cart from "./Cart";
 import logo from "../images/logo.svg";
+import openNav from "../images/openNav.svg";
+import closeNav from "../images/closeNav.svg";
 import { StaticImage } from "gatsby-plugin-image";
 import GlobalStyles from "../styles/globalStyles";
 import Reset from "../styles/reset";
@@ -14,6 +16,7 @@ import twitter from "../images/socialMedia/twitter.svg";
 import yelp from "../images/socialMedia/yelp.svg";
 
 import styled from "styled-components";
+import { useEffect } from "react";
 
 const StyledHeader = styled.header`
   padding: 0 4rem;
@@ -39,6 +42,19 @@ const StyledHeader = styled.header`
   .layout-balance {
     width: 4.375rem;
     height: 1px;
+  }
+
+  .toggle-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 900;
+    background: none;
+    border: none;
+  }
+
+  @media (max-width: 600px) {
+    padding: 0.5rem;
   }
 `;
 
@@ -168,7 +184,18 @@ const StyledFooter = styled.footer`
 
 const Layout = ({ children, headerColor }) => {
   const [mobileNav, setMobileNav] = useState(false);
+
+  const toggleNav = () => {
+    setMobileNav(!mobileNav);
+  };
+
   const size = useWindowSize();
+
+  useEffect(() => {
+    if (size.width > 1024) {
+      setMobileNav(false);
+    }
+  }, []);
 
   return (
     <>
@@ -182,11 +209,22 @@ const Layout = ({ children, headerColor }) => {
             </Link>
           </h1>
           {size.width > 1024 && <Nav headerColor={headerColor} />}
-          <div className="layout-balance">{size.width <= 1024 && "open"}</div>
+          <div className="layout-balance">
+            {size.width <= 1024 &&
+              (mobileNav ? (
+                <button className="toggle-nav" onClick={toggleNav}>
+                  Close <img src={closeNav} alt="close nav" />
+                </button>
+              ) : (
+                <button className="toggle-nav" onClick={toggleNav}>
+                  Menu <img src={openNav} alt="open nav" />
+                </button>
+              ))}
+          </div>
           {/* <Cart /> */}
         </div>
-        {size.width <= 1024 && mobileNav && <MobileNav />}
       </StyledHeader>
+      {size.width <= 1024 && mobileNav && <MobileNav />}
       <main>{children}</main>
       <StyledFooter>
         <div className="main-footer">

@@ -1,13 +1,15 @@
 import React from "react";
-import { Link } from "gatsby";
+import NavLinks from "./NavLinks";
 import styled from "styled-components";
 
 const StyledNav = styled.nav`
   a {
-    font-weight: 400;
+    display: block;
+    font-weight: 900;
     font-size: 1rem;
     text-decoration: none;
-    padding: 0.5rem;
+    padding: 1rem;
+    width: 100%;
     color: ${(props) =>
       props.headerColor === "green" ? "var(--white)" : " var(--black)"};
   }
@@ -19,10 +21,22 @@ const StyledNav = styled.nav`
 
   ul {
     display: flex;
+    flex-direction: column;
+    gap: 0.635rem;
+    margin: 0;
+    padding: 1rem;
     list-style-type: none;
+    background: white;
+    width: 100%;
+    position: absolute;
+    z-index: 10;
 
     li {
-      margin: 1.875rem 1rem;
+      border-radius: 2px;
+
+      :hover {
+        background: var(--neon-green);
+      }
     }
   }
 `;
@@ -30,38 +44,7 @@ const StyledNav = styled.nav`
 export default function Nav({ headerColor }) {
   return (
     <StyledNav headerColor={headerColor}>
-      <ul>
-        <li>
-          <Link to="/" activeClassName="active">
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link to="/classes" activeClassName="active">
-            Classes
-          </Link>
-        </li>
-        <li>
-          <Link to="/shows-and-events" activeClassName="active">
-            Shows & Events
-          </Link>
-        </li>
-        <li>
-          <Link to="/space-rental" activeClassName="active">
-            Space Rental
-          </Link>
-        </li>
-        <li>
-          <Link to="/about" activeClassName="active">
-            About
-          </Link>
-        </li>
-        <li>
-          <Link to="/blog" activeClassName="active">
-            Blog
-          </Link>
-        </li>
-      </ul>
+      <NavLinks />
     </StyledNav>
   );
 }
