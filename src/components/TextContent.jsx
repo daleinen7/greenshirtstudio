@@ -6,7 +6,7 @@ const StyledTextContent = styled.div`
   max-width: 40rem;
   display: flex;
   flex-direction: column;
-  margin: 9.375rem auto 0;
+  margin: 6rem auto;
 
   h3 {
     font-family: "Zona Pro", serif;
@@ -14,9 +14,14 @@ const StyledTextContent = styled.div`
     font-size: 2rem;
     margin-bottom: 1.5rem;
   }
-
+  ul{
+    padding-left: 1rem;
+    li {
+      list-style-type: circle;
+    }
+  }
   .link {
-    margin-top: 2rem;
+    margin: 2rem 0;
   }
 `;
 

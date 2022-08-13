@@ -1,6 +1,8 @@
 import React from "react";
 import SpecializedClassesImg from "../images/SpecializedClasses.png";
 import Layout from "../components/Layout";
+import Subscribe from "../components/Subscribe";
+import ContentStack from "../components/ContentStack";
 import ImageAndContentHeader from "../components/ImageAndContentHeader";
 
 const SpecializedClasses = () => {
@@ -11,6 +13,11 @@ const SpecializedClasses = () => {
         title="Specialized Classes"
         content="Something something apple sauce"
       />
+      {/* <ContentStack
+      title="Upcoming Workshops"
+      content={?}
+      /> */}
+      <Subscribe/>
     </Layout>
   );
 };
