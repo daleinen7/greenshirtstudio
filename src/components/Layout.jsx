@@ -16,6 +16,9 @@ import styled from "styled-components";
 
 const StyledHeader = styled.header`
   padding: 0 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   background: ${(props) =>
     props.headerColor === "green" ? "var(--green)" : " var(--white)"};
@@ -34,16 +37,18 @@ const StyledHeader = styled.header`
     max-width: 81rem;
     padding: 0 2.375rem 0 0;
   }
-  @media screen (max-width: 450px) {
+  @media screen and (max-width: 450px) {
   }
 `;
 
 const StyledFooter = styled.footer`
   color: var(--white);
   background: var(--black);
+
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
   padding: 3.75rem;
 
@@ -128,7 +133,7 @@ const StyledFooter = styled.footer`
   .social-media {
     padding-top: 4rem;
   }
-  @media screen (max-width: 450px) {
+  @media screen and (max-width: 450px) {
     padding: 3.75rem 1.5rem;
     .main-footer {
       width: 100%;

@@ -59,24 +59,6 @@ const Classes = ({ data }) => {
     </Link>,
   ];
 
-  // const FAQs = [
-  //   {
-  //     question: "What is “The Meisner Technique?”",
-  //     answer:
-  //       "Renowned actor and acting instructor Sanford Meisner developed a groundbreaking technique that demystified the craft of acting. The process that he taught to countless professional actors was built on listening, being present and learning to live truthfully under imaginary circumstances.",
-  //   },
-  //   {
-  //     question: "What is “The Meisner Technique?”",
-  //     answer:
-  //       "Renowned actor and acting instructor Sanford Meisner developed a groundbreaking technique that demystified the craft of acting. The process that he taught to countless professional actors was built on listening, being present and learning to live truthfully under imaginary circumstances.",
-  //   },
-  //   {
-  //     question: "What is “The Meisner Technique?”",
-  //     answer:
-  //       "Renowned actor and acting instructor Sanford Meisner developed a groundbreaking technique that demystified the craft of acting. The process that he taught to countless professional actors was built on listening, being present and learning to live truthfully under imaginary circumstances.",
-  //   },
-  // ];
-
   return (
     <Layout>
       <StyledHero>
