@@ -11,6 +11,15 @@ const StyledBlogCard = styled.article`
     font-weight: 400;
     text-align: left;
   }
+  .image-wrapper {
+    display: flex;
+    justify-content: center;
+    height: 13.25rem;
+
+    img {
+      object-fit: contain;
+    }
+  }
   a {
     color: var(--black);
     text-decoration: none;
@@ -23,7 +32,13 @@ const StyledBlogCard = styled.article`
 const BlogCard = ({ title, author, img, slug }) => {
   return (
     <StyledBlogCard>
-      <Link to={`${slug}`}>{img && <img src={img} alt={title} />}</Link>
+      <Link to={`${slug}`}>
+        {img && (
+          <div className="image-wrapper">
+            <img src={img} alt={title} />
+          </div>
+        )}
+      </Link>
       <Link to={`${slug}`}>
         <h3>{title}</h3>
       </Link>

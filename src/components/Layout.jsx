@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "gatsby";
+import useWindowSize from "../lib/useWindowSize";
 import Nav from "./Nav";
+import MobileNav from "./MobileNav";
 import Cart from "./Cart";
 import logo from "../images/logo.svg";
-import logoGreen from "../images/logoGreen.svg";
+import openNav from "../images/openNav.svg";
+import closeNav from "../images/closeNav.svg";
 import { StaticImage } from "gatsby-plugin-image";
 import GlobalStyles from "../styles/globalStyles";
 import Reset from "../styles/reset";
@@ -13,6 +16,7 @@ import twitter from "../images/socialMedia/twitter.svg";
 import yelp from "../images/socialMedia/yelp.svg";
 
 import styled from "styled-components";
+import { useEffect } from "react";
 
 const StyledHeader = styled.header`
   padding: 0 4rem;
@@ -34,7 +38,23 @@ const StyledHeader = styled.header`
     max-width: 81rem;
     padding: 0 2.375rem 0 0;
   }
-  @media screen (max-width: 450px) {
+  
+  .layout-balance {
+    width: 4.375rem;
+    height: 1px;
+  }
+
+  .toggle-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 900;
+    background: none;
+    border: none;
+  }
+
+  @media (max-width: 600px) {
+    padding: 0.5rem;
   }
 `;
 
@@ -163,6 +183,20 @@ const StyledFooter = styled.footer`
 `;
 
 const Layout = ({ children, headerColor }) => {
+  const [mobileNav, setMobileNav] = useState(false);
+
+  const toggleNav = () => {
+    setMobileNav(!mobileNav);
+  };
+
+  const size = useWindowSize();
+
+  useEffect(() => {
+    if (size.width > 1024) {
+      setMobileNav(false);
+    }
+  }, []);
+
   return (
     <>
       <Reset />
@@ -174,10 +208,23 @@ const Layout = ({ children, headerColor }) => {
               <img src={logo} alt={`Green Shirt Studio`} />
             </Link>
           </h1>
-          <Nav headerColor={headerColor} />
-          <Cart />
+          {size.width > 1024 && <Nav headerColor={headerColor} />}
+          <div className="layout-balance">
+            {size.width <= 1024 &&
+              (mobileNav ? (
+                <button className="toggle-nav" onClick={toggleNav}>
+                  Close <img src={closeNav} alt="close nav" />
+                </button>
+              ) : (
+                <button className="toggle-nav" onClick={toggleNav}>
+                  Menu <img src={openNav} alt="open nav" />
+                </button>
+              ))}
+          </div>
+          {/* <Cart /> */}
         </div>
       </StyledHeader>
+      {size.width <= 1024 && mobileNav && <MobileNav />}
       <main>{children}</main>
       <StyledFooter>
         <div className="main-footer">
