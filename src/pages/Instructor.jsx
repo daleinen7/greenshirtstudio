@@ -32,8 +32,7 @@ const StyledUser = styled.div`
   }
 `;
 
-const UserPage = (props) => {
-  const { strapiUser } = props.data;
+const Instructor = (props) => {
   return (
     <Layout>
       <StyledUser>
@@ -42,15 +41,15 @@ const UserPage = (props) => {
             src="https://via.placeholder.com/637x444"
             alt="staff placeholder"
           />
-          <h2>{strapiUser.username}</h2>
-          <h3>{strapiUser.Title}</h3>
-          <ReactMarkdown children={strapiUser.Bio.data} />
+          {/* <h2>{strapiUser.username}</h2>
+          <h3>{strapiUser.Title}</h3> */}
+          {/* <ReactMarkdown children={strapiUser.Bio.data} /> */}
         </div>
       </StyledUser>
     </Layout>
   );
 };
-export default UserPage;
+export default Instructor;
 
 // export const query = graphql`
 //   query ($id: String!) {
