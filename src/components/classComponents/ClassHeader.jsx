@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { loadStripe } from "@stripe/stripe-js";
 import styled from "styled-components";
 
 const StyledClassHeader = styled.div`
@@ -42,7 +43,33 @@ const StyledClassHeader = styled.div`
   }
 `;
 
+let stripePromise;
+const getStripe = () => {
+  if (!stripePromise) {
+    stripePromise = loadStripe(process.env.GATSBY_STRIPE_PUBLISHABLE_KEY);
+  }
+  return stripePromise;
+};
+
 const ClassHeader = ({ wpClass }) => {
+  const [loading, setLoading] = useState(false);
+
+  const redirectToCheckout = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+    const stripe = await getStripe();
+    const { error } = await stripe.redirectToCheckout({
+      mode: "payment",
+      lineItems: [{ price: "price_1LGtyDJ2Dog8kO2S0AJZi8aC", quantity: 1 }],
+      successUrl: `http://localhost:8000/success`,
+      cancelUrl: `http://localhost:8000/cancel`,
+    });
+    if (error) {
+      console.warn("Error:", error);
+      setLoading(false);
+    }
+  };
+
   return (
     <StyledClassHeader>
       <img src={wpClass.classGroup.classImage.sourceUrl} alt={wpClass.title} />
@@ -57,7 +84,13 @@ const ClassHeader = ({ wpClass }) => {
           <small>or $110 every 3 weeks</small>
         </div>
 
-        <button className={"button fill"}>Sign Up</button>
+        <button
+          className={"button fill"}
+          disabled={loading}
+          onClick={redirectToCheckout}
+        >
+          Sign Up
+        </button>
       </div>
     </StyledClassHeader>
   );
