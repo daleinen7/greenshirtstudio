@@ -5,6 +5,7 @@ import ContentStack from "../components/ContentStack";
 import { graphql } from "gatsby";
 
 import styled from "styled-components";
+import BlogCard from "../components/BlogCard";
 
 const BlogPreview = styled.article`
   h3 {
@@ -41,7 +42,18 @@ const Blog = ({ data }) => {
   return (
     <Layout>
       <h2>Blog</h2>
-      <ContentStack content={blogPosts} />
+      <ContentStack
+        content={data.allWpPost.nodes.map((post) => {
+          return (
+            <BlogCard
+              title={post.title}
+              author={post.author.node.name}
+              img={post.featuredImage?.node.sourceUrl}
+              slug={post.slug}
+            />
+          );
+        })}
+      />
     </Layout>
   );
 };
