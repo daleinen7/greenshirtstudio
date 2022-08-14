@@ -35,6 +35,8 @@ const GlobalStyles = createGlobalStyle`
     line-height: 1.875rem;
   }
 
+  
+
   .visually-hidden {
     position: absolute !important;
     height: 1px;
@@ -77,7 +79,7 @@ const GlobalStyles = createGlobalStyle`
   .alice-carousel__prev-btn-item{
     padding: 1px 12px 0 0;
   }
-  @media screen (max-width: 450px) {
+  @media screen and (max-width: 450px) {
     display: flex;
     flex-direction: column;
   }

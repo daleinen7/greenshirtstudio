@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "gatsby";
 import Layout from "../components/Layout";
+import SectionDivider from "../components/SectionDivider";
 import StudioList from "../components/StudioList";
 import ImageAndContentHeader from "../components/ImageAndContentHeader";
 import space3031 from "../images/space-rental/303.1.png";
@@ -23,13 +24,13 @@ const Pricing = styled.section`
     gap: 2rem;
     margin: 3rem 0;
   }
-  
+
   .pricing-table {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 3rem;
-    border: 2px solid #EFEFEF;
+    border: 2px solid #efefef;
     min-height: 438px;
 
     h4 {
@@ -60,7 +61,7 @@ const SpaceRental = () => {
         content="Our two gorgeous studio spaces located at 4001 N Ravenswood Ave are perfect for your next workshop, rehearsal, photo shoot, or reading. See below for pictures, details, and pricing."
         image={space3031}
       />
-
+      <SectionDivider />
       <StudioList
         title="Studio 303-B"
         content="Versatile 800 sq ft loft partially divided by a half wall, featuring a  gathering space with a kitchenette. South facing windows with tons of natural light."

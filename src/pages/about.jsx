@@ -1,5 +1,6 @@
 import React from "react";
 import Layout from "../components/Layout";
+import SectionDivider from "../components/SectionDivider";
 import ImageAndContentHeader from "../components/ImageAndContentHeader";
 import ContentCard from "../components/ContentCard";
 import ContentStack from "../components/ContentStack";
@@ -38,7 +39,9 @@ const About = () => {
         content="Green Shirt Studio makes high quality performing arts training accessible for everyone. Our vision is to create a world of courageous, vulnerable, empathetic people empowered to tell their stories well."
         image="https://via.placeholder.com/703x527"
       />
+      <SectionDivider />
       <ContentStack title={"Other Programs"} content={coreValues} />
+      <SectionDivider />
       <TextContent
         title="Our Classes"
         content={

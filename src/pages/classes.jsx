@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
+import SectionDivider from "../components/SectionDivider";
 import MeisnerProgram from "../images/MeisnerProgram.png";
 import special from "../images/special.png";
 import workshop from "../images/workshop.png";
@@ -75,8 +76,11 @@ const Classes = ({ data }) => {
         ctaText={"Check out this session's class schedule"}
         ctaLink={"/meisner"}
       />
+      <SectionDivider />
       <ContentStack title={"Other Programs"} content={otherPrograms} />
+      <SectionDivider />
       <FAQSection FAQs={FAQs} />
+      <SectionDivider />
       <CTACard
         headerAlign={"right"}
         title={"Can't pay for classes?"}
