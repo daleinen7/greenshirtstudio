@@ -20,6 +20,9 @@ import { useEffect } from "react";
 
 const StyledHeader = styled.header`
   padding: 0 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   background: ${(props) =>
     props.headerColor === "green" ? "var(--green)" : " var(--white)"};
@@ -61,9 +64,11 @@ const StyledHeader = styled.header`
 const StyledFooter = styled.footer`
   color: var(--white);
   background: var(--black);
+
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
   padding: 3.75rem;
 
@@ -148,7 +153,7 @@ const StyledFooter = styled.footer`
   .social-media {
     padding-top: 4rem;
   }
-
+  
   @media screen and (max-width: 450px) {
     padding: 3.75rem 1.5rem;
     .main-footer {
