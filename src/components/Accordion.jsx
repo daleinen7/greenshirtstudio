@@ -8,14 +8,19 @@ const StyledAccordion = styled.section`
     border-top: 2px solid var(--black);
     margin-top: 3rem;
     max-width: 40rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
 
-    h3 {
+    h4 {
       font-size: 1.5rem;
     }
-    display: flex;
-    justify-content: space-between;
     :hover {
       cursor: pointer;
+    }
+
+    img {
+      margin-top: 0.875rem;
     }
   }
 `;
@@ -28,7 +33,7 @@ const Accordion = ({ title, children, defaultOpen }) => {
   return (
     <StyledAccordion>
       <div className="heading" onClick={handleAccordion}>
-        <h3>{title}</h3>
+        <h4>{title}</h4>
         {showContent ? (
           <img src={openAccordion} alt="Open Accordion" />
         ) : (

@@ -19,7 +19,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
 
-  h2 {
+  h2, h3 {
     font-family: "Zona Pro", serif;
   }
 
@@ -57,6 +57,10 @@ const GlobalStyles = createGlobalStyle`
     text-decoration: none;
     display: inline;
     cursor: pointer;
+
+    :active {
+      transform: translateY(1px) translateX(1px);
+    }
   }
 
   .fill {

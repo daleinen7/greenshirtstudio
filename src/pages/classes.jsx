@@ -25,7 +25,6 @@ const StyledHero = styled.div`
 
 const Classes = ({ data }) => {
   const FAQs = data.allWpFaq.nodes.map((faq) => faq);
-  console.log("FAQ: ", FAQs);
 
   const otherPrograms = [
     <Link to={"/specialized-classes"}>
@@ -73,7 +72,7 @@ const Classes = ({ data }) => {
         info={
           "An accessible, step by step approach that demystifies the craft of acting and gives our students a specific process to tackle any script."
         }
-        ctaText={"Check out this session's class schedule"}
+        ctaText={"Class Schedule"}
         ctaLink={"/meisner"}
       />
       <SectionDivider />
@@ -87,7 +86,7 @@ const Classes = ({ data }) => {
         image={Scholarships}
         imageAltText={"placeholder image"}
         info={"Learn how we can help you pay for it."}
-        ctaText={"Learn more about our scholarships"}
+        ctaText={"Learn More"}
         ctaLink={"/scholarships"}
       />
       <Subscribe />
