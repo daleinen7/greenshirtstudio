@@ -27,7 +27,7 @@ Contributions of any amount are greatly appreciated and will allow us to assist 
             scholarships.
           </p>
         }
-        link="Sponser a scholarship"
+        link="Sponser Us Today"
         linkAddress="#"
       />
       <TextContent
@@ -58,6 +58,8 @@ Contributions of any amount are greatly appreciated and will allow us to assist 
             </ul>
           </>
         }
+        link="Apply Today"
+        linkAddress="#"
       />
       <TextContent
         title="Receiving the Scholarship"
@@ -92,6 +94,8 @@ Contributions of any amount are greatly appreciated and will allow us to assist 
             </ul>
           </>
         }
+        link="Learn More"
+        linkAddress="#"
       />
     </Layout>
   );

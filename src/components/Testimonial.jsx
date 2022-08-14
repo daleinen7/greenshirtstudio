@@ -95,7 +95,7 @@ const StyledTestimonial = styled.div`
     font-weight: 400;
     font-size: 1rem;
   }
-  @media screen and (max-width: 450px) {
+  @media screen (max-width: 450px) {
     width:100%;
     margin-top: 4rem;
     .alice-carousel__next-btn-item{

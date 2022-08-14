@@ -17,8 +17,10 @@ const StyledStudioList = styled.section`
     justify-content: center;
     max-width: 90rem;
     list-style-type: none;
-    li {
-      margin: 32px;
+    gap: 2rem;
+    li img{
+      width: 400px;
+      height: 300px;
     }
   }
 `;

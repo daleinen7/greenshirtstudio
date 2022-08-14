@@ -34,7 +34,7 @@ const StyledHeader = styled.header`
     max-width: 81rem;
     padding: 0 2.375rem 0 0;
   }
-  @media screen and (max-width: 450px) {
+  @media screen (max-width: 450px) {
   }
 `;
 
@@ -128,7 +128,7 @@ const StyledFooter = styled.footer`
   .social-media {
     padding-top: 4rem;
   }
-  @media screen and (max-width: 450px) {
+  @media screen (max-width: 450px) {
     padding: 3.75rem 1.5rem;
     .main-footer {
       width: 100%;
