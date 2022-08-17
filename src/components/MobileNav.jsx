@@ -30,7 +30,7 @@ const StyledNav = styled.nav`
     width: 100%;
     position: absolute;
     z-index: 10;
-
+    box-shadow: 0 14px 22px -22px gray;
     li {
       border-radius: 2px;
 

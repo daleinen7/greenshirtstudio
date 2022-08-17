@@ -5,11 +5,14 @@ import styled from "styled-components";
 const StyledBlogCard = styled.article`
   max-width: 19rem;
   width: 100%;
+
   h3 {
     font-size: 1.25rem;
-    line-height: 1.857rem;
-    font-weight: 400;
+    line-height: 1.625rem;
+    font-weight: 900;
     text-align: left;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
   }
   .image-wrapper {
     display: flex;
@@ -18,8 +21,17 @@ const StyledBlogCard = styled.article`
 
     img {
       object-fit: contain;
+      border: 1px solid var(--light-gray);
+      width: 19rem;
+      margin-bottom: 0.5rem;
     }
   }
+
+  small {
+    font-size: 16px;
+    color: var(--dark-gray);
+  }
+
   a {
     color: var(--black);
     text-decoration: none;
@@ -39,9 +51,9 @@ const BlogCard = ({ title, author, img, slug }) => {
           </div>
         )}
       </Link>
-      <Link to={`${slug}`}>
-        <h3>{title}</h3>
-      </Link>
+      <h3>
+        <Link to={`${slug}`}>{title}</Link>
+      </h3>
       <small>{author}</small>
     </StyledBlogCard>
   );

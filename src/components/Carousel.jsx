@@ -10,6 +10,7 @@ const StyledCarousel = styled.section`
   overflow-x: hidden;
   h3 {
     font-size: 2rem;
+    margin-bottom: 2rem;
   }
   .alice-carousel {
     margin-bottom: 40px;
@@ -54,8 +55,8 @@ const StyledCarousel = styled.section`
     }
   }
 
-  @media screen (max-width: 450px) {
-    width:100%;
+  @media screen and (max-width: 450px) {
+    width: 100%;
 
     padding: 4.75rem 1rem;
     a[role="button"] {

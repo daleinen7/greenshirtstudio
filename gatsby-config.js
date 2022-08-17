@@ -10,6 +10,12 @@ module.exports = {
   plugins: [
     `gatsby-plugin-styled-components`,
     {
+      resolve: "gatsby-plugin-manifest",
+      options: {
+        icon: "src/images/ResponsiveFavicon4x.png",
+      },
+    },
+    {
       /*
        * https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-source-wordpress/README.md
        */
