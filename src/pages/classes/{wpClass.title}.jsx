@@ -37,6 +37,14 @@ padding: 0 4rem;
   padding-left: 1rem;
 }
 @media (max-width: 450px){
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    .left-column, .right-column {
+      width: 100%;
+      padding: 0;
+    }
+  }
 }
 `;
 
