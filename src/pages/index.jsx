@@ -5,6 +5,7 @@ import WhyClassWithUs from "../images/home/WhyClassWithUs.png";
 import Layout from "../components/Layout";
 import HeroBanner from "../components/HeroBanner";
 import Carousel from "../components/Carousel";
+import SectionDivider from "../components/SectionDivider";
 import CTACard from "../components/CTAContentCard";
 import Testimonial from "../components/Testimonial";
 import ClassCard from "../components/ClassCard";
@@ -37,7 +38,8 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <HeroBanner />
-      <Carousel title="Upcoming Classes & Workshops" items={classes}/>
+      <Carousel title="Upcoming Classes & Workshops" items={classes} />
+      <SectionDivider />
       <CTACard
         headerAlign={"left"}
         title={"Why take classes with us?"}
@@ -46,9 +48,10 @@ const IndexPage = ({ data }) => {
         info={
           "We make high quality performing arts training accessible for everyone in a welcoming learning environment where you’ll feel at home."
         }
-        ctaText={"Learn more about us"}
+        ctaText={"Learn More"}
         ctaLink={"/about"}
       />
+      <SectionDivider />
       <CTACard
         headerAlign={"right"}
         title={"What classes do we offer?"}
@@ -57,9 +60,10 @@ const IndexPage = ({ data }) => {
         info={
           "We offer acting classes in Chicago including our Meisner Acting Program, Specialized Classes, and Workshops."
         }
-        ctaText={"Learn more about our classes"}
+        ctaText={"Learn More"}
         ctaLink={"/about"}
       />
+      <SectionDivider />
       <CTACard
         headerAlign={"left"}
         title={"How do we help the community?"}

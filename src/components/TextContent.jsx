@@ -14,7 +14,12 @@ const StyledTextContent = styled.div`
     font-size: 2rem;
     margin-bottom: 1.5rem;
   }
-  ul{
+
+  p {
+    margin-bottom: 1rem;
+  }
+
+  ul {
     padding-left: 1rem;
     li {
       list-style-type: circle;
@@ -22,6 +27,10 @@ const StyledTextContent = styled.div`
   }
   .link {
     margin: 2rem 0;
+  }
+
+  @media (max-width: 785px) {
+    padding: 0 1rem;
   }
 `;
 

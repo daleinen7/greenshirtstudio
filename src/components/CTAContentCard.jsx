@@ -32,7 +32,7 @@ const StyledCTACard = styled.div`
     font-size: 1.25rem;
     font-weight: 400;
     line-height: 1.875rem;
-    margin-bottom: 1.25rem;
+    margin-bottom: 3rem;
   }
 
   a {
@@ -48,7 +48,7 @@ const StyledCTACard = styled.div`
     }
   }
 
-  @media (max-width: 750px) {
+  @media (max-width: 785px) {
     flex-direction: column-reverse;
     padding: 1.875rem 0;
 

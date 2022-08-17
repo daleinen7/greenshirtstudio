@@ -9,6 +9,23 @@ const StyledClassCard = styled.article`
   max-width: 20rem;
   min-width: 20rem;
 
+  h4 {
+    font-size: 1.25rem;
+    font-weight: 900;
+    line-height: 1.625rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  small {
+    font-size: 1rem;
+    color: var(--black);
+  }
+
+  .program {
+    color: var(--dark-gray);
+  }
+
   a {
     color: var(--black);
     text-decoration: none;
@@ -29,7 +46,7 @@ const ClassCard = ({ title, slug, days, program, price, image }) => {
           {days}
         </Link>
       </h4>
-      <small>{program}</small>
+      <small className="program">{program}</small>
       <small>${price}</small>
     </StyledClassCard>
   );

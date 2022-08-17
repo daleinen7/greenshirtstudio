@@ -9,7 +9,7 @@ const StyledFAQSection = styled.section`
   justify-content: center;
   align-items: center;
   max-width: 40rem;
-  margin: 0 auto;
+  margin: 4.75rem auto;
 
   h3 {
     font-size: 2rem;
@@ -18,11 +18,21 @@ const StyledFAQSection = styled.section`
 
   ul {
     width: 100%;
+    padding: 0;
+    margin: 0 4rem;
     list-style-type: none;
+  }
+
+  p {
+    font-size: 1.25rem;
   }
 
   p:not(:last-child) {
     margin-bottom: 1.5rem;
+  }
+
+  @media (max-width: 785px) {
+    padding: 0 1rem;
   }
 `;
 

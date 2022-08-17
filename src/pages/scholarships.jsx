@@ -1,5 +1,6 @@
 import React from "react";
 import Layout from "../components/Layout";
+import SectionDivider from "../components/SectionDivider";
 import TextContent from "../components/TextContent";
 import ImageAndContentHeader from "../components/ImageAndContentHeader";
 import scholarshipsHome from "../images/scholarships-home.png";
@@ -14,6 +15,7 @@ const Scholarships = () => {
 Contributions of any amount are greatly appreciated and will allow us to assist as many students as possible. Your contribution helps support students seeking training in Levels 1 - 5 of our Meisner Acting Program."
         image={scholarshipsHome}
       />
+      <SectionDivider />
       <TextContent
         title="Mission"
         content={
@@ -30,6 +32,7 @@ Contributions of any amount are greatly appreciated and will allow us to assist 
         link="Sponser Us Today"
         linkAddress="#"
       />
+      <SectionDivider />
       <TextContent
         title="Eligibility"
         content={
@@ -61,6 +64,7 @@ Contributions of any amount are greatly appreciated and will allow us to assist 
         link="Apply Today"
         linkAddress="#"
       />
+      <SectionDivider />
       <TextContent
         title="Receiving the Scholarship"
         content={

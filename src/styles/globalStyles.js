@@ -1,4 +1,4 @@
-import ZonaPro from "../lib/ZonaPro-Bold.otf";
+import ZonaPro from "../lib/zonapro-extrabold-webfont.woff2";
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
@@ -19,7 +19,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
 
-  h2 {
+  h2, h3 {
     font-family: "Zona Pro", serif;
   }
 
@@ -34,6 +34,8 @@ const GlobalStyles = createGlobalStyle`
     font-weight: 400;
     line-height: 1.875rem;
   }
+
+  
 
   .visually-hidden {
     position: absolute !important;
@@ -55,6 +57,10 @@ const GlobalStyles = createGlobalStyle`
     text-decoration: none;
     display: inline;
     cursor: pointer;
+
+    :active {
+      transform: translateY(1px) translateX(1px);
+    }
   }
 
   .fill {
@@ -77,7 +83,7 @@ const GlobalStyles = createGlobalStyle`
   .alice-carousel__prev-btn-item{
     padding: 1px 12px 0 0;
   }
-  @media screen (max-width: 450px) {
+  @media screen and (max-width: 450px) {
     display: flex;
     flex-direction: column;
   }

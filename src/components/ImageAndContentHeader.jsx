@@ -1,5 +1,6 @@
 import React from "react";
 import HeadingEffect from "./HeadingEffect";
+import useWindowSize from "../lib/useWindowSize";
 import styled from "styled-components";
 
 const StyledImageAndContent = styled.div`
@@ -8,7 +9,7 @@ const StyledImageAndContent = styled.div`
   flex-direction: row;
   justify-content: center;
   max-width: 90rem;
-  margin: 0 auto;
+  margin: 4.625rem auto;
 
   align-items: center;
 
@@ -30,13 +31,32 @@ const StyledImageAndContent = styled.div`
       line-height: 1.875rem;
     }
   }
+
+  @media (max-width: 785px) {
+    flex-direction: column-reverse;
+
+    h2 {
+      font-size: 2.25rem;
+    }
+
+    img {
+      width: auto;
+      padding: 0;
+    }
+
+    .info {
+      width: auto;
+      padding: 0 1rem;
+    }
+  }
 `;
 
 const ImageAndContentHeader = ({ title, content, image }) => {
+  const window = useWindowSize();
   return (
     <StyledImageAndContent>
       <div className="info">
-        <HeadingEffect text={title} />
+        {window.width > 785 ? <HeadingEffect text={title} /> : <h2>{title}</h2>}
         <p>{content}</p>
       </div>
       <img src={image} alt={title} />

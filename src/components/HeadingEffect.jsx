@@ -32,6 +32,10 @@ const StyledHeadingEffect = styled.div`
     transform: rotate(1.5deg);
     padding: 0;
   }
+
+  @media (max-width: 570px) {
+    font-size: 2.25rem;
+  }
 `;
 
 const HeadingEffect = ({ text }) => {

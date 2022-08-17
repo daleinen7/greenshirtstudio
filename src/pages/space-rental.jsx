@@ -1,36 +1,45 @@
 import React from "react";
 import { Link } from "gatsby";
 import Layout from "../components/Layout";
+import SectionDivider from "../components/SectionDivider";
 import StudioList from "../components/StudioList";
 import ImageAndContentHeader from "../components/ImageAndContentHeader";
 import space3031 from "../images/space-rental/303.1.png";
 import space3032 from "../images/space-rental/303.2.png";
 import space3033 from "../images/space-rental/303.3.png";
-import space4011 from "../images/space-rental/401.1.png";
+import space4011 from "../images/space-rental/studioPicPink.png";
 import space4012 from "../images/space-rental/401.2.png";
 import space4013 from "../images/space-rental/401.3.png";
+import smallMiddleStudio from "../images/space-rental/smallMiddleStudio.png";
 import styled from "styled-components";
 
 const Pricing = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 4.625rem;
+
+  h3 {
+    font-size: 2rem;
+  }
 
   .pricing {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
     gap: 2rem;
     margin: 3rem 0;
   }
-  
+
   .pricing-table {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     padding: 3rem;
-    border: 2px solid #EFEFEF;
-    min-height: 438px;
+    border: 2px solid #efefef;
+    height: 30rem;
 
     h4 {
       font-weight: 900;
@@ -50,6 +59,16 @@ const Pricing = styled.section`
       margin-bottom: 2rem;
     }
   }
+
+  @media (max-width: 550px) {
+    .pricing-table {
+      padding: 1rem;
+      height: 26rem;
+      button {
+        font-size: 1rem;
+      }
+    }
+  }
 `;
 
 const SpaceRental = () => {
@@ -60,11 +79,11 @@ const SpaceRental = () => {
         content="Our two gorgeous studio spaces located at 4001 N Ravenswood Ave are perfect for your next workshop, rehearsal, photo shoot, or reading. See below for pictures, details, and pricing."
         image={space3031}
       />
-
+      <SectionDivider />
       <StudioList
         title="Studio 303-B"
         content="Versatile 800 sq ft loft partially divided by a half wall, featuring a  gathering space with a kitchenette. South facing windows with tons of natural light."
-        list={[space3032, space3031, space3033]}
+        list={[space3032, smallMiddleStudio, space3033]}
       />
 
       <StudioList
