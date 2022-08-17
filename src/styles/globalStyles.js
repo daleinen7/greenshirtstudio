@@ -1,4 +1,4 @@
-import ZonaPro from "../lib/ZonaPro-Bold.otf";
+import ZonaPro from "../lib/zonapro-extrabold-webfont.woff2";
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
