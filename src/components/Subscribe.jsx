@@ -7,6 +7,7 @@ const StyledSubscribe = styled.section`
   flex-direction: column;
   align-items: center;
   padding: 8.875rem 0;
+  overflow: hidden;
 
   .subscribeBG {
     background-image: url(${subscribeBG});
@@ -27,6 +28,21 @@ const StyledSubscribe = styled.section`
     max-width: 40rem;
     margin-bottom: 2rem;
   }
+
+  @media (max-width: 785px) {
+    h3 {
+      font-size: 1.125rem;
+      max-width: 400px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    h3 {
+      font-size: 1.125rem;
+      max-width: 300px;
+      line-height: 1.5rem;
+    }
+  }
 `;
 
 const Subscribe = () => {
@@ -36,7 +52,7 @@ const Subscribe = () => {
         <h3>
           Sign up to our newsletter to know when the next class is coming up
         </h3>
-        <button className="button fill">Subscribe</button>
+        <button className="button fill">Newsletter Registration</button>
       </div>
     </StyledSubscribe>
   );

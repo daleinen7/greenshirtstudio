@@ -1,18 +1,16 @@
 const testimonials = [
   {
     quote:
-      "The teachers at Green Shirt have a way of making all students feel like heard, unique individuals rather than just another face in the crowd.",
-    name: "Joseph Tajaran, Mesiner Student",
+      "An encouraging environment that welcomes everyone, whether you have extensive experience or are brand new to acting.",
+    name: "Kelly H",
   },
   {
-    quote:
-      "The teachers at Green Shirt have a way of making all students feel like heard, unique individuals rather than just another face in the crowd.",
-    name: "Joseph Tajaran, Mesiner Student",
+    quote: "This is a great network and community to be a part of.",
+    name: "Brad P",
   },
   {
-    quote:
-      "The teachers at Green Shirt have a way of making all students feel like heard, unique individuals rather than just another face in the crowd.",
-    name: "Joseph Tajaran, Mesiner Student",
+    quote: "The instructors are all 10 out of 10.",
+    name: "Bobby It",
   },
 ];
 

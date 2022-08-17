@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
+import SectionDivider from "../components/SectionDivider";
 import MeisnerProgram from "../images/MeisnerProgram.png";
 import special from "../images/special.png";
 import workshop from "../images/workshop.png";
@@ -24,7 +25,6 @@ const StyledHero = styled.div`
 
 const Classes = ({ data }) => {
   const FAQs = data.allWpFaq.nodes.map((faq) => faq);
-  console.log("FAQ: ", FAQs);
 
   const otherPrograms = [
     <Link to={"/specialized-classes"}>
@@ -59,24 +59,6 @@ const Classes = ({ data }) => {
     </Link>,
   ];
 
-  // const FAQs = [
-  //   {
-  //     question: "What is “The Meisner Technique?”",
-  //     answer:
-  //       "Renowned actor and acting instructor Sanford Meisner developed a groundbreaking technique that demystified the craft of acting. The process that he taught to countless professional actors was built on listening, being present and learning to live truthfully under imaginary circumstances.",
-  //   },
-  //   {
-  //     question: "What is “The Meisner Technique?”",
-  //     answer:
-  //       "Renowned actor and acting instructor Sanford Meisner developed a groundbreaking technique that demystified the craft of acting. The process that he taught to countless professional actors was built on listening, being present and learning to live truthfully under imaginary circumstances.",
-  //   },
-  //   {
-  //     question: "What is “The Meisner Technique?”",
-  //     answer:
-  //       "Renowned actor and acting instructor Sanford Meisner developed a groundbreaking technique that demystified the craft of acting. The process that he taught to countless professional actors was built on listening, being present and learning to live truthfully under imaginary circumstances.",
-  //   },
-  // ];
-
   return (
     <Layout>
       <StyledHero>
@@ -90,18 +72,21 @@ const Classes = ({ data }) => {
         info={
           "An accessible, step by step approach that demystifies the craft of acting and gives our students a specific process to tackle any script."
         }
-        ctaText={"Check out this session's class schedule"}
+        ctaText={"Class Schedule"}
         ctaLink={"/meisner"}
       />
+      <SectionDivider />
       <ContentStack title={"Other Programs"} content={otherPrograms} />
+      <SectionDivider />
       <FAQSection FAQs={FAQs} />
+      <SectionDivider />
       <CTACard
         headerAlign={"right"}
         title={"Can't pay for classes?"}
         image={Scholarships}
         imageAltText={"placeholder image"}
         info={"Learn how we can help you pay for it."}
-        ctaText={"Learn more about our scholarships"}
+        ctaText={"Learn More"}
         ctaLink={"/scholarships"}
       />
       <Subscribe />
