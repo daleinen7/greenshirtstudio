@@ -2,6 +2,11 @@ import React from "react";
 import Layout from "../components/Layout";
 import SectionDivider from "../components/SectionDivider";
 import ImageAndContentHeader from "../components/ImageAndContentHeader";
+import AboutHero from "../images/AboutHero.png";
+import Accessibility from "../images/Accessibility.png";
+import Community from "../images/Community.png";
+import Diversity from "../images/Diversity.png";
+import Facing from "../images/Facing.png";
 import ContentCard from "../components/ContentCard";
 import ContentStack from "../components/ContentStack";
 import TextContent from "../components/TextContent";
@@ -13,22 +18,22 @@ const About = () => {
       content={
         "Our classes are designed to welcome and challenge students of all levels of experience"
       }
-      image={"https://via.placeholder.com/416x290"}
-      altText="Placeholder image"
+      image={Accessibility}
+      altText="All level of actors"
     />,
     <ContentCard
       title={"Diversity"}
       content={
         "We believe people learn best when many different types of people are learning in the same space "
       }
-      image={"https://via.placeholder.com/416x290"}
-      altText="Placeholder image"
+      image={Diversity}
+      altText="Diverse actors"
     />,
     <ContentCard
       title={"Community"}
       content={"We grow by supporting one another"}
-      image={"https://via.placeholder.com/416x290"}
-      altText="Placeholder image"
+      image={Community}
+      altText="Actors posing"
     />,
   ];
 
@@ -37,7 +42,7 @@ const About = () => {
       <ImageAndContentHeader
         title="About"
         content="Green Shirt Studio makes high quality performing arts training accessible for everyone. Our vision is to create a world of courageous, vulnerable, empathetic people empowered to tell their stories well."
-        image="https://via.placeholder.com/703x527"
+        image={AboutHero}
       />
       <SectionDivider />
       <ContentStack title={"Other Programs"} content={coreValues} />
@@ -74,6 +79,7 @@ const About = () => {
         link="Sponser a scholarship"
         linkAddress="#"
       />
+      <img src={Facing} alt="Actors facing eachother" />
     </Layout>
   );
 };
