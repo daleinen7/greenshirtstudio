@@ -5,6 +5,7 @@ const StyledStudioList = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 4.625rem;
 
   h3,
   p {
@@ -15,12 +16,21 @@ const StyledStudioList = styled.section`
     display: flex;
     justify-content: center;
     max-width: 90rem;
+    margin: 0 auto;
+    padding: 2rem 0;
     list-style-type: none;
     gap: 2rem;
+  }
 
-    li img{
-      width: 400px;
-      height: 300px;
+  @media (max-width: 1440px) {
+    ul {
+      padding: 2rem 1rem;
+    }
+  }
+
+  @media (max-width: 1032px) {
+    ul {
+      gap: 1rem;
     }
   }
 `;

@@ -9,6 +9,7 @@ const StyledImageAndContent = styled.div`
   flex-direction: row;
   justify-content: center;
   max-width: 90rem;
+  padding-bottom: 4.625rem;
   margin: 0 auto;
 
   align-items: center;
@@ -34,6 +35,10 @@ const StyledImageAndContent = styled.div`
 
   @media (max-width: 785px) {
     flex-direction: column-reverse;
+
+    h2 {
+      font-size: 2.25rem;
+    }
 
     img {
       width: auto;
