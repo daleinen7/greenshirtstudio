@@ -11,32 +11,34 @@ const StyledCarousel = styled.section`
   h3 {
     font-size: 2rem;
   }
-  .alice-carousel{
+  .alice-carousel {
     margin-bottom: 40px;
   }
-  .alice-carousel__stage{
+  .alice-carousel__stage {
     display: flex;
     gap: 32px;
   }
-  li.alice-carousel__stage-item{
+  li.alice-carousel__stage-item {
     min-width: 300px !important;
   }
-  .alice-carousel__prev-btn-item, .alice-carousel__next-btn-item{
+  .alice-carousel__prev-btn-item,
+  .alice-carousel__next-btn-item {
     color: var(--black);
     background-color: var(--neon-green);
   }
-  .alice-carousel__prev-btn, .alice-carousel__next-btn{
+  .alice-carousel__prev-btn,
+  .alice-carousel__next-btn {
     width: 40px;
     position: absolute;
     top: -60px;
   }
-  .alice-carousel__prev-btn{
+  .alice-carousel__prev-btn {
     right: 50px;
   }
-  .alice-carousel__next-btn{
+  .alice-carousel__next-btn {
     right: 0px;
   }
-  a[role=button] {
+  a[role="button"] {
     font-weight: 900;
     color: var(--black);
     background: var(--neon-green);
@@ -51,22 +53,25 @@ const StyledCarousel = styled.section`
       background: var(--white);
     }
   }
+
   @media screen (max-width: 450px) {
     width:100%;
+
     padding: 4.75rem 1rem;
-    a[role=button] {
+    a[role="button"] {
       margin: 0;
     }
     h3 {
       padding-bottom: 5rem;
     }
-    .alice-carousel__prev-btn, .alice-carousel__next-btn{
+    .alice-carousel__prev-btn,
+    .alice-carousel__next-btn {
       top: -72px;
     }
-    .alice-carousel__prev-btn{
+    .alice-carousel__prev-btn {
       left: 0px;
     }
-    .alice-carousel__next-btn{
+    .alice-carousel__next-btn {
       left: 50px;
     }
   }
@@ -95,10 +100,13 @@ const Carousel = ({ title, items }) => {
         disableDotsControls
         mouseTracking
         items={items}
+        // infinite
         responsive={responsive}
         autoWidth
       />
-      <Link role="button" to="/classes">All Classes & Workshops</Link>
+      <Link role="button" to="/classes">
+        All Classes & Workshops
+      </Link>
     </StyledCarousel>
   );
 };
