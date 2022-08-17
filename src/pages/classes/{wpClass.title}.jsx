@@ -1,7 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
 
-import styled from "styled-components";
 import Layout from "../../components/Layout";
 import ClassHeader from "../../components/classComponents/ClassHeader";
 import Description from "../../components/classComponents/Description";
@@ -11,29 +10,34 @@ import SpecialMessage from "../../components/classComponents/SpecialMessage";
 import AboutTeacher from "../../components/classComponents/AboutTeacher";
 import ClassDetails from "../../components/classComponents/ClassDetails";
 
+import styled from "styled-components";
+
 const StyledClassPage = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+margin: 4.6875rem auto;
+padding: 0 4rem; 
+
+.main-content {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 4.6875rem auto;
-  padding: 0 4rem;
-  .main-content {
-    display: flex;
-    max-width: 1440px;
-    width: 100%;
-  }
-  .left-column,
-  .right-column {
-    width: 50%;
-  }
+  max-width: 1440px;
+  width: 100%;
+}
+.left-column,
+.right-column {
+  width: 50%;
+}
 
-  .left-column {
-    padding-right: 1rem;
-  }
+.left-column {
+  padding-right: 1rem;
+}
 
-  .right-column {
-    padding-left: 1rem;
-  }
+.right-column {
+  padding-left: 1rem;
+}
+@media (max-width: 450px){
+}
 `;
 
 const ClassPage = (props) => {
