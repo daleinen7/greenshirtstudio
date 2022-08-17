@@ -9,8 +9,7 @@ const StyledImageAndContent = styled.div`
   flex-direction: row;
   justify-content: center;
   max-width: 90rem;
-  padding-bottom: 4.625rem;
-  margin: 0 auto;
+  margin: 4.625rem auto;
 
   align-items: center;
 
