@@ -10,6 +10,7 @@ const StyledStudioList = styled.section`
   h3,
   p {
     max-width: 40rem;
+    text-align: center;
   }
 
   ul {

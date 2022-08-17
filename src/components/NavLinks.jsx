@@ -14,11 +14,11 @@ const NavLinks = () => {
           Classes
         </Link>
       </li>
-      <li>
+      {/* <li>
         <Link to="/shows-and-events" activeClassName="active">
           Shows & Events
         </Link>
-      </li>
+      </li> */}
       <li>
         <Link to="/space-rental" activeClassName="active">
           Space Rental
