@@ -37,12 +37,45 @@ padding: 0 4rem;
   padding-left: 1rem;
 }
 @media (max-width: 450px){
+  padding: 0 1rem;
   .main-content {
-    display: flex;
     flex-direction: column;
     .left-column, .right-column {
       width: 100%;
       padding: 0;
+      img {
+        margin: 1rem;
+      }
+    }
+    .left-column {
+      margin-bottom: 2rem;
+    }
+    .right-column {
+      margin-top: 2rem;
+      h3 {
+        margin-bottom: .5rem;
+      }
+      p {
+        border: #F8BCBE solid 2px;
+        border-radius: 2px;
+        padding: 1rem;
+        margin: 2rem auto;
+      }
+      a {
+        border: #8CEEA0 solid 2px;
+        border-radius: 2px;
+        padding: 1rem 2rem;
+        margin: 2rem auto;
+        color: inherit;
+      }
+      dt {
+        font-weight: bold;
+        margin-top: 1rem;
+      }
+      ul{
+        list-style: none;
+        padding: 0;
+      }
     }
   }
 }
