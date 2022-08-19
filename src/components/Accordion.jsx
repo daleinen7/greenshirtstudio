@@ -25,7 +25,7 @@ const StyledAccordion = styled.section`
   }
 `;
 
-const Accordion = ({ title, children, defaultOpen }) => {
+const Accordion = ({ title, children, defaultOpen, h3 }) => {
   const [showContent, setShowContent] = useState(defaultOpen);
 
   const handleAccordion = () => setShowContent(!showContent);
@@ -33,7 +33,7 @@ const Accordion = ({ title, children, defaultOpen }) => {
   return (
     <StyledAccordion>
       <div className="heading" onClick={handleAccordion}>
-        <h4>{title}</h4>
+        {!h3 ? <h4>{title}</h4> : <h3>{title}</h3>}
         {showContent ? (
           <img src={openAccordion} alt="Open Accordion" />
         ) : (

@@ -9,8 +9,15 @@ const StyledAttendancePolicy = styled.section`
     font-size: 1.5rem;
   }
 
+  h4 {
+    font-size: 1.375rem;
+    font-weight: 600;
+    margin-top: 0.75rem;
+  }
+
   p {
     font-size: 1.25rem;
+    margin-top: 0.75rem;
   }
 
   ul {
@@ -24,7 +31,9 @@ const StyledAttendancePolicy = styled.section`
 const AttendancePolicy = ({ attendancePolicy }) => {
   return (
     <StyledAttendancePolicy>
-      <Accordion title="Attendance Policy">{parse(attendancePolicy)}</Accordion>
+      <Accordion title="Attendance Policy" h3>
+        {parse(attendancePolicy)}
+      </Accordion>
     </StyledAttendancePolicy>
   );
 };
