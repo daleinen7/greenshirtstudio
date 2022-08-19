@@ -41,15 +41,16 @@ const StyledClassHeader = styled.div`
       }
     }
   }
-  @media (max-width: 970px){
+  @media (max-width: 970px) {
     flex-direction: column;
 
-    img, .info {
+    img,
+    .info {
       width: 100%;
       padding: 0;
     }
 
-    .info{
+    .info {
       padding: 0 1rem;
     }
     img {
