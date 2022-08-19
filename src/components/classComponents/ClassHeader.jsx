@@ -41,6 +41,25 @@ const StyledClassHeader = styled.div`
       }
     }
   }
+  @media (max-width: 970px){
+    flex-direction: column;
+
+    img, .info {
+      width: 100%;
+      padding: 0;
+    }
+
+    .info{
+      padding: 0 1rem;
+    }
+    img {
+      margin-bottom: 2rem;
+    }
+    button {
+      width: 100%;
+      margin: 1rem auto;
+    }
+  }
 `;
 
 let stripePromise;
