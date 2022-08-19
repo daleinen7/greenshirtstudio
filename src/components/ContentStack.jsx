@@ -2,7 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledContentStack = styled.section`
+  margin: 0 auto;
   margin-bottom: 4.75rem;
+  max-width: 90rem;
 
   a {
     text-decoration: none;

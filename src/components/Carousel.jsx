@@ -7,7 +7,10 @@ import styled from "styled-components";
 const StyledCarousel = styled.section`
   width: 100%;
   padding: 4.75rem 4rem;
+  max-width: 90rem;
   overflow-x: hidden;
+  margin: 0 auto;
+
   h3 {
     font-size: 2rem;
     margin-bottom: 2rem;

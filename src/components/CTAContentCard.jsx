@@ -10,6 +10,7 @@ const StyledCTACard = styled.div`
   justify-content: ${(props) => ("left" ? "start" : "end")};
 
   max-width: 1440px;
+  margin: 0 auto;
   padding: 4.75rem 4rem;
 
   .info {
