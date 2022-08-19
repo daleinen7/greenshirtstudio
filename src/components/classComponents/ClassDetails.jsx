@@ -2,8 +2,33 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledClassDetails = styled.section`
+  border: 2px solid var(--light-gray);
+  border-radius: 2px;
+  padding: 1.5rem;
+
   h3 {
     font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  dl {
+    display: grid;
+    grid-template-columns: 6.9375rem auto;
+  }
+
+  dt {
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0 0 1.5rem;
+    padding: 0;
+  }
+
+  .location {
+    margin-bottom: 1rem;
   }
 `;
 
@@ -26,7 +51,18 @@ const ClassDetails = ({ wpClass }) => {
             </ul>
           </dd>
           <dt>Location</dt>
-          <dd>{wpClass.classGroup.location}</dd>
+          <dd className="location">
+            {wpClass.classGroup.location
+              .split(" ")
+              .splice(0, wpClass.classGroup.location.split(" ").length - 1, -1)
+              .join(" ")}
+            <br />
+            {
+              wpClass.classGroup.location.split(" ")[
+                wpClass.classGroup.location.split(" ").length - 1
+              ]
+            }
+          </dd>
           <dt>Instructor</dt>
           <dd>{wpClass.classGroup.instructor}</dd>
           <dt>Class Size</dt>
