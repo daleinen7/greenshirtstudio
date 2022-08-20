@@ -10,7 +10,7 @@ const testimonials = [
   },
   {
     quote: "The instructors are all 10 out of 10.",
-    name: "Bobby It",
+    name: "Bobby I",
   },
 ];
 

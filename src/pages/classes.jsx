@@ -45,9 +45,9 @@ const Classes = ({ data }) => {
         altText="Instructor leading class"
       />
     </Link>,
-    <Link to={"/professional-development"}>
+    <Link to={"/private-coaching"}>
       <ContentCard
-        title={"Professional Development"}
+        title={"Private Coaching"}
         content={
           "One-on-one attention to help you work towards your goals. Audition, monologue, and storytelling coaching available."
         }

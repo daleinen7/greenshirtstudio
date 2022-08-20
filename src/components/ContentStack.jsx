@@ -20,8 +20,9 @@ const StyledContentStack = styled.section`
   }
 
   ul {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     list-style-type: none;
     gap: 2rem;
     margin: 0 auto;
@@ -36,19 +37,6 @@ const StyledContentStack = styled.section`
   @media (max-width: 800px) {
     ul {
       gap: 1rem;
-    }
-  }
-  @media (max-width: 650px) {
-    ul {
-      grid-template-columns: repeat(1, 1fr);
-      width: 100%;
-      padding: 1rem;
-      gap: 1.5rem;
-
-      li {
-        display: flex;
-        justify-content: center;
-      }
     }
   }
 `;
