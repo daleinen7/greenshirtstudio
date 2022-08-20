@@ -41,7 +41,7 @@ const StyledHeader = styled.header`
     max-width: 81rem;
     padding: 0 2.375rem 0 0;
   }
-  
+
   .layout-balance {
     width: 4.375rem;
     height: 1px;
@@ -76,6 +76,8 @@ const StyledFooter = styled.footer`
     width: 100%;
     display: flex;
     justify-content: space-between;
+    max-width: 90rem;
+    margin: 0 auto;
   }
 
   h3 {
@@ -87,7 +89,7 @@ const StyledFooter = styled.footer`
   form {
     display: flex;
     flex-direction: column;
-    max-width: 19rem;
+    width: 19rem;
 
     h3 {
       margin-bottom: 1.5rem;
@@ -131,6 +133,9 @@ const StyledFooter = styled.footer`
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    margin: 0 1.5rem;
+    max-width: 26rem;
+
     a {
       color: var(--white);
       font-weight: 400;
@@ -147,13 +152,31 @@ const StyledFooter = styled.footer`
     }
   }
 
+  .contact {
+    width: 18.6875rem;
+  }
+
   .copyright {
     margin-top: 3rem;
   }
   .social-media {
     padding-top: 4rem;
   }
-  
+
+  @media (max-width: 1040px) {
+    .main-footer {
+      flex-direction: column;
+      gap: 3.75rem;
+      max-width: 26rem;
+    }
+    .map {
+      margin: 0;
+    }
+    iframe {
+      width: 100%;
+    }
+  }
+
   @media screen and (max-width: 450px) {
     padding: 3.75rem 1.5rem;
     .main-footer {
@@ -169,21 +192,11 @@ const StyledFooter = styled.footer`
       font-size: 0.9rem;
       padding: 1rem 0;
     }
-    iframe {
-      width: 100%;
-    }
     .contact {
       padding: 4rem 0;
     }
     .copyright {
       margin-top: 0;
-    }
-  }
-
-  @media (max-width: 1040px) {
-    .main-footer {
-      flex-direction: column;
-      gap: 3.75rem;
     }
   }
 `;
@@ -215,18 +228,16 @@ const Layout = ({ children, headerColor }) => {
             </Link>
           </h1>
           {size.width > 1024 && <Nav headerColor={headerColor} />}
-          <div className="layout-balance">
-            {size.width <= 1024 &&
-              (mobileNav ? (
-                <button className="toggle-nav" onClick={toggleNav}>
-                  Close <img src={closeNav} alt="close nav" />
-                </button>
-              ) : (
-                <button className="toggle-nav" onClick={toggleNav}>
-                  Menu <img src={openNav} alt="open nav" />
-                </button>
-              ))}
-          </div>
+          {size.width <= 1024 &&
+            (mobileNav ? (
+              <button className="toggle-nav" onClick={toggleNav}>
+                Close <img src={closeNav} alt="close nav" />
+              </button>
+            ) : (
+              <button className="toggle-nav" onClick={toggleNav}>
+                Menu <img src={openNav} alt="open nav" />
+              </button>
+            ))}
           {/* <Cart /> */}
         </div>
       </StyledHeader>
@@ -274,8 +285,8 @@ const Layout = ({ children, headerColor }) => {
           <div className="contact">
             <div className="contact-info">
               <h3>Contact Us</h3>
-              <small>info@greenshirtstudio.com</small>
-              <small>773-217-9565</small>
+              <div>info@greenshirtstudio.com</div>
+              <div>773-217-9565</div>
             </div>
             <div className="social-media">
               <h3>Follow Us</h3>
