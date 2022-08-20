@@ -6,6 +6,7 @@ const StyledClassHeader = styled.div`
   background: var(--white);
   display: flex;
   flex-direction: row;
+  margin-bottom: 3rem;
 
   align-items: center;
 

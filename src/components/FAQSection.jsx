@@ -14,6 +14,7 @@ const StyledFAQSection = styled.section`
   h3 {
     font-size: 2rem;
     font-weight: 900;
+    margin-bottom: 3rem;
   }
 
   ul {
