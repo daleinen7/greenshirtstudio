@@ -44,11 +44,11 @@ const IndexPage = ({ data }) => {
         headerAlign={"left"}
         title={"Why take classes with us?"}
         image={WhyClassWithUs}
-        imageAltText={"placeholder image"}
+        imageAltText={"Students of Green Shirt Studio"}
         info={
           "We make high quality performing arts training accessible for everyone in a welcoming learning environment where you’ll feel at home."
         }
-        ctaText={"Learn More"}
+        ctaText={"Learn More About Us"}
         ctaLink={"/about"}
       />
       <SectionDivider />
@@ -56,11 +56,11 @@ const IndexPage = ({ data }) => {
         headerAlign={"right"}
         title={"What classes do we offer?"}
         image={WhatClasses}
-        imageAltText={"placeholder image"}
+        imageAltText={"Students reading lines"}
         info={
           "We offer acting classes in Chicago including our Meisner Acting Program, Specialized Classes, and Workshops."
         }
-        ctaText={"Learn More"}
+        ctaText={"All Classes & Workshops"}
         ctaLink={"/about"}
       />
       <SectionDivider />
@@ -68,7 +68,7 @@ const IndexPage = ({ data }) => {
         headerAlign={"left"}
         title={"How do we help the community?"}
         image={Community}
-        imageAltText={"placeholder image"}
+        imageAltText={"Wall of Polaroids"}
         info={"We offer scholarships and host free community events."}
         ctaText={"Learn More"}
         ctaLink={"/scholarships"}
