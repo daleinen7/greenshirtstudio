@@ -82,8 +82,8 @@ const ClassHeader = ({ wpClass }) => {
     const { error } = await stripe.redirectToCheckout({
       mode: "payment",
       lineItems: [{ price: "price_1LGtyDJ2Dog8kO2S0AJZi8aC", quantity: 1 }],
-      successUrl: `http://localhost:8000/success`,
-      cancelUrl: `http://localhost:8000/cancel`,
+      successUrl: `${process.env.GATSBY_URL_ENVIRONMENT}/success`,
+      cancelUrl: `${process.env.GATSBY_URL_ENVIRONMENT}/cancel`,
     });
     if (error) {
       console.warn("Error:", error);
