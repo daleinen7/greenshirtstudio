@@ -30,11 +30,9 @@ const Classes = ({ data }) => {
     <Link to={"/specialized-classes"}>
       <ContentCard
         title={"Specialized Classes"}
-        content={
-          "Students get the benefit of training with highly experienced instructors in a specific method or style of performing arts training without barriers like high costs, large investments of time, or an audition."
-        }
+        content={"Explore new ways to create and tell your story."}
         image={special}
-        altText="Placeholder image"
+        altText="Acting group exercise"
       />
     </Link>,
     <Link to={"/workshops"}>
@@ -44,14 +42,14 @@ const Classes = ({ data }) => {
           "Great for sharpening your skills without committing too much of your time."
         }
         image={workshop}
-        altText="Placeholder image"
+        altText="Instructor leading class"
       />
     </Link>,
     <Link to={"/professional-development"}>
       <ContentCard
         title={"Professional Development"}
         content={
-          "Private coaching will accelerate your learning experience and get you closer to achieving personal and professional goals. We always offer a free consultation to answer any questions and then charge $70 per 1hr session."
+          "One-on-one attention to help you work towards your goals. Audition, monologue, and storytelling coaching available."
         }
         image={"https://via.placeholder.com/416x290"}
         altText="Placeholder image"
@@ -70,9 +68,9 @@ const Classes = ({ data }) => {
         image={MeisnerProgram}
         imageAltText={"placeholder image"}
         info={
-          "An accessible, step by step approach that demystifies the craft of acting and gives our students a specific process to tackle any script."
+          "An accessible, step by step approach that demystifies the craft of acting. All experience levels are welcome to join Level 1: Living Truthfully."
         }
-        ctaText={"Class Schedule"}
+        ctaText={"View Class Schedule"}
         ctaLink={"/meisner"}
       />
       <SectionDivider />

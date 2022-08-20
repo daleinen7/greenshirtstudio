@@ -1,6 +1,7 @@
 import React from "react";
 import HeadingEffect from "./HeadingEffect";
 import useWindowSize from "../lib/useWindowSize";
+import ReactMarkdown from "react-markdown";
 import styled from "styled-components";
 
 const StyledImageAndContent = styled.div`
@@ -28,6 +29,7 @@ const StyledImageAndContent = styled.div`
     width: 50%;
 
     p {
+      font-size: 1.25rem;
       line-height: 1.875rem;
     }
   }
@@ -57,7 +59,7 @@ const ImageAndContentHeader = ({ title, content, image }) => {
     <StyledImageAndContent>
       <div className="info">
         {window.width > 785 ? <HeadingEffect text={title} /> : <h2>{title}</h2>}
-        <p>{content}</p>
+        <ReactMarkdown children={content.replace(/\n/gi, "\n &nbsp;")} />
       </div>
       <img src={image} alt={title} />
     </StyledImageAndContent>

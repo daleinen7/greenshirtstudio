@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
+import useWindowSize from "../lib/useWindowSize";
 import styled from "styled-components";
 
 const StyledCTACard = styled.div`
@@ -74,12 +75,16 @@ const CTACard = ({
   ctaText,
   ctaLink,
 }) => {
+  const size = useWindowSize();
+
   return (
     <StyledCTACard headerAlign={headerAlign}>
       <div className="info">
         <h3>{title}</h3>
         <p>{info}</p>
-        <Link to={ctaLink}>{ctaText}</Link>
+        <Link to={ctaLink}>
+          {size.width < 915 && size.width > 785 ? "Learn More" : ctaText}
+        </Link>
       </div>
       <img src={image} alt={imageAltText} className={"image"} />
     </StyledCTACard>
