@@ -22,11 +22,8 @@ Contributions of any amount are greatly appreciated and will allow us to assist 
           <p>
             Green Shirt Scholarships launched in April 2020 to help our
             community continue studying with us under the economic pressure of
-            COVID-19. For every scholarship funded by contributions from our
-            sponsors, we will provide the funding for another. So if you
-            contribute $330, the cost of one class, to fully sponsor a
-            scholarship recipient, we'll match it and award two full
-            scholarships.
+            COVID-19. You can help make more scholarships available by clicking
+            the sponsor button below.
           </p>
         }
         link="Sponser Us Today"

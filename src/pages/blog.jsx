@@ -39,7 +39,7 @@ export default Blog;
 
 export const blogsQuery = graphql`
   query blogsQuery {
-    allWpPost {
+    allWpPost(sort: { order: DESC, fields: date }) {
       nodes {
         featuredImage {
           node {

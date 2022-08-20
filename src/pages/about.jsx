@@ -10,6 +10,11 @@ import Facing from "../images/Facing.png";
 import ContentCard from "../components/ContentCard";
 import ContentStack from "../components/ContentStack";
 import TextContent from "../components/TextContent";
+import styled from "styled-components";
+
+const StyledImage = styled.img`
+  margin: 0 auto 4.75rem;
+`;
 
 const About = () => {
   const coreValues = [
@@ -41,11 +46,11 @@ const About = () => {
     <Layout>
       <ImageAndContentHeader
         title="About"
-        content="Green Shirt Studio makes high quality performing arts training accessible for everyone. Our vision is to create a world of courageous, vulnerable, empathetic people empowered to tell their stories well."
+        content="Founded in 2009, Green Shirt Studio makes high quality performing arts training accessible for everyone. Our vision is to create a world of courageous, vulnerable, empathetic people empowered to tell their stories well."
         image={AboutHero}
       />
       <SectionDivider />
-      <ContentStack title={"Other Programs"} content={coreValues} />
+      <ContentStack title={"Our Core Values"} content={coreValues} />
       <SectionDivider />
       <TextContent
         title="Our Classes"
@@ -76,10 +81,10 @@ const About = () => {
             </p>
           </>
         }
-        link="Sponser a scholarship"
-        linkAddress="#"
+        link="Learn More"
+        linkAddress="/classes"
       />
-      <img src={Facing} alt="Actors facing eachother" />
+      <StyledImage src={Facing} alt="Actors facing each other" />
     </Layout>
   );
 };

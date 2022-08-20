@@ -4,9 +4,10 @@ import closedAccordion from "../images/closedAccordion.svg";
 import styled from "styled-components";
 
 const StyledAccordion = styled.section`
+  margin-bottom: 3rem;
+
   .heading {
     border-top: 2px solid var(--black);
-    margin-top: 3rem;
     max-width: 40rem;
     display: flex;
     align-items: flex-start;

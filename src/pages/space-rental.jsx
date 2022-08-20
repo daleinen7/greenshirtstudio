@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "gatsby";
 import Layout from "../components/Layout";
 import SectionDivider from "../components/SectionDivider";
 import StudioList from "../components/StudioList";
@@ -98,31 +97,50 @@ const SpaceRental = () => {
           <div className="pricing-table">
             <h4>303-B</h4>
             <div className="price">
-              <span className="cost">$30</span>/hour
+              <span className="cost">$35</span>/hour
             </div>
             <ul>
               <li>Space Rental Policies</li>
               <li>Tables & Chairs</li>
               <li>Wifi & Kitchenette</li>
             </ul>
-            <button className="button fill">See availability & book now</button>
+            <a
+              href="https://studio303-b.youcanbook.me/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="button fill"
+            >
+              See availability & book now
+            </a>
           </div>
           <div className="pricing-table">
             <h4>401-E</h4>
             <div className="price">
-              <span className="cost">$20</span>/hour
+              <span className="cost">$25</span>/hour
             </div>
             <ul>
               <li>Space Rental Policies</li>
               <li>Tables & Chairs</li>
               <li>Backdrops available</li>
             </ul>
-            <button className="button fill">See availability & book now</button>
+            <a
+              href="https://studio401-e.youcanbook.me/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="button fill"
+            >
+              See availability & book now
+            </a>
           </div>
           <div className="pricing-table">
             <h4>Working for a 501-(C)(3)?</h4>
             <p>Ask about nonprofit pricing.</p>
-            <button className="button fill">Inquire</button>
+            <a
+              href="mailto:jack@greenshirtstudio.com?subject=Rental"
+              className="button fill"
+            >
+              Inquire
+            </a>
           </div>
         </div>
       </Pricing>
