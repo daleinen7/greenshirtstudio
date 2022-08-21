@@ -63,11 +63,13 @@ padding: 0 4rem;
       section:nth-of-type(1){
         border: #F8BCBE solid 2px;
       }
-      a {
+      .learn-more {
+        margin-bottom: 1rem;
+      }
+      .learn-more a {
         border: #8CEEA0 solid 2px;
         border-radius: 2px;
         padding: 1rem 2rem;
-        margin-top: 1rem;
         color: inherit;
       }
       dt {
