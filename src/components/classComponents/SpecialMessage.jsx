@@ -6,7 +6,6 @@ const StyledSpecialMessage = styled.section`
   border: 2px solid var(--salmon);
   border-radius: 2px;
   padding: 1.25rem;
-  margin-top: 3rem;
   margin-bottom: 2rem;
 `;
 

@@ -140,6 +140,7 @@ const StyledFooter = styled.footer`
       color: var(--white);
       font-weight: 400;
       font-size: 1rem;
+      margin-bottom: 0.5rem;
     }
   }
 
@@ -292,22 +293,38 @@ const Layout = ({ children, headerColor }) => {
               <h3>Follow Us</h3>
               <ul>
                 <li>
-                  <a href="#">
+                  <a
+                    href="https://www.facebook.com/greenshirtstudio/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <img src={facebook} alt="facebook" />
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a
+                    href="https://www.instagram.com/greenshirtstudio/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <img src={instagram} alt="instagram" />
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a
+                    href="https://twitter.com/GrnShirtStudio"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <img src={twitter} alt="twitter" />
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a
+                    href="https://www.yelp.com/biz/green-shirt-studio-chicago-2"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <img src={yelp} alt="yelp" />
                   </a>
                 </li>

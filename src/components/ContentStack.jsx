@@ -11,7 +11,7 @@ const StyledContentStack = styled.section`
     color: var(--black);
   }
 
-  h3 {
+  h3.title {
     text-align: center;
     font-weight: 900;
     font-size: 2rem;
@@ -44,7 +44,7 @@ const StyledContentStack = styled.section`
 const ContentStack = ({ title, content }) => {
   return (
     <StyledContentStack>
-      {title && <h3>{title}</h3>}
+      {title && <h3 className="title">{title}</h3>}
       <ul>
         {content.map((item) => {
           return <li>{item}</li>;

@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image";
+import parse from "html-react-parser";
 import styled from "styled-components";
 
 const StyledAboutTeacher = styled.section`
@@ -21,6 +23,10 @@ const StyledAboutTeacher = styled.section`
 
   .bio {
     margin-bottom: 1rem;
+
+    p {
+      margin-top: 1rem;
+    }
   }
 
   .learn-more {
@@ -31,15 +37,20 @@ const StyledAboutTeacher = styled.section`
 const AboutTeacher = ({ wpClass }) => {
   return (
     <StyledAboutTeacher>
-      <img
-        src={wpClass.classGroup.instructorPhoto.sourceUrl}
-        alt="teacher placeholder"
+      <GatsbyImage
+        image={wpClass.classGroup.linkInstructor.instructors.image.gatsbyImage}
+        alt={wpClass.classGroup.linkInstructor.instructors.title}
       />
       <h3>About the Teacher</h3>
-      <div className="bio">{wpClass.author.node.description}</div>
+      <div className="bio">
+        {parse(wpClass.classGroup.linkInstructor.content)}
+      </div>
       <div className="learn-more">
-        <Link href="#" className="button fill">
-          {`About ${wpClass.author.node.name}`}
+        <Link
+          href={wpClass.classGroup.linkInstructor.slug}
+          className="button fill"
+        >
+          {`About ${wpClass.classGroup.linkInstructor.title}`}
         </Link>
       </div>
     </StyledAboutTeacher>
