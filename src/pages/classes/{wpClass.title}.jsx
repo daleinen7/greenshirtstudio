@@ -139,6 +139,8 @@ export const query = graphql`
       classGroup {
         age
         classSize
+        stripeId
+        stripeInstallmentId
         day
         dates {
           date
