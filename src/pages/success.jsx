@@ -4,16 +4,7 @@ import success from "../images/success.png";
 import Carousel from "../components/Carousel";
 import ClassCard from "../components/ClassCard";
 import CTACard from "../components/CTAContentCard";
-import styled from "styled-components";
 import { graphql } from "gatsby";
-
-const StyledSuccess = styled.div`
-  background: white;
-  .info {
-    background-color: red;
-  }
-
-`;
 
 const Success = ({data}) => {
   const classes = data.allWpClass.nodes.map((actingClass) => (
