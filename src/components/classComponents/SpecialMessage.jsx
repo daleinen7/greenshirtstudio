@@ -5,8 +5,11 @@ import styled from "styled-components";
 const StyledSpecialMessage = styled.section`
   border: 2px solid var(--salmon);
   border-radius: 2px;
-  padding: 1.25rem;
+  padding: 1.5rem;
   margin-bottom: 2rem;
+  p {
+    line-height: 1.5rem;
+  }
 `;
 
 const SpecialMessage = ({ wpClass }) => {

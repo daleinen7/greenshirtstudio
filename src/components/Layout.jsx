@@ -38,8 +38,8 @@ const StyledHeader = styled.header`
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: 81rem;
-    padding: 0 2.375rem 0 0;
+    max-width: 90rem;
+    padding: 0;
   }
 
   .layout-balance {

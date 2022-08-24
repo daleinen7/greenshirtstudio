@@ -22,6 +22,7 @@ const StyledSubscribe = styled.section`
 
   h3 {
     font-size: 2rem;
+    font-family: "Lato", sans-serif;
     font-weight: 900;
     line-height: 2.625rem;
     text-align: center;

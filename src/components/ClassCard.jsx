@@ -19,6 +19,7 @@ const StyledClassCard = styled.article`
 
   small {
     font-size: 1rem;
+    line-height: 1.3rem;
     color: var(--black);
   }
 
@@ -42,8 +43,7 @@ const ClassCard = ({ title, slug, days, program, price, image }) => {
       <GatsbyImage image={image} alt={title} />
       <h4>
         <Link to={`/classes/${slug}`}>
-          {title} <br />
-          {days}
+          {title} {days}
         </Link>
       </h4>
       <small className="program">{program}</small>

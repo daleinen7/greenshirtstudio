@@ -14,7 +14,8 @@ const StyledAboutTeacher = styled.section`
 
   h3 {
     font-size: 1.5rem;
-    margin-bottom: 1rem;
+    margin-top: 1rem;
+    font-family: "Lato", sans-serif;
   }
 
   img {
@@ -25,12 +26,13 @@ const StyledAboutTeacher = styled.section`
     margin-bottom: 1rem;
 
     p {
+      line-height: 1.5rem;
       margin-top: 1rem;
     }
   }
 
   .learn-more {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
   }
 `;
 
