@@ -12,12 +12,12 @@ const StyledClassHeader = styled.div`
 
   h2 {
     font-size: 2rem;
-    line-height: 2rem;
+    line-height: 2.3rem;
     margin-bottom: 1rem;
   }
 
   img {
-    width: 50%;
+    max-width: 47rem;
     padding-right: 1rem;
   }
 
@@ -29,10 +29,13 @@ const StyledClassHeader = styled.div`
     p {
       line-height: 1.875rem;
       font-size: 1.25rem;
+      max-width: 33rem;
+      color: var(--dark-gray);
     }
 
     .price {
       margin-top: 2rem;
+      margin-bottom: 1rem;
       font-size: 3rem;
       line-height: 2rem;
 
@@ -102,16 +105,29 @@ const ClassHeader = ({ wpClass }) => {
 
         <div className="price">
           ${wpClass.classGroup.price} <br />
-          <small>or $110 every 3 weeks</small>
+          <small>or $110 every 3 weeks (payment plan)</small>
         </div>
 
-        <button
-          className={"button fill"}
-          disabled={loading}
-          onClick={redirectToCheckout}
-        >
-          Sign Up
-        </button>
+        <ul className="pricing-buttons">
+          <li>
+            <button
+              className={"button fill"}
+              disabled={loading}
+              onClick={redirectToCheckout}
+            >
+              Register
+            </button>
+          </li>
+          <li>
+            <button
+              className={"button"}
+              disabled={loading}
+              onClick={redirectToCheckout}
+            >
+              3-Week Installment
+            </button>
+          </li>
+        </ul>
       </div>
     </StyledClassHeader>
   );

@@ -15,7 +15,7 @@ const StyledCTACard = styled.div`
   padding: 4.75rem 4rem;
 
   .info {
-    width: 100%;
+    max-width: 33rem;
   }
 
   img.image {

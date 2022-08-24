@@ -16,7 +16,11 @@ const StyledTestimonial = styled.div`
   background: var(--neon-green);
 
   .quote-block {
-    max-width: 40rem;
+    max-width: 54.5625rem;
+    min-height: 26.625rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
     padding: 3rem;
     background: var(--black);
@@ -47,7 +51,7 @@ const StyledTestimonial = styled.div`
   .alice-carousel__dots {
     position: absolute;
     left: calc(50% - 24px); //24px is the width of all the dots
-    top: 275px;
+    top: 22rem;
   }
   .alice-carousel__dots-item:not(.__custom) {
     width: 10px;
@@ -91,12 +95,16 @@ const StyledTestimonial = styled.div`
 
   p.quote {
     font-weight: 300;
+    margin: 0 auto;
+    max-width: 40rem;
     font-size: 1.75rem;
     line-height: 2.625rem;
     padding-bottom: 1.75rem;
   }
 
   p.name {
+    max-width: 40rem;
+    margin: 0 auto;
     font-weight: 400;
     font-size: 1rem;
   }
