@@ -3,6 +3,7 @@ import { Link } from "gatsby";
 import SectionDivider from "../components/SectionDivider";
 import MeisnerProgram from "../images/MeisnerProgram.png";
 import special from "../images/special.png";
+import coaching from "../images/coaching.png";
 import workshop from "../images/workshop.png";
 import Scholarships from "../images/Scholarships.png";
 import Layout from "../components/Layout";
@@ -51,8 +52,8 @@ const Classes = ({ data }) => {
         content={
           "One-on-one attention to help you work towards your goals. Audition, monologue, and storytelling coaching available."
         }
-        image={"https://via.placeholder.com/416x290"}
-        altText="Placeholder image"
+        image={coaching}
+        altText="promising students awaiting coaching"
       />
     </Link>,
   ];
@@ -68,7 +69,7 @@ const Classes = ({ data }) => {
         image={MeisnerProgram}
         imageAltText={"placeholder image"}
         info={
-          "An accessible, step by step approach that demystifies the craft of acting. All experience levels are welcome to join Level 1: Living Truthfully."
+          "An accessible, step by step approach that demystifies the craft of acting. Adults 18+ of any level of experience are welcome. Level 1 is beginner friendly!."
         }
         ctaText={"View Class Schedule"}
         ctaLink={"/meisner"}
