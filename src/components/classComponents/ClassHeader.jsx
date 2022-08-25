@@ -45,6 +45,12 @@ const StyledClassHeader = styled.div`
       }
     }
   }
+
+  .pricing-buttons {
+    ul {
+      list-style-type: none;
+    }
+  }
   @media (max-width: 970px) {
     flex-direction: column;
 
