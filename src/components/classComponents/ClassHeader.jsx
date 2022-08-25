@@ -45,6 +45,12 @@ const StyledClassHeader = styled.div`
       }
     }
   }
+
+  .pricing-buttons {
+    ul {
+      list-style-type: none;
+    }
+  }
   @media (max-width: 970px) {
     flex-direction: column;
 
@@ -78,13 +84,21 @@ const getStripe = () => {
 const ClassHeader = ({ wpClass }) => {
   const [loading, setLoading] = useState(false);
 
-  const redirectToCheckout = async (event) => {
+  const redirectToCheckout = async (event, type) => {
     event.preventDefault();
     setLoading(true);
     const stripe = await getStripe();
     const { error } = await stripe.redirectToCheckout({
-      mode: "payment",
-      lineItems: [{ price: wpClass.classGroup.stripeId, quantity: 1 }],
+      mode: type === "single" ? "payment" : "subscription",
+      lineItems: [
+        {
+          price:
+            type === "single"
+              ? wpClass.classGroup.stripeId
+              : wpClass.classGroup.stripeInstallmentId,
+          quantity: 1,
+        },
+      ],
       successUrl: `${process.env.GATSBY_URL_ENVIRONMENT}/success`,
       cancelUrl: `${process.env.GATSBY_URL_ENVIRONMENT}/cancel`,
     });
@@ -113,7 +127,7 @@ const ClassHeader = ({ wpClass }) => {
             <button
               className={"button fill"}
               disabled={loading}
-              onClick={redirectToCheckout}
+              onClick={(e) => redirectToCheckout(e, "single")}
             >
               Register
             </button>
@@ -122,7 +136,7 @@ const ClassHeader = ({ wpClass }) => {
             <button
               className={"button"}
               disabled={loading}
-              onClick={redirectToCheckout}
+              onClick={(e) => redirectToCheckout(e, "installment")}
             >
               3-Week Installment
             </button>
