@@ -86,8 +86,6 @@ const ClassHeader = ({ wpClass }) => {
 
   const redirectToCheckout = async (event, type) => {
     event.preventDefault();
-    console.log("Normal: ", wpClass.classGroup.stripeId);
-    console.log("Sub: ", wpClass.classGroup.stripeInstallmentId);
     setLoading(true);
     const stripe = await getStripe();
     const { error } = await stripe.redirectToCheckout({
