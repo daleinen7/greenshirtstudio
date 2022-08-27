@@ -1,8 +1,8 @@
-// import apiFetch from "@wordpress/api-fetch";
+const fetch = require("node-fetch");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 exports.handler = async ({ body, headers }) => {
-  console.log("BODY: ", body);
+  // console.log("BODY: ", body);
   // console.log("HEADERS: ", headers);
 
   try {
@@ -31,18 +31,18 @@ exports.handler = async ({ body, headers }) => {
       });
     }
 
-    // // POST
-    // apiFetch({
-    //   path: "/wp/v2/book/{ID}",
-    //   method: "GET",
-    //   data: {
-    //     acf: {
-    //       author: "Abraham (Abe) Simpson",
-    //     },
-    //   },
-    // }).then((res) => {
-    //   console.log(res);
-    // });
+    // POST
+    fetch({
+      path: "/wp/v2/https://greenshirtstudio.com/wp-json/wp/v2/class/281075}",
+      method: "GET",
+      data: {
+        acf: {
+          author: "Abraham (Abe) Simpson",
+        },
+      },
+    }).then((res) => {
+      console.log("This fuckin guy:", res);
+    });
 
     return {
       statusCode: 200,

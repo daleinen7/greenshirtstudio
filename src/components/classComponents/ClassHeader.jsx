@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import useSWR from "swr";
 import { loadStripe } from "@stripe/stripe-js";
 import styled from "styled-components";
 
@@ -81,8 +82,17 @@ const getStripe = () => {
   return stripePromise;
 };
 
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
+
 const ClassHeader = ({ wpClass }) => {
   const [loading, setLoading] = useState(false);
+
+  const { data } = useSWR(
+    `https://greenshirtstudio.com/wp-json/wp/v2/class/${wpClass.databaseId}`,
+    fetcher
+  );
+
+  const spotsLeft = data ? data.acf.spots_left : "loading";
 
   const handlePurchase = async (e, paymentType) => {
     e.preventDefault();
@@ -127,6 +137,8 @@ const ClassHeader = ({ wpClass }) => {
         <p>{`${wpClass.classGroup.day}, ${wpClass.classGroup.dates[0].date} - ${
           wpClass.classGroup.dates[wpClass.classGroup.dates.length - 1].date
         }, ${wpClass.classGroup.time} with ${wpClass.author.node.name}`}</p>
+
+        <div className="spots-left">{spotsLeft}</div>
 
         <div className="price">
           ${wpClass.classGroup.price} <br />
