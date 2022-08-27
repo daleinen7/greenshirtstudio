@@ -81,32 +81,23 @@ const getStripe = () => {
   return stripePromise;
 };
 
+const handlePurchase = async (e, paymentType) => {
+  e.preventDefault();
+
+  const response = await fetch(
+    "http://localhost:8888/.netlify/functions/hello",
+    {
+      method: "GET",
+      // headers: {
+      //   "Content-Type": "application/json",
+      // },
+      // body: JSON.stringify({ bilbo: "baggins" }),
+    }
+  ).then((res) => res.json());
+};
+
 const ClassHeader = ({ wpClass }) => {
   const [loading, setLoading] = useState(false);
-
-  const redirectToCheckout = async (event, type) => {
-    event.preventDefault();
-    setLoading(true);
-    const stripe = await getStripe();
-    const { error } = await stripe.redirectToCheckout({
-      mode: type === "single" ? "payment" : "subscription",
-      lineItems: [
-        {
-          price:
-            type === "single"
-              ? wpClass.classGroup.stripeId
-              : wpClass.classGroup.stripeInstallmentId,
-          quantity: 1,
-        },
-      ],
-      successUrl: `${process.env.GATSBY_URL_ENVIRONMENT}/success`,
-      cancelUrl: `${process.env.GATSBY_URL_ENVIRONMENT}/cancel`,
-    });
-    if (error) {
-      console.warn("Error:", error);
-      setLoading(false);
-    }
-  };
 
   return (
     <StyledClassHeader>
@@ -127,7 +118,7 @@ const ClassHeader = ({ wpClass }) => {
             <button
               className={"button fill"}
               disabled={loading}
-              onClick={(e) => redirectToCheckout(e, "single")}
+              onClick={(e) => handlePurchase(e, "single")}
             >
               Register
             </button>
@@ -136,7 +127,7 @@ const ClassHeader = ({ wpClass }) => {
             <button
               className={"button"}
               disabled={loading}
-              onClick={(e) => redirectToCheckout(e, "installment")}
+              onClick={(e) => handlePurchase(e, "installment")}
             >
               3-Week Installment
             </button>
@@ -147,3 +138,27 @@ const ClassHeader = ({ wpClass }) => {
   );
 };
 export default ClassHeader;
+
+// const redirectToCheckout = async (event, type) => {
+//   event.preventDefault();
+//   setLoading(true);
+//   const stripe = await getStripe();
+//   const { error } = await stripe.redirectToCheckout({
+//     mode: type === "single" ? "payment" : "subscription",
+//     lineItems: [
+//       {
+//         price:
+//           type === "single"
+//             ? wpClass.classGroup.stripeId
+//             : wpClass.classGroup.stripeInstallmentId,
+//         quantity: 1,
+//       },
+//     ],
+//     successUrl: `${process.env.GATSBY_URL_ENVIRONMENT}/success`,
+//     cancelUrl: `${process.env.GATSBY_URL_ENVIRONMENT}/cancel`,
+//   });
+//   if (error) {
+//     console.warn("Error:", error);
+//     setLoading(false);
+//   }
+// };

@@ -49,7 +49,7 @@ const AboutTeacher = ({ wpClass }) => {
       </div>
       <div className="learn-more">
         <Link
-          href={wpClass.classGroup.linkInstructor.slug}
+          to={wpClass.classGroup.linkInstructor.slug}
           className="button fill"
         >
           {`About ${wpClass.classGroup.linkInstructor.title}`}
