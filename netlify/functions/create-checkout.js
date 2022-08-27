@@ -1,29 +1,23 @@
-exports.handler = async (event) => {
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+
+exports.handler = async ({ body, headers }) => {
   console.log("Serverside baby!");
 
-  // const session = await stripe.checkout.sessions.create({
-  //   payment_method_types: ['card'],
-  //   billing_address_collection: 'auto',
-  //   shipping_address_collection: {
-  //     allowed_countries: ['US', 'CA', 'IN'],
-  //   },
-  //   success_url: `${process.env.URL}/success`,
-  //   cancel_url: process.env.URL,
-  //   line_items: lineItems,
-  // });
+  const params = JSON.parse(body);
 
-  // return {
-  //   statusCode: 200,
-  //   body: JSON.stringify({
-  //     sessionId: session.id,
-  //     publishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
-  //   }),
-  // };
+  const session = await stripe.checkout.sessions.create({
+    success_url: `${headers.origin}/success`,
+    cancel_url: `${headers.origin}/cancel`,
+    payment_method_types: ["card"],
+    line_items: params.lineItems,
+    mode: params.paymentType,
+  });
 
   return {
     statusCode: 200,
     body: JSON.stringify({
-      message: " la la la",
+      sessionId: session.id,
+      publishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
     }),
   };
 };

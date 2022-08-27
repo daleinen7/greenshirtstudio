@@ -81,23 +81,43 @@ const getStripe = () => {
   return stripePromise;
 };
 
-const handlePurchase = async (e, paymentType) => {
-  e.preventDefault();
-
-  const response = await fetch(
-    "http://localhost:8888/.netlify/functions/hello",
-    {
-      method: "GET",
-      // headers: {
-      //   "Content-Type": "application/json",
-      // },
-      // body: JSON.stringify({ bilbo: "baggins" }),
-    }
-  ).then((res) => res.json());
-};
-
 const ClassHeader = ({ wpClass }) => {
   const [loading, setLoading] = useState(false);
+
+  const handlePurchase = async (e, paymentType) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const response = await fetch("/.netlify/functions/create-checkout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        paymentType: paymentType,
+        lineItems: [
+          {
+            price:
+              paymentType === "payment"
+                ? wpClass.classGroup.stripeId
+                : wpClass.classGroup.stripeInstallmentId,
+            quantity: 1,
+          },
+        ],
+      }),
+    }).then((res) => res.json());
+
+    const stripe = await getStripe();
+    const { error } = await stripe.redirectToCheckout({
+      sessionId: response.sessionId,
+    });
+    if (error) {
+      console.warn("Error:", error);
+      setLoading(false);
+    }
+
+    console.log(response);
+  };
 
   return (
     <StyledClassHeader>
@@ -118,7 +138,7 @@ const ClassHeader = ({ wpClass }) => {
             <button
               className={"button fill"}
               disabled={loading}
-              onClick={(e) => handlePurchase(e, "single")}
+              onClick={(e) => handlePurchase(e, "payment")}
             >
               Register
             </button>
@@ -127,7 +147,7 @@ const ClassHeader = ({ wpClass }) => {
             <button
               className={"button"}
               disabled={loading}
-              onClick={(e) => handlePurchase(e, "installment")}
+              onClick={(e) => handlePurchase(e, "subscription")}
             >
               3-Week Installment
             </button>
