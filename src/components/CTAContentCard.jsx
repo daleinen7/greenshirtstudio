@@ -48,6 +48,11 @@ const StyledCTACard = styled.div`
     :hover {
       background: var(--white);
     }
+
+    @media (max-width: 480px) {
+      font-size: 1rem;
+      padding: 0.75rem 1.5rem;
+    }
   }
 
   @media (max-width: 785px) {
@@ -63,6 +68,11 @@ const StyledCTACard = styled.div`
       width: 100%;
       padding: 1.25rem 1rem 0;
     }
+  }
+
+  @media (max-width: 480px) {
+    padding-top: 0;
+    padding-bottom: 4.75rem;
   }
 `;
 

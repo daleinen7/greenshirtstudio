@@ -11,6 +11,10 @@ const StyledContentStack = styled.section`
     color: var(--black);
   }
 
+  a:hover h4 {
+    text-decoration: underline;
+  }
+
   h3.title {
     text-align: center;
     font-weight: 900;

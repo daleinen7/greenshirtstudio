@@ -12,7 +12,7 @@ const StyledNav = styled.nav`
     color: ${(props) =>
       props.headerColor === "green" ? "var(--white)" : " var(--black)"};
     :hover {
-      border-bottom: 2px solid var(--black);
+      border-bottom: 3px solid var(--black);
     }
   }
   .active {

@@ -31,7 +31,7 @@ const StyledClassCard = styled.article`
     color: var(--black);
     text-decoration: none;
 
-    :hover {
+    :hover h4 {
       text-decoration: underline;
     }
   }
@@ -40,14 +40,14 @@ const StyledClassCard = styled.article`
 const ClassCard = ({ title, slug, days, program, price, image }) => {
   return (
     <StyledClassCard>
-      <GatsbyImage image={image} alt={title} />
-      <h4>
-        <Link to={`/classes/${slug}`}>
-          {title} {days}
-        </Link>
-      </h4>
-      <small className="program">{program}</small>
-      <small>${price}</small>
+      <Link to={`/classes/${slug}`}>
+        <GatsbyImage image={image} alt={title} />
+        <h4>
+          {title} ({days})
+        </h4>
+        <small className="program">{program}</small>
+        <small>${price}</small>
+      </Link>
     </StyledClassCard>
   );
 };

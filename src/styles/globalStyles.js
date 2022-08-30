@@ -65,6 +65,12 @@ const GlobalStyles = createGlobalStyle`
     :active {
       transform: translateY(2px) translateX(2px);
     }
+
+    @media(max-width: 480px) {
+      font-size: 1rem;
+      padding: 0.75rem 1.5rem;
+      min-width: auto;
+    }
   }
 
   .fill {
@@ -76,8 +82,9 @@ const GlobalStyles = createGlobalStyle`
     background: var(--white);
     color: var(--black);
     border: 2px solid var(--black);
-
+    
     :hover {
+      border: 2px solid var(--dark-gray);
       color: var(--dark-gray);
     }
   }

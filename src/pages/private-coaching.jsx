@@ -45,7 +45,7 @@ const ProfessionalDevelopment = () => {
     <Layout headerColor="white">
       <ImageAndContentHeader
         image={special}
-        title="Professional Development"
+        title="Private Coaching"
         content="Accelerate your learning and get closer to achieving your goals with private coaching. "
       />
 

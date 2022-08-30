@@ -33,6 +33,7 @@ const StyledAboutTeacher = styled.section`
 
   .learn-more {
     margin-top: 1.5rem;
+    margin-bottom: 1.25rem;
   }
 `;
 
@@ -50,7 +51,7 @@ const AboutTeacher = ({ wpClass }) => {
       <div className="learn-more">
         <Link
           to={wpClass.classGroup.linkInstructor.slug}
-          className="button fill"
+          className="button empty"
         >
           {`About ${wpClass.classGroup.linkInstructor.title}`}
         </Link>

@@ -62,11 +62,12 @@ const StyledCarousel = styled.section`
     width: 100%;
 
     padding: 4.75rem 1rem;
+
     a[role="button"] {
       margin: 0;
     }
     h3 {
-      padding-bottom: 5rem;
+      padding-bottom: 3rem;
     }
     .alice-carousel__prev-btn,
     .alice-carousel__next-btn {

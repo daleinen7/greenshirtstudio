@@ -18,7 +18,7 @@ const StyledTextContent = styled.div`
   p {
     margin-bottom: 1rem;
     font-size: 1.25rem;
-    line-height: 1.5rem;
+    line-height: 1.875rem;
   }
 
   ul {

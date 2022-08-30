@@ -13,11 +13,16 @@ const StyledAccordion = styled.section`
     align-items: flex-start;
     justify-content: space-between;
 
+    h3,
     h4 {
       font-size: 1.5rem;
       font-family: "Lato", sans-serif;
       margin-bottom: 0.75rem;
+      :hover {
+        text-decoration: underline;
+      }
     }
+
     :hover {
       cursor: pointer;
     }

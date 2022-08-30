@@ -1,4 +1,5 @@
 import * as React from "react";
+import useWindowSize from "../lib/useWindowSize";
 import Community from "../images/home/Community.png";
 import WhatClasses from "../images/home/WhatClasses.png";
 import WhyClassWithUs from "../images/home/WhyClassWithUs.png";
@@ -13,6 +14,8 @@ import BlogCard from "../components/BlogCard";
 import { graphql } from "gatsby";
 
 const IndexPage = ({ data }) => {
+  const size = useWindowSize();
+
   const classes = data.allWpClass.nodes.map((actingClass) => (
     <ClassCard
       title={actingClass.title}
@@ -39,19 +42,19 @@ const IndexPage = ({ data }) => {
     <Layout>
       <HeroBanner />
       <Carousel title="Upcoming Classes & Workshops" items={classes} />
-      <SectionDivider />
+      {size.width >= 480 && <SectionDivider />}
       <CTACard
         headerAlign={"left"}
         title={"Why take classes with us?"}
         image={WhyClassWithUs}
         imageAltText={"Students of Green Shirt Studio"}
         info={
-          "We make high quality performing arts training accessible for everyone in a welcoming learning environment where you’ll feel at home."
+          "Founded in 2009, we make high quality performing arts training accessible for everyone in a welcoming learning environment where you'll feel at home."
         }
         ctaText={"Learn More About Us"}
         ctaLink={"/about"}
       />
-      <SectionDivider />
+      {size.width >= 480 && <SectionDivider />}
       <CTACard
         headerAlign={"right"}
         title={"What classes do we offer?"}
@@ -61,9 +64,9 @@ const IndexPage = ({ data }) => {
           "We offer acting classes in Chicago including our Meisner Acting Program, Specialized Classes, and Workshops."
         }
         ctaText={"All Classes & Workshops"}
-        ctaLink={"/about"}
+        ctaLink={"/classes"}
       />
-      <SectionDivider />
+      {size.width >= 480 && <SectionDivider />}
       <CTACard
         headerAlign={"left"}
         title={"How do we help the community?"}
