@@ -7,13 +7,15 @@ const StyledClassHeader = styled.div`
   background: var(--white);
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   margin-bottom: 3rem;
+  width: 100%;
 
   align-items: center;
 
   h2 {
     font-size: 2rem;
-    line-height: 2.3rem;
+    line-height: 2.625rem;
     margin-bottom: 1rem;
   }
 
@@ -34,6 +36,17 @@ const StyledClassHeader = styled.div`
       color: var(--dark-gray);
     }
 
+    .spots-left {
+      margin: 1.25rem 0 3.25rem;
+
+      span {
+        background: var(--salmon);
+        padding: 0.25rem 0.75rem;
+        border-radius: 28px;
+        font-size: 0.875rem;
+      }
+    }
+
     .price {
       margin-top: 2rem;
       margin-bottom: 1rem;
@@ -48,10 +61,58 @@ const StyledClassHeader = styled.div`
   }
 
   .pricing-buttons {
-    ul {
-      list-style-type: none;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0;
+
+    button {
+      padding: 1rem 1.5rem;
+      border-radius: 2px;
+      font-size: 1.25rem;
+      font-weight: 900;
+      text-decoration: none;
+      display: inline;
+      cursor: pointer;
+
+      :active {
+        transform: translateY(2px) translateX(2px);
+      }
+    }
+
+    .register {
+      border: none;
+      background: var(--neon-green);
+      border: 2px solid var(--neon-green);
+
+      :hover {
+        opacity: 0.6;
+      }
+    }
+
+    .installment {
+      border: 2px solid var(--black);
+      background: var(--white);
+      border-radius: 2px;
+
+      :hover {
+        opacity: 0.6;
+      }
     }
   }
+
+  @media (max-width: 1333px) {
+    .pricing-buttons {
+      flex-direction: column;
+
+      li,
+      button {
+        width: 100%;
+      }
+    }
+  }
+
   @media (max-width: 970px) {
     flex-direction: column;
 
@@ -92,7 +153,7 @@ const ClassHeader = ({ wpClass }) => {
     fetcher
   );
 
-  const spotsLeft = data ? data.acf.spots_left : "loading";
+  const spotsLeft = data ? `${data.acf.spots_left} spots left` : "loading";
 
   const handlePurchase = async (e, paymentType) => {
     e.preventDefault();
@@ -138,7 +199,9 @@ const ClassHeader = ({ wpClass }) => {
           wpClass.classGroup.dates[wpClass.classGroup.dates.length - 1].date
         }, ${wpClass.classGroup.time} with ${wpClass.author.node.name}`}</p>
 
-        <div className="spots-left">{spotsLeft}</div>
+        <div className="spots-left">
+          <span>{spotsLeft}</span>
+        </div>
 
         <div className="price">
           ${wpClass.classGroup.price} <br />
@@ -148,7 +211,7 @@ const ClassHeader = ({ wpClass }) => {
         <ul className="pricing-buttons">
           <li>
             <button
-              className={"button fill"}
+              className={"register"}
               disabled={loading}
               onClick={(e) => handlePurchase(e, "payment")}
             >
@@ -157,7 +220,7 @@ const ClassHeader = ({ wpClass }) => {
           </li>
           <li>
             <button
-              className={"button"}
+              className={"installment"}
               disabled={loading}
               onClick={(e) => handlePurchase(e, "subscription")}
             >
