@@ -136,6 +136,7 @@ export const query = graphql`
           description
         }
       }
+      databaseId
       classGroup {
         age
         classSize

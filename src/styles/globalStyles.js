@@ -58,20 +58,30 @@ const GlobalStyles = createGlobalStyle`
     display: inline;
     cursor: pointer;
 
+    :hover {
+      opacity: 0.6;
+    }
+
     :active {
-      transform: translateY(1px) translateX(1px);
+      transform: translateY(2px) translateX(2px);
     }
   }
 
   .fill {
     background: var(--neon-green);
     color: var(--black);
+  }
+
+  .empty {
+    background: var(--white);
+    color: var(--black);
+    border: 2px solid var(--black);
+
     :hover {
-      outline: 2px solid var(--neon-green);
-      background: var(--white);
-      color: var(--black);
+      color: var(--dark-gray);
     }
   }
+  
   .alice-carousel__prev-btn-item, .alice-carousel__next-btn-item{
     border-radius: 50%;
     height: 32px;

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import useSWR from "swr";
 import { loadStripe } from "@stripe/stripe-js";
 import styled from "styled-components";
 
@@ -6,13 +7,15 @@ const StyledClassHeader = styled.div`
   background: var(--white);
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   margin-bottom: 3rem;
+  width: 100%;
 
   align-items: center;
 
   h2 {
     font-size: 2rem;
-    line-height: 2.3rem;
+    line-height: 2.625rem;
     margin-bottom: 1rem;
   }
 
@@ -33,6 +36,17 @@ const StyledClassHeader = styled.div`
       color: var(--dark-gray);
     }
 
+    .spots-left {
+      margin: 1.25rem 0 3.25rem;
+
+      span {
+        background: var(--salmon);
+        padding: 0.25rem 0.75rem;
+        border-radius: 28px;
+        font-size: 0.875rem;
+      }
+    }
+
     .price {
       margin-top: 2rem;
       margin-bottom: 1rem;
@@ -47,10 +61,58 @@ const StyledClassHeader = styled.div`
   }
 
   .pricing-buttons {
-    ul {
-      list-style-type: none;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0;
+
+    button {
+      padding: 1rem 1.5rem;
+      border-radius: 2px;
+      font-size: 1.25rem;
+      font-weight: 900;
+      text-decoration: none;
+      display: inline;
+      cursor: pointer;
+
+      :active {
+        transform: translateY(2px) translateX(2px);
+      }
+    }
+
+    .register {
+      border: none;
+      background: var(--neon-green);
+      border: 2px solid var(--neon-green);
+
+      :hover {
+        opacity: 0.6;
+      }
+    }
+
+    .installment {
+      border: 2px solid var(--black);
+      background: var(--white);
+      border-radius: 2px;
+
+      :hover {
+        opacity: 0.6;
+      }
     }
   }
+
+  @media (max-width: 1333px) {
+    .pricing-buttons {
+      flex-direction: column;
+
+      li,
+      button {
+        width: 100%;
+      }
+    }
+  }
+
   @media (max-width: 970px) {
     flex-direction: column;
 
@@ -81,31 +143,51 @@ const getStripe = () => {
   return stripePromise;
 };
 
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
+
 const ClassHeader = ({ wpClass }) => {
   const [loading, setLoading] = useState(false);
 
-  const redirectToCheckout = async (event, type) => {
-    event.preventDefault();
+  const { data } = useSWR(
+    `https://greenshirtstudio.com/wp-json/wp/v2/class/${wpClass.databaseId}`,
+    fetcher
+  );
+
+  const spotsLeft = data ? `${data.acf.spots_left} spots left` : "loading";
+
+  const handlePurchase = async (e, paymentType) => {
+    e.preventDefault();
     setLoading(true);
+
+    const response = await fetch("/.netlify/functions/create-checkout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        paymentType: paymentType,
+        lineItems: [
+          {
+            price:
+              paymentType === "payment"
+                ? wpClass.classGroup.stripeId
+                : wpClass.classGroup.stripeInstallmentId,
+            quantity: 1,
+          },
+        ],
+      }),
+    }).then((res) => res.json());
+
     const stripe = await getStripe();
     const { error } = await stripe.redirectToCheckout({
-      mode: type === "single" ? "payment" : "subscription",
-      lineItems: [
-        {
-          price:
-            type === "single"
-              ? wpClass.classGroup.stripeId
-              : wpClass.classGroup.stripeInstallmentId,
-          quantity: 1,
-        },
-      ],
-      successUrl: `${process.env.GATSBY_URL_ENVIRONMENT}/success`,
-      cancelUrl: `${process.env.GATSBY_URL_ENVIRONMENT}/cancel`,
+      sessionId: response.sessionId,
     });
     if (error) {
       console.warn("Error:", error);
       setLoading(false);
     }
+
+    console.log(response);
   };
 
   return (
@@ -117,6 +199,10 @@ const ClassHeader = ({ wpClass }) => {
           wpClass.classGroup.dates[wpClass.classGroup.dates.length - 1].date
         }, ${wpClass.classGroup.time} with ${wpClass.author.node.name}`}</p>
 
+        <div className="spots-left">
+          <span>{spotsLeft}</span>
+        </div>
+
         <div className="price">
           ${wpClass.classGroup.price} <br />
           <small>or $110 every 3 weeks (payment plan)</small>
@@ -125,18 +211,18 @@ const ClassHeader = ({ wpClass }) => {
         <ul className="pricing-buttons">
           <li>
             <button
-              className={"button fill"}
+              className={"register"}
               disabled={loading}
-              onClick={(e) => redirectToCheckout(e, "single")}
+              onClick={(e) => handlePurchase(e, "payment")}
             >
               Register
             </button>
           </li>
           <li>
             <button
-              className={"button"}
+              className={"installment"}
               disabled={loading}
-              onClick={(e) => redirectToCheckout(e, "installment")}
+              onClick={(e) => handlePurchase(e, "subscription")}
             >
               3-Week Installment
             </button>
@@ -147,3 +233,27 @@ const ClassHeader = ({ wpClass }) => {
   );
 };
 export default ClassHeader;
+
+// const redirectToCheckout = async (event, type) => {
+//   event.preventDefault();
+//   setLoading(true);
+//   const stripe = await getStripe();
+//   const { error } = await stripe.redirectToCheckout({
+//     mode: type === "single" ? "payment" : "subscription",
+//     lineItems: [
+//       {
+//         price:
+//           type === "single"
+//             ? wpClass.classGroup.stripeId
+//             : wpClass.classGroup.stripeInstallmentId,
+//         quantity: 1,
+//       },
+//     ],
+//     successUrl: `${process.env.GATSBY_URL_ENVIRONMENT}/success`,
+//     cancelUrl: `${process.env.GATSBY_URL_ENVIRONMENT}/cancel`,
+//   });
+//   if (error) {
+//     console.warn("Error:", error);
+//     setLoading(false);
+//   }
+// };
