@@ -11,12 +11,14 @@ import ContentCard from "../components/ContentCard";
 import ContentStack from "../components/ContentStack";
 import TextContent from "../components/TextContent";
 import styled from "styled-components";
+import InstructorCard from "../components/InstructorCard";
+import { graphql } from "gatsby";
 
 const StyledImage = styled.img`
   margin: 0 auto 4.75rem;
 `;
 
-const About = ({allWpInstructor}) => {
+const About = ({ data }) => {
   const coreValues = [
     <ContentCard
       title={"Accessibility"}
@@ -86,7 +88,17 @@ const About = ({allWpInstructor}) => {
       />
       <StyledImage src={Facing} alt="Actors facing each other" />
 
-      <ContentStack title="Staff" content={} />
+      <ContentStack
+        title="Staff"
+        content={data.allWpInstructor.nodes.map((instructor) => (
+          <InstructorCard
+            instructor={instructor.title}
+            title={instructor.instructors.title}
+            img={instructor.instructors.image.publicUrl}
+            slug={instructor.slug}
+          />
+        ))}
+      />
     </Layout>
   );
 };
@@ -96,14 +108,15 @@ export const pageQuery = graphql`
   query staff {
     allWpInstructor {
       nodes {
+        title
+        slug
         instructors {
           title
           image {
             altText
-            gatsbyImage(width: 304, height: 212)
+            publicUrl
           }
         }
-        content
       }
     }
   }
