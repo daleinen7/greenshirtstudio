@@ -24,9 +24,12 @@ const StyledClassPage = styled.div`
     max-width: 1440px;
     width: 100%;
   }
-  .left-column,
+  .left-column {
+    width: 62%;
+  }
+
   .right-column {
-    width: 50%;
+    width: 38%;
   }
 
   .left-column {
@@ -163,6 +166,7 @@ export const query = graphql`
           }
         }
         location
+        optionalSpecialHeader
         optionalSpecialMessage
         time
         classImage {

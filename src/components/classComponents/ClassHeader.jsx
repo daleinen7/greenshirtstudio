@@ -20,14 +20,14 @@ const StyledClassHeader = styled.div`
   }
 
   img {
-    max-width: 47rem;
+    width: 62%;
     padding-right: 1rem;
   }
 
   .info {
     padding-left: 1rem;
     padding-right: 2.25rem;
-    width: 50%;
+    width: 38%;
 
     p {
       line-height: 1.875rem;

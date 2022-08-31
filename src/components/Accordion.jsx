@@ -8,7 +8,6 @@ const StyledAccordion = styled.section`
 
   .heading {
     border-top: 2px solid var(--black);
-    max-width: 40rem;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;

@@ -16,7 +16,7 @@ const StyledImage = styled.img`
   margin: 0 auto 4.75rem;
 `;
 
-const About = () => {
+const About = ({allWpInstructor}) => {
   const coreValues = [
     <ContentCard
       title={"Accessibility"}
@@ -85,7 +85,26 @@ const About = () => {
         linkAddress="/classes"
       />
       <StyledImage src={Facing} alt="Actors facing each other" />
+
+      <ContentStack title="Staff" content={} />
     </Layout>
   );
 };
 export default About;
+
+export const pageQuery = graphql`
+  query staff {
+    allWpInstructor {
+      nodes {
+        instructors {
+          title
+          image {
+            altText
+            gatsbyImage(width: 304, height: 212)
+          }
+        }
+        content
+      }
+    }
+  }
+`;
