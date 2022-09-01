@@ -35,15 +35,24 @@ const StyledClassCard = styled.article`
       text-decoration: underline;
     }
   }
+
+  .image-stand-in {
+    width: 304px;
+    height: 212px;
+  }
 `;
 
 const ClassCard = ({ title, slug, days, program, price, image }) => {
   return (
     <StyledClassCard>
       <Link to={`/classes/${slug}`}>
-        <GatsbyImage image={image} alt={title} />
+        {image ? (
+          <GatsbyImage image={image} alt={title} />
+        ) : (
+          <div className="image-stand-in"></div>
+        )}
         <h4>
-          {title} ({days})
+          {title} {days && `(${days})`}
         </h4>
         <small className="program">{program}</small>
         <small>${price}</small>

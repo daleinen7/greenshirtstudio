@@ -4,7 +4,7 @@ import ImageAndContentHeader from "../components/ImageAndContentHeader";
 import Testimonial from "../components/Testimonial";
 import CoachingSignup from "../components/CoachingSignup";
 import testimonials from "../lib/testimonials";
-import special from "../images/special.png";
+import privateCoaching from "../images/privateCoaching.png";
 import ContentCard from "../components/ContentCard";
 import ContentStack from "../components/ContentStack";
 import auditions from "../images/auditions.png";
@@ -44,7 +44,7 @@ const ProfessionalDevelopment = () => {
   return (
     <Layout headerColor="white">
       <ImageAndContentHeader
-        image={special}
+        image={privateCoaching}
         title="Private Coaching"
         content="Accelerate your learning and get closer to achieving your goals with private coaching. "
       />

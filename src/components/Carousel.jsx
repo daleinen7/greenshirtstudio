@@ -82,7 +82,7 @@ const StyledCarousel = styled.section`
   }
 `;
 
-const Carousel = ({ title, items }) => {
+const Carousel = ({ title, items, link, linkDisplay }) => {
   const responsive = {
     0: {
       items: 1,
@@ -109,8 +109,8 @@ const Carousel = ({ title, items }) => {
         responsive={responsive}
         autoWidth
       />
-      <Link role="button" to="/classes">
-        All Classes & Workshops
+      <Link role="button" to={`/${link}`}>
+        {linkDisplay}
       </Link>
     </StyledCarousel>
   );

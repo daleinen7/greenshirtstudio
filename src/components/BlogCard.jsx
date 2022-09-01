@@ -7,6 +7,7 @@ const StyledBlogCard = styled.article`
   width: 100%;
 
   h3 {
+    font-family: "Lato", sans-serif;
     font-size: 1.25rem;
     line-height: 1.625rem;
     font-weight: 900;

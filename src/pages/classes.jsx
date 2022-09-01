@@ -58,6 +58,9 @@ const Classes = ({ data }) => {
     </Link>,
   ];
 
+  const hack = `A step by step approach that demystifies the craft of acting and offers a specific process to tackle a script.   \n  \n 
+  All experience levels are invited to join Level 1: Living Truthfully.`;
+
   return (
     <Layout>
       <StyledHero>
@@ -68,9 +71,7 @@ const Classes = ({ data }) => {
         title={"Meisner Acting Program"}
         image={MeisnerProgram}
         imageAltText={"placeholder image"}
-        info={
-          "An accessible, step by step approach that demystifies the craft of acting. Adults 18+ of any level of experience are welcome. Level 1 is beginner friendly!."
-        }
+        info={hack}
         ctaText={"View Class Schedule"}
         ctaLink={"/meisner"}
       />

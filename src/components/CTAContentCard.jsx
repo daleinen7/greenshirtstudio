@@ -71,7 +71,7 @@ const StyledCTACard = styled.div`
   }
 
   @media (max-width: 480px) {
-    padding-top: 0;
+    padding-top: 3.75rem;
     padding-bottom: 4.75rem;
   }
 `;
@@ -91,7 +91,7 @@ const CTACard = ({
     <StyledCTACard headerAlign={headerAlign}>
       <div className="info">
         <h3>{title}</h3>
-        <p>{info}</p>
+        <ReactMarkdown children={info.replace(/\n/gi, "\n &nbsp;")} />
         <Link to={ctaLink}>
           {size.width < 915 && size.width > 785 ? "Learn More" : ctaText}
         </Link>

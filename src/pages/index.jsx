@@ -20,7 +20,7 @@ const IndexPage = ({ data }) => {
     <ClassCard
       title={actingClass.title}
       slug={actingClass.slug}
-      image={actingClass.classGroup.classImage.gatsbyImage}
+      image={actingClass.classGroup.classImage?.gatsbyImage}
       days={actingClass.classGroup.day}
       program={actingClass.classGroup.program}
       price={actingClass.classGroup.price}
@@ -41,8 +41,13 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <HeroBanner />
-      <Carousel title="Upcoming Classes & Workshops" items={classes} />
-      {size.width >= 480 && <SectionDivider />}
+      <Carousel
+        title="Upcoming Classes & Workshops"
+        items={classes}
+        link="classes"
+        linkDisplay="All Classes & Workshops"
+      />
+      <SectionDivider />
       <CTACard
         headerAlign={"left"}
         title={"Why take classes with us?"}
@@ -54,7 +59,7 @@ const IndexPage = ({ data }) => {
         ctaText={"Learn More About Us"}
         ctaLink={"/about"}
       />
-      {size.width >= 480 && <SectionDivider />}
+      <SectionDivider />
       <CTACard
         headerAlign={"right"}
         title={"What classes do we offer?"}
@@ -66,7 +71,7 @@ const IndexPage = ({ data }) => {
         ctaText={"All Classes & Workshops"}
         ctaLink={"/classes"}
       />
-      {size.width >= 480 && <SectionDivider />}
+      <SectionDivider />
       <CTACard
         headerAlign={"left"}
         title={"How do we help the community?"}
@@ -77,7 +82,12 @@ const IndexPage = ({ data }) => {
         ctaLink={"/scholarships"}
       />
       <Testimonial />
-      <Carousel title="Recent Posts" items={posts} />
+      <Carousel
+        title="Recent Posts"
+        items={posts}
+        link="blog"
+        linkDisplay="View Recent Posts"
+      />
     </Layout>
   );
 };
