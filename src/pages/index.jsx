@@ -54,7 +54,7 @@ const IndexPage = ({ data }) => {
         image={WhyClassWithUs}
         imageAltText={"Students of Green Shirt Studio"}
         info={
-          "Founded in 2009, we make high quality performing arts training accessible for everyone in a welcoming learning environment where you'll feel at home."
+          "Founded in 2009, our acting classes are accessible for everyone and offered in welcoming learning environment where you'll feel at home."
         }
         ctaText={"Learn More About Us"}
         ctaLink={"/about"}

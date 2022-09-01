@@ -155,6 +155,10 @@ const StyledFooter = styled.footer`
 
   .contact {
     width: 18.6875rem;
+
+    h3 {
+      font-family: "Lato", sans-serif;
+    }
   }
 
   .copyright {
