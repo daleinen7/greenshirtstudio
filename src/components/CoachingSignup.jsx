@@ -27,6 +27,7 @@ const StyledCoachingSignup = styled.section`
     text-align: center;
     max-width: 40rem;
     margin-bottom: 2rem;
+    font-family: "Lato", sans-serif;
   }
 
   a {
@@ -53,12 +54,12 @@ const Subscribe = () => {
   return (
     <StyledCoachingSignup>
       <div className="subscribeBG">
-        <h3>Schedule your free consultation</h3>
+        <h3>Start your private coaching experience today</h3>
         <a
           href="mailto:jack@greenshirtstudio.com?subject=Coaching"
           className="button fill"
         >
-          Schedule Now
+          Registration
         </a>
       </div>
     </StyledCoachingSignup>

@@ -13,6 +13,7 @@ const StyledInstructorCard = styled.article`
     text-align: left;
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
+    font-family: "Lato", sans-serif;
   }
   .image-wrapper {
     display: flex;
@@ -44,7 +45,7 @@ const StyledInstructorCard = styled.article`
 const InstructorCard = ({ instructor, title, img, slug }) => {
   return (
     <StyledInstructorCard>
-      <Link to={`${slug}`}>
+      <Link to={`/${slug}`}>
         {img && (
           <div className="image-wrapper">
             <img src={img} alt={instructor} />
@@ -52,7 +53,7 @@ const InstructorCard = ({ instructor, title, img, slug }) => {
         )}
       </Link>
       <h3>
-        <Link to={`${slug}`}>{instructor}</Link>
+        <Link to={`/${slug}`}>{instructor}</Link>
       </h3>
       <small>{title}</small>
     </StyledInstructorCard>

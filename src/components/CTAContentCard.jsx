@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "gatsby";
 import useWindowSize from "../lib/useWindowSize";
+import ReactMarkdown from "react-markdown";
 import styled from "styled-components";
 
 const StyledCTACard = styled.div`

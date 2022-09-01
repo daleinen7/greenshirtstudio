@@ -192,7 +192,12 @@ const ClassHeader = ({ wpClass }) => {
 
   return (
     <StyledClassHeader>
-      <img src={wpClass.classGroup.classImage.sourceUrl} alt={wpClass.title} />
+      {wpClass.classGroup.classImage && (
+        <img
+          src={wpClass.classGroup.classImage.sourceUrl}
+          alt={wpClass.title}
+        />
+      )}
       <div className="info">
         <h2>{wpClass.title}</h2>
         <p>{`${wpClass.classGroup.day}, ${wpClass.classGroup.dates[0].date} - ${
@@ -224,7 +229,7 @@ const ClassHeader = ({ wpClass }) => {
               disabled={loading}
               onClick={(e) => handlePurchase(e, "subscription")}
             >
-              3-Week Installment
+              Payment Plan
             </button>
           </li>
         </ul>
