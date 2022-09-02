@@ -50,8 +50,8 @@ const ContentStack = ({ title, content }) => {
     <StyledContentStack>
       {title && <h3 className="title">{title}</h3>}
       <ul>
-        {content.map((item) => {
-          return <li>{item}</li>;
+        {content.map((item, idx) => {
+          return <li key={idx}>{item}</li>;
         })}
       </ul>
     </StyledContentStack>

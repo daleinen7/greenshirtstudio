@@ -42,8 +42,8 @@ const FAQSection = ({ FAQs }) => {
     <StyledFAQSection>
       <h3>Frequently Asked Questions</h3>
       <ul>
-        {FAQs.map((faq) => (
-          <li>
+        {FAQs.map((faq, idx) => (
+          <li key={idx}>
             <Accordion title={faq.title}>{parse(faq.content)}</Accordion>
           </li>
         ))}

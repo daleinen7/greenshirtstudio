@@ -1,5 +1,4 @@
 import React from "react";
-import { useStaticQuery, graphql } from "gatsby";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import testimonails from "../lib/testimonials";

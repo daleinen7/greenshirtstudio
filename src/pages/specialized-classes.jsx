@@ -12,7 +12,7 @@ const SpecializedClasses = ({ data }) => {
     <ClassCard
       title={actingClass.title}
       slug={actingClass.slug}
-      image={actingClass.classGroup.classImage.gatsbyImage}
+      image={actingClass.classGroup?.classImage?.gatsbyImage}
       days={actingClass.classGroup.day}
       program={actingClass.classGroup.program}
       price={actingClass.classGroup.price}

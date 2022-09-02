@@ -42,9 +42,9 @@ const StudioList = ({ title, content, list }) => {
       <h3>{title}</h3>
       <p>{content}</p>
       <ul>
-        {list.map((pic) => (
-          <li>
-            <img src={pic} alt="studio picture" />
+        {list.map((pic, idx) => (
+          <li key={idx}>
+            <img src={pic} alt="studio" />
           </li>
         ))}
       </ul>

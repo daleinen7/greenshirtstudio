@@ -1,5 +1,5 @@
 import * as React from "react";
-import useWindowSize from "../lib/useWindowSize";
+// import useWindowSize from "../lib/useWindowSize";
 import Community from "../images/home/Community.png";
 import WhatClasses from "../images/home/WhatClasses.png";
 import WhyClassWithUs from "../images/home/WhyClassWithUs.png";
@@ -14,7 +14,7 @@ import BlogCard from "../components/BlogCard";
 import { graphql } from "gatsby";
 
 const IndexPage = ({ data }) => {
-  const size = useWindowSize();
+  // const size = useWindowSize();
 
   const classes = data.allWpClass.nodes.map((actingClass) => (
     <ClassCard

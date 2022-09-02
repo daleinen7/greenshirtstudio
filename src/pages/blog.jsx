@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "gatsby";
 import Layout from "../components/Layout";
 import ContentStack from "../components/ContentStack";
 import { graphql } from "gatsby";

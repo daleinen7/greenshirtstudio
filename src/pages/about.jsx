@@ -94,7 +94,7 @@ const About = ({ data }) => {
           <InstructorCard
             instructor={instructor.title}
             title={instructor.instructors.title}
-            img={instructor.instructors.image.publicUrl}
+            img={instructor.instructors?.image?.publicUrl}
             slug={instructor.slug}
           />
         ))}

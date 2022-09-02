@@ -3,11 +3,9 @@ import { Link } from "gatsby";
 import useWindowSize from "../lib/useWindowSize";
 import Nav from "./Nav";
 import MobileNav from "./MobileNav";
-import Cart from "./Cart";
 import logo from "../images/logo.svg";
 import openNav from "../images/openNav.svg";
 import closeNav from "../images/closeNav.svg";
-import { StaticImage } from "gatsby-plugin-image";
 import GlobalStyles from "../styles/globalStyles";
 import Reset from "../styles/reset";
 import facebook from "../images/socialMedia/facebook.svg";
@@ -219,7 +217,7 @@ const Layout = ({ children, headerColor }) => {
     if (size.width > 1024) {
       setMobileNav(false);
     }
-  }, []);
+  }, [size]);
 
   return (
     <>
@@ -243,7 +241,6 @@ const Layout = ({ children, headerColor }) => {
                 Menu <img src={openNav} alt="open nav" />
               </button>
             ))}
-          {/* <Cart /> */}
         </div>
       </StyledHeader>
       {size.width <= 1024 && mobileNav && <MobileNav />}
@@ -278,6 +275,7 @@ const Layout = ({ children, headerColor }) => {
               4001 N Raventswood Ave, Unit 303-B Chicago, IL <br /> 60613
             </a>
             <iframe
+              title="Map to Green Shirt Studio"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2967.128891922789!2d-87.675840184167!3d41.95456647921637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd2232f34c5f3%3A0x8802314b46718d2c!2sGreen%20Shirt%20Studio!5e0!3m2!1sen!2sus!4v1650140273910!5m2!1sen!2sus"
               width="416"
               height="238"

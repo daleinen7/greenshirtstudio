@@ -33,13 +33,30 @@ const StyledAccordion = styled.section`
 `;
 
 const Accordion = ({ title, children, defaultOpen, h3 }) => {
+  const [focused, setFocused] = useState(false);
   const [showContent, setShowContent] = useState(defaultOpen);
 
   const handleAccordion = () => setShowContent(!showContent);
 
+  const handleKeyboardListener = (e) => {
+    if (e.key === " " && focused) {
+      e.preventDefault();
+      setShowContent(!showContent);
+    }
+  };
+
   return (
     <StyledAccordion>
-      <div className="heading" onClick={handleAccordion}>
+      <div
+        className="heading"
+        onKeyPress={handleKeyboardListener}
+        onClick={handleAccordion}
+        tabIndex={0}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
+        aria-expanded={openAccordion}
+        role="button"
+      >
         {!h3 ? <h4>{title}</h4> : <h3>{title}</h3>}
         {showContent ? (
           <img src={openAccordion} alt="Open Accordion" />
