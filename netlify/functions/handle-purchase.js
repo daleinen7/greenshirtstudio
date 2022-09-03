@@ -22,7 +22,7 @@ exports.handler = async ({ body, headers }) => {
       // console.log("HEADERS: ", headers); // NOW BREAKS
 
       // if purchase is a subscription
-      if (body?.data?.object?.data?.subscription) {
+      if (body?.data?.object?.subscription) {
         const date = new Date();
         const oneMonthOut = new Date(date.setMonth(date.getMonth() + 1));
 
