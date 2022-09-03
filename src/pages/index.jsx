@@ -16,16 +16,26 @@ import { graphql } from "gatsby";
 const IndexPage = ({ data }) => {
   // const size = useWindowSize();
 
-  const classes = data.allWpClass.nodes.map((actingClass) => (
-    <ClassCard
-      title={actingClass.title}
-      slug={actingClass.slug}
-      image={actingClass.classGroup.classImage?.gatsbyImage}
-      days={actingClass.classGroup.day}
-      program={actingClass.classGroup.program}
-      price={actingClass.classGroup.price}
-    />
-  ));
+  const classes = data.allWpClass.nodes
+    .sort((a, b) => {
+      if (a.title < b.title) {
+        return -1;
+      }
+      if (a.title > b.title) {
+        return 1;
+      }
+      return 0;
+    })
+    .map((actingClass) => (
+      <ClassCard
+        title={actingClass.title}
+        slug={actingClass.slug}
+        image={actingClass.classGroup.classImage?.gatsbyImage}
+        days={actingClass.classGroup.day}
+        program={actingClass.classGroup.program}
+        price={actingClass.classGroup.price}
+      />
+    ));
 
   const posts = data.allWpPost.nodes.map((post) => {
     return (
