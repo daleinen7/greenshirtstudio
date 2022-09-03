@@ -19,7 +19,7 @@ exports.handler = async ({ body, headers }) => {
       const metadata = stripeEvent.data.object.metadata;
 
       console.log("BODY: ", body);
-      console.log("HEADERS: ", headers);
+      // console.log("HEADERS: ", headers); // NOW BREAKS
 
       // if purchase is a subscription
       if (body?.data?.object?.data?.subscription) {

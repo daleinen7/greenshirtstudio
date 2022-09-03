@@ -1,9 +1,8 @@
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 exports.handler = async ({ body, headers }) => {
-  console.log("Serverside baby!");
-
   const params = JSON.parse(body);
+  console.log("Serverside baby!", params.paymentType);
 
   const session = await stripe.checkout.sessions.create({
     success_url: `${headers.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
