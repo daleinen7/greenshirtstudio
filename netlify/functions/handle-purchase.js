@@ -17,11 +17,12 @@ exports.handler = async ({ body, headers }) => {
       const eventObject = stripeEvent.data.object;
 
       const metadata = stripeEvent.data.object.metadata;
-      console.log(metadata);
+      console.log("Metadata: ", metadata);
 
       // console.log("BODY: ", body);
       // console.log("HEADERS: ", headers);
 
+      // if purchase is a subscription
       if (body?.data?.object?.data?.subscription) {
         const date = new Date();
         const oneMonthOut = new Date(date.setMonth(date.getMonth() + 1));
@@ -36,11 +37,6 @@ exports.handler = async ({ body, headers }) => {
       }
 
       let spotsLeft;
-
-      console.log(
-        "WHY DO I DO THIS? ",
-        `${API_ENDPOINT}/${metadata.databaseId}`
-      );
 
       // get current count of seats
       const response = await fetch(`${API_ENDPOINT}/${metadata.databaseId}`)
@@ -76,9 +72,11 @@ exports.handler = async ({ body, headers }) => {
         })
         .then((data) => console.log("THIS IS THE PUT: ", data));
 
+      console.log("Webhook successful!");
+
       return {
         statusCode: 200,
-        body: JSON.stringify({ received: true }),
+        body: JSON.stringify({ received: true, message: update }),
       };
     }
 
@@ -88,7 +86,7 @@ exports.handler = async ({ body, headers }) => {
 
     return {
       statusCode: 400,
-      body: `Webhook Error: ${err.message}`,
+      body: `Webhook Error: ${err}`,
     };
   }
 };
