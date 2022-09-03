@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../components/Layout";
 import ContentStack from "../components/ContentStack";
 import { graphql } from "gatsby";
-import BlogCard from "../components/BlogCard";
+import BlogCardLarge from "../components/BlogCardLarge";
 import HeadingEffect from "../components/HeadingEffect";
 import styled from "styled-components";
 
@@ -22,7 +22,7 @@ const Blog = ({ data }) => {
       <ContentStack
         content={data.allWpPost.nodes.map((post) => {
           return (
-            <BlogCard
+            <BlogCardLarge
               title={post.title}
               author={post.author.node.name}
               img={post.featuredImage?.node.sourceUrl}
