@@ -27,7 +27,7 @@ Contributions of any amount are greatly appreciated and will allow us to assist 
           </p>
         }
         link="Sponser Us Today"
-        linkAddress="#"
+        linkAddress="https://buy.stripe.com/14k14h9lEdGNdos28g"
       />
       <SectionDivider />
       <TextContent
@@ -59,7 +59,7 @@ Contributions of any amount are greatly appreciated and will allow us to assist 
           </>
         }
         link="Apply Today"
-        linkAddress="#"
+        linkAddress="https://forms.gle/V4AX4dUSixmnsuXA7"
       />
       <SectionDivider />
       <TextContent

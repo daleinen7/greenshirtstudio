@@ -30,6 +30,10 @@ const StyledSubscribe = styled.section`
     margin-bottom: 2rem;
   }
 
+  a {
+    text-align: center;
+  }
+
   @media (max-width: 785px) {
     h3 {
       font-size: 1.125rem;
@@ -53,7 +57,12 @@ const Subscribe = () => {
         <h3>
           Sign up to our newsletter to know when the next class is coming up
         </h3>
-        <button className="button fill">Newsletter Registration</button>
+        <a
+          href="https://greenshirtstudio.us1.list-manage.com/subscribe/post?u=cd12c56d3b216488464876fcb&id=859a5605d5 "
+          className="button fill"
+        >
+          Newsletter Registration
+        </a>
       </div>
     </StyledSubscribe>
   );

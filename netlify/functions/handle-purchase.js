@@ -1,7 +1,7 @@
 const fetch = require("node-fetch");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-const API_ENDPOINT = "https://greenshirtstudio.com/wp-json/wp/v2/class/281075";
+const API_ENDPOINT = "https://greenshirtstudio.com/wp-json/wp/v2/class/";
 
 exports.handler = async ({ body, headers }) => {
   try {
@@ -11,6 +11,8 @@ exports.handler = async ({ body, headers }) => {
       headers["stripe-signature"],
       process.env.STRIPE_WEBHOOK_SECRET
     );
+
+    const dbid = stripeEvent.data.object.metadata.databaseId;
 
     // only do stuff if this is a successful Stripe Checkout purchase
     if (stripeEvent.type === "checkout.session.completed") {
@@ -35,7 +37,7 @@ exports.handler = async ({ body, headers }) => {
       let spotsLeft;
 
       // get current count of seats
-      const response = await fetch(API_ENDPOINT)
+      const response = await fetch(`${API_ENDPOINT}/${dbid}`)
         .then((res) => res.json())
         .then((data) => {
           spotsLeft = data.acf.spots_left;
@@ -54,7 +56,7 @@ exports.handler = async ({ body, headers }) => {
           ),
       };
 
-      const update = await fetch(API_ENDPOINT, {
+      const update = await fetch(`${API_ENDPOINT}/${dbid}`, {
         method: "PUT",
         headers: headers,
         body: JSON.stringify({

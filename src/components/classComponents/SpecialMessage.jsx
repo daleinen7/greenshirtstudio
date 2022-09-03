@@ -16,6 +16,17 @@ const StyledSpecialMessage = styled.section`
   p {
     line-height: 1.5rem;
   }
+
+  a {
+    padding: 0 !important;
+    margin-top: 0 !important;
+    border: none !important;
+    color: var(--black);
+
+    :hover {
+      color: var(--neon-green);
+    }
+  }
 `;
 
 const SpecialMessage = ({ wpClass }) => {

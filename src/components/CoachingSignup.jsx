@@ -54,12 +54,12 @@ const Subscribe = () => {
   return (
     <StyledCoachingSignup>
       <div className="subscribeBG">
-        <h3>Start your private coaching experience today</h3>
+        <h3>Schedule a free consultation</h3>
         <a
           href="mailto:jack@greenshirtstudio.com?subject=Coaching"
           className="button fill"
         >
-          Registration
+          Schedule
         </a>
       </div>
     </StyledCoachingSignup>

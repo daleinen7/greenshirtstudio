@@ -11,6 +11,7 @@ exports.handler = async ({ body, headers }) => {
     payment_method_types: ["card"],
     line_items: params.lineItems,
     mode: params.paymentType,
+    metadata: { dayOfWeek: params.dayOfWeek, databaseId: params.dbid },
   });
 
   return {

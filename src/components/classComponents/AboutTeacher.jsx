@@ -38,6 +38,7 @@ const StyledAboutTeacher = styled.section`
 `;
 
 const AboutTeacher = ({ wpClass }) => {
+  console.log(wpClass);
   return (
     <StyledAboutTeacher>
       <GatsbyImage
@@ -50,7 +51,7 @@ const AboutTeacher = ({ wpClass }) => {
       </div>
       <div className="learn-more">
         <Link
-          to={wpClass.classGroup.linkInstructor.slug}
+          to={`/${wpClass.classGroup.linkInstructor.slug}`}
           className="button empty"
         >
           {`About ${wpClass.classGroup.linkInstructor.title}`}

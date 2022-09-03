@@ -147,6 +147,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const ClassHeader = ({ wpClass }) => {
   const [loading, setLoading] = useState(false);
+  console.log(wpClass);
 
   const { data } = useSWR(
     `https://greenshirtstudio.com/wp-json/wp/v2/class/${wpClass.databaseId}`,
@@ -175,6 +176,8 @@ const ClassHeader = ({ wpClass }) => {
             quantity: 1,
           },
         ],
+        dayOfWeek: wpClass.classGroup.day,
+        dbid: wpClass.databaseId,
       }),
     }).then((res) => res.json());
 
@@ -202,7 +205,9 @@ const ClassHeader = ({ wpClass }) => {
         <h2>{wpClass.title}</h2>
         <p>{`${wpClass.classGroup.day}, ${wpClass.classGroup.dates[0].date} - ${
           wpClass.classGroup.dates[wpClass.classGroup.dates.length - 1].date
-        }, ${wpClass.classGroup.time} with ${wpClass.author.node.name}`}</p>
+        }, ${wpClass.classGroup.time} with ${
+          wpClass.classGroup.linkInstructor.title
+        }`}</p>
 
         <div className="spots-left">
           <span>{spotsLeft}</span>
@@ -238,27 +243,3 @@ const ClassHeader = ({ wpClass }) => {
   );
 };
 export default ClassHeader;
-
-// const redirectToCheckout = async (event, type) => {
-//   event.preventDefault();
-//   setLoading(true);
-//   const stripe = await getStripe();
-//   const { error } = await stripe.redirectToCheckout({
-//     mode: type === "single" ? "payment" : "subscription",
-//     lineItems: [
-//       {
-//         price:
-//           type === "single"
-//             ? wpClass.classGroup.stripeId
-//             : wpClass.classGroup.stripeInstallmentId,
-//         quantity: 1,
-//       },
-//     ],
-//     successUrl: `${process.env.GATSBY_URL_ENVIRONMENT}/success`,
-//     cancelUrl: `${process.env.GATSBY_URL_ENVIRONMENT}/cancel`,
-//   });
-//   if (error) {
-//     console.warn("Error:", error);
-//     setLoading(false);
-//   }
-// };
