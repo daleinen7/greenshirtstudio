@@ -147,7 +147,6 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const ClassHeader = ({ wpClass }) => {
   const [loading, setLoading] = useState(false);
-  console.log(wpClass);
 
   const { data } = useSWR(
     `https://greenshirtstudio.com/wp-json/wp/v2/class/${wpClass.databaseId}`,
@@ -214,8 +213,14 @@ const ClassHeader = ({ wpClass }) => {
         </div>
 
         <div className="price">
-          ${wpClass.classGroup.price} <br />
-          <small>or $110 every 3 weeks (payment plan)</small>
+          {wpClass.classGroup.price > 0 ? (
+            <>
+              ${wpClass.classGroup.price} <br />
+              <small>or $110 every 2 weeks (payment plan)</small>
+            </>
+          ) : (
+            <>Free/Donation</>
+          )}
         </div>
 
         <ul className="pricing-buttons">
@@ -228,15 +233,17 @@ const ClassHeader = ({ wpClass }) => {
               Register
             </button>
           </li>
-          <li>
-            <button
-              className={"installment"}
-              disabled={loading}
-              onClick={(e) => handlePurchase(e, "subscription")}
-            >
-              Payment Plan
-            </button>
-          </li>
+          {wpClass.classGroup.price > 0 && (
+            <li>
+              <button
+                className={"installment"}
+                disabled={loading}
+                onClick={(e) => handlePurchase(e, "subscription")}
+              >
+                Payment Plan
+              </button>
+            </li>
+          )}
         </ul>
       </div>
     </StyledClassHeader>
