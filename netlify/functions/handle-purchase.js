@@ -31,9 +31,13 @@ exports.handler = async ({ body, headers }) => {
           eventObject.subscription
         );
 
-        await stripe.subscriptions.update(eventObject.subscription, {
+        console.log("This should cancel.");
+
+        await stripe.subscriptions.update(subscription, {
           cancel_at: oneMonthOut,
         });
+
+        log;
       }
 
       let spotsLeft;
