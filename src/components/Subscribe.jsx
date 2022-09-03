@@ -58,7 +58,7 @@ const Subscribe = () => {
           Sign up to our newsletter to know when the next class is coming up
         </h3>
         <a
-          href="https://greenshirtstudio.us1.list-manage.com/subscribe/post?u=cd12c56d3b216488464876fcb&id=859a5605d5 "
+          href="https://greenshirtstudio.us1.list-manage.com/subscribe/post?u=cd12c56d3b216488464876fcb&id=859a5605d5"
           className="button fill"
         >
           Newsletter Registration

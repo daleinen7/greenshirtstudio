@@ -84,7 +84,7 @@ const StyledFooter = styled.footer`
     margin-bottom: 0.5rem;
   }
 
-  form {
+  .subscribe {
     display: flex;
     flex-direction: column;
     width: 19rem;
@@ -114,6 +114,18 @@ const StyledFooter = styled.footer`
       font-weight: 900;
       font-size: 1rem;
       width: 120px;
+    }
+
+    .button {
+      color: var(--white);
+      background: var(--black);
+      border: 2px solid var(--white);
+      border-radius: 5px;
+      font-weight: 900;
+      font-size: 1.25rem;
+      padding: 1rem 1.5rem;
+      width: 100%;
+      text-align: center;
     }
   }
 
@@ -247,8 +259,17 @@ const Layout = ({ children, headerColor }) => {
       <main>{children}</main>
       <StyledFooter>
         <div className="main-footer">
-          <form>
+          <div className="subscribe">
             <h3>Sign up for our newsletter!</h3>
+            <a
+              href="https://greenshirtstudio.us1.list-manage.com/subscribe/post?u=cd12c56d3b216488464876fcb&id=859a5605d5"
+              className="button fill"
+            >
+              Subscribe
+            </a>
+          </div>
+          {/* <form>
+            
             <label htmlFor="name">
               Name
               <input
@@ -268,7 +289,7 @@ const Layout = ({ children, headerColor }) => {
               />
             </label>
             <input type="submit" value="Subscribe" />
-          </form>
+          </form> */}
           <div className="map">
             <h3>Visit Us</h3>
             <a href="https://www.google.com/maps/place/Green+Shirt+Studio/@41.9545665,-87.6758402,17z/data=!3m2!4b1!5s0x880fd240b0e4760d:0x2acbde16d52556ad!4m5!3m4!1s0x880fd2232f34c5f3:0x8802314b46718d2c!8m2!3d41.9545665!4d-87.6736515">

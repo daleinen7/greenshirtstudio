@@ -56,6 +56,7 @@ export const pageQuery = graphql`
         classGroup {
           program
           price
+          day
           classImage {
             altText
             gatsbyImage(width: 416, height: 290)
