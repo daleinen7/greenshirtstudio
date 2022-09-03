@@ -17,10 +17,9 @@ exports.handler = async ({ body, headers }) => {
       const eventObject = stripeEvent.data.object;
 
       const metadata = stripeEvent.data.object.metadata;
-      console.log("Metadata: ", metadata);
 
-      // console.log("BODY: ", body);
-      // console.log("HEADERS: ", headers);
+      console.log("BODY: ", body);
+      console.log("HEADERS: ", headers);
 
       // if purchase is a subscription
       if (body?.data?.object?.data?.subscription) {
@@ -36,8 +35,6 @@ exports.handler = async ({ body, headers }) => {
         await stripe.subscriptions.update(subscription, {
           cancel_at: oneMonthOut,
         });
-
-        log;
       }
 
       let spotsLeft;
@@ -70,11 +67,7 @@ exports.handler = async ({ body, headers }) => {
             spots_left: spotsLeft - 1,
           },
         }),
-      })
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => console.log("THIS IS THE PUT: ", data));
+      });
 
       console.log("Webhook successful!");
 
