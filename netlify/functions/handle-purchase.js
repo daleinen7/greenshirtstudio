@@ -21,6 +21,8 @@ exports.handler = async ({ body, headers }) => {
       console.log("BODY: ", body);
       // console.log("HEADERS: ", headers); // NOW BREAKS
 
+      console.log("SUBSCRIPTION IS: ", body?.data?.object?.subscription);
+
       // if purchase is a subscription
       if (body?.data?.object?.subscription) {
         const date = new Date();
