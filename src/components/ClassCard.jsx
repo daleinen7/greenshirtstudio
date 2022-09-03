@@ -55,7 +55,8 @@ const ClassCard = ({ title, slug, days, program, price, image }) => {
           {title} {days && `(${days})`}
         </h4>
         <small className="program">{program}</small>
-        <small>${price}</small>
+        <br />
+        {price > 0 ? <small>${price}</small> : <small>Free / Donation</small>}
       </Link>
     </StyledClassCard>
   );
