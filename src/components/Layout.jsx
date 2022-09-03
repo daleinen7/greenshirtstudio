@@ -93,6 +93,11 @@ const StyledFooter = styled.footer`
       margin-bottom: 1.5rem;
     }
 
+    p {
+      font-size: 0.875rem;
+      margin-bottom: 0.5rem;
+    }
+
     input[type="text"],
     input[type="email"] {
       padding: 0.875rem 0.75rem;
@@ -134,7 +139,6 @@ const StyledFooter = styled.footer`
     flex-direction: column;
     font-weight: 900;
     font-size: 0.875rem;
-
     margin-bottom: 1.5rem;
   }
 
@@ -261,6 +265,7 @@ const Layout = ({ children, headerColor }) => {
         <div className="main-footer">
           <div className="subscribe">
             <h3>Sign up for our newsletter!</h3>
+            <p>Find out more about upcoming classes and events.</p>
             <a
               href="https://greenshirtstudio.us1.list-manage.com/subscribe/post?u=cd12c56d3b216488464876fcb&id=859a5605d5"
               className="button fill"
