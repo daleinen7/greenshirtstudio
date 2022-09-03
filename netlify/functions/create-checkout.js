@@ -6,7 +6,7 @@ exports.handler = async ({ body, headers }) => {
   const params = JSON.parse(body);
 
   const session = await stripe.checkout.sessions.create({
-    success_url: `${headers.origin}/success`,
+    success_url: `${headers.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${headers.origin}/cancel`,
     payment_method_types: ["card"],
     line_items: params.lineItems,

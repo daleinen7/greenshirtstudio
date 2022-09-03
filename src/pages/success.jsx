@@ -25,7 +25,7 @@ const Success = ({ data }) => {
         image={success}
         imageAltText={"placeholder image"}
         info={
-          "We've received your payment and registration to Meisner Level 1: Living Truthfully with Jack Disselhorst. You will receive an email receipt containing more details about the class."
+          "We've received your payment and registration. You will receive an email receipt containing more details about the class."
         }
         ctaText={"Check out other classes"}
         ctaLink={"/classes"}

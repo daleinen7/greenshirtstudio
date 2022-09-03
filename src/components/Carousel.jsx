@@ -15,6 +15,23 @@ const StyledCarousel = styled.section`
     font-size: 2rem;
     margin-bottom: 2rem;
   }
+
+  a[role="button"] {
+    font-weight: 900;
+    color: var(--black);
+    background: var(--neon-green);
+    text-decoration: none;
+    font-size: 1.25rem;
+    padding: 1rem 1.5rem;
+    width: fit-content;
+    display: block;
+    margin: auto;
+    border: 2px solid var(--neon-green);
+    :hover {
+      background: var(--white);
+    }
+  }
+
   .alice-carousel {
     margin-bottom: 40px;
   }
@@ -42,21 +59,6 @@ const StyledCarousel = styled.section`
   .alice-carousel__next-btn {
     right: 0px;
   }
-  a[role="button"] {
-    font-weight: 900;
-    color: var(--black);
-    background: var(--neon-green);
-    text-decoration: none;
-    font-size: 1.25rem;
-    padding: 1rem 1.5rem;
-    width: fit-content;
-    display: block;
-    margin: auto;
-    border: 2px solid var(--neon-green);
-    :hover {
-      background: var(--white);
-    }
-  }
 
   @media screen and (max-width: 450px) {
     width: 100%;
@@ -66,6 +68,7 @@ const StyledCarousel = styled.section`
     a[role="button"] {
       margin: 0;
     }
+
     h3 {
       padding-bottom: 3rem;
     }
@@ -105,7 +108,7 @@ const Carousel = ({ title, items, link, linkDisplay }) => {
         disableDotsControls
         mouseTracking
         items={items}
-        // infinite
+        infinite
         responsive={responsive}
         autoWidth
       />
