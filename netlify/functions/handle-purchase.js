@@ -1,7 +1,7 @@
 const fetch = require("node-fetch");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-const API_ENDPOINT = "https://greenshirtstudio.com/wp-json/wp/v2/class";
+const API_ENDPOINT = `${process.env.BACKEND_URL}/wp-json/wp/v2/class`;
 
 exports.handler = async ({ body, headers }) => {
   try {

@@ -149,7 +149,7 @@ const ClassHeader = ({ wpClass }) => {
   const [loading, setLoading] = useState(false);
 
   const { data } = useSWR(
-    `https://greenshirtstudio.com/wp-json/wp/v2/class/${wpClass.databaseId}`,
+    `https://greenshirtstudiowp.us/wp-json/wp/v2/class/${wpClass.databaseId}`,
     fetcher
   );
 
