@@ -17,14 +17,13 @@ exports.handler = async ({ body, headers }) => {
       const eventObject = stripeEvent.data.object;
 
       const metadata = stripeEvent.data.object.metadata;
+      console.log("Metadata: ", metadata);
 
-      console.log("BODY: ", body);
-      // console.log("HEADERS: ", headers); // NOW BREAKS
-
-      console.log("SUBSCRIPTION IS: ", body?.data?.object?.subscription);
+      // console.log("BODY: ", body);
+      // console.log("HEADERS: ", headers);
 
       // if purchase is a subscription
-      if (body?.data?.object?.subscription) {
+      if (eventObject.mode === "subscription") {
         const date = new Date();
         const oneMonthOut = new Date(date.setMonth(date.getMonth() + 1));
 
@@ -34,7 +33,7 @@ exports.handler = async ({ body, headers }) => {
 
         console.log("This should cancel.");
 
-        await stripe.subscriptions.update(subscription, {
+        await stripe.subscriptions.update(eventObject.subscription, {
           cancel_at: oneMonthOut,
         });
       }
