@@ -178,7 +178,8 @@ const ClassHeader = ({ wpClass }) => {
         dayOfWeek: wpClass.classGroup.day,
         dbid: wpClass.databaseId,
       }),
-    }).then((res) => res.json());
+    });
+    // .then((res) => res.json());
 
     const stripe = await getStripe();
     const { error } = await stripe.redirectToCheckout({

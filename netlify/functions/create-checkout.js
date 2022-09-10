@@ -4,9 +4,14 @@ exports.handler = async ({ body, headers }) => {
   const params = JSON.parse(body);
   console.log("Serverside baby!", params.paymentType);
 
+  console.log(
+    "Wherever you go, here you are: ",
+    process.env.GATSBY_URL_ENVIRONMENT
+  );
+
   const session = await stripe.checkout.sessions.create({
-    success_url: `${headers.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${headers.origin}/cancel`,
+    success_url: `${process.env.GATSBY_URL_ENVIRONMENT}/success?session_id={CHECKOUT_SESSION_ID}`,
+    cancel_url: `${process.env.GATSBY_URL_ENVIRONMENT}/cancel`,
     payment_method_types: ["card"],
     line_items: params.lineItems,
     mode: params.paymentType,
