@@ -14,9 +14,11 @@ exports.handler = async ({ body, headers }) => {
     payment_method_types: ["card"],
     line_items: params.lineItems,
     mode: params.paymentType,
-    allow_promotion_codes: body.promotion,
+    allow_promotion_codes: params.promotion,
     metadata: { dayOfWeek: params.dayOfWeek, databaseId: params.dbid },
   });
+
+  console.log("SESSION: ", session);
 
   return {
     statusCode: 200,
