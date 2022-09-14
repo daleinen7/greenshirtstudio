@@ -38,7 +38,6 @@ const StyledAboutTeacher = styled.section`
 `;
 
 const AboutTeacher = ({ wpClass }) => {
-  console.log(wpClass);
   return (
     <StyledAboutTeacher>
       <GatsbyImage

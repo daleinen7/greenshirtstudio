@@ -50,8 +50,6 @@ const StyledBlogPost = styled.article`
 const BlogPostPage = (props) => {
   const { wpPost } = props.data;
 
-  console.log(wpPost);
-
   const date = new Date(wpPost.date);
 
   const shareSplit = wpPost.content.split("<div class=");

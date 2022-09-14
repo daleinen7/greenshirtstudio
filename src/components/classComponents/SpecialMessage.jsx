@@ -30,7 +30,6 @@ const StyledSpecialMessage = styled.section`
 `;
 
 const SpecialMessage = ({ wpClass }) => {
-  console.log(wpClass);
   return (
     <StyledSpecialMessage>
       {wpClass.classGroup.optionalSpecialHeader && (
