@@ -166,6 +166,7 @@ const ClassHeader = ({ wpClass }) => {
       },
       body: JSON.stringify({
         paymentType: paymentType,
+        promotion: wpClass.classGroup.price > 0,
         lineItems: [
           {
             price:
