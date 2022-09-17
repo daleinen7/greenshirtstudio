@@ -29,7 +29,7 @@ exports.handler = async ({ body, headers }) => {
       }),
     };
   } catch (error) {
-    console.log("This failed I see", err);
-    res.status(500).json({ message: err.message });
+    console.log("This failed I see", error);
+    res.status(500).json({ message: error.message });
   }
 };
