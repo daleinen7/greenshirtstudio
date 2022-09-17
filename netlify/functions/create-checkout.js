@@ -1,8 +1,14 @@
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-
 exports.handler = async ({ body, headers }) => {
   const params = JSON.parse(body);
   console.log("Serverside baby!", params.paymentType);
+
+  console.log("This is a ", params.test ? "test" : "live", " purchase.");
+
+  const stripe = require("stripe")(
+    params.test
+      ? process.env.STRIPE_SECRET_TEST_KEY
+      : process.env.STRIPE_SECRET_KEY
+  );
 
   console.log("GATSBY URL ENVIRONMENT: ", process.env.GATSBY_URL_ENVIRONMENT);
 

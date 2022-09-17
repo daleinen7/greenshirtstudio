@@ -143,6 +143,7 @@ export const query = graphql`
       classGroup {
         age
         classSize
+        program
         stripeId
         stripeInstallmentId
         day

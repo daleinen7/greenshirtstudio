@@ -136,9 +136,13 @@ const StyledClassHeader = styled.div`
 `;
 
 let stripePromise;
-const getStripe = () => {
+const getStripe = (test) => {
   if (!stripePromise) {
-    stripePromise = loadStripe(process.env.GATSBY_STRIPE_PUBLISHABLE_KEY);
+    stripePromise = loadStripe(
+      test
+        ? process.env.GATSBY_STRIPE_PUBLISHABLE_TEST_KEY
+        : process.env.GATSBY_STRIPE_PUBLISHABLE_KEY
+    );
   }
   return stripePromise;
 };
@@ -165,6 +169,7 @@ const ClassHeader = ({ wpClass }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        test: wpClass.classGroup.program === "Test",
         paymentType: paymentType,
         promotion: wpClass.classGroup.price > 0,
         lineItems: [
@@ -181,7 +186,7 @@ const ClassHeader = ({ wpClass }) => {
       }),
     }).then((res) => res.json());
 
-    const stripe = await getStripe();
+    const stripe = await getStripe(wpClass.classGroup.program === "Test");
     const { error } = await stripe.redirectToCheckout({
       sessionId: response.sessionId,
     });
