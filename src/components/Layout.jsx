@@ -298,7 +298,7 @@ const Layout = ({ children, headerColor }) => {
           <div className="map">
             <h3>Visit Us</h3>
             <a href="https://www.google.com/maps/place/Green+Shirt+Studio/@41.9545665,-87.6758402,17z/data=!3m2!4b1!5s0x880fd240b0e4760d:0x2acbde16d52556ad!4m5!3m4!1s0x880fd2232f34c5f3:0x8802314b46718d2c!8m2!3d41.9545665!4d-87.6736515">
-              4001 N Raventswood Ave, Unit 303-B Chicago, IL <br /> 60613
+              4001 N Ravenswood Ave, Unit 303-B Chicago, IL <br /> 60613
             </a>
             <iframe
               title="Map to Green Shirt Studio"
