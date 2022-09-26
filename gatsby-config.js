@@ -14,7 +14,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        icon: "/ResponsiveFavicon4x.png",
+        icon: "src/images/ResponsiveFavicon4x.png",
       },
     },
     {
