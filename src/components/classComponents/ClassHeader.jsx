@@ -89,6 +89,10 @@ const StyledClassHeader = styled.div`
       :hover {
         opacity: 0.6;
       }
+
+      :active {
+        transform: translateY(2px) translateX(2px);
+      }
     }
 
     .installment {
@@ -98,6 +102,10 @@ const StyledClassHeader = styled.div`
 
       :hover {
         opacity: 0.6;
+      }
+
+      :active {
+        transform: translateY(2px) translateX(2px);
       }
     }
   }

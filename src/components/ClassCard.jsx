@@ -23,6 +23,10 @@ const StyledClassCard = styled.article`
     color: var(--black);
   }
 
+  img {
+    border: 1px solid var(--light-gray);
+  }
+
   .program {
     color: var(--dark-gray);
   }
@@ -33,6 +37,10 @@ const StyledClassCard = styled.article`
 
     :hover h4 {
       text-decoration: underline;
+    }
+
+    :active {
+      transform: translateY(2px) translateX(2px);
     }
   }
 

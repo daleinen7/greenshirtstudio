@@ -30,6 +30,10 @@ const StyledCarousel = styled.section`
     :hover {
       background: var(--white);
     }
+
+    :active {
+      transform: translateY(2px) translateX(2px);
+    }
   }
 
   .alice-carousel {
@@ -60,13 +64,15 @@ const StyledCarousel = styled.section`
     right: 0px;
   }
 
-  @media screen and (max-width: 450px) {
+  @media screen and (max-width: 550px) {
     width: 100%;
 
     padding: 4.75rem 1rem;
 
     a[role="button"] {
       margin: 0;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
     }
 
     h3 {

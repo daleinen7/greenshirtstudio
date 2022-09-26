@@ -1,5 +1,6 @@
 import * as React from "react";
 // import useWindowSize from "../lib/useWindowSize";
+import { SEO } from "../components/seo";
 import Community from "../images/home/Community.png";
 import WhatClasses from "../images/home/WhatClasses.png";
 import WhyClassWithUs from "../images/home/WhyClassWithUs.png";
@@ -139,3 +140,5 @@ export const pageQuery = graphql`
     }
   }
 `;
+
+export const Head = () => <SEO />;

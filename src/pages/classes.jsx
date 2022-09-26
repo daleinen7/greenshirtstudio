@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
+import { SEO } from "../components/seo";
 import SectionDivider from "../components/SectionDivider";
 import MeisnerProgram from "../images/MeisnerProgram.png";
 import special from "../images/special.png";
@@ -94,6 +95,8 @@ const Classes = ({ data }) => {
   );
 };
 export default Classes;
+
+export const Head = () => <SEO title="Classes - Green Shirt Studio" />;
 
 export const pageQuery = graphql`
   query FAQuery {

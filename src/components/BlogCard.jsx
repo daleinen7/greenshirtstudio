@@ -39,6 +39,10 @@ const StyledBlogCard = styled.article`
     :hover {
       text-decoration: underline;
     }
+
+    :active {
+      transform: translateY(2px) translateX(2px);
+    }
   }
 `;
 

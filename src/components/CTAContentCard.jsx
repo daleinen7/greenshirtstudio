@@ -50,6 +50,10 @@ const StyledCTACard = styled.div`
       background: var(--white);
     }
 
+    :active {
+      transform: translateY(2px) translateX(2px);
+    }
+
     @media (max-width: 480px) {
       font-size: 1rem;
       padding: 0.75rem 1.5rem;
@@ -58,7 +62,7 @@ const StyledCTACard = styled.div`
 
   @media (max-width: 785px) {
     flex-direction: column-reverse;
-    padding: 1.875rem 0;
+    padding: 3.75rem 0;
 
     img.image {
       width: 100%;
