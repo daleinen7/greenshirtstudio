@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
-import { SEO } from "../components/seo";
+import SEO from "../components/seo";
 import SectionDivider from "../components/SectionDivider";
 import MeisnerProgram from "../images/MeisnerProgram.png";
 import special from "../images/special.png";
