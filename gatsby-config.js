@@ -3,12 +3,6 @@ require("dotenv").config({
 });
 
 module.exports = {
-  siteMetadata: {
-    title: `Green Shirt Studio`,
-    siteUrl: `https://greenshirtstudio.com`,
-    twitterUsername: `@GrnShirtStudio`,
-    image: `/GSSLogo.png`,
-  },
   plugins: [
     `gatsby-plugin-styled-components`,
     {
