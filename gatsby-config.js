@@ -6,7 +6,7 @@ module.exports = {
   siteMetadata: {
     title: `Green Shirt Studio`,
     siteUrl: `https://greenshirtstudio.com`,
-    twitterUsername: `GrnShirtStudio`,
+    twitterUsername: `@GrnShirtStudio`,
     image: `/GSSLogo.png`,
   },
   plugins: [

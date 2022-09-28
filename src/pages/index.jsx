@@ -1,5 +1,5 @@
 import * as React from "react";
-// import useWindowSize from "../lib/useWindowSize";
+import { SEO } from "../components/seo";
 import SEO from "../components/Seo";
 import Community from "../images/home/Community.png";
 import WhatClasses from "../images/home/WhatClasses.png";
