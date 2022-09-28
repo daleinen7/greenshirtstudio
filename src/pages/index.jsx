@@ -1,6 +1,4 @@
 import * as React from "react";
-import { SEO } from "../components/seo";
-import SEO from "../components/Seo";
 import Community from "../images/home/Community.png";
 import WhatClasses from "../images/home/WhatClasses.png";
 import WhyClassWithUs from "../images/home/WhyClassWithUs.png";
@@ -140,5 +138,3 @@ export const pageQuery = graphql`
     }
   }
 `;
-
-export const Head = () => <SEO />;

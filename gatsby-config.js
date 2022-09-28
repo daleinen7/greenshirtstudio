@@ -3,12 +3,12 @@ require("dotenv").config({
 });
 
 module.exports = {
-  // siteMetadata: {
-  //   title: `Green Shirt Studio`,
-  //   siteUrl: `https://greenshirtstudio.com`,
-  //   twitterUsername: `@GrnShirtStudio`,
-  //   image: `/GSSLogo.png`,
-  // },
+  siteMetadata: {
+    title: `Green Shirt Studio`,
+    siteUrl: `https://greenshirtstudio.com`,
+    twitterUsername: `@GrnShirtStudio`,
+    image: `/GSSLogo.png`,
+  },
   plugins: [
     `gatsby-plugin-styled-components`,
     {
@@ -24,7 +24,7 @@ module.exports = {
       resolve: `gatsby-source-wordpress`,
       options: {
         // the only required plugin option for WordPress is the GraphQL url.
-        url: process.env.WPGRAPHQL_URL,
+        url: "https://greenshirtstudiowp.us/graphql",
       },
     },
     {
