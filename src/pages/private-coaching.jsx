@@ -57,3 +57,7 @@ const ProfessionalDevelopment = () => {
   );
 };
 export default ProfessionalDevelopment;
+
+export const Head = () => (
+  <SEO title={`Private Coaching - Green Shirt Studio`} />
+);

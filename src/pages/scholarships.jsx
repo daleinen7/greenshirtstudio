@@ -102,3 +102,5 @@ Contributions of any amount are greatly appreciated and will allow us to assist 
   );
 };
 export default Scholarships;
+
+export const Head = () => <SEO title={`Scholarships - Green Shirt Studio`} />;

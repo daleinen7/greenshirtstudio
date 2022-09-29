@@ -33,6 +33,8 @@ const Workshops = ({ data }) => {
 };
 export default Workshops;
 
+export const Head = () => <SEO title={`Workshops - Green Shirt Studio`} />;
+
 export const pageQuery = graphql`
   query Workshops {
     allWpClass(filter: { classGroup: { program: { eq: "Workshops" } } }) {

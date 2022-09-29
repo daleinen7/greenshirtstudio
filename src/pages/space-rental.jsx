@@ -148,3 +148,5 @@ const SpaceRental = () => {
   );
 };
 export default SpaceRental;
+
+export const Head = () => <SEO title={`Space Rental - Green Shirt Studio`} />;

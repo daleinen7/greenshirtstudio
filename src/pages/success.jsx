@@ -36,6 +36,8 @@ const Success = ({ data }) => {
 };
 export default Success;
 
+export const Head = () => <SEO title={`Success! - Green Shirt Studio`} />;
+
 export const pageQuery = graphql`
   query SuccessQuery {
     allWpClass {

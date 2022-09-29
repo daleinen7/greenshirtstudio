@@ -121,6 +121,8 @@ const ClassPage = (props) => {
 };
 export default ClassPage;
 
+export const Head = () => <SEO title={`Class - Green Shirt Studio`} />;
+
 export const query = graphql`
   query ($id: String!) {
     allWpPage(

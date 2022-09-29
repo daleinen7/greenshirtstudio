@@ -104,6 +104,8 @@ const About = ({ data }) => {
 };
 export default About;
 
+export const Head = () => <SEO title={`About - Green Shirt Studio`} />;
+
 export const pageQuery = graphql`
   query staff {
     allWpInstructor {

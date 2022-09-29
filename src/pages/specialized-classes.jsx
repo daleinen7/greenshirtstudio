@@ -33,6 +33,10 @@ const SpecializedClasses = ({ data }) => {
 };
 export default SpecializedClasses;
 
+export const Head = () => (
+  <SEO title={`Specialized Classes - Green Shirt Studio`} />
+);
+
 export const pageQuery = graphql`
   query SpecializedClasses {
     allWpClass(

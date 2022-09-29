@@ -6,6 +6,10 @@ const StyledCancel = styled.div`
   background: white;
 `;
 
+export const Head = () => (
+  <SEO title={`Cancel Checkout - Green Shirt Studio`} />
+);
+
 const Cancel = () => {
   return (
     <Layout>

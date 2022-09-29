@@ -13,6 +13,8 @@ const StyledHero = styled.div`
   padding-bottom: 3rem;
 `;
 
+export const Head = () => <SEO title={`Blog - Green Shirt Studio`} />;
+
 const Blog = ({ data }) => {
   return (
     <Layout>

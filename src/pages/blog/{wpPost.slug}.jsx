@@ -80,6 +80,8 @@ const BlogPostPage = (props) => {
 };
 export default BlogPostPage;
 
+export const Head = () => <SEO title={`Blog Post - Green Shirt Studio`} />;
+
 export const query = graphql`
   query ($id: String!) {
     wpPost(id: { eq: $id }) {
