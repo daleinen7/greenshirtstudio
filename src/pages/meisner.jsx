@@ -45,6 +45,10 @@ const Meisner = ({ data }) => {
 };
 export default Meisner;
 
+export const Head = () => (
+  <SEO title={`Meisner Program - Green Shirt Studio`} />
+);
+
 export const pageQuery = graphql`
   query MeisnerClasses {
     allWpClass(

@@ -95,6 +95,8 @@ const Classes = ({ data }) => {
 };
 export default Classes;
 
+export const Head = () => <SEO title={`Classes - Green Shirt Studio`} />;
+
 export const pageQuery = graphql`
   query FAQuery {
     allWpFaq {
