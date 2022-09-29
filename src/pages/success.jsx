@@ -1,4 +1,5 @@
 import React from "react";
+import { SEO } from "../components/seo";
 import Layout from "../components/Layout";
 import success from "../images/success.png";
 import Carousel from "../components/Carousel";

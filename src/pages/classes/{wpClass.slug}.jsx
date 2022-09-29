@@ -1,6 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
-
+import { SEO } from "../components/seo";
 import Layout from "../../components/Layout";
 import ClassHeader from "../../components/classComponents/ClassHeader";
 import Description from "../../components/classComponents/Description";
