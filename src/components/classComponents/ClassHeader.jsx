@@ -202,8 +202,6 @@ const ClassHeader = ({ wpClass }) => {
       console.warn("Error:", error);
       setLoading(false);
     }
-
-    console.log(response);
   };
 
   return (
@@ -230,7 +228,9 @@ const ClassHeader = ({ wpClass }) => {
           {wpClass.classGroup.price > 0 ? (
             <>
               ${wpClass.classGroup.price} <br />
-              <small>or $110 every 2 weeks (payment plan)</small>
+              {wpClass.classGroup.stripeInstallmentId && (
+                <small>or $110 every 2 weeks (payment plan)</small>
+              )}
             </>
           ) : (
             <>Free/Donation</>
@@ -247,7 +247,7 @@ const ClassHeader = ({ wpClass }) => {
               Register
             </button>
           </li>
-          {wpClass.classGroup.price > 0 && (
+          {wpClass.classGroup.stripeInstallmentId && (
             <li>
               <button
                 className={"installment"}
