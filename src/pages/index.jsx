@@ -1,4 +1,5 @@
 import * as React from "react";
+import { SEO } from "../components/seo";
 import Community from "../images/home/Community.png";
 import WhatClasses from "../images/home/WhatClasses.png";
 import WhyClassWithUs from "../images/home/WhyClassWithUs.png";
@@ -103,6 +104,8 @@ const IndexPage = ({ data }) => {
 };
 
 export default IndexPage;
+
+export const Head = () => <SEO title={`Home - Green Shirt Studio`} />;
 
 export const pageQuery = graphql`
   query IndexQuery {
