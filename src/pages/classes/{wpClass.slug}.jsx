@@ -89,6 +89,7 @@ const StyledClassPage = styled.div`
 
 const ClassPage = (props) => {
   const { wpClass } = props.data;
+  const workshopPolicy = props.data.allWpPage.edges[2].node.content;
   const cancellationPolicy = props.data.allWpPage.edges[1].node.content;
   const attendancePolicy = props.data.allWpPage.edges[0].node.content;
 
@@ -99,7 +100,11 @@ const ClassPage = (props) => {
         <div className="main-content">
           <div className="left-column">
             <Description wpClass={wpClass} />
-            <CancellationPolicy cancellationPolicy={cancellationPolicy} />
+            {wpClass.classGroup.program === "Workshops" ? (
+              <CancellationPolicy cancellationPolicy={workshopPolicy} />
+            ) : (
+              <CancellationPolicy cancellationPolicy={cancellationPolicy} />
+            )}
             <AttendancePolicy attendancePolicy={attendancePolicy} />
           </div>
           <div className="right-column">
@@ -120,7 +125,13 @@ export const query = graphql`
   query ($id: String!) {
     allWpPage(
       filter: {
-        title: { in: ["Attendance Policy", "Cancellation Policy Gatsby"] }
+        title: {
+          in: [
+            "Attendance Policy"
+            "Cancellation Policy Gatsby"
+            "Workshop Cancellation Policy"
+          ]
+        }
       }
     ) {
       edges {
