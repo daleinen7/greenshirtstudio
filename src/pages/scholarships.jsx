@@ -1,4 +1,5 @@
 import React from "react";
+import { SEO } from "../components/seo";
 import Layout from "../components/Layout";
 import SectionDivider from "../components/SectionDivider";
 import TextContent from "../components/TextContent";

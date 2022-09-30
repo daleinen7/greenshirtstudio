@@ -1,4 +1,5 @@
 import React from "react";
+import { SEO } from "../components/seo";
 import SpecializedClassesImg from "../images/SpecializedClasses.png";
 import Layout from "../components/Layout";
 import Subscribe from "../components/Subscribe";

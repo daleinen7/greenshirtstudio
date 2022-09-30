@@ -1,5 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
+import { SEO } from "../components/seo";
 import { GatsbyImage } from "gatsby-plugin-image";
 import styled from "styled-components";
 import Layout from "../components/Layout";
@@ -59,7 +60,9 @@ const Instructor = (props) => {
 };
 export default Instructor;
 
-export const Head = () => <SEO title={`Instructor - Green Shirt Studio`} />;
+export const Head = ({ data }) => (
+  <SEO title={`${data.wpInstructor.title} - Green Shirt Studio`} />
+);
 
 export const query = graphql`
   query ($id: String!) {

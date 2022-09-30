@@ -1,5 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
+import { SEO } from "../../components/seo";
 import parse from "html-react-parser";
 import Layout from "../../components/Layout";
 import styled from "styled-components";
@@ -80,7 +81,9 @@ const BlogPostPage = (props) => {
 };
 export default BlogPostPage;
 
-export const Head = () => <SEO title={`Blog Post - Green Shirt Studio`} />;
+export const Head = ({ data }) => (
+  <SEO title={`${data.wpPost.title} - Green Shirt Studio`} />
+);
 
 export const query = graphql`
   query ($id: String!) {

@@ -1,4 +1,5 @@
 import React from "react";
+import { SEO } from "../components/seo";
 import WorkshopsImg from "../images/Workshops.png";
 import Layout from "../components/Layout";
 import Subscribe from "../components/Subscribe";
