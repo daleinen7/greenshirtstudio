@@ -60,7 +60,9 @@ const Instructor = (props) => {
 };
 export default Instructor;
 
-export const Head = () => <SEO title={`Instructor - Green Shirt Studio`} />;
+export const Head = ({ data }) => (
+  <SEO title={`${data.wpInstructor.title} - Green Shirt Studio`} />
+);
 
 export const query = graphql`
   query ($id: String!) {
