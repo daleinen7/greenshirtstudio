@@ -105,7 +105,12 @@ const IndexPage = ({ data }) => {
 
 export default IndexPage;
 
-export const Head = () => <SEO title={`Home - Green Shirt Studio`} />;
+export const Head = () => (
+  <SEO
+    title={`Chicago Acting Classes | Shows and Events - Green Shirt Studio`}
+    description={`Take an acting class offered in a welcoming learning environment! Chicago acting classes for beginners and professionals. Attend a show or free event.`}
+  />
+);
 
 export const pageQuery = graphql`
   query IndexQuery {

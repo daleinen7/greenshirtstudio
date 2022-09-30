@@ -96,7 +96,12 @@ const Classes = ({ data }) => {
 };
 export default Classes;
 
-export const Head = () => <SEO title={`Classes - Green Shirt Studio`} />;
+export const Head = () => (
+  <SEO
+    title={`Classes - Green Shirt Studio`}
+    description={`Check out one of our acting classes or workshops! We welcome students from all backgrounds and experience levels. Mesiner Acting Program, Workshops, Private Coaching and more.`}
+  />
+);
 
 export const pageQuery = graphql`
   query FAQuery {

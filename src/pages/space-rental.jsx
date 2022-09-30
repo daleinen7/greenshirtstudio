@@ -150,4 +150,9 @@ const SpaceRental = () => {
 };
 export default SpaceRental;
 
-export const Head = () => <SEO title={`Space Rental - Green Shirt Studio`} />;
+export const Head = () => (
+  <SEO
+    title={`Space Rental - Green Shirt Studio`}
+    description={`Affordable Chicago space rental for artists. $25-$35. Space rental for photoshoots, rehearsals, workshops, and live shows. Tons of natural light.`}
+  />
+);
