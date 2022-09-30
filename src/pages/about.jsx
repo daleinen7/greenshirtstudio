@@ -105,7 +105,12 @@ const About = ({ data }) => {
 };
 export default About;
 
-export const Head = () => <SEO title={`About - Green Shirt Studio`} />;
+export const Head = () => (
+  <SEO
+    title={`About - Green Shirt Studio`}
+    description={`Affordable Chicago space rental for artists. $25-$35. Space rental for photoshoots, rehearsals, workshops, and live shows. Tons of natural light.`}
+  />
+);
 
 export const pageQuery = graphql`
   query staff {

@@ -14,7 +14,12 @@ const StyledHero = styled.div`
   padding-bottom: 3rem;
 `;
 
-export const Head = () => <SEO title={`Blog - Green Shirt Studio`} />;
+export const Head = () => (
+  <SEO
+    title={`Blog - Green Shirt Studio`}
+    description={`Acting blog with advice about acting technique, auditioning, career, Chicago theater, and more.`}
+  />
+);
 
 const Blog = ({ data }) => {
   return (
