@@ -225,7 +225,7 @@ const ClassHeader = ({ wpClass }) => {
         </div>
 
         <div className="price">
-          {spotsLeft > 0 &&
+          {true &&
             (wpClass.classGroup.price > 0 ? (
               <>
                 ${wpClass.classGroup.price} <br />
@@ -240,7 +240,7 @@ const ClassHeader = ({ wpClass }) => {
 
         <ul className="pricing-buttons">
           <li>
-            {spotsLeft > 0 ? (
+            {true ? (
               <button
                 className={"register"}
                 disabled={loading}
