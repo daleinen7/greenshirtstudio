@@ -225,27 +225,32 @@ const ClassHeader = ({ wpClass }) => {
         </div>
 
         <div className="price">
-          {wpClass.classGroup.price > 0 ? (
-            <>
-              ${wpClass.classGroup.price} <br />
-              {wpClass.classGroup.stripeInstallmentId && (
-                <small>or $110 every 2 weeks (payment plan)</small>
-              )}
-            </>
-          ) : (
-            <>Free/Donation</>
-          )}
+          {spotsLeft > 0 &&
+            (wpClass.classGroup.price > 0 ? (
+              <>
+                ${wpClass.classGroup.price} <br />
+                {wpClass.classGroup.stripeInstallmentId && (
+                  <small>or $110 every 2 weeks (payment plan)</small>
+                )}
+              </>
+            ) : (
+              <>Free/Donation</>
+            ))}
         </div>
 
         <ul className="pricing-buttons">
           <li>
-            <button
-              className={"register"}
-              disabled={loading}
-              onClick={(e) => handlePurchase(e, "payment")}
-            >
-              Register
-            </button>
+            {spotsLeft > 0 ? (
+              <button
+                className={"register"}
+                disabled={loading}
+                onClick={(e) => handlePurchase(e, "payment")}
+              >
+                Register
+              </button>
+            ) : (
+              <button disabled>SOLD OUT</button>
+            )}
           </li>
           {wpClass.classGroup.stripeInstallmentId && (
             <li>
