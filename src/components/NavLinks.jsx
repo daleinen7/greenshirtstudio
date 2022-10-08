@@ -14,11 +14,16 @@ const NavLinks = () => {
           Classes
         </Link>
       </li>
-      {/* <li>
-        <Link to="/shows-and-events" activeClassName="active">
+      <li>
+        <a
+          href="https://www.eventbrite.com/cc/green-shirt-shows-events-1248579"
+          activeClassName="active"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Shows & Events
-        </Link>
-      </li> */}
+        </a>
+      </li>
       <li>
         <Link to="/space-rental" activeClassName="active">
           Space Rental
