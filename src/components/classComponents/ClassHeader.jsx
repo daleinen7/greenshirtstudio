@@ -160,7 +160,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 const ClassHeader = ({ wpClass }) => {
   const [loading, setLoading] = useState(false);
 
-  const { data } = useSWR(
+  const { data, error } = useSWR(
     `https://greenshirtstudiowp.us/wp-json/wp/v2/class/${wpClass.databaseId}`,
     fetcher
   );
@@ -241,16 +241,22 @@ const ClassHeader = ({ wpClass }) => {
 
         <ul className="pricing-buttons">
           <li>
-            {data && data.acf.spots_left > 0 ? (
-              <button
-                className={"register"}
-                disabled={loading}
-                onClick={(e) => handlePurchase(e, "payment")}
-              >
+            {data ? (
+              data.acf.spots_left > 0 ? (
+                <button
+                  className={"register"}
+                  disabled={loading}
+                  onClick={(e) => handlePurchase(e, "payment")}
+                >
+                  Register
+                </button>
+              ) : (
+                <button disabled>SOLD OUT</button>
+              )
+            ) : (
+              <button disabled className={"register"}>
                 Register
               </button>
-            ) : (
-              <button disabled>SOLD OUT</button>
             )}
           </li>
           {wpClass.classGroup.stripeInstallmentId && (
