@@ -74,6 +74,7 @@ const StyledClassHeader = styled.div`
       font-weight: 900;
       text-decoration: none;
       display: inline;
+      color: var(--black);
       cursor: pointer;
 
       :active {
@@ -117,6 +118,7 @@ const StyledClassHeader = styled.div`
       li,
       button {
         width: 100%;
+        margin: 0;
       }
     }
   }

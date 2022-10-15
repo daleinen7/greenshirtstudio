@@ -34,6 +34,22 @@ const StyledTextContent = styled.div`
   @media (max-width: 785px) {
     padding: 0 1rem;
   }
+
+  @media (max-width: 560px) {
+    margin: 3.75rem auto;
+
+    h3 {
+      font-size: 1.5rem;
+      line-height: 1.9375rem;
+    }
+
+    p,
+    li,
+    a {
+      line-height: 1.3125rem;
+      font-size: 0.875rem;
+    }
+  }
 `;
 
 const TextContent = ({ title, content, link, linkAddress }) => {

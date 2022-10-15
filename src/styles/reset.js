@@ -22,9 +22,9 @@ const Reset = createGlobalStyle`
   }
 
   /* Set core root defaults */
-  html:focus-within {
+  /* html:focus-within {
     scroll-behavior: smooth;
-  }
+  } */
 
   /* Set core body defaults */
   body {

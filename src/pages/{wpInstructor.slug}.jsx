@@ -13,11 +13,15 @@ const StyledUser = styled.div`
   margin: 4.6875rem auto;
   padding: 0 4rem;
 
+  /* .gatsby-image-wrapper {
+    width: 100%;
+  } */
+
   .content {
     max-width: 40rem;
 
     h2 {
-      margin-top: 3rem;
+      margin-top: 0.5rem;
       margin-bottom: 0.375rem;
       line-height: 4.875rem;
       font-weight: 800;
@@ -33,6 +37,7 @@ const StyledUser = styled.div`
     }
 
     p {
+      font-size: 1.25rem;
       margin-top: 1rem;
     }
   }
@@ -73,7 +78,7 @@ export const query = graphql`
         title
         image {
           altText
-          gatsbyImage(width: 637)
+          gatsbyImage(width: 637, layout: FULL_WIDTH)
         }
       }
     }
