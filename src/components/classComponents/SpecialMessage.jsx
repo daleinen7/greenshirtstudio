@@ -11,6 +11,8 @@ const StyledSpecialMessage = styled.section`
   h3 {
     margin-bottom: 1rem;
     font-family: "Lato", sans-serif;
+    font-weight: 900;
+    font-size: 1.5rem;
   }
 
   p {

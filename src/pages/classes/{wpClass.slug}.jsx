@@ -67,13 +67,7 @@ const StyledClassPage = styled.div`
         section:nth-of-type(1) {
           border: #f8bcbe solid 2px;
         }
-        a {
-          border: #8ceea0 solid 2px;
-          border-radius: 2px;
-          padding: 1rem 2rem;
-          margin-top: 1rem;
-          color: inherit;
-        }
+
         dt {
           font-weight: bold;
           margin-top: 1rem;

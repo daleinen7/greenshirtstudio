@@ -96,8 +96,6 @@ Contributions of any amount are greatly appreciated and will allow us to assist 
             </ul>
           </>
         }
-        link="Learn More"
-        linkAddress="#"
       />
     </Layout>
   );
