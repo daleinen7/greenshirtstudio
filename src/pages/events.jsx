@@ -1,36 +1,47 @@
 import React from "react";
-import { Script } from "gatsby";
 import Layout from "../components/Layout";
 import { SEO } from "../components/seo";
-import styled from "styled-components";
-import { useEffect } from "react";
+import parse from "html-react-parser";
+import ContentStack from "../components/ContentStack";
+import ImageAndContentHeader from "../components/ImageAndContentHeader";
+import EventCard from "../components/EventCard";
+import { graphql } from "gatsby";
+
+import SpecializedClassesImg from "../images/SpecializedClasses.png";
 
 const Events = ({ data }) => {
-  var exampleCallback = function () {
-    console.log("Order complete!");
-  };
+  const today = new Date();
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.EBWidgets.createWidget({
-        // Required
-        widgetType: "checkout",
-        eventId: "431248725547",
-        iframeContainerId: "eventbrite-widget-container-431248725547",
-
-        // Optional
-        iframeContainerHeight: 425, // Widget height in pixels. Defaults to a minimum of 425px if not provided
-        onOrderComplete: exampleCallback, // Method called when an order has successfully completed
-      });
-    }
-  });
+  const futureEvents = data.allWpEventbrite.nodes
+    .filter((evt) => {
+      console.log(evt.events.featuredImage.gatsbyImage);
+      return today < new Date(evt.events.eventDate);
+    })
+    .map((evt) => {
+      const eventDate = new Date(evt.events.eventDate).toLocaleDateString(
+        "en-US",
+        { hour: "2-digit", minute: "2-digit" }
+      );
+      return (
+        <EventCard
+          title={evt.title}
+          description={parse(evt.content)}
+          link={evt.eventbriteUrl}
+          image={evt.events?.featuredImage?.gatsbyImage}
+          date={eventDate}
+        />
+      );
+    });
 
   return (
     <Layout>
-      <h2>Events</h2>
-      <Script src="https://www.eventbrite.com/static/widgets/eb_widgets.js" />
+      <ImageAndContentHeader
+        image={SpecializedClassesImg}
+        title="Shows & Events"
+        content="Green Shirt Studio offers free and donation based Shows & Events. We invite you to join our artistic community and grow your creative skills!"
+      />
 
-      <div id="eventbrite-widget-container-431248725547"></div>
+      <ContentStack title="Upcoming Events" content={futureEvents} />
     </Layout>
   );
 };
@@ -42,3 +53,21 @@ export const Head = () => (
     description={`Events for Green Shirt Studio`}
   />
 );
+
+export const pageQuery = graphql`
+  query Events {
+    allWpEventbrite {
+      nodes {
+        title
+        content
+        events {
+          featuredImage {
+            gatsbyImage(width: 416, height: 290)
+          }
+          eventDate
+          eventbriteUrl
+        }
+      }
+    }
+  }
+`;
