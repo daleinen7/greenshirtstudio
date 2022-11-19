@@ -33,7 +33,6 @@ const UpcomingEvents = () => {
       <a
         href="https://www.eventbrite.com/cc/green-shirt-shows-events-1248579"
         className="button fill"
-        activeClassName="active"
         target="_blank"
         rel="noopener noreferrer"
       >

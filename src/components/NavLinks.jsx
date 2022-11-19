@@ -15,14 +15,9 @@ const NavLinks = () => {
         </Link>
       </li>
       <li>
-        <a
-          href="https://www.eventbrite.com/cc/green-shirt-shows-events-1248579"
-          activeClassName="active"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <Link to="/events" activeClassName="active">
           Shows & Events
-        </a>
+        </Link>
       </li>
       <li>
         <Link to="/space-rental" activeClassName="active">
