@@ -4,10 +4,11 @@ import { SEO } from "../components/seo";
 import parse from "html-react-parser";
 import ContentStack from "../components/ContentStack";
 import ImageAndContentHeader from "../components/ImageAndContentHeader";
+import UpcomingEvents from "../components/UpcomingEvents";
 import EventCard from "../components/EventCard";
 import { graphql } from "gatsby";
 
-import SpecializedClassesImg from "../images/SpecializedClasses.png";
+import EventsImg from "../images/Events.jpg";
 
 const Events = ({ data }) => {
   const today = new Date();
@@ -20,7 +21,19 @@ const Events = ({ data }) => {
     .map((evt) => {
       const eventDate = new Date(evt.events.eventDate).toLocaleDateString(
         "en-US",
-        { hour: "2-digit", minute: "2-digit" }
+        {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        }
+      );
+      const eventTime = new Date(evt.events.eventDate).toLocaleTimeString(
+        "en-US",
+        {
+          hour: "numeric",
+          minute: "2-digit",
+        }
       );
       return (
         <EventCard
@@ -29,6 +42,7 @@ const Events = ({ data }) => {
           link={evt.eventbriteUrl}
           image={evt.events?.featuredImage?.gatsbyImage}
           date={eventDate}
+          time={eventTime}
         />
       );
     });
@@ -36,11 +50,11 @@ const Events = ({ data }) => {
   return (
     <Layout>
       <ImageAndContentHeader
-        image={SpecializedClassesImg}
+        image={EventsImg}
         title="Shows & Events"
         content="Green Shirt Studio offers free and donation based Shows & Events. We invite you to join our artistic community and grow your creative skills!"
       />
-
+      <UpcomingEvents />
       <ContentStack title="Upcoming Events" content={futureEvents} />
     </Layout>
   );

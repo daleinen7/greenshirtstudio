@@ -4,7 +4,7 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import styled from "styled-components";
 
 const StyledEventCard = styled.article`
-  max-width: 19rem;
+  max-width: 26rem;
   width: 100%;
 
   h3 {
@@ -29,7 +29,8 @@ const StyledEventCard = styled.article`
     }
   }
 
-  .date {
+  .date,
+  .time {
     color: var(--dark-gray);
   }
 
@@ -54,7 +55,7 @@ const StyledEventCard = styled.article`
   }
 `;
 
-const EventCard = ({ title, description, image, link, date }) => {
+const EventCard = ({ title, description, image, link, date, time }) => {
   return (
     <StyledEventCard>
       <Link to={`${link}`}>
@@ -68,6 +69,7 @@ const EventCard = ({ title, description, image, link, date }) => {
         <Link to={`${link}`}>{title}</Link>
       </h3>
       <div className="date">{date}</div>
+      <div className="time">{time}</div>
       <div className="description">{description}</div>
     </StyledEventCard>
   );
