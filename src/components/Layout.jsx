@@ -52,6 +52,7 @@ const StyledHeader = styled.header`
     font-weight: 900;
     background: none;
     border: none;
+    color: var(--black);
   }
 
   @media (max-width: 600px) {

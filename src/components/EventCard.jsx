@@ -7,7 +7,7 @@ const StyledEventCard = styled.article`
   max-width: ${(props) => (props.small ? "19rem" : "26rem")};
   width: 100%;
 
-  h3 {
+  h4 {
     font-family: "Lato", sans-serif;
     font-size: 1.25rem;
     line-height: 1.625rem;
@@ -65,9 +65,9 @@ const EventCard = ({ title, description, image, link, date, time, small }) => {
           <div className="image-stand-in"></div>
         )}
       </Link>
-      <h3>
+      <h4>
         <Link to={`${link}`}>{title}</Link>
-      </h3>
+      </h4>
       <div className="date">{date}</div>
       {!small && (
         <>
