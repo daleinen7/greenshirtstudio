@@ -28,7 +28,7 @@ const StyledContentStack = styled.section`
     flex-wrap: wrap;
     justify-content: center;
     list-style-type: none;
-    gap: 2rem;
+    gap: 3rem 2rem;
     margin: 0 auto;
     padding: 0 4rem;
   }
@@ -40,7 +40,7 @@ const StyledContentStack = styled.section`
   }
   @media (max-width: 800px) {
     ul {
-      gap: 1rem;
+      gap: 3rem 1rem;
     }
   }
 `;

@@ -118,9 +118,11 @@ const Carousel = ({ title, items, link, linkDisplay }) => {
         responsive={responsive}
         autoWidth
       />
-      <Link role="button" to={`/${link}`}>
-        {linkDisplay}
-      </Link>
+      {link && (
+        <Link role="button" to={`/${link}`}>
+          {linkDisplay}
+        </Link>
+      )}
     </StyledCarousel>
   );
 };
