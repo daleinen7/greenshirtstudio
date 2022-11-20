@@ -31,11 +31,12 @@ const Events = ({ data }) => {
         minute: "2-digit",
       }
     );
+    console.log("EVENTS", evt.events.eventbriteUrl);
     return (
       <EventCard
         title={evt.title}
         description={parse(evt.content)}
-        link={evt.eventbriteUrl}
+        link={evt.events.eventbriteUrl}
         image={evt.events?.featuredImage?.gatsbyImage}
         date={eventDate}
         time={eventTime}
