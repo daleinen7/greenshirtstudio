@@ -66,7 +66,9 @@ const EventCard = ({ title, description, image, link, date, time, small }) => {
         )}
       </Link>
       <h4>
-        <Link to={`${link}`}>{title}</Link>
+        <a href={`${link}`} target="_blank" rel="noopener noreferrer">
+          {title}
+        </a>
       </h4>
       <div className="date">{date}</div>
       {!small && (
