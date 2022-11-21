@@ -31,7 +31,6 @@ const Events = ({ data }) => {
         minute: "2-digit",
       }
     );
-    console.log("EVENTS", evt.events.eventbriteUrl);
     return (
       <EventCard
         title={evt.title}
@@ -48,9 +47,11 @@ const Events = ({ data }) => {
 
   const futureEventsObj = {};
 
-  const futureEventsData = data.allWpEventbrite.nodes.filter((evt) => {
-    return today < new Date(evt.events.eventDate);
-  });
+  const futureEventsData = data.allWpEventbrite.nodes
+    .filter((evt) => {
+      return today < new Date(evt.events.eventDate);
+    })
+    .reverse();
 
   // for each event
   futureEventsData.forEach((evt) => {
@@ -77,16 +78,23 @@ const Events = ({ data }) => {
       {Object.entries(futureEventsObj)
         .reverse()
         .map((month) => {
-          console.log(month);
           const firstDate = new Date(month[1][0].key);
           const prettyMonth = firstDate.toLocaleString("default", {
             month: "long",
           });
+
           return (
             <ContentStack
               key={month[0]}
               title={prettyMonth}
-              content={month[1]}
+              content={month[1]
+                .sort((a, b) => {
+                  // console.log("Monitor this", a.events.eventDate, b.events.eventDate);
+                  // Turn your strings into dates, and then subtract them
+                  // to get a value that is either negative, positive, or zero.
+                  return new Date(b.key) - new Date(a.key);
+                })
+                .reverse()}
             />
           );
         })}
