@@ -58,13 +58,13 @@ const StyledEventCard = styled.article`
 const EventCard = ({ title, description, image, link, date, time, small }) => {
   return (
     <StyledEventCard small={small}>
-      <Link to={`${link}`}>
+      <a href={`${link}`} target="_blank" rel="noopener noreferrer">
         {image ? (
           <GatsbyImage image={image} alt={title} />
         ) : (
           <div className="image-stand-in"></div>
         )}
-      </Link>
+      </a>
       <h4>
         <a href={`${link}`} target="_blank" rel="noopener noreferrer">
           {title}
