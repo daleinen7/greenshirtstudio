@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useRef, useState } from "react";
 import { Script } from "gatsby";
 import { SEO } from "../components/seo";
 import ImageAndContentHeader from "../components/ImageAndContentHeader";
-import hostingImg from "../images/success.png";
+import hostingImg from "../images/hosting.mp4";
 import Layout from "../components/Layout";
 import Accordion from "../components/Accordion";
 
@@ -171,7 +171,7 @@ const Hosting = () => {
         <ImageAndContentHeader
           title="Green Shirt Performance Space"
           content="Green Shirt Studio invites you to host your show in our 30-seat pop-up theater. There is no rental fee to produce a show at Green Shirt Studio and all ticket donations are split 50/50 with the performer(s)."
-          image={hostingImg}
+          video={hostingImg}
         />
         <div className="main-content">
           <div className="left-column">
