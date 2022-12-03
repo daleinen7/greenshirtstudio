@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import { Script } from "gatsby";
 import { SEO } from "../components/seo";
 import ImageAndContentHeader from "../components/ImageAndContentHeader";
@@ -78,6 +78,16 @@ const StyledHosting = styled.div`
 `;
 
 const Hosting = () => {
+  const ref = useRef(null);
+
+  const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
+
+  useLayoutEffect(() => {
+    setWidth(ref.current.offsetWidth);
+    setHeight(ref.current.offsetHeight);
+  }, []);
+
   const TheBasics = (
     <ul>
       <li>
@@ -209,14 +219,14 @@ const Hosting = () => {
             />
           </div>
 
-          <div className="right-column">
+          <div className="right-column" ref={ref}>
             <iframe
               src="https://docs.google.com/forms/d/e/1FAIpQLSc_HqD9nJMovkBI8YLR9UTX8Q1sJ2tnMPOPPvt6O206s9M_Ag/viewform?embedded=true"
-              width="530"
+              width={width}
               height="1732"
-              frameborder="0"
-              marginheight="0"
-              marginwidth="0"
+              frameBorder="0"
+              marginHeight="0"
+              marginWidth="0"
             >
               Loading…
             </iframe>

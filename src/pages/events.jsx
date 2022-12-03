@@ -3,6 +3,7 @@ import Layout from "../components/Layout";
 import { SEO } from "../components/seo";
 import parse from "html-react-parser";
 import ContentStack from "../components/ContentStack";
+import CTA from "../components/CTA";
 import ImageAndContentHeader from "../components/ImageAndContentHeader";
 import UpcomingEvents from "../components/UpcomingEvents";
 import EventCard from "../components/EventCard";
@@ -89,7 +90,6 @@ const Events = ({ data }) => {
               title={prettyMonth}
               content={month[1]
                 .sort((a, b) => {
-                  // console.log("Monitor this", a.events.eventDate, b.events.eventDate);
                   // Turn your strings into dates, and then subtract them
                   // to get a value that is either negative, positive, or zero.
                   return new Date(b.key) - new Date(a.key);
@@ -98,6 +98,11 @@ const Events = ({ data }) => {
             />
           );
         })}
+      <CTA
+        heading="Interested in hosting your show at Green Shirt Studio?"
+        buttonText="See Details and Contact Us"
+        buttonLink="/hosting"
+      />
       <Carousel title="Past Events" items={pastEvents} />
     </Layout>
   );
