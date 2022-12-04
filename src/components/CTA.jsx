@@ -48,6 +48,22 @@ const StyledCTA = styled.div`
     overflow: hidden;
     width: 100%;
   }
+
+  @media (max-width: 580px) {
+    padding: 4rem 2rem;
+    .quote-block {
+      padding: 1rem;
+    }
+
+    .button {
+      padding: 1.5rem;
+      display: inline-block;
+    }
+  }
+
+  @media (max-width: 400px) {
+    padding: 3rem 1rem;
+  }
 `;
 
 const CTA = ({ heading, buttonText, buttonLink }) => {

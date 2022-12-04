@@ -47,6 +47,11 @@ const StyledImageAndContent = styled.div`
       padding: 0;
     }
 
+    video {
+      width: 100%;
+      padding: 0;
+    }
+
     .info {
       width: auto;
       padding: 0 1rem;
