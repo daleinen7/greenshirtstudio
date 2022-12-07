@@ -19,7 +19,8 @@ const StyledImageAndContent = styled.div`
     line-height: 4.875rem;
   }
 
-  img {
+  img,
+  video {
     width: 50%;
     padding: 0 0 2rem 2rem;
   }
@@ -46,6 +47,11 @@ const StyledImageAndContent = styled.div`
       padding: 0;
     }
 
+    video {
+      width: 100%;
+      padding: 0;
+    }
+
     .info {
       width: auto;
       padding: 0 1rem;
@@ -60,7 +66,7 @@ const StyledImageAndContent = styled.div`
   }
 `;
 
-const ImageAndContentHeader = ({ title, content, image }) => {
+const ImageAndContentHeader = ({ title, content, image, video }) => {
   const window = useWindowSize();
   return (
     <StyledImageAndContent>
@@ -68,7 +74,11 @@ const ImageAndContentHeader = ({ title, content, image }) => {
         {window.width > 785 ? <HeadingEffect text={title} /> : <h2>{title}</h2>}
         <ReactMarkdown children={content.replace(/\n/gi, "\n &nbsp;")} />
       </div>
-      <img src={image} alt={title} />
+      {video ? (
+        <video src={video} autoPlay loop muted playsInline></video>
+      ) : (
+        <img src={image} alt={title} />
+      )}
     </StyledImageAndContent>
   );
 };

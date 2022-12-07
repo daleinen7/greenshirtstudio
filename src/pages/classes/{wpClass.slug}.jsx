@@ -94,12 +94,12 @@ const ClassPage = (props) => {
         <div className="main-content">
           <div className="left-column">
             <Description wpClass={wpClass} />
+            <AttendancePolicy attendancePolicy={attendancePolicy} />
             {wpClass.classGroup.program === "Workshops" ? (
               <CancellationPolicy cancellationPolicy={workshopPolicy} />
             ) : (
               <CancellationPolicy cancellationPolicy={cancellationPolicy} />
             )}
-            <AttendancePolicy attendancePolicy={attendancePolicy} />
           </div>
           <div className="right-column">
             {wpClass.classGroup.optionalSpecialMessage && (
