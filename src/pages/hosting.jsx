@@ -129,7 +129,25 @@ const Hosting = () => {
       </p>
     </>
   );
-  const SpaceSpecs = <p>Placeholder</p>;
+  const SpaceSpecs = (
+    <p>
+      <ul>
+        <li>
+          Stage - three 4x8 platforms create a stage 12 feet wide and 8 feet
+          long
+        </li>
+        <li>Audience - 30 chairs are available for your audience</li>
+        <li>
+          Lighting - Philips Hue lights create a theatrical environment with
+          millions of colors to choose from
+        </li>
+        <li>
+          Sound - Fender Passport Venue Portable Amplification System with 7
+          channels
+        </li>
+      </ul>
+    </p>
+  );
   const Tickets = (
     <p>
       Green Shirt Studio will facilitate ticketing through our eventbrite
@@ -170,7 +188,7 @@ const Hosting = () => {
       <StyledHosting>
         <ImageAndContentHeader
           title="Green Shirt Performance Space"
-          content="Green Shirt Studio invites you to host your show in our 30-seat pop-up theater. There is no rental fee to produce a show at Green Shirt Studio and all ticket donations are split 50/50 with the performer(s)."
+          content="Green Shirt Studio invites you to host your show in our 30-seat pop-up theater. There is no rental fee to produce a show at Green Shirt Studio and all ticket donations are split 50/50 with the producer(s)."
           video={hostingImg}
         />
         <div className="main-content">
