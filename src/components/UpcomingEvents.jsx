@@ -15,10 +15,17 @@ const StyledUpcomingEvents = styled.section`
 
   p {
     text-align: center;
+    line-height: 1.875rem;
   }
 
   a {
     margin-top: 2rem;
+  }
+
+  @media (max-width: 500px) {
+    p {
+      line-height: 1.5rem;
+    }
   }
 `;
 

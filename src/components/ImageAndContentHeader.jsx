@@ -16,7 +16,7 @@ const StyledImageAndContent = styled.div`
 
   h2 {
     font-size: 3.75rem;
-    line-height: 4.875rem;
+    line-height: 1.3;
   }
 
   img,
