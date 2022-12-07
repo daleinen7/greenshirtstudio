@@ -16,6 +16,11 @@ const StyledEventCard = styled.article`
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
   }
+
+  p {
+    line-height: 1.875rem;
+  }
+
   .image-wrapper {
     display: flex;
     justify-content: center;
@@ -52,6 +57,12 @@ const StyledEventCard = styled.article`
   .image-stand-in {
     width: 304px;
     height: 212px;
+  }
+
+  @media (max-width: 500px) {
+    p {
+      line-height: 1.5rem;
+    }
   }
 `;
 
