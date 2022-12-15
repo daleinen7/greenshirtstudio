@@ -31,7 +31,7 @@ const StyledCancellationSection = styled.section`
 const CancellationPolicy = ({ cancellationPolicy }) => {
   return (
     <StyledCancellationSection>
-      <Accordion title="Cancellation Policy" defaultOpen={false} h3>
+      <Accordion title="Cancellation Policy" h3>
         {parse(cancellationPolicy)}
       </Accordion>
     </StyledCancellationSection>
