@@ -76,28 +76,26 @@ const Events = ({ data }) => {
         content="Green Shirt Studio offers free and donation based Shows & Events. We invite you to join our artistic community and grow your creative skills!"
       />
       <UpcomingEvents />
-      {Object.entries(futureEventsObj)
-        .reverse()
-        .map((month) => {
-          const firstDate = new Date(month[1][0].key);
-          const prettyMonth = firstDate.toLocaleString("default", {
-            month: "long",
-          });
+      {Object.entries(futureEventsObj).map((month) => {
+        const firstDate = new Date(month[1][0].key);
+        const prettyMonth = firstDate.toLocaleString("default", {
+          month: "long",
+        });
 
-          return (
-            <ContentStack
-              key={month[0]}
-              title={prettyMonth}
-              content={month[1]
-                .sort((a, b) => {
-                  // Turn your strings into dates, and then subtract them
-                  // to get a value that is either negative, positive, or zero.
-                  return new Date(b.key) - new Date(a.key);
-                })
-                .reverse()}
-            />
-          );
-        })}
+        return (
+          <ContentStack
+            key={month[0]}
+            title={prettyMonth}
+            content={month[1]
+              .sort((a, b) => {
+                // Turn your strings into dates, and then subtract them
+                // to get a value that is either negative, positive, or zero.
+                return new Date(b.key) - new Date(a.key);
+              })
+              .reverse()}
+          />
+        );
+      })}
       <CTA
         heading="Interested in hosting your show at Green Shirt Studio?"
         buttonText="See Details and Contact Us"
