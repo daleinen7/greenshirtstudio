@@ -14,8 +14,6 @@ import BlogCard from "../components/BlogCard";
 import { graphql } from "gatsby";
 
 const IndexPage = ({ data }) => {
-  // const size = useWindowSize();
-
   const classes = data.allWpClass.nodes
     .sort((a, b) => {
       if (a.title < b.title) {
