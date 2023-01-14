@@ -12,7 +12,7 @@ exports.handler = async ({ body, headers }) => {
 
   console.log("GATSBY URL ENVIRONMENT: ", process.env.GATSBY_URL_ENVIRONMENT);
 
-  console.log("Params: ", params);
+  console.log("Params Available: ", params);
 
   try {
     const session = await stripe.checkout.sessions.create({

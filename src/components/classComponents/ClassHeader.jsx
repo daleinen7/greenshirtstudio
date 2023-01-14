@@ -173,6 +173,8 @@ const ClassHeader = ({ wpClass }) => {
     e.preventDefault();
     setLoading(true);
 
+    console.log("Trying to buy with ", paymentType);
+
     const response = await fetch("/.netlify/functions/create-checkout", {
       method: "POST",
       headers: {
@@ -195,6 +197,11 @@ const ClassHeader = ({ wpClass }) => {
         dbid: wpClass.databaseId,
       }),
     }).then((res) => res.json());
+
+    console.log(
+      "Create function called and here's what I got back: ",
+      response
+    );
 
     const stripe = await getStripe(wpClass.classGroup.program === "Test");
     const { error } = await stripe.redirectToCheckout({
