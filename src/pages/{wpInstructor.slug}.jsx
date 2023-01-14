@@ -46,7 +46,6 @@ const StyledUser = styled.div`
 const Instructor = (props) => {
   const { wpInstructor } = props.data;
 
-  console.log(wpInstructor);
   return (
     <Layout>
       <StyledUser>
