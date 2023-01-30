@@ -174,43 +174,83 @@ const ClassHeader = ({ wpClass }) => {
     setLoading(true);
 
     console.log("Trying to buy with ", paymentType);
-
-    const response = await fetch("/.netlify/functions/create-checkout", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        test: wpClass.classGroup.program === "Test",
-        paymentType: paymentType,
-        promotion: wpClass.classGroup.price > 0,
-        lineItems: [
-          {
-            price:
-              paymentType === "payment"
-                ? wpClass.classGroup.stripeId
-                : wpClass.classGroup.stripeInstallmentId,
-            quantity: 1,
-          },
-        ],
-        dayOfWeek: wpClass.classGroup.day,
-        dbid: wpClass.databaseId,
-      }),
-    }).then((res) => res.json());
-
-    console.log(
-      "Create function called and here's what I got back: ",
-      response
-    );
-
-    const stripe = await getStripe(wpClass.classGroup.program === "Test");
-    const { error } = await stripe.redirectToCheckout({
-      sessionId: response.sessionId,
-    });
-    if (error) {
-      console.warn("Error:", error);
-      setLoading(false);
+    try {
+      const createCheckoutResponse = await fetch("/.netlify/functions/create-checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          test: wpClass.classGroup.program === "Test",
+          paymentType: paymentType,
+          promotion: wpClass.classGroup.price > 0,
+          lineItems: [
+            {
+              price:
+                paymentType === "payment"
+                  ? wpClass.classGroup.stripeId
+                  : wpClass.classGroup.stripeInstallmentId,
+              quantity: 1,
+            },
+          ],
+          dayOfWeek: wpClass.classGroup.day,
+          dbid: wpClass.databaseId,
+        })
+      })
+      const actualSessionResponse = await createCheckoutResponse.json();
+      const sessionId = actualSessionResponse.sessionId;
+      console.log(actualSessionResponse);
+      const stripe = await getStripe(wpClass.classGroup.program === "Test");
+      try {
+        const stripeRedirectResponse = await stripe.redirectToCheckout({
+          sessionId: sessionId,
+        })
+        console.log(stripeRedirectResponse);
+      } catch (err) {
+        console.log('Error:', err);
+        setLoading(false);
+      }
+    } catch (err) {
+      console.log(err);
     }
+    // const response = await fetch("/.netlify/functions/create-checkout", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     test: wpClass.classGroup.program === "Test",
+    //     paymentType: paymentType,
+    //     promotion: wpClass.classGroup.price > 0,
+    //     lineItems: [
+    //       {
+    //         price:
+    //           paymentType === "payment"
+    //             ? wpClass.classGroup.stripeId
+    //             : wpClass.classGroup.stripeInstallmentId,
+    //         quantity: 1,
+    //       },
+    //     ],
+    //     dayOfWeek: wpClass.classGroup.day,
+    //     dbid: wpClass.databaseId,
+    //   }),
+    // }).then((res) => {
+    //   res.json()
+    //   console.log(res)
+    // });
+    // console.log(
+    //   "Create function called and here's what I got back: ",
+    //   response
+    // );
+
+    // const stripe = await getstripe(wpclass.classgroup.program === "test");
+    // const { error } = await stripe.redirecttocheckout({
+    //   sessionid: response.sessionid,
+    // });
+    // if (error) {
+    //   console.warn("error:", error);
+    //   setloading(false);
+    // }
   };
 
   return (
@@ -223,11 +263,9 @@ const ClassHeader = ({ wpClass }) => {
       )}
       <div className="info">
         <h2>{wpClass.title}</h2>
-        <p>{`${wpClass.classGroup.day}, ${wpClass.classGroup.dates[0].date} - ${
-          wpClass.classGroup.dates[wpClass.classGroup.dates.length - 1].date
-        }, ${wpClass.classGroup.time} with ${
-          wpClass.classGroup.linkInstructor.title
-        }`}</p>
+        <p>{`${wpClass.classGroup.day}, ${wpClass.classGroup.dates[0].date} - ${wpClass.classGroup.dates[wpClass.classGroup.dates.length - 1].date
+          }, ${wpClass.classGroup.time} with ${wpClass.classGroup.linkInstructor.title
+          }`}</p>
 
         <div className="spots-left">
           <span>{spotsLeft}</span>

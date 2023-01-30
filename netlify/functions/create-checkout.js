@@ -1,6 +1,12 @@
 exports.handler = async ({ body, headers }) => {
   const params = JSON.parse(body);
-  console.log("Serverside baby!", params.paymentType);
+  // return {
+  //   statusCode: 200,
+  //   body: JSON.stringify({
+  //     message: params
+  //   })
+  // }
+  // console.log("Serverside baby!", params.paymentType);
 
   console.log("This is a ", params.test ? "test" : "live", " purchase.");
 
@@ -10,12 +16,12 @@ exports.handler = async ({ body, headers }) => {
       : process.env.STRIPE_SECRET_KEY
   );
 
-  console.log("GATSBY URL ENVIRONMENT: ", process.env.GATSBY_URL_ENVIRONMENT);
+  // console.log("GATSBY URL ENVIRONMENT: ", process.env.GATSBY_URL_ENVIRONMENT);
 
-  console.log("Params Available: ", params);
+  // console.log("Params Available: ", params);
 
   try {
-    const session = await stripe.checkout.sessions.create({
+    const createSessionBody = {
       success_url: `${process.env.GATSBY_URL_ENVIRONMENT}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.GATSBY_URL_ENVIRONMENT}/cancel`,
       payment_method_types: ["card"],
@@ -23,14 +29,20 @@ exports.handler = async ({ body, headers }) => {
       mode: params.paymentType,
       allow_promotion_codes: params.promotion,
       metadata: { dayOfWeek: params.dayOfWeek, databaseId: params.dbid },
-    });
+    }
+    // console.log(createSessionBody);
+    const session = await stripe.checkout.sessions.create(createSessionBody);
 
-    console.log("SESSION: ", session);
-
+    // console.log("SESSION: ", session);
+    createSessionBody.success_url = `${process.env.GATSBY_URL_ENVIRONMENT}/success?session_id=${session.id}`;
     return {
       statusCode: 200,
       body: JSON.stringify({
         sessionId: session.id,
+        lineItems: createSessionBody.line_items,
+        mode: createSessionBody.mode,
+        successUrl: createSessionBody.success_url,
+        cancelUrl: createSessionBody.cancel_url,
         publishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
       }),
     };
