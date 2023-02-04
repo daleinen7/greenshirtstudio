@@ -1,13 +1,12 @@
 const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST_KEY);
+// const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const API_ENDPOINT = `${process.env.BACKEND_URL}/wp-json/wp/v2/class`;
 
 exports.handler = async ({ body, headers }) => {
   try {
-    // here we're going to have a fall back if the webhook fails
-
     // check the webhook to make sure it’s valid
     let stripeEvent = stripe.webhooks.constructEvent(
       body,
