@@ -50,6 +50,8 @@ exports.handler = async ({ body, headers }) => {
           spotsLeft = data?.acf?.spots_left;
         });
 
+      console.log("WP RESPONSE: ", response);
+
       const headers = {
         "Accept-Encoding": "gzip, deflate, br",
         Accept: "*/*",
@@ -72,6 +74,8 @@ exports.handler = async ({ body, headers }) => {
           },
         }),
       });
+
+      console.log("SPOTS LEFT UPDATE: ", update);
 
       console.log("Webhook successful!");
 
