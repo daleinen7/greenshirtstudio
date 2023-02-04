@@ -1,18 +1,18 @@
 const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
-const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST_KEY);
 // const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST_KEY);
 
 const API_ENDPOINT = `${process.env.BACKEND_URL}/wp-json/wp/v2/class`;
 
 exports.handler = async ({ body, headers }) => {
   try {
     // check the webhook to make sure it’s valid
-    let stripeEvent = stripe.webhooks.constructEvent(
+    const stripeEvent = stripe.webhooks.constructEvent(
       body,
       headers["stripe-signature"],
-      process.env.STRIPE_WEBHOOK_TEST_SECRET
       // process.env.STRIPE_WEBHOOK_SECRET
+      process.env.STRIPE_WEBHOOK_TEST_SECRET
     );
 
     // only do stuff if this is a successful Stripe Checkout purchase
@@ -22,16 +22,12 @@ exports.handler = async ({ body, headers }) => {
       const metadata = stripeEvent.data.object.metadata;
       console.log("Metadata: ", metadata);
 
-      console.log("HEADERS: ", headers);
-      console.log("BODY: ", body);
-      console.log("EVENT: ", stripeEvent);
+      // console.log("BODY: ", body);
+      // console.log("HEADERS: ", headers);
 
       // if purchase is a subscription
       if (eventObject.mode === "subscription") {
-        console.log("Event is a subscription");
         const date = new Date();
-
-        // 3 full payments every two weeks (for example $335 / 3 = $111.66 3 times)
         const oneMonthOut = new Date(date.setMonth(date.getMonth() + 1));
 
         const subscription = await stripe.subscriptions.retrieve(
@@ -43,8 +39,6 @@ exports.handler = async ({ body, headers }) => {
         await stripe.subscriptions.update(eventObject.subscription, {
           cancel_at: oneMonthOut,
         });
-      } else {
-        console.log("Event is not a subscription");
       }
 
       let spotsLeft;
@@ -55,8 +49,6 @@ exports.handler = async ({ body, headers }) => {
         .then((data) => {
           spotsLeft = data?.acf?.spots_left;
         });
-
-      console.log("SPOTS LEFT: ", spotsLeft);
 
       const headers = {
         "Accept-Encoding": "gzip, deflate, br",
@@ -71,19 +63,15 @@ exports.handler = async ({ body, headers }) => {
           ),
       };
 
-      if (spotsLeft) {
-        const update = await fetch(`${API_ENDPOINT}/${metadata.databaseId}`, {
-          method: "PUT",
-          headers: headers,
-          body: JSON.stringify({
-            acf: {
-              spots_left: spotsLeft - 1,
-            },
-          }),
-        });
-
-        console.log("RESPONSE FROM WP FOR SPOTS LEFT UPDATE: ", update);
-      }
+      const update = await fetch(`${API_ENDPOINT}/${metadata.databaseId}`, {
+        method: "PUT",
+        headers: headers,
+        body: JSON.stringify({
+          acf: {
+            spots_left: spotsLeft - 1,
+          },
+        }),
+      });
 
       console.log("Webhook successful!");
 
