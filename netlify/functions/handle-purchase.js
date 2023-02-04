@@ -6,8 +6,10 @@ const API_ENDPOINT = `${process.env.BACKEND_URL}/wp-json/wp/v2/class`;
 
 exports.handler = async ({ body, headers }) => {
   try {
+    // here we're going to have a fall back if the webhook fails
+
     // check the webhook to make sure it’s valid
-    const stripeEvent = stripe.webhooks.constructEvent(
+    let stripeEvent = stripe.webhooks.constructEvent(
       body,
       headers["stripe-signature"],
       process.env.STRIPE_WEBHOOK_SECRET
@@ -20,11 +22,13 @@ exports.handler = async ({ body, headers }) => {
       const metadata = stripeEvent.data.object.metadata;
       console.log("Metadata: ", metadata);
 
-      // console.log("BODY: ", body);
-      // console.log("HEADERS: ", headers);
+      console.log("HEADERS: ", headers);
+      console.log("BODY: ", body);
+      console.log("EVENT: ", stripeEvent);
 
       // if purchase is a subscription
       if (eventObject.mode === "subscription") {
+        console.log("Event is a subscription");
         const date = new Date();
         const oneMonthOut = new Date(date.setMonth(date.getMonth() + 1));
 
@@ -37,6 +41,8 @@ exports.handler = async ({ body, headers }) => {
         await stripe.subscriptions.update(eventObject.subscription, {
           cancel_at: oneMonthOut,
         });
+      } else {
+        console.log("Event is not a subscription");
       }
 
       let spotsLeft;
@@ -45,8 +51,10 @@ exports.handler = async ({ body, headers }) => {
       const response = await fetch(`${API_ENDPOINT}/${metadata.databaseId}`)
         .then((res) => res.json())
         .then((data) => {
-          spotsLeft = data.acf.spots_left;
+          spotsLeft = data?.acf?.spots_left;
         });
+
+      console.log("SPOTS LEFT: ", spotsLeft);
 
       const headers = {
         "Accept-Encoding": "gzip, deflate, br",
@@ -61,15 +69,19 @@ exports.handler = async ({ body, headers }) => {
           ),
       };
 
-      const update = await fetch(`${API_ENDPOINT}/${metadata.databaseId}`, {
-        method: "PUT",
-        headers: headers,
-        body: JSON.stringify({
-          acf: {
-            spots_left: spotsLeft - 1,
-          },
-        }),
-      });
+      if (spotsLeft) {
+        const update = await fetch(`${API_ENDPOINT}/${metadata.databaseId}`, {
+          method: "PUT",
+          headers: headers,
+          body: JSON.stringify({
+            acf: {
+              spots_left: spotsLeft - 1,
+            },
+          }),
+        });
+
+        console.log("RESPONSE FROM WP FOR SPOTS LEFT UPDATE: ", update);
+      }
 
       console.log("Webhook successful!");
 
