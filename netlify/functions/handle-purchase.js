@@ -47,10 +47,13 @@ exports.handler = async ({ body, headers }) => {
       const response = await fetch(`${API_ENDPOINT}/${metadata.databaseId}`)
         .then((res) => res.json())
         .then((data) => {
+          console.log("To know the Data: ", data);
           spotsLeft = data?.acf?.spots_left;
         });
 
       console.log("WP RESPONSE: ", response);
+
+      console.log("Spots left after initial call: ", spotsLeft);
 
       const headers = {
         "Accept-Encoding": "gzip, deflate, br",
@@ -64,6 +67,11 @@ exports.handler = async ({ body, headers }) => {
             "base64"
           ),
       };
+
+      console.log(
+        "Here's the address I'm requesting: ",
+        `${API_ENDPOINT}/${metadata.databaseId}`
+      );
 
       const update = await fetch(`${API_ENDPOINT}/${metadata.databaseId}`, {
         method: "PUT",
