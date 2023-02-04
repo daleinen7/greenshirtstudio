@@ -12,7 +12,8 @@ exports.handler = async ({ body, headers }) => {
     let stripeEvent = stripe.webhooks.constructEvent(
       body,
       headers["stripe-signature"],
-      process.env.STRIPE_WEBHOOK_SECRET
+      process.env.STRIPE_WEBHOOK_TEST_SECRET
+      // process.env.STRIPE_WEBHOOK_SECRET
     );
 
     // only do stuff if this is a successful Stripe Checkout purchase
@@ -30,6 +31,8 @@ exports.handler = async ({ body, headers }) => {
       if (eventObject.mode === "subscription") {
         console.log("Event is a subscription");
         const date = new Date();
+
+        // 3 full payments every two weeks (for example $335 / 3 = $111.66 3 times)
         const oneMonthOut = new Date(date.setMonth(date.getMonth() + 1));
 
         const subscription = await stripe.subscriptions.retrieve(
