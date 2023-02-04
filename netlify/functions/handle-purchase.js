@@ -47,11 +47,8 @@ exports.handler = async ({ body, headers }) => {
       const response = await fetch(`${API_ENDPOINT}/${metadata.databaseId}`)
         .then((res) => res.json())
         .then((data) => {
-          console.log("To know the Data: ", data);
           spotsLeft = data?.acf?.spots_left;
         });
-
-      console.log("WP RESPONSE: ", response);
 
       console.log("Spots left after initial call: ", spotsLeft);
 
@@ -61,17 +58,15 @@ exports.handler = async ({ body, headers }) => {
         "User-Agent": "Netlify Function",
         "Content-Type": "application/json",
         Connection: "keep-alive",
-        Authorization:
-          "Basic " +
-          Buffer.from(process.env.WP_USER + ":" + process.env.WP_PW).toString(
-            "base64"
-          ),
+        Authorization: `Basic ${Buffer.from(
+          process.env.WP_USER + ":" + process.env.WP_PW,
+          "utf-8"
+        ).toString("base64")}`,
+        // "Basic " +
+        // Buffer.from(process.env.WP_USER + ":" + process.env.WP_PW).toString(
+        //   "base64"
+        // ),
       };
-
-      console.log(
-        "Here's the address I'm requesting: ",
-        `${API_ENDPOINT}/${metadata.databaseId}`
-      );
 
       const update = await fetch(`${API_ENDPOINT}/${metadata.databaseId}`, {
         method: "PUT",
