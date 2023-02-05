@@ -58,10 +58,12 @@ exports.handler = async ({ body, headers }) => {
         "User-Agent": "Netlify Function",
         "Content-Type": "application/json",
         Connection: "keep-alive",
-        Authorization: `Basic ${Buffer.from(
-          process.env.WP_USER + ":" + process.env.WP_PW,
-          "utf-8"
-        ).toString("base64")}`,
+        Authorization: process.env.WP_AUTH,
+        // `Basic ${Buffer.from(
+        //   process.env.WP_USER + ":" + process.env.WP_PW,
+        //   "utf-8"
+        // ).toString("base64")}`,
+
         // "Basic " +
         // Buffer.from(process.env.WP_USER + ":" + process.env.WP_PW).toString(
         //   "base64"
