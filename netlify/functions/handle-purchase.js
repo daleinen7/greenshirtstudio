@@ -53,10 +53,10 @@ exports.handler = async ({ body, headers }) => {
       console.log("Spots left after initial call: ", spotsLeft);
 
       const headers = {
-        "Accept-Encoding": "gzip, deflate, br",
-        Accept: "*/*",
-        "User-Agent": "Netlify Function",
         "Content-Type": "application/json",
+        "User-Agent": "Netlify Function",
+        Accept: "*/*",
+        "Accept-Encoding": "gzip, deflate, br",
         Connection: "keep-alive",
         Authorization: process.env.WP_AUTH,
         // `Basic ${Buffer.from(
@@ -69,6 +69,15 @@ exports.handler = async ({ body, headers }) => {
         //   "base64"
         // ),
       };
+
+      console.log(
+        "Here's what's being sent: ",
+        JSON.stringify({
+          acf: {
+            spots_left: spotsLeft - 1,
+          },
+        })
+      );
 
       const update = await fetch(`${API_ENDPOINT}/${metadata.databaseId}`, {
         method: "PUT",
