@@ -59,16 +59,16 @@ exports.handler = async ({ body, headers }) => {
         "Accept-Encoding": "gzip, deflate, br",
         Connection: "keep-alive",
         Authorization: process.env.WP_AUTH,
-        // `Basic ${Buffer.from(
-        //   process.env.WP_USER + ":" + process.env.WP_PW,
-        //   "utf-8"
-        // ).toString("base64")}`,
-
-        // "Basic " +
-        // Buffer.from(process.env.WP_USER + ":" + process.env.WP_PW).toString(
-        //   "base64"
-        // ),
       };
+      // `Basic ${Buffer.from(
+      //   process.env.WP_USER + ":" + process.env.WP_PW,
+      //   "utf-8"
+      // ).toString("base64")}`,
+
+      // "Basic " +
+      // Buffer.from(process.env.WP_USER + ":" + process.env.WP_PW).toString(
+      //   "base64"
+      // ),
 
       console.log(
         "Here's what's being sent: ",
