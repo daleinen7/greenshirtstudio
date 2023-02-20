@@ -240,7 +240,7 @@ const ClassHeader = ({ wpClass }) => {
               <>
                 ${wpClass.classGroup.price} <br />
                 {wpClass.classGroup.stripeInstallmentId && (
-                  <small>or $110 every 2 weeks (payment plan)</small>
+                  <small>or pay in three installments (payment plan)</small>
                 )}
               </>
             ) : (
