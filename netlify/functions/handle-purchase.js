@@ -85,8 +85,9 @@ exports.handler = async ({ body, headers }) => {
 		);
 
 		const update = await fetch(`${API_ENDPOINT}/${metadata.databaseId}`, {
-			method: "PUT",
+			method: "POST",
 			headers: {
+				'Content-Type': 'application/json',
 				'Authorization': 'Basic ' + auth,
 			},
 			body: JSON.stringify({
