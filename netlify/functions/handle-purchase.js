@@ -60,7 +60,7 @@ exports.handler = async ({ body, headers }) => {
 	  const auth = Buffer.from(process.env.WP_USER + ":" + process.env.WP_PW).toString("base64");
 
       const headers = {
-		  "Content-Type": "application/json; charset=utf-8",
+		"Content-Type": "application/json; charset=utf-8",
         Connection: "keep-alive",
         Authorization: 'Basic ' + auth,
       };
@@ -99,7 +99,11 @@ exports.handler = async ({ body, headers }) => {
         }),
       });
 
-      console.log("SPOTS LEFT UPDATE: ", update);
+	  // Get Response body	
+	  const updateResponse = await update.json();
+	
+	  console.log("SPOTS LEFT UPDATE: ", update);
+	  console.log("Update Response: ", updateResponse);
 
       console.log("Webhook successful!");
 
