@@ -78,8 +78,8 @@ exports.handler = async ({ body, headers }) => {
 		console.log(
 			"Here's what's being sent: ",
 			JSON.stringify({
-				'acf': {
-					'spots_left': newSpotsLeft.toString(),
+				acf: {
+					spots_left: newSpotsLeft,
 				},
 			})
 		);
@@ -91,8 +91,8 @@ exports.handler = async ({ body, headers }) => {
 				'Authorization': 'Basic ' + auth,
 			},
 			body: JSON.stringify({
-				'acf': {
-					'spots_left': newSpotsLeft.toString(),
+				acf: {
+					spots_left: newSpotsLeft,
 				},
 			}),
 		});
