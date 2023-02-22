@@ -58,12 +58,6 @@ exports.handler = async ({ body, headers }) => {
       console.log("Spots left after initial call: ", spotsLeft);
 	
 	  const auth = Buffer.from(process.env.WP_USER + ":" + process.env.WP_PW).toString("base64");
-
-      const headers = {
-		"Content-Type": "application/json; charset=utf-8",
-        Connection: "keep-alive",
-        Authorization: 'Basic ' + auth,
-      };
 	
       // `Basic ${Buffer.from(
       //   process.env.WP_USER + ":" + process.env.WP_PW,
@@ -91,7 +85,9 @@ exports.handler = async ({ body, headers }) => {
 
       const update = await fetch(`${API_ENDPOINT}/${metadata.databaseId}`, {
         method: "PUT",
-        headers: headers,
+        headers: {
+			'Authorization': 'Basic ' + auth,
+		},
         body: JSON.stringify({
           acf: {
             spots_left: spotsLeft - 1,
