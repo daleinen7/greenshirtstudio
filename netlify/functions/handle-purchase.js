@@ -19,9 +19,6 @@ exports.handler = async ({ body, headers }) => {
     if (stripeEvent.type === "checkout.session.completed") {
       const eventObject = stripeEvent.data.object;
 
-	  console.log("Event Object: ", eventObject);
-	  return;
-	  
       const metadata = stripeEvent.data.object.metadata;
       console.log("Metadata: ", metadata);
 
