@@ -56,14 +56,11 @@ exports.handler = async ({ body, headers }) => {
         });
 
       console.log("Spots left after initial call: ", spotsLeft);
-
-	  const auth = new Buffer(process.env.WP_USER + ":" + process.env.WP_PW).toString("base64");
+	
+	  const auth = Buffer.from(process.env.WP_USER + ":" + process.env.WP_PW).toString("base64");
 
       const headers = {
-        "Content-Type": "application/json",
-        "User-Agent": "Netlify Function",
-        Accept: "*/*",
-        "Accept-Encoding": "gzip, deflate, br",
+		  "Content-Type": "application/json; charset=utf-8",
         Connection: "keep-alive",
         Authorization: 'Basic ' + auth,
       };
@@ -77,6 +74,9 @@ exports.handler = async ({ body, headers }) => {
       // Buffer.from(process.env.WP_USER + ":" + process.env.WP_PW).toString(
       //   "base64"
       // ),
+
+		// cast Spots Left to a number
+		spotsLeft = Number(spotsLeft);
 
 	  console.log("Headers: ", headers);
 
