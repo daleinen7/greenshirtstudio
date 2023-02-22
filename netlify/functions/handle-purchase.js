@@ -70,33 +70,36 @@ exports.handler = async ({ body, headers }) => {
 		// cast Spots Left to a number
 		spotsLeft = Number(spotsLeft);
 
-	  console.log("Headers: ", headers);
+		console.log("Headers: ", headers);
 
-      console.log(
-        "Here's what's being sent: ",
-        JSON.stringify({
-          acf: {
-            spots_left: spotsLeft - 1,
-          },
-        })
-      );
 
-      const update = await fetch(`${API_ENDPOINT}/${metadata.databaseId}`, {
-        method: "PUT",
-        headers: {
-			'Authorization': 'Basic ' + auth,
-		},
-        body: JSON.stringify({
-          acf: {
-            spots_left: spotsLeft - 1,
-          },
-        }),
-      });
+		let newSpotsLeft = spotsLeft - 1;
+
+		console.log(
+			"Here's what's being sent: ",
+			JSON.stringify({
+				'acf': {
+					'spots_left': newSpotsLeft.toString(),
+				},
+			})
+		);
+
+		const update = await fetch(`${API_ENDPOINT}/${metadata.databaseId}`, {
+			method: "PUT",
+			headers: {
+				'Authorization': 'Basic ' + auth,
+			},
+			body: JSON.stringify({
+				'acf': {
+					'spots_left': newSpotsLeft.toString(),
+				},
+			}),
+		});
 
 	  // Get Response body	
 	  const updateResponse = await update.json();
 	
-	  console.log("SPOTS LEFT UPDATE: ", update);
+	  //console.log("SPOTS LEFT UPDATE: ", update);
 	  console.log("Update Response: ", updateResponse);
 
       console.log("Webhook successful!");
