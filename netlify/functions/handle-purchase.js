@@ -43,6 +43,11 @@ exports.handler = async ({ body, headers }) => {
 
       let spotsLeft;
 
+	  // Sometimes databaseid is undefined, so we'll set it to dbid if that's the case
+	  if(metadata.databaseId === undefined) {
+		metadata.databaseId = metadata.dbid;
+	  }
+
       // get current count of seats
       const response = await fetch(`${API_ENDPOINT}/${metadata.databaseId}`)
         .then((res) => res.json())
@@ -52,14 +57,17 @@ exports.handler = async ({ body, headers }) => {
 
       console.log("Spots left after initial call: ", spotsLeft);
 
+	  const auth = new Buffer(process.env.WP_USER + ":" + process.env.WP_PW).toString("base64");
+
       const headers = {
         "Content-Type": "application/json",
         "User-Agent": "Netlify Function",
         Accept: "*/*",
         "Accept-Encoding": "gzip, deflate, br",
         Connection: "keep-alive",
-        Authorization: process.env.WP_AUTH,
+        Authorization: 'Basic ' + auth,
       };
+	
       // `Basic ${Buffer.from(
       //   process.env.WP_USER + ":" + process.env.WP_PW,
       //   "utf-8"
@@ -69,6 +77,8 @@ exports.handler = async ({ body, headers }) => {
       // Buffer.from(process.env.WP_USER + ":" + process.env.WP_PW).toString(
       //   "base64"
       // ),
+
+	  console.log("Headers: ", headers);
 
       console.log(
         "Here's what's being sent: ",
