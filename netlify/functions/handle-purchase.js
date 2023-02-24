@@ -1,8 +1,6 @@
 // const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST_KEY);
-const { default: apiFetch } = require("@wordpress/api-fetch");
-const fetchApi = require('@wordpress/api-fetch')
-
+const fetch = require("node-fetch");
 const API_ENDPOINT = `${process.env.BACKEND_URL}/wp-json/wp/v2/class`;
 
 exports.handler = async ({ body, headers }) => {
@@ -82,11 +80,12 @@ exports.handler = async ({ body, headers }) => {
 		const update = await fetch(url, {
 			method: "POST",
 			headers: {
+				"Content-Type": "application/json",
 				Authorization: `Basic ${auth}`,
 			},
 			body: JSON.stringify({
-				'post_id': metadata.databaseId,
-				'seats_left': newSpotsLeft,
+				post_id: metadata.databaseId,
+				seats_left: newSpotsLeft,
 			}),
 		});
 
