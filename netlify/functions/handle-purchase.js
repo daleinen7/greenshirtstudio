@@ -75,7 +75,11 @@ exports.handler = async ({ body, headers }) => {
 			})
 		);
 
-		const update = await fetch(`${process.env.BACKEND_URL}/wp-json/gss/v1/update-class`, {
+		const url = `${process.env.BACKEND_URL}/wp-json/gss/v1/update-class`;
+
+		console.log("URL: ", url);
+
+		const update = await fetch(url, {
 			method: "POST",
 			headers: {
 				Authorization: `Basic ${auth}`,
