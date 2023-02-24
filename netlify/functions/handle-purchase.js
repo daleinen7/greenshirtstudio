@@ -75,31 +75,17 @@ exports.handler = async ({ body, headers }) => {
 			})
 		);
 
-		/*const update = await fetch(`${API_ENDPOINT}/${metadata.databaseId}`, {
+		const update = await fetch(`${API_ENDPOINT}/${metadata.databaseId}`, {
 			method: "POST",
 			headers: {
-				'Content-Type': 'application/json',
-				'Authorization': 'Basic ' + auth,
+				"Content-Type": "application/json",
+				Authorization: `Basic ${auth}`,
 			},
-			
 			body: JSON.stringify({
 				acf: {
 					spots_left: newSpotsLeft,
 				},
 			}),
-		});*/
-
-		const update = await apiFetch({
-			url: `${API_ENDPOINT}/${metadata.databaseId}`,
-			method: 'POST',
-			headers: {
-				'Authorization': 'Basic ' + auth,
-			},
-			data: {
-				acf: {
-					spots_left: newSpotsLeft,
-				},
-			},
 		});
 
 	  // Get Response body	
