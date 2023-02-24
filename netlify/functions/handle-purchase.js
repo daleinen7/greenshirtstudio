@@ -75,16 +75,14 @@ exports.handler = async ({ body, headers }) => {
 			})
 		);
 
-		const update = await fetch(`${API_ENDPOINT}/${metadata.databaseId}`, {
+		const update = await fetch(`${process.env.BACKEND_URL}/wp-json/gss/v1/update-class`, {
 			method: "POST",
 			headers: {
-				"Content-Type": "application/json",
 				Authorization: `Basic ${auth}`,
 			},
 			body: JSON.stringify({
-				acf: {
-					spots_left: newSpotsLeft,
-				},
+				'post_id': metadata.databaseId,
+				'seats_left': newSpotsLeft,
 			}),
 		});
 
