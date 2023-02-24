@@ -1,5 +1,5 @@
 // const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST_KEY);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const API_ENDPOINT = `${process.env.BACKEND_URL}/wp-json/wp/v2/class`;
 
@@ -10,7 +10,7 @@ exports.handler = async ({ body, headers }) => {
       body,
       headers["stripe-signature"],
       // process.env.STRIPE_WEBHOOK_SECRET
-      process.env.STRIPE_WEBHOOK_TEST_SECRET
+      process.env.STRIPE_WEBHOOK_SECRET
     );
 
     // only do stuff if this is a successful Stripe Checkout purchase
@@ -41,10 +41,10 @@ exports.handler = async ({ body, headers }) => {
 
       let spotsLeft;
 
-	  // Sometimes databaseid is undefined, so we'll set it to dbid if that's the case
-	  if(metadata.databaseId === undefined) {
-		metadata.databaseId = metadata.dbid;
-	  }
+      // Sometimes databaseid is undefined, so we'll set it to dbid if that's the case
+      if (metadata.databaseId === undefined) {
+        metadata.databaseId = metadata.dbid;
+      }
 
       // get current count of seats
       const response = await fetch(`${API_ENDPOINT}/${metadata.databaseId}`)
@@ -54,46 +54,48 @@ exports.handler = async ({ body, headers }) => {
         });
 
       console.log("Spots left after initial call: ", spotsLeft);
-	
-	  const auth = Buffer.from(process.env.WP_USER + ":" + process.env.WP_PW).toString("base64");
 
-		// cast Spots Left to a number
-		spotsLeft = Number(spotsLeft);
+      const auth = Buffer.from(
+        process.env.WP_USER + ":" + process.env.WP_PW
+      ).toString("base64");
 
-		console.log("Headers: ", headers);
+      // cast Spots Left to a number
+      spotsLeft = Number(spotsLeft);
 
-		let newSpotsLeft = spotsLeft - 1;
+      console.log("Headers: ", headers);
 
-		console.log(
-			"Here's what's being sent: ",
-			JSON.stringify({
-				acf: {
-					spots_left: newSpotsLeft,
-				},
-			})
-		);
+      let newSpotsLeft = spotsLeft - 1;
 
-		const url = `${process.env.BACKEND_URL}/wp-json/gss/v1/update-class`;
+      console.log(
+        "Here's what's being sent: ",
+        JSON.stringify({
+          acf: {
+            spots_left: newSpotsLeft,
+          },
+        })
+      );
 
-		console.log("URL: ", url);
+      const url = `${process.env.BACKEND_URL}/wp-json/gss/v1/update-class`;
 
-		const update = await fetch(url, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-				Authorization: `Basic ${auth}`,
-			},
-			body: JSON.stringify({
-				post_id: metadata.databaseId,
-				seats_left: newSpotsLeft,
-			}),
-		});
+      console.log("URL: ", url);
 
-	  // Get Response body	
-	  const updateResponse = await update.json();
-	
-	  //console.log("SPOTS LEFT UPDATE: ", update);
-	  console.log("Update Response: ", updateResponse);
+      const update = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Basic ${auth}`,
+        },
+        body: JSON.stringify({
+          post_id: metadata.databaseId,
+          seats_left: newSpotsLeft,
+        }),
+      });
+
+      // Get Response body
+      const updateResponse = await update.json();
+
+      //console.log("SPOTS LEFT UPDATE: ", update);
+      console.log("Update Response: ", updateResponse);
 
       console.log("Webhook successful!");
 
