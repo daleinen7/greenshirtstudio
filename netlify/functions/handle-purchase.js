@@ -1,5 +1,7 @@
 // const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST_KEY);
+const { default: apiFetch } = require("@wordpress/api-fetch");
+const fetchApi = require('@wordpress/api-fetch')
 
 const API_ENDPOINT = `${process.env.BACKEND_URL}/wp-json/wp/v2/class`;
 
@@ -56,22 +58,11 @@ exports.handler = async ({ body, headers }) => {
       console.log("Spots left after initial call: ", spotsLeft);
 	
 	  const auth = Buffer.from(process.env.WP_USER + ":" + process.env.WP_PW).toString("base64");
-	
-      // `Basic ${Buffer.from(
-      //   process.env.WP_USER + ":" + process.env.WP_PW,
-      //   "utf-8"
-      // ).toString("base64")}`,
-
-      // "Basic " +
-      // Buffer.from(process.env.WP_USER + ":" + process.env.WP_PW).toString(
-      //   "base64"
-      // ),
 
 		// cast Spots Left to a number
 		spotsLeft = Number(spotsLeft);
 
 		console.log("Headers: ", headers);
-
 
 		let newSpotsLeft = spotsLeft - 1;
 
@@ -84,17 +75,31 @@ exports.handler = async ({ body, headers }) => {
 			})
 		);
 
-		const update = await fetch(`${API_ENDPOINT}/${metadata.databaseId}`, {
+		/*const update = await fetch(`${API_ENDPOINT}/${metadata.databaseId}`, {
 			method: "POST",
 			headers: {
 				'Content-Type': 'application/json',
 				'Authorization': 'Basic ' + auth,
 			},
+			
 			body: JSON.stringify({
 				acf: {
 					spots_left: newSpotsLeft,
 				},
 			}),
+		});*/
+
+		const update = await apiFetch({
+			url: `${API_ENDPOINT}/${metadata.databaseId}`,
+			method: 'POST',
+			headers: {
+				'Authorization': 'Basic ' + auth,
+			},
+			data: {
+				acf: {
+					spots_left: newSpotsLeft,
+				},
+			},
 		});
 
 	  // Get Response body	
