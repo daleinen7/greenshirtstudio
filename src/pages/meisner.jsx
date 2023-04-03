@@ -39,7 +39,7 @@ const Meisner = ({ data }) => {
         title="Meisner Acting Program"
         content={hack}
       />
-      <ContentStack title="March - May 2023" content={classes} />
+      <ContentStack title="May - July 2023" content={classes} />
       <Subscribe />
     </Layout>
   );
