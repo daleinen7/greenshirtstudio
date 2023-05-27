@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+// const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const API_ENDPOINT = `${process.env.BACKEND_URL}/wp-json/wp/v2/class`;
@@ -9,6 +9,7 @@ exports.handler = async ({ body, headers }) => {
     const stripeEvent = stripe.webhooks.constructEvent(
       body,
       headers["stripe-signature"],
+      // process.env.STRIPE_WEBHOOK_SECRET
       process.env.STRIPE_WEBHOOK_SECRET
     );
 
@@ -40,35 +41,61 @@ exports.handler = async ({ body, headers }) => {
 
       let spotsLeft;
 
+      // Sometimes databaseid is undefined, so we'll set it to dbid if that's the case
+      if (metadata.databaseId === undefined) {
+        metadata.databaseId = metadata.dbid;
+      }
+
       // get current count of seats
       const response = await fetch(`${API_ENDPOINT}/${metadata.databaseId}`)
         .then((res) => res.json())
         .then((data) => {
-          spotsLeft = data.acf.spots_left;
+          spotsLeft = data?.acf?.spots_left;
         });
 
-      const headers = {
-        "Accept-Encoding": "gzip, deflate, br",
-        Accept: "*/*",
-        "User-Agent": "Netlify Function",
-        "Content-Type": "application/json",
-        Connection: "keep-alive",
-        Authorization:
-          "Basic " +
-          Buffer.from(process.env.WP_USER + ":" + process.env.WP_PW).toString(
-            "base64"
-          ),
-      };
+      console.log("Spots left after initial call: ", spotsLeft);
 
-      const update = await fetch(`${API_ENDPOINT}/${metadata.databaseId}`, {
-        method: "PUT",
-        headers: headers,
-        body: JSON.stringify({
+      const auth = Buffer.from(
+        process.env.WP_USER + ":" + process.env.WP_PW
+      ).toString("base64");
+
+      // cast Spots Left to a number
+      spotsLeft = Number(spotsLeft);
+
+      console.log("Headers: ", headers);
+
+      let newSpotsLeft = spotsLeft - 1;
+
+      console.log(
+        "Here's what's being sent: ",
+        JSON.stringify({
           acf: {
-            spots_left: spotsLeft - 1,
+            spots_left: newSpotsLeft,
           },
+        })
+      );
+
+      const url = `${process.env.BACKEND_URL}/wp-json/gss/v1/update-class`;
+
+      console.log("URL: ", url);
+
+      const update = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Basic ${auth}`,
+        },
+        body: JSON.stringify({
+          post_id: metadata.databaseId,
+          seats_left: newSpotsLeft,
         }),
       });
+
+      // Get Response body
+      const updateResponse = await update.json();
+
+      //console.log("SPOTS LEFT UPDATE: ", update);
+      console.log("Update Response: ", updateResponse);
 
       console.log("Webhook successful!");
 

@@ -15,12 +15,13 @@
   },
   "dependencies": {
     "@stripe/stripe-js": "^1.46.0",
-    "@wordpress/api-fetch": "^6.20.0",
+    "@wordpress/api-fetch": "^6.24.0",
     "babel-plugin-styled-components": "^2.0.7",
     "gatsby": "^5.0.0",
     "gatsby-plugin-google-fonts": "^1.0.1",
-    "gatsby-plugin-manifest": "^5.3.1",
+    "gatsby-plugin-google-tagmanager": "^5.9.0",
     "gatsby-plugin-image": "^3.2.0",
+    "gatsby-plugin-manifest": "^5.3.1",
     "gatsby-plugin-sharp": "^5.2.0",
     "gatsby-plugin-styled-components": "^6.3.0",
     "gatsby-source-filesystem": "^5.2.0",
@@ -31,10 +32,10 @@
     "html-react-parser": "^3.0.4",
     "node-fetch": "^3.3.0",
     "react": "^18.0.0",
+    "react-alice-carousel": "^2.7.0",
     "react-dom": "^18.0.0",
     "react-markdown": "^8.0.4",
     "styled-components": "^5.3.6",
-    "react-alice-carousel": "^2.7.0",
     "swr": "^2.0.0"
   }
 }
