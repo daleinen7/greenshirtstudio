@@ -1,17 +1,17 @@
-import * as React from "react";
-import { SEO } from "../components/seo";
-import Community from "../images/home/Community.png";
-import WhatClasses from "../images/home/WhatClasses.png";
-import WhyClassWithUs from "../images/home/WhyClassWithUs.png";
-import Layout from "../components/Layout";
-import HeroBanner from "../components/HeroBanner";
-import Carousel from "../components/Carousel";
-import SectionDivider from "../components/SectionDivider";
-import CTACard from "../components/CTAContentCard";
-import Testimonial from "../components/Testimonial";
-import ClassCard from "../components/ClassCard";
-import BlogCard from "../components/BlogCard";
-import { graphql } from "gatsby";
+import * as React from 'react';
+import { SEO } from '../components/seo';
+import Community from '../images/home/Community.png';
+import WhatClasses from '../images/home/WhatClasses.png';
+import WhyClassWithUs from '../images/home/WhyClassWithUs.png';
+import Layout from '../components/Layout';
+import HeroBanner from '../components/HeroBanner';
+import Carousel from '../components/Carousel';
+import SectionDivider from '../components/SectionDivider';
+import CTACard from '../components/CTAContentCard';
+import Testimonial from '../components/Testimonial';
+import ClassCard from '../components/ClassCard';
+import BlogCard from '../components/BlogCard';
+import { graphql } from 'gatsby';
 
 const IndexPage = ({ data }) => {
   // const size = useWindowSize();
@@ -26,7 +26,9 @@ const IndexPage = ({ data }) => {
       }
       return 0;
     })
-    .filter((actingClass) => actingClass.classGroup.program !== "Test")
+    .filter(
+      (actingClass) => actingClass.classGroup.program !== 'Test'
+    )
     .map((actingClass) => (
       <ClassCard
         title={actingClass.title}
@@ -60,37 +62,37 @@ const IndexPage = ({ data }) => {
       />
       <SectionDivider />
       <CTACard
-        headerAlign={"left"}
-        title={"Why take classes with us?"}
+        headerAlign={'left'}
+        title={'Why take classes with us?'}
         image={WhyClassWithUs}
-        imageAltText={"Students of Green Shirt Studio"}
+        imageAltText={'Students of Green Shirt Studio'}
         info={
           "Founded in 2009, our acting classes are accessible for everyone and offered in welcoming learning environment where you'll feel at home."
         }
-        ctaText={"Learn More About Us"}
-        ctaLink={"/about"}
+        ctaText={'Learn More About Us'}
+        ctaLink={'/about'}
       />
       <SectionDivider />
       <CTACard
-        headerAlign={"right"}
-        title={"What classes do we offer?"}
+        headerAlign={'right'}
+        title={'What classes do we offer?'}
         image={WhatClasses}
-        imageAltText={"Students reading lines"}
+        imageAltText={'Students reading lines'}
         info={
-          "We offer acting classes in Chicago including our Meisner Acting Program, Specialized Classes, and Workshops."
+          'We offer acting classes in Chicago including our Meisner Acting Program, Specialized Classes, and Workshops.'
         }
-        ctaText={"All Classes & Workshops"}
-        ctaLink={"/classes"}
+        ctaText={'All Classes & Workshops'}
+        ctaLink={'/classes'}
       />
       <SectionDivider />
       <CTACard
-        headerAlign={"left"}
-        title={"How do we help the community?"}
+        headerAlign={'left'}
+        title={'How do we help the community?'}
         image={Community}
-        imageAltText={"Wall of Polaroids"}
-        info={"We offer scholarships and host free community events."}
-        ctaText={"Learn More"}
-        ctaLink={"/scholarships"}
+        imageAltText={'Wall of Polaroids'}
+        info={'We offer scholarships and host free community events.'}
+        ctaText={'Learn More'}
+        ctaLink={'/scholarships'}
       />
       <Testimonial />
       <Carousel
@@ -123,12 +125,12 @@ export const pageQuery = graphql`
           price
           program
           classImage {
-            gatsbyImage(width: 304, height: 212, layout: FIXED)
+            gatsbyImage(height: 212, layout: FIXED)
           }
         }
       }
     }
-    allWpPost(limit: 8, sort: { fields: date, order: DESC }) {
+    allWpPost(limit: 8, sort: { date: DESC }) {
       nodes {
         title
         author {

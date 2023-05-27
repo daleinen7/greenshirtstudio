@@ -44,23 +44,21 @@ const Blog = ({ data }) => {
 };
 export default Blog;
 
-export const blogsQuery = graphql`
-  query blogsQuery {
-    allWpPost(sort: { order: DESC, fields: date }) {
-      nodes {
-        featuredImage {
-          node {
-            sourceUrl
-          }
+export const blogsQuery = graphql`query blogsQuery {
+  allWpPost(sort: {date: DESC}) {
+    nodes {
+      featuredImage {
+        node {
+          sourceUrl
         }
-        author {
-          node {
-            name
-          }
-        }
-        title
-        slug
       }
+      author {
+        node {
+          name
+        }
+      }
+      title
+      slug
     }
   }
-`;
+}`;
