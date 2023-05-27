@@ -1,0 +1,9 @@
+{
+  "functions": {
+    "targets": [
+      "green_shirt_function"
+    ],
+    "ignore": [],
+    "source": "functions"
+  }
+}

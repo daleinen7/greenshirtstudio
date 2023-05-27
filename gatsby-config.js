@@ -1,6 +1,6 @@
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
-});
+})
 
 module.exports = {
   siteMetadata: {
@@ -49,6 +49,7 @@ module.exports = {
         // selfHostedOrigin: 'YOUR_SELF_HOSTED_ORIGIN',
       },
     },
+    `gatsby-plugin-netlify`,
     {
       /*
        * https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-source-wordpress/README.md
@@ -69,4 +70,4 @@ module.exports = {
       },
     },
   ],
-};
+}

@@ -1,0 +1,30 @@
+{
+  "defaults": {
+    "project": 1,
+    "env": 1
+  },
+  "actives": {
+    "project": 1,
+    "env": 1
+  },
+  "projects": [
+    {
+      "idx": 1,
+      "id": "18017000000004014",
+      "name": "GreenShirt",
+      "domain": {
+        "id": "10059650478",
+        "name": "greenshirt-811849514.development"
+      },
+      "timezone": "America/Chicago",
+      "env": [
+        {
+          "idx": 1,
+          "id": "811849514",
+          "name": "Development",
+          "type": 3
+        }
+      ]
+    }
+  ]
+}
