@@ -6,7 +6,7 @@
 
 [dev]
   command = "gatsby develop"
-  targetPort = 8000
+  targetPort = 8080
 
   ## Uncomment to use this redirect for Single Page Applications like create-react-app.
   ## Not needed for static site generators.

@@ -1,35 +1,35 @@
-import React from "react";
-import Layout from "../components/Layout";
-import { SEO } from "../components/seo";
-import parse from "html-react-parser";
-import ContentStack from "../components/ContentStack";
-import CTA from "../components/CTA";
-import ImageAndContentHeader from "../components/ImageAndContentHeader";
-import UpcomingEvents from "../components/UpcomingEvents";
-import EventCard from "../components/EventCard";
-import Carousel from "../components/Carousel";
-import { graphql } from "gatsby";
+import React from 'react';
+import Layout from '../components/Layout';
+import { SEO } from '../components/seo';
+import parse from 'html-react-parser';
+import ContentStack from '../components/ContentStack';
+import CTA from '../components/CTA';
+import ImageAndContentHeader from '../components/ImageAndContentHeader';
+import UpcomingEvents from '../components/UpcomingEvents';
+import EventCard from '../components/EventCard';
+import Carousel from '../components/Carousel';
+import { graphql } from 'gatsby';
 
-import EventsImg from "../images/Events.jpg";
+import EventsImg from '../images/Events.jpg';
 
 const Events = ({ data }) => {
   const today = new Date();
 
   const cardifyEvent = (evt, small) => {
     const eventDate = new Date(evt.events.eventDate).toLocaleDateString(
-      "en-US",
+      'en-US',
       {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
       }
     );
     const eventTime = new Date(evt.events.eventDate).toLocaleTimeString(
-      "en-US",
+      'en-US',
       {
-        hour: "numeric",
-        minute: "2-digit",
+        hour: 'numeric',
+        minute: '2-digit',
       }
     );
     return (
@@ -78,8 +78,8 @@ const Events = ({ data }) => {
       <UpcomingEvents />
       {Object.entries(futureEventsObj).map((month) => {
         const firstDate = new Date(month[1][0].key);
-        const prettyMonth = firstDate.toLocaleString("default", {
-          month: "long",
+        const prettyMonth = firstDate.toLocaleString('default', {
+          month: 'long',
         });
 
         return (
@@ -122,7 +122,7 @@ export const pageQuery = graphql`
         content
         events {
           featuredImage {
-            gatsbyImage(width: 416, height: 290)
+            gatsbyImage(height: 290)
           }
           eventDate
           eventbriteUrl

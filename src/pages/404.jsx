@@ -1,13 +1,13 @@
-import * as React from "react";
-import { SEO } from "../components/seo";
-import Layout from "../components/Layout";
-import CTACard from "../components/CTAContentCard";
-import Carousel from "../components/Carousel";
-import ClassCard from "../components/ClassCard";
-import special from "../images/special.png";
-import EventCard from "../components/EventCard";
-import parse from "html-react-parser";
-import { graphql } from "gatsby";
+import * as React from 'react';
+import { SEO } from '../components/seo';
+import Layout from '../components/Layout';
+import CTACard from '../components/CTAContentCard';
+import Carousel from '../components/Carousel';
+import ClassCard from '../components/ClassCard';
+import special from '../images/special.png';
+import EventCard from '../components/EventCard';
+import parse from 'html-react-parser';
+import { graphql } from 'gatsby';
 
 const FourOhFour = ({ data }) => {
   const classes = data.allWpClass.nodes
@@ -20,7 +20,7 @@ const FourOhFour = ({ data }) => {
       }
       return 0;
     })
-    .filter((actingClass) => actingClass.classGroup.program !== "Test")
+    .filter((actingClass) => actingClass.classGroup.program !== 'Test')
     .map((actingClass) => (
       <ClassCard
         title={actingClass.title}
@@ -36,19 +36,19 @@ const FourOhFour = ({ data }) => {
 
   const cardifyEvent = (evt, small) => {
     const eventDate = new Date(evt.events.eventDate).toLocaleDateString(
-      "en-US",
+      'en-US',
       {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
       }
     );
     const eventTime = new Date(evt.events.eventDate).toLocaleTimeString(
-      "en-US",
+      'en-US',
       {
-        hour: "numeric",
-        minute: "2-digit",
+        hour: 'numeric',
+        minute: '2-digit',
       }
     );
     return (
@@ -72,15 +72,15 @@ const FourOhFour = ({ data }) => {
   return (
     <Layout>
       <CTACard
-        headerAlign={"left"}
-        title={"You Are Enough"}
+        headerAlign={'left'}
+        title={'You Are Enough'}
         image={special}
-        imageAltText={"Students of Green Shirt Studio"}
+        imageAltText={'Students of Green Shirt Studio'}
         info={
           "It looks like the page you are seeking doesn't exist. If you need assistance, reach out at info@greenshirtstudio.com.  While you're here, check our upcoming classes, workshops, and events."
         }
-        ctaText={"Green Shirt Homepage"}
-        ctaLink={"/"}
+        ctaText={'Green Shirt Homepage'}
+        ctaLink={'/'}
       />
       <Carousel
         title="Upcoming Classes & Workshops"
@@ -112,7 +112,7 @@ export const pageQuery = graphql`
           price
           program
           classImage {
-            gatsbyImage(width: 304, height: 212, layout: FIXED)
+            gatsbyImage(height: 212, layout: FIXED)
           }
         }
       }
@@ -123,7 +123,7 @@ export const pageQuery = graphql`
         content
         events {
           featuredImage {
-            gatsbyImage(width: 416, height: 290)
+            gatsbyImage(height: 290)
           }
           eventDate
           eventbriteUrl

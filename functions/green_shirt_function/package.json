@@ -1,9 +1,0 @@
-{
-	"name": "green_shirt_function",
-	"version": "1.0.0",
-	"main": "index.js",
-	"author": "jack@greenshirtstudio.com",
-	"dependencies": {
-		"zcatalyst-sdk-node": "latest"
-	}
-}

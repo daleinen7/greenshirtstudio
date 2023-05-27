@@ -1,12 +1,12 @@
-import React from "react";
-import { SEO } from "../components/seo";
-import Layout from "../components/Layout";
-import ImageAndContentHeader from "../components/ImageAndContentHeader";
-import Subscribe from "../components/Subscribe";
-import ContentStack from "../components/ContentStack";
-import MeisnerProgram from "../images/MeisnerProgram.png";
-import ClassCard from "../components/ClassCard";
-import { graphql } from "gatsby";
+import React from 'react';
+import { SEO } from '../components/seo';
+import Layout from '../components/Layout';
+import ImageAndContentHeader from '../components/ImageAndContentHeader';
+import Subscribe from '../components/Subscribe';
+import ContentStack from '../components/ContentStack';
+import MeisnerProgram from '../images/MeisnerProgram.png';
+import ClassCard from '../components/ClassCard';
+import { graphql } from 'gatsby';
 
 const Meisner = ({ data }) => {
   const hack = `Our Meisner Acting Program consists of Levels 1 - 5, each level lasting eight weeks, totaling in 100 hours of training. Completing Levels 1 - 5 will give you a specific, step by step process to successfully tackle any script.  \n  \n  Our Meisner Acting Program is designed to welcome and challenge students of all experience levels. Level 1 is a great place to begin your acting journey or continue developing your technique.`;
@@ -64,7 +64,7 @@ export const pageQuery = graphql`
           day
           classImage {
             altText
-            gatsbyImage(width: 416, height: 290)
+            gatsbyImage(height: 290)
           }
         }
       }
