@@ -1,5 +1,7 @@
+const { log } = require('console');
+
 // const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const API_ENDPOINT = `${process.env.BACKEND_URL}/wp-json/wp/v2/class`;
 
@@ -8,23 +10,36 @@ exports.handler = async ({ body, headers }) => {
     // check the webhook to make sure it’s valid
     const stripeEvent = stripe.webhooks.constructEvent(
       body,
-      headers["stripe-signature"],
+      headers['stripe-signature'],
       // process.env.STRIPE_WEBHOOK_SECRET
       process.env.STRIPE_WEBHOOK_SECRET
     );
 
+    const config = {
+      from_email: 'bot@greenshirtstudio.com',
+      to_email: ['daleinen@gmail.com', 'jack@greenshirtstudio.com'],
+      subject: 'Stripe Webhook: Successful Purchase',
+      content:
+        '<p>Hello Jack, someone has purchased a class. Please check the database to make sure everything is correct.</p>',
+    };
+
+    let email = catalystApp.email();
+    let mailPromise = await email.sendMail(config);
+
+    console.log('this is dumb: ', mailPromise);
+
     // only do stuff if this is a successful Stripe Checkout purchase
-    if (stripeEvent.type === "checkout.session.completed") {
+    if (stripeEvent.type === 'checkout.session.completed') {
       const eventObject = stripeEvent.data.object;
 
       const metadata = stripeEvent.data.object.metadata;
-      console.log("Metadata: ", metadata);
+      console.log('Metadata: ', metadata);
 
       // console.log("BODY: ", body);
       // console.log("HEADERS: ", headers);
 
       // if purchase is a subscription
-      if (eventObject.mode === "subscription") {
+      if (eventObject.mode === 'subscription') {
         const date = new Date();
         const oneMonthOut = new Date(date.setMonth(date.getMonth() + 1));
 
@@ -32,7 +47,7 @@ exports.handler = async ({ body, headers }) => {
           eventObject.subscription
         );
 
-        console.log("This should cancel.");
+        console.log('This should cancel.');
 
         await stripe.subscriptions.update(eventObject.subscription, {
           cancel_at: oneMonthOut,
@@ -53,16 +68,16 @@ exports.handler = async ({ body, headers }) => {
           spotsLeft = data?.acf?.spots_left;
         });
 
-      console.log("Spots left after initial call: ", spotsLeft);
+      console.log('Spots left after initial call: ', spotsLeft);
 
       const auth = Buffer.from(
-        process.env.WP_USER + ":" + process.env.WP_PW
-      ).toString("base64");
+        process.env.WP_USER + ':' + process.env.WP_PW
+      ).toString('base64');
 
       // cast Spots Left to a number
       spotsLeft = Number(spotsLeft);
 
-      console.log("Headers: ", headers);
+      console.log('Headers: ', headers);
 
       let newSpotsLeft = spotsLeft - 1;
 
@@ -77,12 +92,12 @@ exports.handler = async ({ body, headers }) => {
 
       const url = `${process.env.BACKEND_URL}/wp-json/gss/v1/update-class`;
 
-      console.log("URL: ", url);
+      console.log('URL: ', url);
 
       const update = await fetch(url, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           Authorization: `Basic ${auth}`,
         },
         body: JSON.stringify({
@@ -95,9 +110,9 @@ exports.handler = async ({ body, headers }) => {
       const updateResponse = await update.json();
 
       //console.log("SPOTS LEFT UPDATE: ", update);
-      console.log("Update Response: ", updateResponse);
+      console.log('Update Response: ', updateResponse);
 
-      console.log("Webhook successful!");
+      console.log('Webhook successful!');
 
       return {
         statusCode: 200,
@@ -105,7 +120,7 @@ exports.handler = async ({ body, headers }) => {
       };
     }
 
-    return { statusCode: 200, body: "no purpose" };
+    return { statusCode: 200, body: 'no purpose' };
   } catch (err) {
     console.log(`Stripe webhook failed with ${err}`);
 

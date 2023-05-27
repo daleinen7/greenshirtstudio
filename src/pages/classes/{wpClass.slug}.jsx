@@ -1,16 +1,16 @@
-import React from "react";
-import { graphql } from "gatsby";
-import { SEO } from "../../components/seo";
-import Layout from "../../components/Layout";
-import ClassHeader from "../../components/classComponents/ClassHeader";
-import Description from "../../components/classComponents/Description";
-import CancellationPolicy from "../../components/classComponents/CancellationPolicy";
-import AttendancePolicy from "../../components/classComponents/AttendancePolicy";
-import SpecialMessage from "../../components/classComponents/SpecialMessage";
-import AboutTeacher from "../../components/classComponents/AboutTeacher";
-import ClassDetails from "../../components/classComponents/ClassDetails";
+import React from 'react';
+import { graphql } from 'gatsby';
+import { SEO } from '../../components/seo';
+import Layout from '../../components/Layout';
+import ClassHeader from '../../components/classComponents/ClassHeader';
+import Description from '../../components/classComponents/Description';
+import CancellationPolicy from '../../components/classComponents/CancellationPolicy';
+import AttendancePolicy from '../../components/classComponents/AttendancePolicy';
+import SpecialMessage from '../../components/classComponents/SpecialMessage';
+import AboutTeacher from '../../components/classComponents/AboutTeacher';
+import ClassDetails from '../../components/classComponents/ClassDetails';
 
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledClassPage = styled.div`
   display: flex;
@@ -95,7 +95,7 @@ const ClassPage = (props) => {
           <div className="left-column">
             <Description wpClass={wpClass} />
             <AttendancePolicy attendancePolicy={attendancePolicy} />
-            {wpClass.classGroup.program === "Workshops" ? (
+            {wpClass.classGroup.program === 'Workshops' ? (
               <CancellationPolicy cancellationPolicy={workshopPolicy} />
             ) : (
               <CancellationPolicy cancellationPolicy={cancellationPolicy} />
@@ -170,7 +170,7 @@ export const query = graphql`
               title
               image {
                 altText
-                gatsbyImage(width: 480, height: 480)
+                gatsbyImage(height: 480)
               }
             }
           }

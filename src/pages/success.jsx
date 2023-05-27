@@ -1,11 +1,11 @@
-import React from "react";
-import { SEO } from "../components/seo";
-import Layout from "../components/Layout";
-import success from "../images/success.png";
-import Carousel from "../components/Carousel";
-import ClassCard from "../components/ClassCard";
-import CTACard from "../components/CTAContentCard";
-import { graphql } from "gatsby";
+import React from 'react';
+import { SEO } from '../components/seo';
+import Layout from '../components/Layout';
+import success from '../images/success.png';
+import Carousel from '../components/Carousel';
+import ClassCard from '../components/ClassCard';
+import CTACard from '../components/CTAContentCard';
+import { graphql } from 'gatsby';
 
 const Success = ({ data }) => {
   const classes = data.allWpClass.nodes.map((actingClass) => (
@@ -21,15 +21,15 @@ const Success = ({ data }) => {
   return (
     <Layout>
       <CTACard
-        headerAlign={"left"}
+        headerAlign={'left'}
         title={"You've completed registration!"}
         image={success}
-        imageAltText={"placeholder image"}
+        imageAltText={'placeholder image'}
         info={
           "We've received your payment and registration. You will receive an email receipt containing more details about the class."
         }
-        ctaText={"Check out other classes"}
-        ctaLink={"/classes"}
+        ctaText={'Check out other classes'}
+        ctaLink={'/classes'}
       />
       <Carousel title="Upcoming Classes & Workshops" items={classes} />
     </Layout>
@@ -50,7 +50,7 @@ export const pageQuery = graphql`
           price
           program
           classImage {
-            gatsbyImage(width: 304, height: 212, layout: FIXED)
+            gatsbyImage(height: 212, layout: FIXED)
           }
         }
       }

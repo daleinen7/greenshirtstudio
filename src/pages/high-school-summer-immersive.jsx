@@ -1,12 +1,12 @@
-import React from "react";
-import { SEO } from "../components/seo";
-import HighSchoolSummerImmersiveImg from "../images/highschoolsummerimmersive.jpg";
-import Layout from "../components/Layout";
-import Subscribe from "../components/Subscribe";
-import ContentStack from "../components/ContentStack";
-import ImageAndContentHeader from "../components/ImageAndContentHeader";
-import ClassCard from "../components/ClassCard";
-import { graphql } from "gatsby";
+import React from 'react';
+import { SEO } from '../components/seo';
+import HighSchoolSummerImmersiveImg from '../images/highschoolsummerimmersive.jpg';
+import Layout from '../components/Layout';
+import Subscribe from '../components/Subscribe';
+import ContentStack from '../components/ContentStack';
+import ImageAndContentHeader from '../components/ImageAndContentHeader';
+import ClassCard from '../components/ClassCard';
+import { graphql } from 'gatsby';
 
 const HighSchoolSummerImmersive = ({ data }) => {
   const classes = data.allWpClass.nodes.map((actingClass) => (
@@ -53,7 +53,7 @@ export const pageQuery = graphql`
           price
           classImage {
             altText
-            gatsbyImage(width: 416, height: 290)
+            gatsbyImage(height: 290)
           }
         }
       }
