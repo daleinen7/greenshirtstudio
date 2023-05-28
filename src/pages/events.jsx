@@ -122,7 +122,7 @@ export const pageQuery = graphql`
         content
         events {
           featuredImage {
-            gatsbyImage(height: 290)
+            gatsbyImage(width: 416, height: 290)
           }
           eventDate
           eventbriteUrl
