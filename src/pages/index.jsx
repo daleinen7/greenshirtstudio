@@ -24,9 +24,7 @@ const IndexPage = ({ data }) => {
       }
       return 0;
     })
-    .filter(
-      (actingClass) => actingClass.classGroup.program !== 'Test'
-    )
+    .filter((actingClass) => actingClass.classGroup.program !== 'Test')
     .map((actingClass) => (
       <ClassCard
         title={actingClass.title}

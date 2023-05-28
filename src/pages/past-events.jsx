@@ -51,6 +51,37 @@ const EventPage = ({ data }) => {
     );
   };
 
+  // Function to organize events by year in reverse chronological order
+  function organizeEventsByYear(eventsArray) {
+    const eventsByYear = {};
+
+    eventsArray.forEach((event) => {
+      const year = new Date(event.events.eventDate).getFullYear();
+      if (!eventsByYear[year]) {
+        eventsByYear[year] = [];
+      }
+      eventsByYear[year].push(event);
+    });
+
+    // Sort the years in reverse chronological order
+    const sortedYears = Object.keys(eventsByYear).sort((a, b) => b - a);
+
+    // Sort events within each year in chronological order
+    sortedYears.forEach((year) => {
+      eventsByYear[year].sort((b, a) => {
+        const dateA = new Date(a.events.eventDate);
+        const dateB = new Date(b.events.eventDate);
+        return dateA - dateB;
+      });
+    });
+
+    return eventsByYear;
+  }
+
+  // Usage
+  const organizedEvents = organizeEventsByYear(data.allWpEventbrite.nodes);
+  console.log('years', organizedEvents);
+
   return (
     <Layout>
       <StyledEventPage>
@@ -59,12 +90,30 @@ const EventPage = ({ data }) => {
         </StyledHero>
       </StyledEventPage>
 
-      <ContentStack
-        title="2023"
-        content={data.allWpEventbrite.nodes.map((evt) => {
-          return cardifyEvent(evt, true);
+      {Object.entries(organizedEvents)
+        .reverse()
+        .map(([year, events]) => {
+          return (
+            <ContentStack
+              key={year}
+              title={year}
+              content={events.map((evt) => {
+                return cardifyEvent(evt, true);
+              })}
+            />
+          );
         })}
-      />
+
+      {/* {organizedEvents.map((year) => {
+        return (
+          <ContentStack
+            title={year}
+            content={year.map((evt) => {
+              return cardifyEvent(evt, true);
+            })}
+          />
+        );
+      })} */}
     </Layout>
   );
 };

@@ -1,5 +1,5 @@
-import ZonaPro from "../lib/zonapro-extrabold-webfont.woff2";
-import { createGlobalStyle } from "styled-components";
+import ZonaPro from '../lib/zonapro-extrabold-webfont.woff2';
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
     @font-face {
@@ -35,7 +35,7 @@ const GlobalStyles = createGlobalStyle`
     line-height: 1.875rem;
   }
 
-  
+
 
   .visually-hidden {
     position: absolute !important;
@@ -82,13 +82,13 @@ const GlobalStyles = createGlobalStyle`
     background: var(--white);
     color: var(--black);
     border: 2px solid var(--black);
-    
+
     :hover {
       border: 2px solid var(--dark-gray);
       color: var(--dark-gray);
     }
   }
-  
+
   .alice-carousel__prev-btn-item, .alice-carousel__next-btn-item{
     border-radius: 50%;
     height: 32px;
