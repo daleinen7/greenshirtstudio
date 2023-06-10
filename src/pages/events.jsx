@@ -61,6 +61,8 @@ const Events = ({ data }) => {
 
   const futureEventsObj = {};
 
+  console.log('DATA: ', data.allWpEventbrite.nodes);
+
   const futureEventsData = data.allWpEventbrite.nodes
     .filter((evt) => {
       return today < new Date(evt.events.eventDate);
@@ -69,6 +71,7 @@ const Events = ({ data }) => {
 
   // for each event
   futureEventsData.forEach((evt) => {
+    console.log('EVENT DATE: ', evt.events.eventDate);
     const eventDate = new Date(evt.events.eventDate);
     if (!futureEventsObj[eventDate.getMonth()]) {
       futureEventsObj[eventDate.getMonth()] = [];
@@ -94,6 +97,8 @@ const Events = ({ data }) => {
         const prettyMonth = firstDate.toLocaleString('default', {
           month: 'long',
         });
+
+        console.log('Well no month here: ', month[1]);
 
         return (
           <ContentStack
