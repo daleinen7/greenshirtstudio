@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const StyledClassDetails = styled.section`
   border: 2px solid var(--light-gray);
@@ -14,6 +14,10 @@ const StyledClassDetails = styled.section`
   dl {
     display: grid;
     grid-template-columns: 6.9375rem auto;
+
+    dt {
+      margin-top: 0;
+    }
   }
 
   dt {
@@ -53,13 +57,13 @@ const ClassDetails = ({ wpClass }) => {
           <dt>Location</dt>
           <dd className="location">
             {wpClass.classGroup.location
-              .split(" ")
-              .splice(0, wpClass.classGroup.location.split(" ").length - 1, -1)
-              .join(" ")}
+              .split(' ')
+              .splice(0, wpClass.classGroup.location.split(' ').length - 1, -1)
+              .join(' ')}
             <br />
             {
-              wpClass.classGroup.location.split(" ")[
-                wpClass.classGroup.location.split(" ").length - 1
+              wpClass.classGroup.location.split(' ')[
+                wpClass.classGroup.location.split(' ').length - 1
               ]
             }
           </dd>

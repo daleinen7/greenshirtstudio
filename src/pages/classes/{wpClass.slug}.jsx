@@ -70,7 +70,6 @@ const StyledClassPage = styled.div`
 
         dt {
           font-weight: bold;
-          margin-top: 1rem;
         }
         ul {
           list-style: none;
