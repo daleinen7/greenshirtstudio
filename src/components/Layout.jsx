@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-import { Link } from "gatsby";
-import useWindowSize from "../lib/useWindowSize";
-import Nav from "./Nav";
-import MobileNav from "./MobileNav";
-import logo from "../images/logo.svg";
-import openNav from "../images/openNav.svg";
-import closeNav from "../images/closeNav.svg";
-import GlobalStyles from "../styles/globalStyles";
-import Reset from "../styles/reset";
-import facebook from "../images/socialMedia/facebook.svg";
-import instagram from "../images/socialMedia/instagram.svg";
-import twitter from "../images/socialMedia/twitter.svg";
-import yelp from "../images/socialMedia/yelp.svg";
+import React, { useState } from 'react';
+import { Link } from 'gatsby';
+import useWindowSize from '../lib/useWindowSize';
+import Nav from './Nav';
+import MobileNav from './MobileNav';
+import logo from '../images/logo.svg';
+import openNav from '../images/openNav.svg';
+import closeNav from '../images/closeNav.svg';
+import GlobalStyles from '../styles/globalStyles';
+import Reset from '../styles/reset';
+import facebook from '../images/socialMedia/facebook.svg';
+import instagram from '../images/socialMedia/instagram.svg';
+import twitter from '../images/socialMedia/twitter.svg';
+import google from '../images/socialMedia/FaGoogle.svg';
 
-import styled from "styled-components";
-import { useEffect } from "react";
+import styled from 'styled-components';
+import { useEffect } from 'react';
 
 const StyledHeader = styled.header`
   padding: 0 4rem;
@@ -23,9 +23,9 @@ const StyledHeader = styled.header`
   align-items: center;
 
   background: ${(props) =>
-    props.headerColor === "green" ? "var(--green)" : " var(--white)"};
+    props.headerColor === 'green' ? 'var(--green)' : ' var(--white)'};
   color: ${(props) =>
-    props.headerColor === "green" ? "var(--white)" : " var(--black)"};
+    props.headerColor === 'green' ? 'var(--white)' : ' var(--black)'};
   height: 6rem;
   display: flex;
   justify-content: center;
@@ -99,8 +99,8 @@ const StyledFooter = styled.footer`
       margin-bottom: 0.5rem;
     }
 
-    input[type="text"],
-    input[type="email"] {
+    input[type='text'],
+    input[type='email'] {
       padding: 0.875rem 0.75rem;
       border-radius: 5px;
       width: 100%;
@@ -111,7 +111,7 @@ const StyledFooter = styled.footer`
       }
     }
 
-    input[type="submit"] {
+    input[type='submit'] {
       color: var(--white);
       background: var(--black);
       border: 2px solid var(--white);
@@ -172,7 +172,7 @@ const StyledFooter = styled.footer`
     width: 18.6875rem;
 
     h3 {
-      font-family: "Lato", sans-serif;
+      font-family: 'Lato', sans-serif;
     }
   }
 
@@ -275,7 +275,7 @@ const Layout = ({ children, headerColor }) => {
             </a>
           </div>
           {/* <form>
-            
+
             <label htmlFor="name">
               Name
               <input
@@ -306,7 +306,7 @@ const Layout = ({ children, headerColor }) => {
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2967.128891922789!2d-87.675840184167!3d41.95456647921637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd2232f34c5f3%3A0x8802314b46718d2c!2sGreen%20Shirt%20Studio!5e0!3m2!1sen!2sus!4v1650140273910!5m2!1sen!2sus"
               width="416"
               height="238"
-              style={{ border: "0" }}
+              style={{ border: '0' }}
               allowFullScreen=""
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
@@ -354,7 +354,7 @@ const Layout = ({ children, headerColor }) => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <img src={yelp} alt="yelp" />
+                    <img src={google} alt="google" />
                   </a>
                 </li>
               </ul>
