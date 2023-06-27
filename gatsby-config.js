@@ -1,6 +1,6 @@
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
-})
+});
 
 module.exports = {
   siteMetadata: {
@@ -20,7 +20,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-google-tagmanager',
       options: {
-        id: 'G-EL71YC0QTP',
+        // id: 'G-EL71YC0QTP',
+        id: 'GTM-5N266ZQ',
 
         // Include GTM in development.
         //
@@ -70,4 +71,4 @@ module.exports = {
       },
     },
   ],
-}
+};
