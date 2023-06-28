@@ -350,7 +350,7 @@ const Layout = ({ children, headerColor }) => {
                 </li>
                 <li>
                   <a
-                    href="https://www.yelp.com/biz/green-shirt-studio-chicago-2"
+                    href="https://www.google.com/search?q=green+shirt+studio&rlz=1C5CHFA_enUS885US885&oq=green+shirt+&aqs=chrome.0.69i59j69i57j69i59l2j0i271j69i60l2j69i65.1348j0j1&sourceid=chrome&ie=UTF-8&bshm=lbsc/1#ip=1&lrd=0x880fd2232f34c5f3:0x8802314b46718d2c,1"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
