@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const StyledUpcomingEvents = styled.section`
   display: flex;
@@ -7,6 +7,7 @@ const StyledUpcomingEvents = styled.section`
   align-items: center;
   max-width: 40rem;
   margin: 0 auto;
+  margin-bottom: 4.75rem;
 
   h3 {
     font-size: 2rem;

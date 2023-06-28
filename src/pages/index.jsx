@@ -24,9 +24,7 @@ const IndexPage = ({ data }) => {
       }
       return 0;
     })
-    .filter(
-      (actingClass) => actingClass.classGroup.program !== 'Test'
-    )
+    .filter((actingClass) => actingClass.classGroup.program !== 'Test')
     .map((actingClass) => (
       <ClassCard
         title={actingClass.title}
@@ -123,7 +121,7 @@ export const pageQuery = graphql`
           price
           program
           classImage {
-            gatsbyImage(height: 212, layout: FIXED)
+            gatsbyImage(width: 416, height: 212, layout: FIXED)
           }
         }
       }

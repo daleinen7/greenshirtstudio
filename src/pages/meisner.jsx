@@ -64,7 +64,7 @@ export const pageQuery = graphql`
           day
           classImage {
             altText
-            gatsbyImage(height: 290)
+            gatsbyImage(width: 416, height: 290)
           }
         }
       }

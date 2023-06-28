@@ -1,14 +1,14 @@
-import React from "react";
-import { Link } from "gatsby";
-import { GatsbyImage } from "gatsby-plugin-image";
-import styled from "styled-components";
+import React from 'react';
+import { Link } from 'gatsby';
+import { GatsbyImage } from 'gatsby-plugin-image';
+import styled from 'styled-components';
 
 const StyledEventCard = styled.article`
-  max-width: ${(props) => (props.small ? "19rem" : "26rem")};
+  max-width: ${(props) => (props.small ? '19rem' : '26rem')};
   width: 100%;
 
   h4 {
-    font-family: "Lato", sans-serif;
+    font-family: 'Lato', sans-serif;
     font-size: 1.25rem;
     line-height: 1.625rem;
     font-weight: 900;
@@ -29,7 +29,7 @@ const StyledEventCard = styled.article`
     img {
       object-fit: contain;
       border: 1px solid var(--light-gray);
-      width: 19rem;
+      width: ${(props) => (props.small ? '19rem' : '26rem')};
       margin-bottom: 0.5rem;
     }
   }
