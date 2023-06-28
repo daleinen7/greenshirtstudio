@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'gatsby';
 import Layout from '../components/Layout';
 import { SEO } from '../components/seo';
 import parse from 'html-react-parser';
@@ -9,8 +10,19 @@ import UpcomingEvents from '../components/UpcomingEvents';
 import EventCard from '../components/EventCard';
 import Carousel from '../components/Carousel';
 import { graphql } from 'gatsby';
-
 import EventsImg from '../images/Events.jpg';
+import styled from 'styled-components';
+
+const StyledLink = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  a {
+    margin-top: -4rem;
+    margin-bottom: 4rem;
+    text-align: center;
+  }
+`;
 
 const Events = ({ data }) => {
   const today = new Date();
@@ -102,6 +114,11 @@ const Events = ({ data }) => {
         buttonLink="/hosting"
       />
       <Carousel title="Past Events" items={pastEvents} />
+      {/* <StyledLink>
+        <Link to="/past-events" className="button fill center">
+          All Past Events
+        </Link>
+      </StyledLink> */}
     </Layout>
   );
 };
@@ -122,7 +139,7 @@ export const pageQuery = graphql`
         content
         events {
           featuredImage {
-            gatsbyImage(height: 290)
+            gatsbyImage(width: 416, height: 290)
           }
           eventDate
           eventbriteUrl

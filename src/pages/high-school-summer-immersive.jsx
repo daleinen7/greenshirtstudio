@@ -53,7 +53,7 @@ export const pageQuery = graphql`
           price
           classImage {
             altText
-            gatsbyImage(height: 290)
+            gatsbyImage(width: 416, height: 290)
           }
         }
       }

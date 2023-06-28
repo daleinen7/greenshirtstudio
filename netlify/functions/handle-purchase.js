@@ -15,19 +15,6 @@ exports.handler = async ({ body, headers }) => {
       process.env.STRIPE_WEBHOOK_SECRET
     );
 
-    const config = {
-      from_email: 'bot@greenshirtstudio.com',
-      to_email: ['daleinen@gmail.com', 'jack@greenshirtstudio.com'],
-      subject: 'Stripe Webhook: Successful Purchase',
-      content:
-        '<p>Hello Jack, someone has purchased a class. Please check the database to make sure everything is correct.</p>',
-    };
-
-    let email = catalystApp.email();
-    let mailPromise = await email.sendMail(config);
-
-    console.log('this is dumb: ', mailPromise);
-
     // only do stuff if this is a successful Stripe Checkout purchase
     if (stripeEvent.type === 'checkout.session.completed') {
       const eventObject = stripeEvent.data.object;
