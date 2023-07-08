@@ -114,11 +114,11 @@ const Events = ({ data }) => {
         buttonLink="/hosting"
       />
       <Carousel title="Past Events" items={pastEvents} />
-      {/* <StyledLink>
+      <StyledLink>
         <Link to="/past-events" className="button fill center">
           All Past Events
         </Link>
-      </StyledLink> */}
+      </StyledLink>
     </Layout>
   );
 };
