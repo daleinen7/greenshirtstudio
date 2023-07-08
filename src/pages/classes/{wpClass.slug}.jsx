@@ -82,9 +82,17 @@ const StyledClassPage = styled.div`
 
 const ClassPage = (props) => {
   const { wpClass } = props.data;
-  const workshopPolicy = props.data.allWpPage.edges[2].node.content;
-  const cancellationPolicy = props.data.allWpPage.edges[1].node.content;
-  const attendancePolicy = props.data.allWpPage.edges[0].node.content;
+
+  // filter through allWpPage query to find the correct policy
+  const workshopPolicy = props.data.allWpPage.edges.filter(
+    (edge) => edge.node.title === 'Workshop Cancellation Policy'
+  )[0].node.content;
+  const cancellationPolicy = props.data.allWpPage.edges.filter(
+    (edge) => edge.node.title === 'Cancellation Policy Gatsby'
+  )[0].node.content;
+  const attendancePolicy = props.data.allWpPage.edges.filter(
+    (edge) => edge.node.title === 'Attendance Policy'
+  )[0].node.content;
 
   return (
     <Layout>
@@ -134,6 +142,7 @@ export const query = graphql`
       edges {
         node {
           id
+          title
           content
         }
       }
