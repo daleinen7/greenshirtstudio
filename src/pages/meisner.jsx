@@ -13,12 +13,39 @@ const Meisner = ({ data }) => {
 
   const classes = data.allWpClass.nodes
     .sort((a, b) => {
-      if (a.title < b.title) {
+      const levelRegex = /Level (\d+)/;
+      const aLevel = parseInt(a.title.match(levelRegex)[1]);
+      const bLevel = parseInt(b.title.match(levelRegex)[1]);
+
+      const daysOfWeek = [
+        'Sundays',
+        'Mondays',
+        'Tuesdays',
+        'Wednesdays',
+        'Thursdays',
+        'Fridays',
+        'Saturdays',
+      ];
+      const aDayIndex = daysOfWeek.indexOf(a.classGroup.day);
+      const bDayIndex = daysOfWeek.indexOf(b.classGroup.day);
+
+      // First, compare by level
+      if (aLevel < bLevel) {
         return -1;
       }
-      if (a.title > b.title) {
+      if (aLevel > bLevel) {
         return 1;
       }
+
+      // If the levels are the same, compare by day
+      if (aDayIndex < bDayIndex) {
+        return -1;
+      }
+      if (aDayIndex > bDayIndex) {
+        return 1;
+      }
+
+      // If both level and day are the same, maintain the original order
       return 0;
     })
     .map((actingClass) => (
