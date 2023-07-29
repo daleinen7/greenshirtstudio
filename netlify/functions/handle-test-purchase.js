@@ -1,7 +1,6 @@
 const { log } = require('console');
 
-// const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST_KEY);
 
 const API_ENDPOINT = `${process.env.BACKEND_URL}/wp-json/wp/v2/class`;
 
