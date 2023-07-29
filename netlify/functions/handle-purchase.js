@@ -1,19 +1,13 @@
-const { log } = require('console');
-
-// const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const API_ENDPOINT = `${process.env.BACKEND_URL}/wp-json/wp/v2/class`;
 
 exports.handler = async ({ body, headers }) => {
-  console.log("BODY: ", body);
-  console.log("HEADERS: ", headers);
   try {
     // check the webhook to make sure it’s valid
     const stripeEvent = stripe.webhooks.constructEvent(
       body,
       headers['stripe-signature'],
-      // process.env.STRIPE_WEBHOOK_SECRET
       process.env.STRIPE_WEBHOOK_SECRET
     );
 
@@ -23,7 +17,6 @@ exports.handler = async ({ body, headers }) => {
 
       const metadata = stripeEvent.data.object.metadata;
       console.log('Metadata: ', metadata);
-
 
       // if purchase is a subscription
       if (eventObject.mode === 'subscription') {
@@ -64,8 +57,6 @@ exports.handler = async ({ body, headers }) => {
       // cast Spots Left to a number
       spotsLeft = Number(spotsLeft);
 
-      console.log('Headers: ', headers);
-
       let newSpotsLeft = spotsLeft - 1;
 
       console.log(
@@ -77,7 +68,7 @@ exports.handler = async ({ body, headers }) => {
         })
       );
 
-      const url = `${process.env.BACKEND_URL}/wp-json/gss/v1/update-class`;
+      const url = `${API_ENDPOINT}/${metadata.databaseId}`;
 
       console.log('URL: ', url);
 
@@ -88,8 +79,9 @@ exports.handler = async ({ body, headers }) => {
           Authorization: `Basic ${auth}`,
         },
         body: JSON.stringify({
-          post_id: metadata.databaseId,
-          seats_left: newSpotsLeft,
+          acf: {
+            spots_left: newSpotsLeft,
+          },
         }),
       });
 
