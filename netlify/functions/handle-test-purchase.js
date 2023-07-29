@@ -1,12 +1,12 @@
-const { log } = require('console');
+import apiFetch from '@wordpress/api-fetch';
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST_KEY);
 
 const API_ENDPOINT = `${process.env.BACKEND_URL}/wp-json/wp/v2/class`;
 
 exports.handler = async ({ body, headers }) => {
-  console.log("BODY: ", body);
-  console.log("HEADERS: ", headers);
+  // console.log("BODY: ", body);
+  // console.log("HEADERS: ", headers);
   try {
     // check the webhook to make sure it’s valid
     const stripeEvent = stripe.webhooks.constructEvent(
@@ -21,7 +21,6 @@ exports.handler = async ({ body, headers }) => {
 
       const metadata = stripeEvent.data.object.metadata;
       console.log('Metadata: ', metadata);
-
 
       // if purchase is a subscription
       if (eventObject.mode === 'subscription') {
@@ -62,8 +61,6 @@ exports.handler = async ({ body, headers }) => {
       // cast Spots Left to a number
       spotsLeft = Number(spotsLeft);
 
-      console.log('Headers: ', headers);
-
       let newSpotsLeft = spotsLeft - 1;
 
       console.log(
@@ -75,27 +72,40 @@ exports.handler = async ({ body, headers }) => {
         })
       );
 
-      const url = `${process.env.BACKEND_URL}/wp-json/gss/v1/update-class`;
+      // const url = `${process.env.BACKEND_URL}/wp-json/gss/v1/update-class`;
 
-      console.log('URL: ', url);
+      // console.log('URL: ', url);
 
-      const update = await fetch(url, {
+      // const update = await fetch(url, {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     Authorization: `Basic ${auth}`,
+      //   },
+      //   body: JSON.stringify({
+      //     post_id: metadata.databaseId,
+      //     seats_left: newSpotsLeft,
+      //   }),
+      // });
+
+      // // Get Response body
+      // const updateResponse = await update.json();
+
+      // //console.log("SPOTS LEFT UPDATE: ", update);
+      // console.log('Update Response: ', updateResponse);
+
+      // POST
+      apiFetch({
+        path: '/wp/v2/class/300390',
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Basic ${auth}`,
+        data: {
+          acf: {
+            spotsLeft: '22',
+          },
         },
-        body: JSON.stringify({
-          post_id: metadata.databaseId,
-          seats_left: newSpotsLeft,
-        }),
+      }).then((res) => {
+        console.log(res);
       });
-
-      // Get Response body
-      const updateResponse = await update.json();
-
-      //console.log("SPOTS LEFT UPDATE: ", update);
-      console.log('Update Response: ', updateResponse);
 
       console.log('Webhook successful!');
 
