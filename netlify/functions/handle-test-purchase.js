@@ -1,5 +1,3 @@
-import apiFetch from '@wordpress/api-fetch';
-
 const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST_KEY);
 
 const API_ENDPOINT = `${process.env.BACKEND_URL}/wp-json/wp/v2/class`;
@@ -72,40 +70,28 @@ exports.handler = async ({ body, headers }) => {
         })
       );
 
-      // const url = `${process.env.BACKEND_URL}/wp-json/gss/v1/update-class`;
+      const url = `${API_ENDPOINT}/${metadata.databaseId}`;
 
-      // console.log('URL: ', url);
+      console.log('URL: ', url);
 
-      // const update = await fetch(url, {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //     Authorization: `Basic ${auth}`,
-      //   },
-      //   body: JSON.stringify({
-      //     post_id: metadata.databaseId,
-      //     seats_left: newSpotsLeft,
-      //   }),
-      // });
-
-      // // Get Response body
-      // const updateResponse = await update.json();
-
-      // //console.log("SPOTS LEFT UPDATE: ", update);
-      // console.log('Update Response: ', updateResponse);
-
-      // POST
-      apiFetch({
-        path: '/wp/v2/class/300390',
+      const update = await fetch(url, {
         method: 'POST',
-        data: {
-          acf: {
-            spotsLeft: '22',
-          },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Basic ${auth}`,
         },
-      }).then((res) => {
-        console.log(res);
+        body: JSON.stringify({
+          acf: {
+            spots_left: newSpotsLeft,
+          },
+        }),
       });
+
+      // Get Response body
+      const updateResponse = await update.json();
+
+      //console.log("SPOTS LEFT UPDATE: ", update);
+      console.log('Update Response: ', updateResponse);
 
       console.log('Webhook successful!');
 
