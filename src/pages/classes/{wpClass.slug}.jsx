@@ -81,7 +81,7 @@ const StyledClassPage = styled.div`
 `;
 
 const ClassPage = (props) => {
-  const { wpClass } = props.data;
+  const { wpClass, allWpSession } = props.data;
 
   // filter through allWpPage query to find the correct policy
   const workshopPolicy = props.data.allWpPage.edges.filter(
@@ -97,7 +97,7 @@ const ClassPage = (props) => {
   return (
     <Layout>
       <StyledClassPage>
-        <ClassHeader wpClass={wpClass} />
+        <ClassHeader wpClass={wpClass} session={allWpSession.nodes[0].title} />
         <div className="main-content">
           <div className="left-column">
             <Description wpClass={wpClass} />
@@ -128,6 +128,11 @@ export const Head = ({ data }) => (
 
 export const query = graphql`
   query ($id: String!) {
+    allWpSession {
+      nodes {
+        title
+      }
+    }
     allWpPage(
       filter: {
         title: {

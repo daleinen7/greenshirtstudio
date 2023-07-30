@@ -25,7 +25,12 @@ exports.handler = async ({ body, headers }) => {
       phone_number_collection: {
         enabled: true,
       },
-      metadata: { dayOfWeek: params.dayOfWeek, databaseId: params.dbid },
+      metadata: {
+        dayOfWeek: params.dayOfWeek,
+        databaseId: params.dbid,
+        session: params.session,
+        className: params.className,
+      },
     });
 
     console.log('SESSION: ', session);

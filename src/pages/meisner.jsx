@@ -66,7 +66,10 @@ const Meisner = ({ data }) => {
         title="Meisner Acting Program"
         content={hack}
       />
-      <ContentStack title="August - October 2023" content={classes} />
+      <ContentStack
+        title={data.allWpSession.nodes[0].title}
+        content={classes}
+      />
       <Subscribe />
     </Layout>
   );
@@ -79,6 +82,11 @@ export const Head = () => (
 
 export const pageQuery = graphql`
   query MeisnerClasses {
+    allWpSession {
+      nodes {
+        title
+      }
+    }
     allWpClass(
       filter: { classGroup: { program: { eq: "Meisner Acting Program" } } }
     ) {
