@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import useSWR from "swr";
-import { loadStripe } from "@stripe/stripe-js";
-import styled from "styled-components";
+import React, { useState } from 'react';
+import useSWR from 'swr';
+import { loadStripe } from '@stripe/stripe-js';
+import styled from 'styled-components';
 
 const StyledClassHeader = styled.div`
   background: var(--white);
@@ -159,7 +159,7 @@ const getStripe = (test) => {
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-const ClassHeader = ({ wpClass }) => {
+const ClassHeader = ({ wpClass, session }) => {
   const [loading, setLoading] = useState(false);
 
   const { data, error } = useSWR(
@@ -167,27 +167,27 @@ const ClassHeader = ({ wpClass }) => {
     fetcher
   );
 
-  const spotsLeft = data ? `${data.acf.spots_left} spots left` : "loading";
+  const spotsLeft = data ? `${data.acf.spots_left} spots left` : 'loading';
 
   const handlePurchase = async (e, paymentType) => {
     e.preventDefault();
     setLoading(true);
 
-    console.log("Trying to buy with ", paymentType);
+    console.log('Trying to buy with ', paymentType);
 
-    const response = await fetch("/.netlify/functions/create-checkout", {
-      method: "POST",
+    const response = await fetch('/.netlify/functions/create-checkout', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        test: wpClass.classGroup.program === "Test",
+        test: wpClass.classGroup.program === 'Test',
         paymentType: paymentType,
         promotion: wpClass.classGroup.price > 0,
         lineItems: [
           {
             price:
-              paymentType === "payment"
+              paymentType === 'payment'
                 ? wpClass.classGroup.stripeId
                 : wpClass.classGroup.stripeInstallmentId,
             quantity: 1,
@@ -195,6 +195,9 @@ const ClassHeader = ({ wpClass }) => {
         ],
         dayOfWeek: wpClass.classGroup.day,
         dbid: wpClass.databaseId,
+        className: wpClass.title.rendered,
+        slug: wpClass.slug,
+        session: session,
       }),
     }).then((res) => res.json());
 
@@ -203,12 +206,12 @@ const ClassHeader = ({ wpClass }) => {
       response
     );
 
-    const stripe = await getStripe(wpClass.classGroup.program === "Test");
+    const stripe = await getStripe(wpClass.classGroup.program === 'Test');
     const { error } = await stripe.redirectToCheckout({
       sessionId: response.sessionId,
     });
     if (error) {
-      console.warn("Error:", error);
+      console.warn('Error:', error);
       setLoading(false);
     }
   };
@@ -253,9 +256,9 @@ const ClassHeader = ({ wpClass }) => {
             {data ? (
               data.acf.spots_left > 0 ? (
                 <button
-                  className={"register"}
+                  className={'register'}
                   disabled={loading}
-                  onClick={(e) => handlePurchase(e, "payment")}
+                  onClick={(e) => handlePurchase(e, 'payment')}
                 >
                   Register
                 </button>
@@ -263,7 +266,7 @@ const ClassHeader = ({ wpClass }) => {
                 <button disabled>SOLD OUT</button>
               )
             ) : (
-              <button disabled className={"register"}>
+              <button disabled className={'register'}>
                 Register
               </button>
             )}
@@ -271,9 +274,9 @@ const ClassHeader = ({ wpClass }) => {
           {wpClass.classGroup.stripeInstallmentId && (
             <li>
               <button
-                className={"installment"}
+                className={'installment'}
                 disabled={loading}
-                onClick={(e) => handlePurchase(e, "subscription")}
+                onClick={(e) => handlePurchase(e, 'subscription')}
               >
                 Payment Plan
               </button>
