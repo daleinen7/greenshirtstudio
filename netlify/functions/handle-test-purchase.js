@@ -93,6 +93,41 @@ exports.handler = async ({ body, headers }) => {
       //console.log("SPOTS LEFT UPDATE: ", update);
       console.log('Update Response: ', updateResponse);
 
+      const airtableEndpoint = `https://api.airtable.com/v0/YOUR_AIRTABLE_BASE_ID/Test%20Table`;
+
+      // Airtable requires the metadata to be in an object with the field names as keys.
+      const airtableMetadata = {
+        // Replace 'Field1', 'Field2', ... with your actual field names in the Airtable table.
+        Field1: metadata.someValue,
+        Field2: metadata.someOtherValue,
+        // Add more fields as needed.
+      };
+
+      // Update the Airtable record using the fetch API
+      const airtableUpdateResponse = await fetch(airtableEndpoint, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${process.env.AIRTABLE_TOKEN}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          records: [
+            {
+              fields: {
+                'First Name': 'test',
+                'Last Name': 'name',
+                Email: 'daleinen@gmail.com',
+                Session: 'August',
+              },
+            },
+          ],
+        }),
+      });
+
+      // Get the response from Airtable
+      const airtableUpdateData = await airtableUpdateResponse.json();
+      console.log('Airtable Update Response: ', airtableUpdateData);
+
       console.log('Webhook successful!');
 
       return {

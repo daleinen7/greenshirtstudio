@@ -16,6 +16,7 @@
   "dependencies": {
     "@stripe/stripe-js": "^1.46.0",
     "@wordpress/api-fetch": "^6.24.0",
+    "airtable": "^0.12.1",
     "babel-plugin-styled-components": "^2.0.7",
     "gatsby": "^5.10.0",
     "gatsby-plugin-google-fonts": "^1.0.1",
