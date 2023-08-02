@@ -105,7 +105,7 @@ exports.handler = async ({ body, headers }) => {
 
       // Update the Airtable record using the fetch API
       const airtableUpdateResponse = await fetch(airtableEndpoint, {
-        method: 'PATCH', // Use PATCH to update an existing record
+        method: 'POST',
         headers: {
           Authorization: `Bearer ${process.env.AIRTABLE_TOKEN}`,
           'Content-Type': 'application/json',
