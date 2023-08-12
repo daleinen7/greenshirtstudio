@@ -94,10 +94,14 @@ const Events = ({ data }) => {
           month: 'long',
         });
 
+        const prettyYear = firstDate.toLocaleString('default', {
+          year: 'numeric',
+        });
+
         return (
           <ContentStack
             key={month[0]}
-            title={prettyMonth}
+            title={prettyMonth + ' ' + prettyYear}
             content={month[1]
               .sort((a, b) => {
                 // Turn your strings into dates, and then subtract them
