@@ -6,6 +6,8 @@ import { graphql } from 'gatsby';
 import parse from 'html-react-parser';
 import ContentStack from '../components/ContentStack';
 import EventCard from '../components/EventCard';
+import LightbulbReel from '../images/lightbulbreel.mp4';
+import CTAContentCard from '../components/CTAContentCard';
 import styled from 'styled-components';
 
 const StyledEventPage = styled.div``;
@@ -80,7 +82,6 @@ const EventPage = ({ data }) => {
 
   // Usage
   const organizedEvents = organizeEventsByYear(data.allWpEventbrite.nodes);
-  console.log('years', organizedEvents);
 
   return (
     <Layout>
@@ -94,13 +95,30 @@ const EventPage = ({ data }) => {
         .reverse()
         .map(([year, events]) => {
           return (
-            <ContentStack
-              key={year}
-              title={year}
-              content={events.map((evt) => {
-                return cardifyEvent(evt, true);
-              })}
-            />
+            <>
+              <ContentStack
+                key={year}
+                title={year}
+                content={events.map((evt) => {
+                  return cardifyEvent(evt, true);
+                })}
+              />
+              {year === new Date().getFullYear().toString() && (
+                <CTAContentCard
+                  headerAlign={'right'}
+                  title={'Host your show at Green Shirt Studio'}
+                  video={LightbulbReel}
+                  imageAltText={
+                    'Have a cool idea for a show and need a space? Access our artistic community....'
+                  }
+                  info={
+                    'Click the link to view all of our upcoming events and reserve your tickets on Eventbrite.'
+                  }
+                  ctaText={'Learn More'}
+                  ctaLink={'/hosting'}
+                />
+              )}
+            </>
           );
         })}
     </Layout>

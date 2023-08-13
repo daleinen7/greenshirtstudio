@@ -1,16 +1,19 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import Layout from '../components/Layout';
-import { SEO } from '../components/seo';
+import { graphql } from 'gatsby';
 import parse from 'html-react-parser';
+import { SEO } from '../components/seo';
+import Layout from '../components/Layout';
 import ContentStack from '../components/ContentStack';
-import CTA from '../components/CTA';
+import CTAContentCard from '../components/CTAContentCard';
 import ImageAndContentHeader from '../components/ImageAndContentHeader';
 import UpcomingEvents from '../components/UpcomingEvents';
 import EventCard from '../components/EventCard';
 import Carousel from '../components/Carousel';
-import { graphql } from 'gatsby';
-import EventsImg from '../images/Events.jpg';
+import Subscribe from '../components/Subscribe';
+import EventsImg from '../images/eventshero.png';
+import CurtainCall from '../images/curtaincall.png';
+import LightbulbReel from '../images/lightbulbreel.mp4';
 import styled from 'styled-components';
 
 const StyledLink = styled.div`
@@ -60,7 +63,7 @@ const Events = ({ data }) => {
 
   const futureEventsObj = {};
 
-  const futureEventsData = data.allWpEventbrite.nodes
+  let futureEventsData = data.allWpEventbrite.nodes
     .filter((evt) => {
       return today < new Date(evt.events.eventDate);
     })
@@ -80,49 +83,90 @@ const Events = ({ data }) => {
     .filter((evt) => today >= new Date(evt.events.eventDate))
     .map((evt) => cardifyEvent(evt, true));
 
+  futureEventsData = [];
+
   return (
     <Layout>
       <ImageAndContentHeader
         image={EventsImg}
         title="Shows & Events"
-        content="Green Shirt Studio offers free and donation based Shows & Events. We invite you to join our artistic community and grow your creative skills!"
+        content="Join our vibrant artistic community, by participating in or attending our shows and events. We offer a diverse range of offerings, including free and donation-based gatherings, along with opportunities to host your very own show."
       />
-      <UpcomingEvents />
-      {Object.entries(futureEventsObj).map((month) => {
-        const firstDate = new Date(month[1][0].key);
-        const prettyMonth = firstDate.toLocaleString('default', {
-          month: 'long',
-        });
-
-        const prettyYear = firstDate.toLocaleString('default', {
-          year: 'numeric',
-        });
-
-        return (
-          <ContentStack
-            key={month[0]}
-            title={prettyMonth + ' ' + prettyYear}
-            content={month[1]
-              .sort((a, b) => {
-                // Turn your strings into dates, and then subtract them
-                // to get a value that is either negative, positive, or zero.
-                return new Date(b.key) - new Date(a.key);
-              })
-              .reverse()}
+      {futureEventsData.length > 0 ? (
+        <>
+          <UpcomingEvents />
+          {Object.entries(futureEventsObj).map((month) => {
+            const firstDate = new Date(month[1][0].key);
+            const prettyMonth = firstDate.toLocaleString('default', {
+              month: 'long',
+            });
+            const prettyYear = firstDate.toLocaleString('default', {
+              year: 'numeric',
+            });
+            return (
+              <ContentStack
+                key={month[0]}
+                title={prettyMonth + ' ' + prettyYear}
+                content={month[1]
+                  .sort((a, b) => {
+                    // Turn your strings into dates, and then subtract them
+                    // to get a value that is either negative, positive, or zero.
+                    return new Date(b.key) - new Date(a.key);
+                  })
+                  .reverse()}
+              />
+            );
+          })}
+          <CTAContentCard
+            headerAlign={'left'}
+            title={'Reserve your tickets on Eventbrite'}
+            image={CurtainCall}
+            imageAltText={'Audience attending Green Shirt Studio Event'}
+            info={
+              'Click the link to view all of our upcoming events and reserve your tickets on Eventbrite.'
+            }
+            ctaText={'Get Tickets'}
+            ctaLink={
+              'https://www.eventbrite.com/cc/shows-events-at-green-shirt-studio-1248579'
+            }
           />
-        );
-      })}
-      <CTA
-        heading="Interested in hosting your show at Green Shirt Studio?"
-        buttonText="See Details and Contact Us"
-        buttonLink="/hosting"
-      />
+        </>
+      ) : (
+        <CTAContentCard
+          headerAlign={'left'}
+          title={'Check us out on Eventbrite'}
+          image={CurtainCall}
+          imageAltText={'Audience attending Green Shirt Studio Event'}
+          info={
+            'Click the link to view all of our upcoming events and reserve your tickets on Eventbrite.'
+          }
+          ctaText={'Get Tickets'}
+          ctaLink={
+            'https://www.eventbrite.com/cc/shows-events-at-green-shirt-studio-1248579'
+          }
+        />
+      )}
       <Carousel title="Past Events" items={pastEvents} />
       <StyledLink>
         <Link to="/past-events" className="button fill center">
-          All Past Events
+          View All Past Events
         </Link>
       </StyledLink>
+
+      <CTAContentCard
+        headerAlign={'right'}
+        title={'Host your show at Green Shirt Studio'}
+        video={LightbulbReel}
+        imageAltText={
+          'Have a cool idea for a show and need a space? Access our artistic community....'
+        }
+        info={
+          'Click the link to view all of our upcoming events and reserve your tickets on Eventbrite.'
+        }
+        ctaText={'Learn More'}
+        ctaLink={'/hosting'}
+      />
+      <Subscribe />
     </Layout>
   );
 };

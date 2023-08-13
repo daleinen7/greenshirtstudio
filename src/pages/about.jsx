@@ -1,19 +1,19 @@
-import React from "react";
-import { SEO } from "../components/seo";
-import Layout from "../components/Layout";
-import SectionDivider from "../components/SectionDivider";
-import ImageAndContentHeader from "../components/ImageAndContentHeader";
-import AboutHero from "../images/AboutHero.png";
-import Accessibility from "../images/Accessibility.png";
-import Community from "../images/Community.png";
-import Diversity from "../images/Diversity.png";
-import Facing from "../images/Facing.png";
-import ContentCard from "../components/ContentCard";
-import ContentStack from "../components/ContentStack";
-import TextContent from "../components/TextContent";
-import styled from "styled-components";
-import InstructorCard from "../components/InstructorCard";
-import { graphql } from "gatsby";
+import React from 'react';
+import { SEO } from '../components/seo';
+import Layout from '../components/Layout';
+import SectionDivider from '../components/SectionDivider';
+import ImageAndContentHeader from '../components/ImageAndContentHeader';
+import AboutHero from '../images/AboutHero.png';
+import Accessibility from '../images/Accessibility.png';
+import Community from '../images/Community.png';
+import Diversity from '../images/Diversity.png';
+import Facing from '../images/Facing.png';
+import ContentCard from '../components/ContentCard';
+import ContentStack from '../components/ContentStack';
+import TextContent from '../components/TextContent';
+import styled from 'styled-components';
+import InstructorCard from '../components/InstructorCard';
+import { graphql } from 'gatsby';
 
 const StyledImage = styled.img`
   margin: 0 auto 4.75rem;
@@ -22,24 +22,24 @@ const StyledImage = styled.img`
 const About = ({ data }) => {
   const coreValues = [
     <ContentCard
-      title={"Accessibility"}
+      title={'Accessibility'}
       content={
-        "Our classes are designed to welcome and challenge students of all levels of experience"
+        'Our classes are designed to welcome and challenge students of all levels of experience'
       }
       image={Accessibility}
       altText="All level of actors"
     />,
     <ContentCard
-      title={"Diversity"}
+      title={'Diversity'}
       content={
-        "We believe people learn best when many different types of people are learning in the same space "
+        'We believe people learn best when many different types of people are learning in the same space '
       }
       image={Diversity}
       altText="Diverse actors"
     />,
     <ContentCard
-      title={"Community"}
-      content={"We grow by supporting one another"}
+      title={'Community'}
+      content={'We grow by supporting one another'}
       image={Community}
       altText="Actors posing"
     />,
@@ -53,7 +53,7 @@ const About = ({ data }) => {
         image={AboutHero}
       />
       <SectionDivider />
-      <ContentStack title={"Our Core Values"} content={coreValues} />
+      <ContentStack title={'Our Core Values'} content={coreValues} />
       <SectionDivider />
       <TextContent
         title="Our Classes"
