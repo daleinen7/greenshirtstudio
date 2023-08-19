@@ -65,7 +65,12 @@ const StyledCTACard = styled.div`
     flex-direction: column-reverse;
     padding: 3.75rem 0;
 
-    img.image {
+    h3 {
+      font-family: 'Lato', sans-serif;
+    }
+
+    img.image,
+    video {
       width: 100%;
       padding: 0;
     }

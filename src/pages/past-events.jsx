@@ -112,7 +112,7 @@ const EventPage = ({ data }) => {
                     'Have a cool idea for a show and need a space? Access our artistic community....'
                   }
                   info={
-                    'Click the link to view all of our upcoming events and reserve your tickets on Eventbrite.'
+                    'Have a cool idea for a show and need a space? We can help.'
                   }
                   ctaText={'Learn More'}
                   ctaLink={'/hosting'}

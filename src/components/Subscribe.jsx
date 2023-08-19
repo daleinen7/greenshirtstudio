@@ -1,6 +1,6 @@
-import React from "react";
-import subscribeBG from "../images/subscribeBG.svg";
-import styled from "styled-components";
+import React from 'react';
+import subscribeBG from '../images/subscribeBG.svg';
+import styled from 'styled-components';
 
 const StyledSubscribe = styled.section`
   display: flex;
@@ -21,8 +21,8 @@ const StyledSubscribe = styled.section`
   }
 
   h3 {
-    font-size: 2rem;
-    font-family: "Lato", sans-serif;
+    font-size: 1.5;
+    font-family: 'Lato', sans-serif;
     font-weight: 900;
     line-height: 2.625rem;
     text-align: center;
@@ -35,6 +35,8 @@ const StyledSubscribe = styled.section`
   }
 
   @media (max-width: 785px) {
+    padding: 3.5rem;
+
     h3 {
       font-size: 1.125rem;
       max-width: 400px;
@@ -55,7 +57,8 @@ const Subscribe = () => {
     <StyledSubscribe>
       <div className="subscribeBG">
         <h3>
-          Sign up to our newsletter to know when the next class is coming up
+          Sign up to our newsletter to hear about upcoming events Newsletter
+          Registration
         </h3>
         <a
           href="https://greenshirtstudio.us1.list-manage.com/subscribe/post?u=cd12c56d3b216488464876fcb&id=859a5605d5"

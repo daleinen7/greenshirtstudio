@@ -146,12 +146,6 @@ const Events = ({ data }) => {
           }
         />
       )}
-      <Carousel title="Past Events" items={pastEvents} />
-      <StyledLink>
-        <Link to="/past-events" className="button fill center">
-          View All Past Events
-        </Link>
-      </StyledLink>
 
       <CTAContentCard
         headerAlign={'right'}
@@ -160,12 +154,16 @@ const Events = ({ data }) => {
         imageAltText={
           'Have a cool idea for a show and need a space? Access our artistic community....'
         }
-        info={
-          'Click the link to view all of our upcoming events and reserve your tickets on Eventbrite.'
-        }
+        info={'Have a cool idea for a show and need a space? We can help.'}
         ctaText={'Learn More'}
         ctaLink={'/hosting'}
       />
+      <Carousel title="Past Events" items={pastEvents} />
+      <StyledLink>
+        <Link to="/past-events" className="button fill center">
+          View All Past Events
+        </Link>
+      </StyledLink>
       <Subscribe />
     </Layout>
   );

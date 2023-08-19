@@ -1,8 +1,8 @@
-import React from "react";
-import HeadingEffect from "./HeadingEffect";
-import useWindowSize from "../lib/useWindowSize";
-import ReactMarkdown from "react-markdown";
-import styled from "styled-components";
+import React from 'react';
+import HeadingEffect from './HeadingEffect';
+import useWindowSize from '../lib/useWindowSize';
+import ReactMarkdown from 'react-markdown';
+import styled from 'styled-components';
 
 const StyledImageAndContent = styled.div`
   background: var(--white);
@@ -37,13 +37,16 @@ const StyledImageAndContent = styled.div`
 
   @media (max-width: 785px) {
     flex-direction: column-reverse;
+    margin: 0 auto;
 
     h2 {
+      font-family: 'Lato', sans-serif;
       font-size: 2.25rem;
     }
 
     img {
       width: auto;
+      margin-bottom: 1.25rem;
       padding: 0;
     }
 
@@ -72,7 +75,7 @@ const ImageAndContentHeader = ({ title, content, image, video }) => {
     <StyledImageAndContent>
       <div className="info">
         {window.width > 785 ? <HeadingEffect text={title} /> : <h2>{title}</h2>}
-        <ReactMarkdown children={content.replace(/\n/gi, "\n &nbsp;")} />
+        <ReactMarkdown children={content.replace(/\n/gi, '\n &nbsp;')} />
       </div>
       {video ? (
         <video src={video} autoPlay loop muted playsInline></video>

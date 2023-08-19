@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const StyledContentCard = styled.div`
   max-width: 26rem;
@@ -13,6 +13,12 @@ const StyledContentCard = styled.div`
   p {
     color: var(--dark-gray);
     line-height: 1.5rem;
+  }
+
+  @media (max-width: 785px) {
+    h4 {
+      font-family: 'Lato', sans-serif;
+    }
   }
 `;
 
