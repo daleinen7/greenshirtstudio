@@ -3,7 +3,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST_KEY);
 const API_ENDPOINT = `${process.env.BACKEND_URL}/wp-json/wp/v2/class`;
 
 exports.handler = async ({ body, headers }) => {
-  // console.log("BODY: ", body);
+  console.log('BODY: ', body);
   // console.log("HEADERS: ", headers);
   try {
     // check the webhook to make sure it’s valid
@@ -93,15 +93,7 @@ exports.handler = async ({ body, headers }) => {
       //console.log("SPOTS LEFT UPDATE: ", update);
       console.log('Update Response: ', updateResponse);
 
-      const airtableEndpoint = `https://api.airtable.com/v0/YOUR_AIRTABLE_BASE_ID/Test%20Table`;
-
-      // Airtable requires the metadata to be in an object with the field names as keys.
-      const airtableMetadata = {
-        // Replace 'Field1', 'Field2', ... with your actual field names in the Airtable table.
-        Field1: metadata.someValue,
-        Field2: metadata.someOtherValue,
-        // Add more fields as needed.
-      };
+      const airtableEndpoint = `https://api.airtable.com/v0/${process.env.AIRTABLE_BASE_ID}/`;
 
       // Update the Airtable record using the fetch API
       const airtableUpdateResponse = await fetch(airtableEndpoint, {
@@ -114,6 +106,7 @@ exports.handler = async ({ body, headers }) => {
           records: [
             {
               fields: {
+                // 'Stripe Transaction ID': eventObject.id,
                 'First Name': 'test',
                 'Last Name': 'name',
                 Email: 'daleinen@gmail.com',
