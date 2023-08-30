@@ -52,14 +52,11 @@ const StyledSubscribe = styled.section`
   }
 `;
 
-const Subscribe = () => {
+const Subscribe = ({ messaging }) => {
   return (
     <StyledSubscribe>
       <div className="subscribeBG">
-        <h3>
-          Sign up to our newsletter to hear about upcoming events Newsletter
-          Registration
-        </h3>
+        <h3>{messaging}</h3>
         <a
           href="https://greenshirtstudio.us1.list-manage.com/subscribe/post?u=cd12c56d3b216488464876fcb&id=859a5605d5"
           className="button fill"

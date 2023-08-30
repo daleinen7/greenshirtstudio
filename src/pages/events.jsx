@@ -5,6 +5,7 @@ import parse from 'html-react-parser';
 import { SEO } from '../components/seo';
 import Layout from '../components/Layout';
 import ContentStack from '../components/ContentStack';
+import Content from '../components/Content';
 import CTAContentCard from '../components/CTAContentCard';
 import ImageAndContentHeader from '../components/ImageAndContentHeader';
 import UpcomingEvents from '../components/UpcomingEvents';
@@ -158,13 +159,17 @@ const Events = ({ data }) => {
         ctaText={'Learn More'}
         ctaLink={'/hosting'}
       />
-      <Carousel title="Past Events" items={pastEvents} />
+      <Content
+        heading={'Past Events'}
+        paragraph={'See what our community has been up to.'}
+      />
+      <Carousel items={pastEvents} />
       <StyledLink>
         <Link to="/past-events" className="button fill center">
           View All Past Events
         </Link>
       </StyledLink>
-      <Subscribe />
+      <Subscribe messaging="Sign up to our newsletter to know when the next class is coming up" />
     </Layout>
   );
 };

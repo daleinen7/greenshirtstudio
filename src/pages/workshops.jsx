@@ -28,7 +28,11 @@ const Workshops = ({ data }) => {
         content="Great for sharpening your skills without committing too much of your time."
       />
       <ContentStack title="Upcoming Workshops" content={classes} />
-      <Subscribe />
+      <Subscribe
+        messaging={
+          'Sign up to our newsletter to hear about upcoming events Newsletter Registration'
+        }
+      />
     </Layout>
   );
 };

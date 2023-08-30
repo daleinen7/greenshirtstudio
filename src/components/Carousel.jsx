@@ -1,8 +1,8 @@
-import React from "react";
-import { Link } from "gatsby";
-import AliceCarousel from "react-alice-carousel";
-import "react-alice-carousel/lib/alice-carousel.css";
-import styled from "styled-components";
+import React from 'react';
+import { Link } from 'gatsby';
+import AliceCarousel from 'react-alice-carousel';
+import 'react-alice-carousel/lib/alice-carousel.css';
+import styled from 'styled-components';
 
 const StyledCarousel = styled.section`
   width: 100%;
@@ -16,7 +16,7 @@ const StyledCarousel = styled.section`
     margin-bottom: 2rem;
   }
 
-  a[role="button"] {
+  a[role='button'] {
     font-weight: 900;
     color: var(--black);
     background: var(--neon-green);
@@ -69,7 +69,7 @@ const StyledCarousel = styled.section`
 
     padding: 4.75rem 1rem;
 
-    a[role="button"] {
+    a[role='button'] {
       margin: 0;
       padding: 0.75rem 1.5rem;
       font-size: 1rem;
@@ -109,7 +109,7 @@ const Carousel = ({ title, items, link, linkDisplay }) => {
 
   return (
     <StyledCarousel>
-      <h3>{title}</h3>
+      {title && <h3>{title}</h3>}
       <AliceCarousel
         disableDotsControls
         mouseTracking
