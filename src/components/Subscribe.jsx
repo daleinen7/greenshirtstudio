@@ -47,7 +47,8 @@ const StyledSubscribe = styled.section`
     h3 {
       font-size: 1.125rem;
       max-width: 300px;
-      line-height: 1.5rem;
+      font-weight: 900;
+      line-height: 150%;
     }
   }
 `;
@@ -56,12 +57,12 @@ const Subscribe = ({ messaging, buttonText }) => {
   return (
     <StyledSubscribe>
       <div className="subscribeBG">
-        <h3>{messaging}</h3>
+        <h3>{messaging ? messaging : 'Subscribe to our newsletter'}</h3>
         <a
           href="https://greenshirtstudio.us1.list-manage.com/subscribe/post?u=cd12c56d3b216488464876fcb&id=859a5605d5"
           className="button fill"
         >
-          {buttonText ? { buttonText } : 'Newsletter Registration'}
+          {buttonText ? buttonText : 'Newsletter Registration'}
         </a>
       </div>
     </StyledSubscribe>

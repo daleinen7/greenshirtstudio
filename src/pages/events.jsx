@@ -171,7 +171,7 @@ const Events = ({ data }) => {
       </StyledLink>
       <Subscribe
         buttonText="Subscribe"
-        messaging="Sign up to our newsletter to know when the next class is coming up"
+        messaging="Sign up to our newsletter to hear about upcoming events"
       />
     </Layout>
   );
