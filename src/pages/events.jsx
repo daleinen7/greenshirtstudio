@@ -169,7 +169,10 @@ const Events = ({ data }) => {
           View All Past Events
         </Link>
       </StyledLink>
-      <Subscribe messaging="Sign up to our newsletter to know when the next class is coming up" />
+      <Subscribe
+        buttonText="Subscribe"
+        messaging="Sign up to our newsletter to know when the next class is coming up"
+      />
     </Layout>
   );
 };

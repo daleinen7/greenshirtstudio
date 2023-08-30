@@ -52,7 +52,7 @@ const StyledSubscribe = styled.section`
   }
 `;
 
-const Subscribe = ({ messaging }) => {
+const Subscribe = ({ messaging, buttonText }) => {
   return (
     <StyledSubscribe>
       <div className="subscribeBG">
@@ -61,7 +61,7 @@ const Subscribe = ({ messaging }) => {
           href="https://greenshirtstudio.us1.list-manage.com/subscribe/post?u=cd12c56d3b216488464876fcb&id=859a5605d5"
           className="button fill"
         >
-          Newsletter Registration
+          {buttonText ? { buttonText } : 'Newsletter Registration'}
         </a>
       </div>
     </StyledSubscribe>
