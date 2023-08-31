@@ -84,8 +84,6 @@ const Events = ({ data }) => {
     .filter((evt) => today >= new Date(evt.events.eventDate))
     .map((evt) => cardifyEvent(evt, true));
 
-  futureEventsData = [];
-
   return (
     <Layout>
       <ImageAndContentHeader
