@@ -28,7 +28,10 @@ const HighSchoolSummerImmersive = ({ data }) => {
         content=" "
       />
       <ContentStack title="Upcoming Classes" content={classes} />
-      <Subscribe />
+      <Subscribe
+        messaging="Sign up to our newsletter to hear about upcoming events Newsletter
+          Registration"
+      />
     </Layout>
   );
 };

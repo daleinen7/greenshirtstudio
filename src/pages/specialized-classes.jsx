@@ -28,7 +28,11 @@ const SpecializedClasses = ({ data }) => {
         content="Explore new ways to create and tell your story."
       />
       <ContentStack title="Upcoming Classes" content={classes} />
-      <Subscribe />
+      <Subscribe
+        messaging={
+          'Sign up to our newsletter to hear about upcoming events Newsletter Registration'
+        }
+      />
     </Layout>
   );
 };

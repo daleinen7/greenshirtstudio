@@ -1,5 +1,5 @@
-import ZonaPro from "../lib/zonapro-extrabold-webfont.woff2";
-import { createGlobalStyle } from "styled-components";
+import ZonaPro from '../lib/zonapro-extrabold-webfont.woff2';
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
     @font-face {
@@ -56,6 +56,7 @@ const GlobalStyles = createGlobalStyle`
     min-width: 18rem;
     text-decoration: none;
     display: inline;
+    text-align: center;
     cursor: pointer;
 
     :hover {

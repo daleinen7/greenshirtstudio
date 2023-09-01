@@ -34,18 +34,7 @@ const UpcomingEvents = () => {
   return (
     <StyledUpcomingEvents>
       <h3>Upcoming Events</h3>
-      <p>
-        Our upcoming events are listed below. Check out occurs on Eventbrite.
-        You can also view upcoming events on our collections page in Eventbrite.
-      </p>
-      <a
-        href="https://www.eventbrite.com/cc/green-shirt-shows-events-1248579"
-        className="button fill"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Green Shirt Studio on Eventbrite
-      </a>
+      <p>Select an event to learn more details and reserve your tickets.</p>
     </StyledUpcomingEvents>
   );
 };
