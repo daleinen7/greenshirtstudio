@@ -162,8 +162,6 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 const ClassHeader = ({ wpClass, session }) => {
   const [loading, setLoading] = useState(false);
 
-  console.log('I tried: ', wpClass);
-
   const { data, error } = useSWR(
     `https://greenshirtstudiowp.us/wp-json/wp/v2/class/${wpClass.databaseId}`,
     fetcher
