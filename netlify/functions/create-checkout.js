@@ -14,6 +14,13 @@ exports.handler = async ({ body, headers }) => {
 
   console.log('Params Available: ', params);
 
+  const formattedDates = params.classDates
+    .map((date) => {
+      return date;
+    })
+    .join(' / ')
+    .slice(0, -1);
+
   try {
     const session = await stripe.checkout.sessions.create({
       success_url: `${process.env.GATSBY_URL_ENVIRONMENT}/success?session_id={CHECKOUT_SESSION_ID}`,
@@ -30,6 +37,10 @@ exports.handler = async ({ body, headers }) => {
         databaseId: params.dbid,
         session: params.session,
         className: params.className,
+        time: params.time,
+        instructor: params.instructor,
+        classDates: formattedDates,
+        location: params.location,
       },
     });
 

@@ -18,7 +18,7 @@ exports.handler = async ({ body, headers }) => {
       const eventObject = stripeEvent.data.object;
 
       const metadata = stripeEvent.data.object.metadata;
-      console.log('Metadata: ', metadata);
+      // console.log('Metadata: ', metadata);
 
       // if purchase is a subscription
       if (eventObject.mode === 'subscription') {
@@ -50,7 +50,7 @@ exports.handler = async ({ body, headers }) => {
           spotsLeft = data?.acf?.spots_left;
         });
 
-      console.log('Spots left after initial call: ', spotsLeft);
+      // console.log('Spots left after initial call: ', spotsLeft);
 
       const auth = Buffer.from(
         process.env.WP_USER + ':' + process.env.WP_PW
@@ -61,18 +61,18 @@ exports.handler = async ({ body, headers }) => {
 
       let newSpotsLeft = spotsLeft - 1;
 
-      console.log(
-        "Here's what's being sent: ",
-        JSON.stringify({
-          acf: {
-            spots_left: newSpotsLeft,
-          },
-        })
-      );
+      // console.log(
+      //   "Here's what's being sent: ",
+      //   JSON.stringify({
+      //     acf: {
+      //       spots_left: newSpotsLeft,
+      //     },
+      //   })
+      // );
 
       const url = `${API_ENDPOINT}/${metadata.databaseId}`;
 
-      console.log('URL: ', url);
+      // console.log('URL: ', url);
 
       const update = await fetch(url, {
         method: 'POST',
@@ -91,9 +91,11 @@ exports.handler = async ({ body, headers }) => {
       const updateResponse = await update.json();
 
       //console.log("SPOTS LEFT UPDATE: ", update);
-      console.log('Update Response: ', updateResponse);
+      // console.log('Update Response: ', updateResponse);
 
       const airtableEndpoint = `https://api.airtable.com/v0/${process.env.AIRTABLE_BASE_ID}/`;
+
+      const event = body.data.object;
 
       // Update the Airtable record using the fetch API
       const airtableUpdateResponse = await fetch(airtableEndpoint, {
@@ -106,19 +108,19 @@ exports.handler = async ({ body, headers }) => {
           records: [
             {
               fields: {
-                'Stripe Transaction ID': '12345678987654321',
-                'First Name': 'Doug',
-                'Last Name': 'Test',
-                'Email Address': 'daleinen@gmail.com',
-                'Phone Number': '123-432-1234',
-                'Payment Amount': '$999.00',
-                Session: 'August',
-                'Class Title': 'Test Class',
-                'Class Time': '4:00 pm',
-                'Day of Week': 'Thursday',
-                Instructor: 'Jack Schultz',
-                'Class Dates': 'list?',
-                Location: 'Green Shirt Studio X',
+                'Stripe Transaction ID': event.id,
+                'First Name': event.customer_details.name,
+                'Last Name': event.customer_details.name,
+                'Email Address': event.customer_details.email,
+                'Phone Number': event.customer_details.phone,
+                'Payment Amount': event.amount_total,
+                Session: event.metadata.session,
+                'Class Title': event.metadata.className,
+                'Class Time': event.metadata.time,
+                'Day of Week': event.metadata.dayOfWeek,
+                Instructor: event.metadata.instructor,
+                'Class Dates': event.metadata.classDates,
+                Location: event.metadata.location,
               },
             },
           ],
