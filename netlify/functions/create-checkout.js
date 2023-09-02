@@ -14,12 +14,9 @@ exports.handler = async ({ body, headers }) => {
 
   console.log('Params Available: ', params);
 
-  const formattedDates = params.classDates
-    .map((date) => {
-      return date;
-    })
-    .join(' / ')
-    .slice(0, -1);
+  const formattedDates = params.classDates.join(' / ').slice(0, -2);
+
+  console.log('Formatted Dates: ', formattedDates);
 
   try {
     const session = await stripe.checkout.sessions.create({
