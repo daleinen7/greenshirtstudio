@@ -162,6 +162,8 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 const ClassHeader = ({ wpClass, session }) => {
   const [loading, setLoading] = useState(false);
 
+  console.log('I tried: ', wpClass);
+
   const { data, error } = useSWR(
     `https://greenshirtstudiowp.us/wp-json/wp/v2/class/${wpClass.databaseId}`,
     fetcher
@@ -195,7 +197,11 @@ const ClassHeader = ({ wpClass, session }) => {
         ],
         dayOfWeek: wpClass.classGroup.day,
         dbid: wpClass.databaseId,
-        className: wpClass.title.rendered,
+        className: wpClass.title,
+        time: wpClass.classGroup.time,
+        instructor: wpClass.classGroup.linkInstructor.title,
+        classDates: wpClass.classGroup.dates,
+        location: wpClass.classGroup.location,
         slug: wpClass.slug,
         session: session,
       }),
