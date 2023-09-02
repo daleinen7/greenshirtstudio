@@ -119,7 +119,7 @@ exports.handler = async ({ body, headers }) => {
                 'Class Time': event.metadata.time,
                 'Day of Week': event.metadata.dayOfWeek,
                 Instructor: event.metadata.instructor,
-                'Class Dates': event.metadata.classDates,
+                // 'Class Dates': event.metadata.classDates,
                 Location: event.metadata.location,
               },
             },

@@ -39,7 +39,7 @@ exports.handler = async ({ body, headers }) => {
         className: params.className,
         time: params.time,
         instructor: params.instructor,
-        classDates: formattedDates,
+        // classDates: formattedDates,
         location: params.location,
       },
     });
