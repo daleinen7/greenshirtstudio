@@ -106,11 +106,19 @@ exports.handler = async ({ body, headers }) => {
           records: [
             {
               fields: {
-                // 'Stripe Transaction ID': eventObject.id,
-                'First Name': 'test',
-                'Last Name': 'name',
-                Email: 'daleinen@gmail.com',
+                'Stripe Transaction ID': '12345678987654321',
+                'First Name': 'Doug',
+                'Last Name': 'Test',
+                'Email Address': 'daleinen@gmail.com',
+                'Phone Number': '123-432-1234',
+                'Payment Amount': '$999.00',
                 Session: 'August',
+                'Class Title': 'Test Class',
+                'Class Time': '4:00 pm',
+                'Day of Week': 'Thursday',
+                Instructor: 'Jack Schultz',
+                'Class Dates': 'list?',
+                Location: 'Green Shirt Studio X',
               },
             },
           ],
