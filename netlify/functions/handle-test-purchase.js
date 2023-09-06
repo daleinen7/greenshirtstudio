@@ -93,7 +93,7 @@ exports.handler = async ({ body, headers }) => {
       //console.log("SPOTS LEFT UPDATE: ", update);
       // console.log('Update Response: ', updateResponse);
 
-      const airtableEndpoint = `https://api.airtable.com/v0/${process.env.AIRTABLE_BASE_ID}/`;
+      const airtableEndpoint = `https://api.airtable.com/v0/${process.env.AIRTABLE_BASE}/`;
 
       // const event = body.data.object;
 
