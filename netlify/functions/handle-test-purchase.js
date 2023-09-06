@@ -95,7 +95,9 @@ exports.handler = async ({ body, headers }) => {
 
       const airtableEndpoint = `https://api.airtable.com/v0/${process.env.AIRTABLE_BASE_ID}/`;
 
-      const event = body.data.object;
+      // const event = body.data.object;
+
+      console.log('Airtable Endpoint:', airtableEndpoint);
 
       // Update the Airtable record using the fetch API
       const airtableUpdateResponse = await fetch(airtableEndpoint, {

@@ -198,7 +198,6 @@ const ClassHeader = ({ wpClass, session }) => {
         className: wpClass.title,
         time: wpClass.classGroup.time,
         instructor: wpClass.classGroup.linkInstructor.title,
-        // classDates: wpClass.classGroup.dates,
         location: wpClass.classGroup.location,
         slug: wpClass.slug,
         session: session,
