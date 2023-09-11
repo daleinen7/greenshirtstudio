@@ -175,33 +175,38 @@ const ClassHeader = ({ wpClass, session }) => {
 
     console.log('Trying to buy with ', paymentType);
 
+    const formData = {
+      test: wpClass.classGroup.program === 'Test',
+      paymentType: paymentType,
+      promotion: wpClass.classGroup.price > 0,
+      lineItems: [
+        {
+          price:
+            paymentType === 'payment'
+              ? wpClass.classGroup.stripeId
+              : wpClass.classGroup.stripeInstallmentId,
+          quantity: 1,
+        },
+      ],
+      dayOfWeek: wpClass.classGroup.day,
+      dbid: wpClass.databaseId,
+      className: wpClass.title,
+      time: wpClass.classGroup.time,
+      instructor: wpClass.classGroup.linkInstructor.title,
+      location: wpClass.classGroup.location,
+      slug: wpClass.slug,
+      classDates: wpClass.classGroup.dates,
+      session: session,
+    };
+
+    console.log('formData: ', formData);
+
     const response = await fetch('/.netlify/functions/create-checkout', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        test: wpClass.classGroup.program === 'Test',
-        paymentType: paymentType,
-        promotion: wpClass.classGroup.price > 0,
-        lineItems: [
-          {
-            price:
-              paymentType === 'payment'
-                ? wpClass.classGroup.stripeId
-                : wpClass.classGroup.stripeInstallmentId,
-            quantity: 1,
-          },
-        ],
-        dayOfWeek: wpClass.classGroup.day,
-        dbid: wpClass.databaseId,
-        className: wpClass.title,
-        time: wpClass.classGroup.time,
-        instructor: wpClass.classGroup.linkInstructor.title,
-        location: wpClass.classGroup.location,
-        slug: wpClass.slug,
-        session: session,
-      }),
+      body: JSON.stringify(formData),
     }).then((res) => res.json());
 
     console.log(
