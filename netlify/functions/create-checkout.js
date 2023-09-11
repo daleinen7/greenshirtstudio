@@ -10,16 +10,16 @@ exports.handler = async ({ body, headers }) => {
       : process.env.STRIPE_SECRET_KEY
   );
 
-  console.log('GATSBY URL ENVIRONMENT: ', process.env.GATSBY_URL_ENVIRONMENT);
+  // console.log('GATSBY URL ENVIRONMENT: ', process.env.GATSBY_URL_ENVIRONMENT);
 
-  console.log('Params Available: ', params);
+  // console.log('Params Available: ', params.classDates);
 
-  // const formattedDates = params.classDates
-  //   .map((date) => date.date)
-  //   .join(' / ')
-  //   .slice(0, -2);
+  const formattedDates = params.classDates
+    .map((date) => date.date)
+    .join(' / ')
+    .slice(0, -2);
 
-  // console.log('Formatted Dates: ', formattedDates);
+  console.log('Formatted Dates: ', formattedDates);
 
   try {
     const session = await stripe.checkout.sessions.create({
@@ -39,12 +39,12 @@ exports.handler = async ({ body, headers }) => {
         className: params.className,
         time: params.time,
         instructor: params.instructor,
-        // classDates: formattedDates,
+        classDates: formattedDates,
         location: params.location,
       },
     });
 
-    console.log('SESSION: ', session);
+    // console.log('SESSION: ', session);
 
     return {
       statusCode: 200,
