@@ -110,9 +110,9 @@ exports.handler = async ({ body, headers }) => {
           records: [
             {
               fields: {
-                'Stripe Transaction ID': '12345678987654321',
-                'First Name': 'test',
-                'Last Name': 'name',
+                // 'Stripe Transaction ID': '12345678987654321',
+                // 'First Name': 'test',
+                // 'Last Name': 'name',
                 'Email Address': 'daleinen@gmail.com',
                 'Phone Number': '123-432-1234',
                 'Payment Amount': '$34.00',
@@ -123,9 +123,9 @@ exports.handler = async ({ body, headers }) => {
                 Instructor: 'Jack Schultz',
                 'Class Dates': 'list?',
                 Location: 'Green Shirt Sudio X',
-                // 'Stripe Transaction ID': event.id,
-                // 'First Name': event.customer_details.name,
-                // 'Last Name': event.customer_details.name,
+                'Stripe Transaction ID': eventObject.id,
+                'First Name': eventObject.customer_details.name,
+                'Last Name': eventObject.customer_details.name,
                 // 'Email Address': event.customer_details.email,
                 // 'Phone Number': event.customer_details.phone,
                 // 'Payment Amount': event.amount_total,
