@@ -16,7 +16,7 @@ exports.handler = async ({ body, headers }) => {
 
   const formattedDates = params.classDates
     .map((date) => date.date)
-    .join(' / ')
+    .join(' \n ')
     .slice(0, -2);
 
   console.log('Formatted Dates: ', formattedDates);
