@@ -3,6 +3,8 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const API_ENDPOINT = `${process.env.BACKEND_URL}/wp-json/wp/v2/class`;
 
 exports.handler = async ({ body, headers }) => {
+  console.log('BODY: ', body);
+  // console.log("HEADERS: ", headers);
   try {
     // check the webhook to make sure it’s valid
     const stripeEvent = stripe.webhooks.constructEvent(
@@ -16,7 +18,7 @@ exports.handler = async ({ body, headers }) => {
       const eventObject = stripeEvent.data.object;
 
       const metadata = stripeEvent.data.object.metadata;
-      console.log('Metadata: ', metadata);
+      // console.log('Metadata: ', metadata);
 
       // if purchase is a subscription
       if (eventObject.mode === 'subscription') {
@@ -48,7 +50,7 @@ exports.handler = async ({ body, headers }) => {
           spotsLeft = data?.acf?.spots_left;
         });
 
-      console.log('Spots left after initial call: ', spotsLeft);
+      // console.log('Spots left after initial call: ', spotsLeft);
 
       const auth = Buffer.from(
         process.env.WP_USER + ':' + process.env.WP_PW
@@ -59,18 +61,18 @@ exports.handler = async ({ body, headers }) => {
 
       let newSpotsLeft = spotsLeft - 1;
 
-      console.log(
-        "Here's what's being sent: ",
-        JSON.stringify({
-          acf: {
-            spots_left: newSpotsLeft,
-          },
-        })
-      );
+      // console.log(
+      //   "Here's what's being sent: ",
+      //   JSON.stringify({
+      //     acf: {
+      //       spots_left: newSpotsLeft,
+      //     },
+      //   })
+      // );
 
       const url = `${API_ENDPOINT}/${metadata.databaseId}`;
 
-      console.log('URL: ', url);
+      // console.log('URL: ', url);
 
       const update = await fetch(url, {
         method: 'POST',
@@ -89,7 +91,44 @@ exports.handler = async ({ body, headers }) => {
       const updateResponse = await update.json();
 
       //console.log("SPOTS LEFT UPDATE: ", update);
-      console.log('Update Response: ', updateResponse);
+      // console.log('Update Response: ', updateResponse);
+
+      const airtableEndpoint = `https://api.airtable.com/v0/${process.env.AIRTABLE_BASE}/`;
+
+      // const event = body.data.object;
+
+      // Update the Airtable record using the fetch API
+      const airtableUpdateResponse = await fetch(airtableEndpoint, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${process.env.AIRTABLE_TOKEN}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          records: [
+            {
+              fields: {
+                'Stripe Transaction ID': eventObject.id,
+                'Student Name': eventObject.customer_details.name,
+                'Email Address': eventObject.customer_details.email,
+                'Phone Number': eventObject.customer_details.phone,
+                'Payment Amount': eventObject.amount_total,
+                Session: eventObject.metadata.session,
+                'Class Title': eventObject.metadata.className,
+                'Class Time': eventObject.metadata.time,
+                'Day of Week': eventObject.metadata.dayOfWeek,
+                Instructor: eventObject.metadata.instructor,
+                'Class Dates': eventObject.metadata.classDates,
+                Location: eventObject.metadata.location,
+              },
+            },
+          ],
+        }),
+      });
+
+      // Get the response from Airtable
+      const airtableUpdateData = await airtableUpdateResponse.json();
+      console.log('Airtable Update Response: ', airtableUpdateData);
 
       console.log('Webhook successful!');
 
