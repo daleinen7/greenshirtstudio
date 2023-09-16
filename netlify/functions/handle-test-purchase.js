@@ -97,8 +97,6 @@ exports.handler = async ({ body, headers }) => {
 
       // const event = body.data.object;
 
-      console.log('Airtable Endpoint:', airtableEndpoint);
-
       // Update the Airtable record using the fetch API
       const airtableUpdateResponse = await fetch(airtableEndpoint, {
         method: 'POST',
@@ -110,19 +108,6 @@ exports.handler = async ({ body, headers }) => {
           records: [
             {
               fields: {
-                // 'Stripe Transaction ID': '12345678987654321',
-                // 'First Name': 'test',
-                // 'Last Name': 'name',
-                'Email Address': 'daleinen@gmail.com',
-                'Phone Number': '123-432-1234',
-                'Payment Amount': '$34.00',
-                Session: 'August',
-                'Class Title': 'Meisner 1',
-                'Class Time': '4:00 pm',
-                'Day of Week': 'Thursday',
-                Instructor: 'Jack Schultz',
-                'Class Dates': 'list?',
-                Location: 'Green Shirt Sudio X',
                 'Stripe Transaction ID': eventObject.id,
                 'Student Name': eventObject.customer_details.name,
                 'Email Address': eventObject.customer_details.email,
