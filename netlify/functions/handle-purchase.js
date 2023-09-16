@@ -1,4 +1,4 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST_KEY);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const API_ENDPOINT = `${process.env.BACKEND_URL}/wp-json/wp/v2/class`;
 
@@ -10,7 +10,7 @@ exports.handler = async ({ body, headers }) => {
     const stripeEvent = stripe.webhooks.constructEvent(
       body,
       headers['stripe-signature'],
-      process.env.STRIPE_WEBHOOK_TEST_SECRET
+      process.env.STRIPE_WEBHOOK_SECRET
     );
 
     // only do stuff if this is a successful Stripe Checkout purchase
