@@ -59,7 +59,7 @@ exports.handler = async ({ body, headers }) => {
 
       return {
         statusCode: 200,
-        body: JSON.stringify({ received: true, message: update }),
+        body: JSON.stringify({ received: true, message: airtableUpdateData }),
       };
     }
 
