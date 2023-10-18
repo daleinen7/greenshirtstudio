@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import useSWR from 'swr';
+import React, { useState, useEffect } from 'react';
+// import useSWR from 'swr';
 import { loadStripe } from '@stripe/stripe-js';
 import styled from 'styled-components';
 
@@ -157,23 +157,48 @@ const getStripe = (test) => {
   return stripePromise;
 };
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
+// const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const ClassHeader = ({ wpClass, session }) => {
   const [loading, setLoading] = useState(false);
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  const [fetching, setFetching] = useState(false);
 
-  const { data, error } = useSWR(
-    `https://greenshirtstudiowp.us/wp-json/wp/v2/class/${wpClass.databaseId}`,
-    fetcher
-  );
+  // const { data, error } = useSWR(
+  //   `https://greenshirtstudiowp.us/wp-json/wp/v2/class/${wpClass.databaseId}`,
+  //   fetcher
+  // );
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await fetch(
+          `https://greenshirtstudiowp.us/wp-json/wp/v2/class/${wpClass.databaseId}`
+        );
+        if (!response.ok) {
+          throw new Error(
+            `This is an HTTP error: The status is ${response.status}`
+          );
+        }
+        let actualData = await response.json();
+        setData(actualData);
+        setError(null);
+      } catch (err) {
+        setError(err.message);
+        setData(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+    getData();
+  }, []);
 
   const spotsLeft = data ? `${data.acf.spots_left} spots left` : 'loading';
 
   const handlePurchase = async (e, paymentType) => {
     e.preventDefault();
     setLoading(true);
-
-    console.log('Trying to buy with ', paymentType);
 
     const formData = {
       test: wpClass.classGroup.program === 'Test',
@@ -199,8 +224,6 @@ const ClassHeader = ({ wpClass, session }) => {
       session: session,
     };
 
-    console.log('formData: ', formData);
-
     const response = await fetch('/.netlify/functions/create-checkout', {
       method: 'POST',
       headers: {
@@ -208,11 +231,6 @@ const ClassHeader = ({ wpClass, session }) => {
       },
       body: JSON.stringify(formData),
     }).then((res) => res.json());
-
-    console.log(
-      "Create function called and here's what I got back: ",
-      response
-    );
 
     const stripe = await getStripe(wpClass.classGroup.program === 'Test');
     const { error } = await stripe.redirectToCheckout({

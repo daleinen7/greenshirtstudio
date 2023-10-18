@@ -38,7 +38,6 @@
     "react-dom": "^18.0.0",
     "react-markdown": "^8.0.4",
     "styled-components": "^5.3.6",
-    "swr": "^2.0.0",
     "zcatalyst-sdk-node": "^2.3.0"
   },
   "devDependencies": {
