@@ -41,10 +41,10 @@ const StyledCarousel = styled.section`
   }
   .alice-carousel__stage {
     display: flex;
-    gap: 32px;
+    gap: 2rem;
   }
   li.alice-carousel__stage-item {
-    min-width: 300px !important;
+    min-width: 18.75rem !important;
   }
   .alice-carousel__prev-btn-item,
   .alice-carousel__next-btn-item {
@@ -53,15 +53,15 @@ const StyledCarousel = styled.section`
   }
   .alice-carousel__prev-btn,
   .alice-carousel__next-btn {
-    width: 40px;
+    width: 2.5rem;
     position: absolute;
-    top: -60px;
+    top: -3.75rem;
   }
   .alice-carousel__prev-btn {
-    right: 50px;
+    right: 3.125rem;
   }
   .alice-carousel__next-btn {
-    right: 0px;
+    right: 0rem;
   }
 
   @media screen and (max-width: 550px) {

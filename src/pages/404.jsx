@@ -112,7 +112,7 @@ export const pageQuery = graphql`
           price
           program
           classImage {
-            gatsbyImage(height: 212, layout: FIXED)
+            gatsbyImage(height: 212, layout: FIXED, fit: COVER)
           }
         }
       }

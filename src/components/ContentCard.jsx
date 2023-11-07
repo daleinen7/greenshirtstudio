@@ -10,6 +10,11 @@ const StyledContentCard = styled.div`
     font-size: 1.5rem;
   }
 
+  img {
+    height: 18.125rem;
+    width: 30.625rem;
+  }
+
   p {
     color: var(--dark-gray);
     line-height: 1.5rem;
