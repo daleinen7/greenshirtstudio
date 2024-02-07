@@ -10,16 +10,10 @@ import Diversity from '../images/Diversity.png';
 import Classes from '../images/ClassesOfferings.jpg';
 import Shows from '../images/ShowsOfferings.jpg';
 import Events from '../images/EventsOffrerings.jpg';
-import Facing from '../images/Facing.png';
 import ContentCardCTA from '../components/ContentCardCTA';
 import ContentStack from '../components/ContentStack';
-import TextContent from '../components/TextContent';
-import styled from 'styled-components';
 import { graphql } from 'gatsby';
 
-const StyledImage = styled.img`
-  margin: 0 auto 4.75rem;
-`;
 
 const Offerings = ({ data }) => {
   const ourOfferings = [
@@ -83,7 +77,8 @@ const Offerings = ({ data }) => {
   return (
     <Layout>
       <ImageAndFormHeader
-        title="Contact Us"
+        title="Get Started"
+        subtitle="Send questions or class requests and we'll get you started right away."
         image={AboutHero}
       />
       <SectionDivider />
@@ -98,7 +93,7 @@ export default Offerings;
 export const Head = () => (
   <SEO
     title={`Offerings - Green Shirt Studio`}
-    description={`Check out one of our acting classes or workshops! We welcome students from all backgrounds and experience levels. Mesiner Acting Program, Workshops, Private Coaching and more.`}
+    description={`Contact Green Shirt Studio`}
   />
 );
 

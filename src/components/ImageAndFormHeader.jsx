@@ -8,7 +8,6 @@ const StyledImageAndForm = styled.div`
   justify-content: center;
   max-width: 90rem;
   margin: 4.625rem auto;
-
   align-items: center;
 
   h2 {
@@ -27,29 +26,39 @@ const StyledImageAndForm = styled.div`
     padding: 0 2.25rem 0 4rem;
     margin-bottom: 0;
 
-    form > div {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 7.5px;
+    .subtitle {
+      font-size: 1.25rem;
+      line-height: 1.5rem;
+      color: var(--dark-gray);
+    }
 
-      label {
-        color: var(--dark-gray);
-        margin-bottom: 2.5px;
-      }
+    #offerings-form {
+      margin-top: 35px;      
+      
+      & > div {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 7.5px;
 
-      input, textarea {
-        width: 100%;
-        border: 1px solid var(--dark-gray);
-      }
+        label {
+          color: var(--dark-gray);
+          margin-bottom: 2.5px;
+        }
 
-      input,
-      select {
-        height: 35px;
-        color: var(--dark-gray);
-      }
+        input, textarea {
+          width: 100%;
+          border: 1px solid var(--dark-gray);
+        }
 
-      textarea {
-        height: 70px;
+        input,
+        select {
+          height: 35px;
+          color: var(--dark-gray);
+        }
+
+        textarea {
+          height: 70px;
+        }
       }
     }
 
@@ -82,6 +91,10 @@ const StyledImageAndForm = styled.div`
       width: 100%;
       padding: 0 1rem;
       margin: 0px auto 4.75rem;
+
+      .subtitle {
+        font-size: 1rem;
+      }
     }
   }
 
@@ -93,11 +106,12 @@ const StyledImageAndForm = styled.div`
   }
 `;
 
-const ImageAndFormHeader = ({ title, image, video }) => {
+const ImageAndFormHeader = ({ title, subtitle, image, video }) => {
   return (
     <StyledImageAndForm>
       <div class="form-info">
         <h2>{title}</h2>
+        <p class="subtitle">{subtitle}</p>
         <form id="offerings-form">
           <div>
             <label htmlFor="name">Name:</label>
