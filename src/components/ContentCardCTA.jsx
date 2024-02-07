@@ -21,6 +21,13 @@ const StyledContentCardWithCTA = styled.div`
     line-height: 1.5rem;
   }
 
+  .button {
+    display: block;
+    width: 165px;
+    min-width: unset;
+    margin-top: 25px;
+  }
+
   @media (max-width: 785px) {
     h4 {
       font-family: 'Lato', sans-serif;

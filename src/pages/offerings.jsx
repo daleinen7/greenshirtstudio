@@ -7,6 +7,9 @@ import AboutHero from '../images/Events.jpg';
 import Accessibility from '../images/Accessibility.png';
 import Community from '../images/Community.png';
 import Diversity from '../images/Diversity.png';
+import Classes from '../images/ClassesOfferings.jpg';
+import Shows from '../images/ShowsOfferings.jpg';
+import Events from '../images/EventsOffrerings.jpg';
 import Facing from '../images/Facing.png';
 import ContentCardCTA from '../components/ContentCardCTA';
 import ContentStack from '../components/ContentStack';
@@ -23,30 +26,57 @@ const Offerings = ({ data }) => {
     <ContentCardCTA
       title={'Group Acting Classes'}
       content={
-        'Explore new ways to create and tell your story.'
+        'Group classes for all experience levels. Beginners welcome.'
       }
       image={Accessibility}
       altText="All level of actors"
-      link="Learn More"
+      link="Get Started"
       linkAddress="#offerings-form"
     />,
     <ContentCardCTA
       title={'Private Acting Coaching'}
       content={
-        'One-on-one attention to help you work towards your goals. Audition, monologue, and storytelling coaching available.'
+        'Reach your goals with the guidance of an experienced coach.'
       }
       image={Diversity}
       altText="Diverse actors"
-      link="Learn More"
+      link="Get Started"
       linkAddress="#offerings-form"
     />,
     <ContentCardCTA
       title={'Professional Development Workshops'}
-      content={'Great for sharpening your skills without committing too much of your time.'}
+      content={'Team building and communication workshops for your team.'}
       image={Community}
       altText="Actors posing"
-      link="Learn More"
+      link="Get Started"
       linkAddress="#offerings-form"
+    />,
+  ];
+
+  const getInvolved = [
+    <ContentCardCTA
+      title={'Classes'}
+      content={'Take a class to grow your skills.'}
+      image={Classes}
+      altText="All level of actors"
+      link="Classes"
+      linkAddress="/classes/"
+    />,
+    <ContentCardCTA
+      title={'Private Acting Coaching'}
+      content={'See a show or sign up to perform! '}
+      image={Shows}
+      altText="Diverse actors"
+      link="Shows"
+      linkAddress="/events/"
+    />,
+    <ContentCardCTA
+      title={'Professional Development Workshops'}
+      content={'Attend an event to meet more creatives in our community.'}
+      image={Events}
+      altText="Actors posing"
+      link="Events"
+      linkAddress="/events/"
     />,
   ];
 
@@ -59,40 +89,7 @@ const Offerings = ({ data }) => {
       <SectionDivider />
       <ContentStack title={'Our Offerings'} content={ourOfferings} />
       <SectionDivider />
-      <TextContent
-        title="Our Classes"
-        content={
-          <>
-            <p>
-              Our Meisner Acting Program Levels 1 - 5 give our students a
-              complete, specific, step by step technique that demystifies the
-              craft of acting and gives them the tools to successfully tackle
-              any script.
-            </p>
-
-            <p>
-              Our Specialized Classes create training opportunities not normally
-              offered in an accessible environment for performers and
-              non-performers alike.
-            </p>
-
-            <p>
-              Our Meisner Acting Program and Specialized Classes include the
-              benefits of training with highly experienced, compassionate
-              instructors in a specific method of performing arts training
-              without barriers like high costs, large investments of time, or an
-              audition. Our emphasis on accessibility supports the rich
-              diversity of our community that, in turn, supports the
-              professional and personal growth of everyone involved at our
-              studio.
-            </p>
-          </>
-        }
-        link="Learn More"
-        linkAddress="/classes"
-      />
-      <StyledImage src={Facing} alt="Actors facing each other" />
-
+      <ContentStack title={'Get Involved'} content={getInvolved} />
     </Layout>
   );
 };
