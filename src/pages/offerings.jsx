@@ -38,7 +38,7 @@ const Offerings = ({ data }) => {
       linkAddress="#offerings-form"
     />,
     <ContentCardCTA
-      title={'Professional Development Workshops'}
+      title={'Professional Development'}
       content={'Team building and communication workshops for your team.'}
       image={Community}
       altText="Actors posing"
@@ -57,15 +57,15 @@ const Offerings = ({ data }) => {
       linkAddress="/classes/"
     />,
     <ContentCardCTA
-      title={'Private Acting Coaching'}
-      content={'See a show or sign up to perform! '}
+      title={'Shows'}
+      content={'See a show or sign up to perform!'}
       image={Shows}
       altText="Diverse actors"
       link="Shows"
       linkAddress="/events/"
     />,
     <ContentCardCTA
-      title={'Professional Development Workshops'}
+      title={'Events'}
       content={'Attend an event to meet more creatives in our community.'}
       image={Events}
       altText="Actors posing"
