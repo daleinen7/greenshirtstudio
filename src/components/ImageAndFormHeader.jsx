@@ -33,32 +33,34 @@ const StyledImageAndForm = styled.div`
     }
 
     #offerings-form {
-      margin-top: 35px;
+      margin-top: 2.1875rem;
 
       & > div {
         display: flex;
         flex-direction: column;
-        margin-bottom: 7.5px;
+        margin-bottom: 0.4688rem;
 
         label {
           color: var(--dark-gray);
-          margin-bottom: 2.5px;
+          margin-top: 0.5rem;
+          margin-bottom: 0.1563rem;
         }
 
         input,
         textarea {
           width: 100%;
           border: 1px solid var(--dark-gray);
+          border-radius: 2px;
         }
 
         input,
         select {
-          height: 35px;
+          height: 2.1875rem;
           color: var(--dark-gray);
         }
 
         textarea {
-          height: 70px;
+          height: 4.375rem;
         }
       }
     }
