@@ -33,8 +33,8 @@ const StyledImageAndForm = styled.div`
     }
 
     #offerings-form {
-      margin-top: 35px;      
-      
+      margin-top: 35px;
+
       & > div {
         display: flex;
         flex-direction: column;
@@ -45,7 +45,8 @@ const StyledImageAndForm = styled.div`
           margin-bottom: 2.5px;
         }
 
-        input, textarea {
+        input,
+        textarea {
           width: 100%;
           border: 1px solid var(--dark-gray);
         }
@@ -112,7 +113,8 @@ const ImageAndFormHeader = ({ title, subtitle, image, video }) => {
       <div class="form-info">
         <h2>{title}</h2>
         <p class="subtitle">{subtitle}</p>
-        <form id="offerings-form">
+        <form id="offerings-form" data-netlify="true">
+          <input type="hidden" name="form-name" value="offerings-form" />
           <div>
             <label htmlFor="name">Name:</label>
             <input type="text" id="name" name="name" />
@@ -126,7 +128,9 @@ const ImageAndFormHeader = ({ title, subtitle, image, video }) => {
             <select name="offerings" id="offerings">
               <option value="grp-act-cls">Group Acting Classes</option>
               <option value="priv-act-coach">Private Acting Coaching</option>
-              <option value="prof-dev-wksp">Professional Development Workshops</option>
+              <option value="prof-dev-wksp">
+                Professional Development Workshops
+              </option>
             </select>
           </div>
           <div>
