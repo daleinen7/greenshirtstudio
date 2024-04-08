@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "gatsby";
+import React from 'react';
+import { Link } from 'gatsby';
 
 const NavLinks = () => {
   return (
@@ -17,6 +17,11 @@ const NavLinks = () => {
       <li>
         <Link to="/events" activeClassName="active">
           Shows & Events
+        </Link>
+      </li>
+      <li>
+        <Link to="/headshots" activeClassName="active">
+          Headshots
         </Link>
       </li>
       <li>
