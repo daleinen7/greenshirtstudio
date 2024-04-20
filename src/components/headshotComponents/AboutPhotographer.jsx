@@ -1,10 +1,8 @@
-import React from "react";
-import { Link } from "gatsby";
-import { GatsbyImage } from "gatsby-plugin-image";
-import parse from "html-react-parser";
-import styled from "styled-components";
+import React from 'react';
+import Markdown from 'react-markdown';
+import styled from 'styled-components';
 
-const StyledAboutTeacher = styled.section`
+const StyledAboutPhotographer = styled.section`
   display: flex;
   flex-direction: column;
   padding: 1.5rem;
@@ -15,7 +13,7 @@ const StyledAboutTeacher = styled.section`
   h3 {
     font-size: 1.5rem;
     margin-top: 1rem;
-    font-family: "Lato", sans-serif;
+    font-family: 'Lato', sans-serif;
   }
 
   img {
@@ -52,26 +50,16 @@ const StyledAboutTeacher = styled.section`
   }
 `;
 
-const AboutTeacher = ({ wpClass }) => {
+const AboutPhotographer = ({ name, bio, image }) => {
   return (
-    <StyledAboutTeacher>
-      <GatsbyImage
-        image={wpClass.classGroup.linkInstructor.instructors.image.gatsbyImage}
-        alt={wpClass.classGroup.linkInstructor.instructors.title}
-      />
-      <h3>About the Teacher</h3>
+    <StyledAboutPhotographer>
+      <img src={image[0].url} alt={name} />
+      <h3>About the Photographer</h3>
       <div className="bio">
-        {parse(wpClass.classGroup.linkInstructor.content)}
+        <Markdown>{bio}</Markdown>
       </div>
-      <div className="learn-more">
-        <Link
-          to={`/${wpClass.classGroup.linkInstructor.slug}`}
-          className="button empty"
-        >
-          {`About ${wpClass.classGroup.linkInstructor.title}`}
-        </Link>
-      </div>
-    </StyledAboutTeacher>
+      {/* <a href="/" className="learn-more">{`About ${name}`}</a> */}
+    </StyledAboutPhotographer>
   );
 };
-export default AboutTeacher;
+export default AboutPhotographer;

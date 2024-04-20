@@ -157,150 +157,106 @@ const getStripe = (test) => {
   return stripePromise;
 };
 
-const SessionHeader = ({ wpClass, session }) => {
+const SessionHeader = ({ session }) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [fetching, setFetching] = useState(false);
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await fetch(
-          `https://greenshirtstudiowp.us/wp-json/wp/v2/class/${wpClass.databaseId}`
-        );
-        if (!response.ok) {
-          throw new Error(
-            `This is an HTTP error: The status is ${response.status}`
-          );
-        }
-        let actualData = await response.json();
-        setData(actualData);
-        setError(null);
-      } catch (err) {
-        setError(err.message);
-        setData(null);
-      } finally {
-        setLoading(false);
-      }
-    };
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         `https://greenshirtstudiowp.us/wp-json/wp/v2/class/${session.databaseId}`
+  //       );
+  //       if (!response.ok) {
+  //         throw new Error(
+  //           `This is an HTTP error: The status is ${response.status}`
+  //         );
+  //       }
+  //       let actualData = await response.json();
+  //       setData(actualData);
+  //       setError(null);
+  //     } catch (err) {
+  //       setError(err.message);
+  //       setData(null);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  //   getData();
+  // }, []);
 
-  const spotsLeft = data ? `${data.acf.spots_left} spots left` : 'loading';
+  // const handlePurchase = async (e, paymentType) => {
+  //   e.preventDefault();
+  //   setLoading(true);
 
-  const handlePurchase = async (e, paymentType) => {
-    e.preventDefault();
-    setLoading(true);
+  //   const formData = {
+  //     test: session.classGroup.program === 'Test',
+  //     paymentType: paymentType,
+  //     promotion: session.classGroup.price > 0,
+  //     lineItems: [
+  //       {
+  //         price:
+  //           paymentType === 'payment'
+  //             ? session.classGroup.stripeId
+  //             : session.classGroup.stripeInstallmentId,
+  //         quantity: 1,
+  //       },
+  //     ],
+  //     dayOfWeek: session.classGroup.day,
+  //     dbid: session.databaseId,
+  //     className: session.title,
+  //     time: session.classGroup.time,
+  //     instructor: session.classGroup.linkInstructor.title,
+  //     location: session.classGroup.location,
+  //     slug: session.slug,
+  //     classDates: session.classGroup.dates,
+  //     session: session,
+  //   };
 
-    const formData = {
-      test: wpClass.classGroup.program === 'Test',
-      paymentType: paymentType,
-      promotion: wpClass.classGroup.price > 0,
-      lineItems: [
-        {
-          price:
-            paymentType === 'payment'
-              ? wpClass.classGroup.stripeId
-              : wpClass.classGroup.stripeInstallmentId,
-          quantity: 1,
-        },
-      ],
-      dayOfWeek: wpClass.classGroup.day,
-      dbid: wpClass.databaseId,
-      className: wpClass.title,
-      time: wpClass.classGroup.time,
-      instructor: wpClass.classGroup.linkInstructor.title,
-      location: wpClass.classGroup.location,
-      slug: wpClass.slug,
-      classDates: wpClass.classGroup.dates,
-      session: session,
-    };
+  //   const response = await fetch('/.netlify/functions/create-checkout', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify(formData),
+  //   }).then((res) => res.json());
 
-    const response = await fetch('/.netlify/functions/create-checkout', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    }).then((res) => res.json());
-
-    const stripe = await getStripe(wpClass.classGroup.program === 'Test');
-    const { error } = await stripe.redirectToCheckout({
-      sessionId: response.sessionId,
-    });
-    if (error) {
-      console.warn('Error:', error);
-      setLoading(false);
-    }
-  };
+  //   const stripe = await getStripe(session.classGroup.program === 'Test');
+  //   const { error } = await stripe.redirectToCheckout({
+  //     sessionId: response.sessionId,
+  //   });
+  //   if (error) {
+  //     console.warn('Error:', error);
+  //     setLoading(false);
+  //   }
+  // };
 
   return (
     <StyledClassHeader>
-      {wpClass.classGroup.classImage && (
+      {session && (
         <img
-          src={wpClass.classGroup.classImage.sourceUrl}
-          alt={wpClass.title}
+          src={session['Top of Page Image'][0].url}
+          alt={'examples of headshots'}
         />
       )}
       <div className="info">
-        <h2>{wpClass.title}</h2>
-        <p>{`${wpClass.classGroup.day}, ${wpClass.classGroup.dates[0].date} - ${
-          wpClass.classGroup.dates[wpClass.classGroup.dates.length - 1].date
-        }, ${wpClass.classGroup.time} with ${
-          wpClass.classGroup.linkInstructor.title
-        }`}</p>
+        <h2>Headshots with {session['Photographer Name']}</h2>
+        <p>{`${session['Day of week']}, ${session['Month']}, ${session['Time of shoot']}`}</p>
 
-        <div className="spots-left">
-          <span>{spotsLeft}</span>
-        </div>
-
-        <div className="price">
-          {data &&
-            data.acf.spots_left > 0 &&
-            (wpClass.classGroup.price > 0 ? (
-              <>
-                ${wpClass.classGroup.price} <br />
-                {wpClass.classGroup.stripeInstallmentId && (
-                  <small>or pay in three installments (payment plan)</small>
-                )}
-              </>
-            ) : (
-              <>Free/Donation</>
-            ))}
-        </div>
+        <div className="price">${session.Price}</div>
 
         <ul className="pricing-buttons">
           <li>
-            {data ? (
-              data.acf.spots_left > 0 ? (
-                <button
-                  className={'register'}
-                  disabled={loading}
-                  onClick={(e) => handlePurchase(e, 'payment')}
-                >
-                  Register
-                </button>
-              ) : (
-                <button disabled>SOLD OUT</button>
-              )
-            ) : (
-              <button disabled className={'register'}>
-                Register
-              </button>
-            )}
+            <button
+              className={'register'}
+              // disabled={loading}
+              // onClick={(e) => handlePurchase(e, 'payment')}
+            >
+              Book Now
+            </button>
           </li>
-          {wpClass.classGroup.stripeInstallmentId && (
-            <li>
-              <button
-                className={'installment'}
-                disabled={loading}
-                onClick={(e) => handlePurchase(e, 'subscription')}
-              >
-                Payment Plan
-              </button>
-            </li>
-          )}
         </ul>
       </div>
     </StyledClassHeader>

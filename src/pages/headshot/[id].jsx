@@ -29,7 +29,7 @@ const Headshot = ({ params }) => {
           throw new Error('Failed to fetch data from the server');
         }
         const data = await response.json();
-        setHeadshotSession(data);
+        setHeadshotSession(data[0].fields);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -38,35 +38,28 @@ const Headshot = ({ params }) => {
     fetchData();
   }, []);
 
+  console.log('headshotSession:', headshotSession);
+
   return (
     <Layout>
       <SEO title="Headshot" />
       {!headshotSession.error ? (
-        headshotSession.length > 0 ? (
+        headshotSession['Photographer Name'] ? (
           <>
-            <SessionHeader
-              title={headshotSession[0].fields.title}
-              subtitle={headshotSession[0].fields.subtitle}
-              image={headshotSession[0].fields.image}
-            />
-            <Description description={headshotSession[0].fields.description} />
+            <SessionHeader session={headshotSession} />
+            <Description description={headshotSession['Page Description']} />
             <CancellationPolicy
-              cancellationPolicy={headshotSession[0].fields.cancellationPolicy}
-            />
-            <AttendancePolicy
-              attendancePolicy={headshotSession[0].fields.attendancePolicy}
+              cancellationPolicy={headshotSession['Cancellation Policy']}
             />
             <SpecialMessage
-              specialMessage={headshotSession[0].fields.specialMessage}
+              specialMessage={headshotSession['Special Message']}
             />
             <AboutPhotographer
-              teacherName={headshotSession[0].fields.teacherName}
-              teacherBio={headshotSession[0].fields.teacherBio}
-              teacherImage={headshotSession[0].fields.teacherImage}
+              name={headshotSession['Photographer Name']}
+              bio={headshotSession['Photographer Bio']}
+              image={headshotSession['Photographer Image']}
             />
-            <SessionDetails
-              classDetails={headshotSession[0].fields.classDetails}
-            />
+            <SessionDetails session={headshotSession} />
           </>
         ) : (
           <>loading ... </>

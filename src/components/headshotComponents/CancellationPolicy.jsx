@@ -1,7 +1,7 @@
-import React from "react";
-import Accordion from "../Accordion";
-import parse from "html-react-parser";
-import styled from "styled-components";
+import React from 'react';
+import Accordion from '../Accordion';
+import Markdown from 'react-markdown';
+import styled from 'styled-components';
 
 const StyledCancellationSection = styled.section`
   h3 {
@@ -32,7 +32,7 @@ const CancellationPolicy = ({ cancellationPolicy }) => {
   return (
     <StyledCancellationSection>
       <Accordion title="Cancellation Policy" h3>
-        {parse(cancellationPolicy)}
+        <Markdown>{cancellationPolicy}</Markdown>
       </Accordion>
     </StyledCancellationSection>
   );
