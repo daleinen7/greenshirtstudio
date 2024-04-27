@@ -6,6 +6,7 @@ import EventCard from '../components/EventCard';
 import headshotHero from '../images/headshots/headshot-hero.png';
 import greencheck from '../images/greencheck.svg';
 import ContentStack from '../components/ContentStack';
+import FAQSection from '../components/FAQSection';
 import styled from 'styled-components';
 
 const StyledContent = styled.div`
@@ -243,6 +244,31 @@ const Headshots = () => {
       </StyledContent>
 
       {sessions ? <ContentStack content={sessions} /> : <p>Loading...</p>}
+
+      <FAQSection
+        FAQs={[
+          {
+            title: 'Why do I need a professional headshot? ',
+            content:
+              'To audition for a role, you’ll need a headshot. A professional headshot will help you stand out and let the person casting the project know that you’re taking the audition process seriously. ',
+          },
+          {
+            title: 'When should I get my first headshot? ',
+            content:
+              'Getting your headshots taken can feel intimating. Especially your first time! Our team is dedicated to helping you through the process, step by step. When you think you might like to try auditioning sometime in the not too distant future, about six months or so, it’s time to get your first professional headshot. ',
+          },
+          {
+            title: 'How will you help me prepare? ',
+            content:
+              'After you book a session, we’ll send you a worksheet and instructional video to help you prepare. These tools will help you decide on a few artistic choices you need to make before you come to your shoot. Our staff is also available to answer your questions and help you feel confident to step into the studio. ',
+          },
+          {
+            title: 'I’m not an actor but need a headshot. Can you help? ',
+            content:
+              'While we specialize in actor headshot, you don’t need to be an actor to book a session with us. Need a new photo for your LinkedIn profile? We can help. ',
+          },
+        ]}
+      />
     </Layout>
   );
 };

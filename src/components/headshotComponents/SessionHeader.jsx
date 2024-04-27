@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // import useSWR from 'swr';
 import { loadStripe } from '@stripe/stripe-js';
+import { Script } from 'gatsby';
 import styled from 'styled-components';
 
 const StyledClassHeader = styled.div`
@@ -49,7 +50,7 @@ const StyledClassHeader = styled.div`
 
     .price {
       margin-top: 2rem;
-      margin-bottom: 1rem;
+      margin-bottom: 3rem;
       font-size: 3rem;
       line-height: 2rem;
 
@@ -67,7 +68,7 @@ const StyledClassHeader = styled.div`
     gap: 1rem;
     padding: 0;
 
-    button {
+    a {
       padding: 1rem 1.5rem;
       border-radius: 2px;
       font-size: 1.25rem;
@@ -116,7 +117,10 @@ const StyledClassHeader = styled.div`
       flex-direction: column;
 
       li,
-      button {
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 100%;
         margin: 0;
       }
@@ -138,101 +142,15 @@ const StyledClassHeader = styled.div`
     img {
       margin-bottom: 2rem;
     }
-    button {
+    li,
+    a {
       width: 100%;
       margin: 1rem auto;
     }
   }
 `;
 
-let stripePromise;
-const getStripe = (test) => {
-  if (!stripePromise) {
-    stripePromise = loadStripe(
-      test
-        ? process.env.GATSBY_STRIPE_PUBLISHABLE_TEST_KEY
-        : process.env.GATSBY_STRIPE_PUBLISHABLE_KEY
-    );
-  }
-  return stripePromise;
-};
-
 const SessionHeader = ({ session }) => {
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
-  const [fetching, setFetching] = useState(false);
-
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     try {
-  //       const response = await fetch(
-  //         `https://greenshirtstudiowp.us/wp-json/wp/v2/class/${session.databaseId}`
-  //       );
-  //       if (!response.ok) {
-  //         throw new Error(
-  //           `This is an HTTP error: The status is ${response.status}`
-  //         );
-  //       }
-  //       let actualData = await response.json();
-  //       setData(actualData);
-  //       setError(null);
-  //     } catch (err) {
-  //       setError(err.message);
-  //       setData(null);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-  //   getData();
-  // }, []);
-
-  // const handlePurchase = async (e, paymentType) => {
-  //   e.preventDefault();
-  //   setLoading(true);
-
-  //   const formData = {
-  //     test: session.classGroup.program === 'Test',
-  //     paymentType: paymentType,
-  //     promotion: session.classGroup.price > 0,
-  //     lineItems: [
-  //       {
-  //         price:
-  //           paymentType === 'payment'
-  //             ? session.classGroup.stripeId
-  //             : session.classGroup.stripeInstallmentId,
-  //         quantity: 1,
-  //       },
-  //     ],
-  //     dayOfWeek: session.classGroup.day,
-  //     dbid: session.databaseId,
-  //     className: session.title,
-  //     time: session.classGroup.time,
-  //     instructor: session.classGroup.linkInstructor.title,
-  //     location: session.classGroup.location,
-  //     slug: session.slug,
-  //     classDates: session.classGroup.dates,
-  //     session: session,
-  //   };
-
-  //   const response = await fetch('/.netlify/functions/create-checkout', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(formData),
-  //   }).then((res) => res.json());
-
-  //   const stripe = await getStripe(session.classGroup.program === 'Test');
-  //   const { error } = await stripe.redirectToCheckout({
-  //     sessionId: response.sessionId,
-  //   });
-  //   if (error) {
-  //     console.warn('Error:', error);
-  //     setLoading(false);
-  //   }
-  // };
-
   return (
     <StyledClassHeader>
       {session && (
@@ -246,16 +164,16 @@ const SessionHeader = ({ session }) => {
         <p>{`${session['Day of week']}, ${session['Month']}, ${session['Time of shoot']}`}</p>
 
         <div className="price">${session.Price}</div>
-
         <ul className="pricing-buttons">
           <li>
-            <button
+            <a
               className={'register'}
-              // disabled={loading}
-              // onClick={(e) => handlePurchase(e, 'payment')}
+              href={session.Link}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               Book Now
-            </button>
+            </a>
           </li>
         </ul>
       </div>
