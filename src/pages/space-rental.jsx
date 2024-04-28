@@ -1,17 +1,18 @@
-import React from "react";
-import { SEO } from "../components/seo";
-import Layout from "../components/Layout";
-import SectionDivider from "../components/SectionDivider";
-import StudioList from "../components/StudioList";
-import ImageAndContentHeader from "../components/ImageAndContentHeader";
-import space3031 from "../images/space-rental/303.1.png";
-import space3032 from "../images/space-rental/303.2.png";
-import space3033 from "../images/space-rental/303.3.png";
-import space4011 from "../images/space-rental/studioPicPink.png";
-import space4012 from "../images/space-rental/401.2.png";
-import space4013 from "../images/space-rental/401.3.png";
-import smallMiddleStudio from "../images/space-rental/smallMiddleStudio.png";
-import styled from "styled-components";
+import React from 'react';
+import { SEO } from '../components/seo';
+import Layout from '../components/Layout';
+import SectionDivider from '../components/SectionDivider';
+import StudioList from '../components/StudioList';
+import ImageAndContentHeader from '../components/ImageAndContentHeader';
+import space3031 from '../images/space-rental/303.1.png';
+import space3032 from '../images/space-rental/303.2.png';
+import space3033 from '../images/space-rental/303.3.png';
+import space4011 from '../images/space-rental/studioPicPink.png';
+import space4012 from '../images/space-rental/401.2.png';
+import space4013 from '../images/space-rental/401.3.png';
+import smallMiddleStudio from '../images/space-rental/smallMiddleStudio.png';
+import greencheck from '../images/greencheck.svg';
+import styled from 'styled-components';
 
 const Pricing = styled.section`
   display: flex;
@@ -53,6 +54,31 @@ const Pricing = styled.section`
     .cost {
       font-weight: 900;
       font-size: 3rem;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      list-style-type: none; /* Remove default bullet point */
+      padding-left: 20px; /* Add some padding for the bullet point */
+
+      /* Style the list items */
+      li {
+        position: relative; /* Position relative for absolute positioning of custom bullet */
+        margin-bottom: 10px; /* Adjust margin as needed */
+      }
+
+      /* Style the custom bullet point */
+      li:before {
+        content: '';
+        position: absolute;
+        left: -28px; /* Adjust the distance of the bullet point from the left */
+        top: -3px; /* Adjust the vertical alignment of the bullet point */
+        width: 20px; /* Adjust size of the bullet point */
+        height: 30px; /* Adjust size of the bullet point */
+        background-image: url(${greencheck}); /* SVG URL */
+      }
     }
 
     li {

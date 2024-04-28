@@ -26,6 +26,7 @@
     "gatsby-plugin-netlify": "^5.1.0",
     "gatsby-plugin-sharp": "^5.2.0",
     "gatsby-plugin-styled-components": "^6.3.0",
+    "gatsby-plugin-use-query-params": "^1.0.1",
     "gatsby-source-filesystem": "^5.2.0",
     "gatsby-source-stripe": "^4.0.0",
     "gatsby-source-wordpress": "^7.3.2",
@@ -36,8 +37,9 @@
     "react": "^18.0.0",
     "react-alice-carousel": "^2.7.0",
     "react-dom": "^18.0.0",
-    "react-markdown": "^8.0.4",
+    "react-markdown": "^8.0.7",
     "styled-components": "^5.3.6",
+    "use-query-params": "^2.2.1",
     "zcatalyst-sdk-node": "^2.3.0"
   },
   "devDependencies": {

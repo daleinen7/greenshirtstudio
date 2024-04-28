@@ -1,7 +1,7 @@
-import React from "react";
-import { Link } from "gatsby";
-import { GatsbyImage } from "gatsby-plugin-image";
-import styled from "styled-components";
+import React from 'react';
+import { Link } from 'gatsby';
+import { GatsbyImage } from 'gatsby-plugin-image';
+import styled from 'styled-components';
 
 const StyledClassCard = styled.article`
   display: flex;
@@ -50,12 +50,23 @@ const StyledClassCard = styled.article`
   }
 `;
 
-const ClassCard = ({ title, slug, days, program, price, image }) => {
+const ClassCard = ({
+  title,
+  slug,
+  days,
+  program,
+  price,
+  image,
+  imgUrl,
+  headshot,
+}) => {
   return (
     <StyledClassCard>
-      <Link to={`/classes/${slug}`}>
+      <Link to={headshot ? `/headshot/${slug}` : `/classes/${slug}`}>
         {image ? (
           <GatsbyImage image={image} alt={title} />
+        ) : imgUrl ? (
+          <img src={imgUrl} alt={title} />
         ) : (
           <div className="image-stand-in"></div>
         )}

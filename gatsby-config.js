@@ -11,6 +11,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-styled-components`,
+    'gatsby-plugin-use-query-params',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {

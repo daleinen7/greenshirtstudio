@@ -39,6 +39,12 @@ const StyledEventCard = styled.article`
     color: var(--dark-gray);
   }
 
+  .price {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 900;
+  }
+
   .description {
   }
 
@@ -66,16 +72,45 @@ const StyledEventCard = styled.article`
   }
 `;
 
-const EventCard = ({ title, description, image, link, date, time, small }) => {
+const EventCard = ({
+  title,
+  description,
+  image,
+  altText,
+  link,
+  date,
+  time,
+  price,
+  small,
+  headshot,
+}) => {
   return (
     <StyledEventCard small={small}>
-      <a href={`${link}`} target="_blank" rel="noopener noreferrer">
-        {image ? (
-          <GatsbyImage image={image} alt={title} />
-        ) : (
-          <div className="image-stand-in"></div>
-        )}
-      </a>
+      {headshot ? (
+        <Link to={link}>
+          {image ? (
+            typeof image === 'string' ? (
+              <img src={image} alt={altText} />
+            ) : (
+              <GatsbyImage image={image} alt={title} />
+            )
+          ) : (
+            <div className="image-stand-in"></div>
+          )}
+        </Link>
+      ) : (
+        <a href={`${link}`} target="_blank" rel="noopener noreferrer">
+          {image ? (
+            typeof image === 'string' ? (
+              <img src={image} alt={altText} />
+            ) : (
+              <GatsbyImage image={image} alt={title} />
+            )
+          ) : (
+            <div className="image-stand-in"></div>
+          )}
+        </a>
+      )}
       <h4>
         <a href={`${link}`} target="_blank" rel="noopener noreferrer">
           {title}
@@ -86,6 +121,7 @@ const EventCard = ({ title, description, image, link, date, time, small }) => {
         <>
           <div className="time">{time}</div>
           <div className="description">{description}</div>
+          {price && <div className="price">${price}</div>}
         </>
       )}
     </StyledEventCard>

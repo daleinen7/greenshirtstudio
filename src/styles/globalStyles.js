@@ -58,6 +58,7 @@ const GlobalStyles = createGlobalStyle`
     display: inline;
     text-align: center;
     cursor: pointer;
+    white-space: nowrap;
 
     :hover {
       opacity: 0.6;
