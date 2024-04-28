@@ -1,7 +1,7 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 exports.handler = async ({ body, headers }) => {
-  console.log('BODY: ', body);
+  // console.log('BODY: ', body);
 
   try {
     // check the webhook to make sure it’s valid
@@ -16,9 +16,9 @@ exports.handler = async ({ body, headers }) => {
       const eventObject = stripeEvent.data.object;
 
       const metadata = stripeEvent.data.object.metadata;
-      // console.log('Metadata: ', metadata);
+      console.log('Metadata: ', metadata);
 
-      const airtableEndpoint = `https://api.airtable.com/v0/${process.env.AIRTABLE_HEADSHOT_BASE}/`;
+      const airtableEndpoint = `https://api.airtable.com/v0/${process.env.AIRTABLE_HEADSHOT_BASE}/${metadata['Record ID']}`;
 
       // const event = body.data.object;
 
@@ -36,6 +36,7 @@ exports.handler = async ({ body, headers }) => {
                 'Client Name': eventObject.customer_details.name,
                 'Client Email': eventObject.customer_details.email,
                 'Client Phone Number': eventObject.customer_details.phone,
+                'Booking Status': 'Booked',
               },
             },
           ],
