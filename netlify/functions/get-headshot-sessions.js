@@ -25,6 +25,7 @@ exports.handler = async (event, context) => {
         name: record.fields['Photographer Name'],
         description: record.fields['Description'],
         month: record.fields['Month'],
+        year: record.fields['Year'],
         dayOfMonth: record.fields['Day of Month'],
         dayOfWeek: record.fields['Day of week'],
         time: record.fields['Time of shoot'],
