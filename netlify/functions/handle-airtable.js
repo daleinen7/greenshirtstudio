@@ -11,9 +11,26 @@ exports.handler = async ({ body, headers }) => {
       process.env.STRIPE_WEBHOOK_AIRTABLE_SECRET
     );
 
+    console.log('STRIPE EVENT: ', stripeEvent);
+    console.log(
+      "CHECKING IF STRIPE EVENT TYPE IS 'checkout.session.completed': ",
+      stripeEvent.type === 'checkout.session.completed'
+    );
+
     // only do stuff if this is a successful Stripe Checkout purchase
     if (stripeEvent.type === 'checkout.session.completed') {
       const eventObject = stripeEvent.data.object;
+
+      // return if a headshot webhook
+      if (eventObject.metadata['Record ID']) {
+        return {
+          statusCode: 200,
+          body: JSON.stringify({
+            received: true,
+            message: 'Headshot webhook; no need to do anything',
+          }),
+        };
+      }
 
       const metadata = stripeEvent.data.object.metadata;
       // console.log('Metadata: ', metadata);

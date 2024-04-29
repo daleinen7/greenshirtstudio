@@ -15,6 +15,17 @@ exports.handler = async ({ body, headers }) => {
     if (stripeEvent.type === 'checkout.session.completed') {
       const eventObject = stripeEvent.data.object;
 
+      // return if class session signup
+      if (eventObject.metadata.className) {
+        return {
+          statusCode: 200,
+          body: JSON.stringify({
+            received: true,
+            message: 'Class signup webhook; no need to do anything',
+          }),
+        };
+      }
+
       const metadata = stripeEvent.data.object.metadata;
       console.log('Metadata: ', metadata);
 
