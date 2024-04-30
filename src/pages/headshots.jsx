@@ -15,6 +15,11 @@ const StyledContent = styled.div`
   align-items: center;
   width: 100%;
 
+  padding: 0 2rem;
+  @media (max-width: 640px) {
+    padding: 0 1rem;
+  }
+
   .container {
     display: flex;
     flex-direction: column;
@@ -168,19 +173,21 @@ const Headshots = () => {
 
   const sessions =
     headshotSessions &&
-    headshotSessions.map((session) => (
-      <EventCard
-        title={`${session.dayOfWeek} ${session.month} ${session.dayOfMonth}, ${session.year}`}
-        description={session.description}
-        image={session.image}
-        altText={session.name}
-        link={`/headshot/${session.id}`}
-        date={session.time}
-        time={session.name}
-        price={session.price}
-        headshot
-      />
-    ));
+    headshotSessions
+      .filter((session) => session.bookingStatus === 'Open')
+      .map((session) => (
+        <EventCard
+          title={`${session.dayOfWeek} ${session.month} ${session.dayOfMonth}, ${session.year}`}
+          description={session.description}
+          image={session.image}
+          altText={session.name}
+          link={`/headshot/${session.id}`}
+          date={session.time}
+          time={session.name}
+          price={session.price}
+          headshot
+        />
+      ));
 
   return (
     <Layout headerColor="white">
@@ -235,15 +242,36 @@ const Headshots = () => {
         </div>
       </Pricing>
 
-      <StyledContent>
-        <h3>Book an Upcoming Session Below</h3>
-        <p>
-          Find a date and time below that work for you. We can't wait to help
-          you shine in front of the camera!
-        </p>
-      </StyledContent>
+      {sessions.length > 0 ? (
+        <>
+          <StyledContent>
+            <h3>Book an Upcoming Session Below</h3>
+            <p>
+              Find a date and time below that work for you. We can't wait to
+              help you shine in front of the camera!
+            </p>
+          </StyledContent>
 
-      {sessions ? <ContentStack content={sessions} /> : <p>Loading...</p>}
+          {sessions ? <ContentStack content={sessions} /> : <p>Loading...</p>}
+        </>
+      ) : (
+        <StyledContent>
+          <h3>Book an Upcoming Session</h3>
+          <p>
+            Our upcoming headshot sessions are currently full, but don't worry!
+            New sessions are added regularly. In the meantime, reach out to us
+            to express your interest in booking a headshot session. We'll notify
+            you as soon as new dates become available. Your career deserves to
+            stand out, and we can't wait to work with you soon!
+          </p>
+          <a
+            href="mailto:info@greenshirtstudio.com?subject=Headshots%20Inquiry"
+            className="button fill"
+          >
+            Contact Us
+          </a>
+        </StyledContent>
+      )}
 
       <FAQSection
         FAQs={[
