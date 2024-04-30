@@ -37,7 +37,7 @@ exports.handler = async ({ body, headers }) => {
       const airtableUpdateResponse = await fetch(airtableEndpoint, {
         method: 'POST',
         headers: {
-          Authorization: `Bearer ${process.env.AIRTABLE_TOKEN}`,
+          Authorization: `Bearer ${process.env.AIRTABLE_HEADSHOT_TOKEN}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
