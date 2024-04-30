@@ -35,22 +35,18 @@ exports.handler = async ({ body, headers }) => {
 
       // Update the Airtable record using the fetch API
       const airtableUpdateResponse = await fetch(airtableEndpoint, {
-        method: 'POST',
+        method: 'PATCH',
         headers: {
           Authorization: `Bearer ${process.env.AIRTABLE_HEADSHOT_TOKEN}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          records: [
-            {
-              fields: {
-                'Client Name': eventObject.customer_details.name,
-                'Client Email': eventObject.customer_details.email,
-                'Client Phone Number': eventObject.customer_details.phone,
-                'Booking Status': 'Booked',
-              },
-            },
-          ],
+          fields: {
+            'Client Name': eventObject.customer_details.name,
+            'Client Email': eventObject.customer_details.email,
+            'Client Phone Number': eventObject.customer_details.phone,
+            'Booking Status': 'Booked',
+          },
         }),
       });
 
