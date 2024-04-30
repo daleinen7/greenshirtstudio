@@ -170,7 +170,7 @@ const Headshots = () => {
     headshotSessions &&
     headshotSessions.map((session) => (
       <EventCard
-        title={`${session.dayOfWeek} ${session.month} ${session.dayOfMonth}, ${session['Year']}`}
+        title={`${session.dayOfWeek} ${session.month} ${session.dayOfMonth}, ${session.year}`}
         description={session.description}
         image={session.image}
         altText={session.name}
