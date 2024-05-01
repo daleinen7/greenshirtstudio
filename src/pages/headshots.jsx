@@ -7,6 +7,17 @@ import headshotHero from '../images/headshots/headshot-hero.png';
 import greencheck from '../images/greencheck.svg';
 import ContentStack from '../components/ContentStack';
 import FAQSection from '../components/FAQSection';
+import proxy from '../images/headshots/Proxy.png';
+import proxy1 from '../images/headshots/Proxy1.png';
+import proxy2 from '../images/headshots/Proxy2.png';
+import proxy3 from '../images/headshots/Proxy3.png';
+import proxy4 from '../images/headshots/Proxy4.png';
+import proxy5 from '../images/headshots/Proxy5.png';
+import proxy6 from '../images/headshots/Proxy6.png';
+import proxy7 from '../images/headshots/Proxy7.png';
+import proxy8 from '../images/headshots/Proxy8.png';
+import proxy9 from '../images/headshots/Proxy9.png';
+import PhotoGallery from '../components/PhotoGallery';
 import styled from 'styled-components';
 
 const StyledContent = styled.div`
@@ -189,6 +200,49 @@ const Headshots = () => {
         />
       ));
 
+  const examples = [
+    {
+      image: proxy,
+      caption: 'Photographer: Colin Quinn Rice',
+    },
+    {
+      image: proxy1,
+      caption: 'Photographer: Colin Quinn Rice',
+    },
+    {
+      image: proxy2,
+      caption: 'Photographer: Colin Quinn Rice',
+    },
+    {
+      image: proxy3,
+      caption: 'Photographer: Colin Quinn Rice',
+    },
+    {
+      image: proxy4,
+      caption: 'Photographer: Colin Quinn Rice',
+    },
+    {
+      image: proxy5,
+      caption: 'Photographer: Kaleb Jackson',
+    },
+    {
+      image: proxy6,
+      caption: 'Photographer: Kaleb Jackson',
+    },
+    {
+      image: proxy7,
+      caption: 'Photographer: Kaleb Jackson',
+    },
+    {
+      image: proxy8,
+      caption: 'Photographer: Kaleb Jackson',
+    },
+    {
+      image: proxy9,
+      caption: 'Photographer: Kaleb Jackson',
+    },
+  ];
+
   return (
     <Layout headerColor="white">
       <ImageAndContentHeader
@@ -196,6 +250,8 @@ const Headshots = () => {
         title="Actor Headshots"
         content="First time getting your headshot taken? Need to book a shoot to update your look? We can help!"
       />
+
+      <PhotoGallery imgCap={examples} />
 
       <StyledContent>
         <div className="container">

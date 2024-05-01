@@ -27,11 +27,20 @@ const StyledEventCard = styled.article`
     height: 13.25rem;
 
     img {
-      object-fit: contain;
+      object-fit: cover;
       border: 1px solid var(--light-gray);
       width: ${(props) => (props.small ? '19rem' : '26rem')};
+      height: 18.125rem;
       margin-bottom: 0.5rem;
     }
+  }
+
+  img {
+    object-fit: cover;
+    border: 1px solid var(--light-gray);
+    width: ${(props) => (props.small ? '19rem' : '26rem')};
+    height: 18.125rem;
+    margin-bottom: 0.5rem;
   }
 
   .date,
