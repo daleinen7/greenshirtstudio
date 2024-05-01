@@ -126,6 +126,9 @@ const Headshot = ({ params }) => {
                 </div>
                 <div className="right-column">
                   <SpecialMessage
+                    specialMessageHeader={
+                      headshotSession['Special Message Header']
+                    }
                     specialMessage={headshotSession['Special Message']}
                   />
                   <AboutPhotographer

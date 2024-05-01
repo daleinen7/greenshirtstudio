@@ -31,10 +31,10 @@ const StyledSpecialMessage = styled.section`
   }
 `;
 
-const SpecialMessage = ({ specialMessage }) => {
+const SpecialMessage = ({ specialMessageHeader, specialMessage }) => {
   return (
     <StyledSpecialMessage>
-      <h3>Special Message</h3>
+      <h3>{specialMessageHeader}</h3>
       <p>{specialMessage}</p>
     </StyledSpecialMessage>
   );

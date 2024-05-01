@@ -161,7 +161,7 @@ const SessionHeader = ({ session }) => {
       )}
       <div className="info">
         <h2>Headshots with {session['Photographer Name']}</h2>
-        <p>{`${session['Day of week']}, ${session['Month']}, ${session['Time of shoot']}`}</p>
+        <p>{`${session['Day of week']}, ${session['Month']} ${session['Day of Month']}, ${session['Time of shoot']}`}</p>
 
         <div className="price">${session.Price}</div>
         <ul className="pricing-buttons">

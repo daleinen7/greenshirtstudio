@@ -177,7 +177,7 @@ const Headshots = () => {
       .filter((session) => session.bookingStatus === 'Open')
       .map((session) => (
         <EventCard
-          title={`${session.dayOfWeek} ${session.month} ${session.dayOfMonth}, ${session.year}`}
+          title={`${session.dayOfWeek}, ${session.month} ${session.dayOfMonth}, ${session.year}`}
           description={session.description}
           image={session.image}
           altText={session.name}
@@ -203,23 +203,19 @@ const Headshots = () => {
           <ol>
             <li>
               <h4>The Preparation</h4>
-              <p>
-                We'll set you up with resources to guide you on how to show up
-                feeling ready to shoot
-              </p>
+              <p>Resources to help you prepare and Zoom consult included</p>
             </li>
             <li>
               <h4>The Shoot</h4>
               <p>
-                Our expert team is friendly and passionate about helping you
-                feel great in front of the camera
+                Takes 2 hours. First hour for makeup and second for your photos
               </p>
             </li>
             <li>
               <h4>After Your Session</h4>
               <p>
-                Within two weeks you'll hve access to the full gallery and
-                choose two photos to be edited
+                Full gallery delivered in less than 2 weeks. You choose 2 photos
+                for edits
               </p>
             </li>
           </ol>
