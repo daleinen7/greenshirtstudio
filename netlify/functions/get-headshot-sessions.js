@@ -7,6 +7,7 @@ exports.handler = async (event, context) => {
     const response = await fetch(
       `https://api.airtable.com/v0/${process.env.AIRTABLE_HEADSHOT_BASE}`,
       {
+        method: 'GET',
         headers: {
           Authorization: `Bearer ${process.env.AIRTABLE_HEADSHOT_TOKEN}`,
         },
@@ -31,6 +32,7 @@ exports.handler = async (event, context) => {
         time: record.fields['Time of shoot'],
         price: record.fields['Price'],
         image: record.fields['Headshot Page Card Image'][0]['url'],
+        bookingStatus: record.fields['Booking Status'],
       };
     });
 

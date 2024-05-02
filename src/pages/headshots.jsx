@@ -7,6 +7,17 @@ import headshotHero from '../images/headshots/headshot-hero.png';
 import greencheck from '../images/greencheck.svg';
 import ContentStack from '../components/ContentStack';
 import FAQSection from '../components/FAQSection';
+import proxy from '../images/headshots/Proxy.jpg';
+import proxy1 from '../images/headshots/Proxy1.jpg';
+import proxy2 from '../images/headshots/Proxy2.jpg';
+import proxy3 from '../images/headshots/Proxy3.jpg';
+import proxy4 from '../images/headshots/Proxy4.jpg';
+import proxy5 from '../images/headshots/Proxy5.jpg';
+import proxy6 from '../images/headshots/Proxy6.jpg';
+import proxy7 from '../images/headshots/Proxy7.jpg';
+import proxy8 from '../images/headshots/Proxy8.jpg';
+import proxy9 from '../images/headshots/Proxy9.jpg';
+import PhotoGallery from '../components/PhotoGallery';
 import styled from 'styled-components';
 
 const StyledContent = styled.div`
@@ -14,6 +25,11 @@ const StyledContent = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+
+  padding: 0 2rem;
+  @media (max-width: 640px) {
+    padding: 0 1rem;
+  }
 
   .container {
     display: flex;
@@ -168,19 +184,64 @@ const Headshots = () => {
 
   const sessions =
     headshotSessions &&
-    headshotSessions.map((session) => (
-      <EventCard
-        title={`${session.dayOfWeek} ${session.month} ${session.dayOfMonth}, ${session.year}`}
-        description={session.description}
-        image={session.image}
-        altText={session.name}
-        link={`/headshot/${session.id}`}
-        date={session.time}
-        time={session.name}
-        price={session.price}
-        headshot
-      />
-    ));
+    headshotSessions
+      .filter((session) => session.bookingStatus === 'Open')
+      .map((session) => (
+        <EventCard
+          title={`${session.dayOfWeek}, ${session.month} ${session.dayOfMonth}, ${session.year}`}
+          description={session.description}
+          image={session.image}
+          altText={session.name}
+          link={`/headshot/${session.id}`}
+          date={session.time}
+          time={session.name}
+          price={session.price}
+          headshot
+        />
+      ));
+
+  const examples = [
+    {
+      image: proxy,
+      caption: 'Photographer: Colin Quinn Rice',
+    },
+    {
+      image: proxy1,
+      caption: 'Photographer: Colin Quinn Rice',
+    },
+    {
+      image: proxy2,
+      caption: 'Photographer: Colin Quinn Rice',
+    },
+    {
+      image: proxy3,
+      caption: 'Photographer: Colin Quinn Rice',
+    },
+    {
+      image: proxy4,
+      caption: 'Photographer: Colin Quinn Rice',
+    },
+    {
+      image: proxy5,
+      caption: 'Photographer: Kaleb Jackson',
+    },
+    {
+      image: proxy6,
+      caption: 'Photographer: Kaleb Jackson',
+    },
+    {
+      image: proxy7,
+      caption: 'Photographer: Kaleb Jackson',
+    },
+    {
+      image: proxy8,
+      caption: 'Photographer: Kaleb Jackson',
+    },
+    {
+      image: proxy9,
+      caption: 'Photographer: Kaleb Jackson',
+    },
+  ];
 
   return (
     <Layout headerColor="white">
@@ -190,29 +251,27 @@ const Headshots = () => {
         content="First time getting your headshot taken? Need to book a shoot to update your look? We can help!"
       />
 
+      <PhotoGallery imgCap={examples} />
+
       <StyledContent>
         <div className="container">
           <h3>Our Process</h3>
           <ol>
             <li>
               <h4>The Preparation</h4>
-              <p>
-                We'll set you up with resources to guide you on how to show up
-                feeling ready to shoot
-              </p>
+              <p>Resources to help you prepare and Zoom consult included</p>
             </li>
             <li>
               <h4>The Shoot</h4>
               <p>
-                Our expert team is friendly and passionate about helping you
-                feel great in front of the camera
+                Takes 2 hours. First hour for makeup and second for your photos
               </p>
             </li>
             <li>
               <h4>After Your Session</h4>
               <p>
-                Within two weeks you'll hve access to the full gallery and
-                choose two photos to be edited
+                Full gallery delivered in less than 2 weeks. You choose 2 photos
+                for edits
               </p>
             </li>
           </ol>
@@ -235,15 +294,36 @@ const Headshots = () => {
         </div>
       </Pricing>
 
-      <StyledContent>
-        <h3>Book an Upcoming Session Below</h3>
-        <p>
-          Find a date and time below that work for you. We can't wait to help
-          you shine in front of the camera!
-        </p>
-      </StyledContent>
+      {sessions.length > 0 ? (
+        <>
+          <StyledContent>
+            <h3>Book an Upcoming Session Below</h3>
+            <p>
+              Find a date and time below that work for you. We can't wait to
+              help you shine in front of the camera!
+            </p>
+          </StyledContent>
 
-      {sessions ? <ContentStack content={sessions} /> : <p>Loading...</p>}
+          {sessions ? <ContentStack content={sessions} /> : <p>Loading...</p>}
+        </>
+      ) : (
+        <StyledContent>
+          <h3>Book an Upcoming Session</h3>
+          <p>
+            Our upcoming headshot sessions are currently full, but don't worry!
+            New sessions are added regularly. In the meantime, reach out to us
+            to express your interest in booking a headshot session. We'll notify
+            you as soon as new dates become available. Your career deserves to
+            stand out, and we can't wait to work with you soon!
+          </p>
+          <a
+            href="mailto:info@greenshirtstudio.com?subject=Headshots%20Inquiry"
+            className="button fill"
+          >
+            Contact Us
+          </a>
+        </StyledContent>
+      )}
 
       <FAQSection
         FAQs={[

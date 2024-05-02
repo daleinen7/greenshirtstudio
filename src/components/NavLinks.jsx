@@ -19,11 +19,11 @@ const NavLinks = () => {
           Shows & Events
         </Link>
       </li>
-      {/* <li>
+      <li>
         <Link to="/headshots" activeClassName="active">
           Headshots
         </Link>
-      </li> */}
+      </li>
       <li>
         <Link to="/space-rental" activeClassName="active">
           Space Rental
