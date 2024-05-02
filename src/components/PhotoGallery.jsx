@@ -14,7 +14,8 @@ const StyledGallery = styled.div`
     margin: 0;
     img {
       width: 100%;
-      height: auto;
+      object-fit: cover;
+      height: 16.75rem;
     }
     figcaption {
       font-size: 0.75rem;
