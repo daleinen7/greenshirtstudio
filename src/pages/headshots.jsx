@@ -7,16 +7,16 @@ import headshotHero from '../images/headshots/headshot-hero.png';
 import greencheck from '../images/greencheck.svg';
 import ContentStack from '../components/ContentStack';
 import FAQSection from '../components/FAQSection';
-import proxy from '../images/headshots/Proxy.jpg';
-import proxy1 from '../images/headshots/Proxy1.jpg';
-import proxy2 from '../images/headshots/Proxy2.jpg';
-import proxy3 from '../images/headshots/Proxy3.jpg';
-import proxy4 from '../images/headshots/Proxy4.jpg';
-import proxy5 from '../images/headshots/Proxy5.jpg';
-import proxy6 from '../images/headshots/Proxy6.jpg';
-import proxy7 from '../images/headshots/Proxy7.jpg';
-import proxy8 from '../images/headshots/Proxy8.jpg';
-import proxy9 from '../images/headshots/Proxy9.jpg';
+import proxy from '../images/headshots/Proxy.png';
+import proxy1 from '../images/headshots/Proxy1.png';
+import proxy2 from '../images/headshots/Proxy2.png';
+import proxy3 from '../images/headshots/Proxy3.png';
+import proxy4 from '../images/headshots/Proxy4.png';
+import proxy5 from '../images/headshots/Proxy5.png';
+import proxy6 from '../images/headshots/Proxy6.png';
+import proxy7 from '../images/headshots/Proxy7.png';
+import proxy8 from '../images/headshots/Proxy8.png';
+import proxy9 from '../images/headshots/Proxy9.png';
 import PhotoGallery from '../components/PhotoGallery';
 import styled from 'styled-components';
 
@@ -203,23 +203,23 @@ const Headshots = () => {
   const examples = [
     {
       image: proxy,
-      caption: 'Photographer: Colin Quinn Rice',
+      caption: 'Photographer: Collin Quinn Rice',
     },
     {
       image: proxy1,
-      caption: 'Photographer: Colin Quinn Rice',
+      caption: 'Photographer: Collin Quinn Rice',
     },
     {
       image: proxy2,
-      caption: 'Photographer: Colin Quinn Rice',
+      caption: 'Photographer: Collin Quinn Rice',
     },
     {
       image: proxy3,
-      caption: 'Photographer: Colin Quinn Rice',
+      caption: 'Photographer: Collin Quinn Rice',
     },
     {
       image: proxy4,
-      caption: 'Photographer: Colin Quinn Rice',
+      caption: 'Photographer: Collin Quinn Rice',
     },
     {
       image: proxy5,
