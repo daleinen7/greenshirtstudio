@@ -1,5 +1,6 @@
 import React from 'react';
 import Accordion from '../Accordion';
+import ReactMarkdown from 'react-markdown';
 import styled from 'styled-components';
 
 const StyledDescription = styled.section`
@@ -33,7 +34,7 @@ const Description = ({ description }) => {
   return (
     <StyledDescription>
       <Accordion title="Description" defaultOpen={true} h3>
-        {description}
+        <ReactMarkdown children={description} />
       </Accordion>
     </StyledDescription>
   );
