@@ -39,7 +39,7 @@ const StyledClassDetails = styled.section`
 const ClassDetails = ({ session }) => {
   return (
     <StyledClassDetails>
-      <h3>Class Details</h3>
+      <h3>Session Details</h3>
       <div className="details">
         <dl>
           <dt>Day</dt>
