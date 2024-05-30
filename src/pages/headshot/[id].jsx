@@ -106,7 +106,6 @@ const Headshot = ({ params }) => {
 
     fetchData();
   }, []);
-
   return (
     <Layout>
       <StyledPhotographerPage>
@@ -135,6 +134,9 @@ const Headshot = ({ params }) => {
                     name={headshotSession['Photographer Name']}
                     bio={headshotSession['Photographer Bio']}
                     image={headshotSession['Photographer Image']}
+                    link={
+                      headshotSession['Link to Photographer page on GSS site']
+                    }
                   />
                   <SessionDetails session={headshotSession} />
                 </div>
