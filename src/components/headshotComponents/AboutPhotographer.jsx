@@ -47,10 +47,35 @@ const StyledAboutPhotographer = styled.section`
   .learn-more {
     margin-top: 1.5rem;
     margin-bottom: 1.25rem;
+    border: 2px solid var(--black);
+    color: var(--black);
+    border-radius: 2px;
+    display: inline;
+    text-decoration: none;
+    padding: 1rem 1.5rem;
+    font-size: 1.25rem;
+    font-weight: 900;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+
+    :hover {
+      background: var(--light-gray);
+      border: 2px solid var(--light-gray);
+    }
+    :active {
+      transform: translateY(2px) translateX(2px);
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1rem;
+      padding: 0.75rem 1.5rem;
+      min-width: auto;
+    }
   }
 `;
 
-const AboutPhotographer = ({ name, bio, image }) => {
+const AboutPhotographer = ({ name, bio, image, link }) => {
   return (
     <StyledAboutPhotographer>
       <img src={image[0].url} alt={name} />
@@ -58,7 +83,7 @@ const AboutPhotographer = ({ name, bio, image }) => {
       <div className="bio">
         <Markdown>{bio}</Markdown>
       </div>
-      {/* <a href="/" className="learn-more">{`About ${name}`}</a> */}
+      <a href={link} className="learn-more ">{`About ${name}`}</a>
     </StyledAboutPhotographer>
   );
 };

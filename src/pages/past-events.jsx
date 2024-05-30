@@ -20,8 +20,6 @@ const StyledHero = styled.div`
 `;
 
 const EventPage = ({ data }) => {
-  console.log('DATA: ', data);
-
   const cardifyEvent = (evt, small) => {
     const eventDate = new Date(evt.events.eventDate).toLocaleDateString(
       'en-US',

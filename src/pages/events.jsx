@@ -64,8 +64,6 @@ const Events = ({ data }) => {
 
   const futureEventsObj = {};
 
-  console.log('EVENTS: ', data.allWpEventbrite.nodes);
-
   let futureEventsData = data.allWpEventbrite.nodes
     .filter((evt) => {
       return today < new Date(evt.events.eventDate);

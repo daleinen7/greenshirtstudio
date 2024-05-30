@@ -40,7 +40,7 @@ const IndexPage = ({ data }) => {
     return (
       <BlogCard
         title={post.title}
-        author={post.author.node.name}
+        author={post?.author?.node?.name}
         img={post.featuredImage.node.sourceUrl}
         slug={`blog/${post.slug}`}
       />

@@ -186,19 +186,48 @@ const Headshots = () => {
     headshotSessions &&
     headshotSessions
       .filter((session) => session.bookingStatus === 'Open')
-      .map((session) => (
-        <EventCard
-          title={`${session.dayOfWeek}, ${session.month} ${session.dayOfMonth}, ${session.year}`}
-          description={session.description}
-          image={session.image}
-          altText={session.name}
-          link={`/headshot/${session.id}`}
-          date={session.time}
-          time={session.name}
-          price={session.price}
-          headshot
-        />
-      ));
+      .sort((a, b) => {
+        const monthMap = {
+          January: 0,
+          February: 1,
+          March: 2,
+          April: 3,
+          May: 4,
+          June: 5,
+          July: 6,
+          August: 7,
+          September: 8,
+          October: 9,
+          November: 10,
+          December: 11,
+        };
+        const dateA = new Date(
+          parseInt(a.year),
+          monthMap[a.month],
+          parseInt(a.dayOfMonth)
+        );
+        const dateB = new Date(
+          parseInt(b.year),
+          monthMap[b.month],
+          parseInt(b.dayOfMonth)
+        );
+        return dateA - dateB;
+      })
+      .map((session) => {
+        return (
+          <EventCard
+            title={`${session.dayOfWeek}, ${session.month} ${session.dayOfMonth}, ${session.year}`}
+            description={session.description}
+            image={session.image}
+            altText={session.name}
+            link={`/headshot/${session.id}`}
+            date={session.time}
+            time={session.name}
+            price={session.price}
+            headshot
+          />
+        );
+      });
 
   const examples = [
     {
