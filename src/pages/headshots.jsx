@@ -317,12 +317,11 @@ const Headshots = () => {
 
             <ul>
               <li>Resources to help you prepare</li>
-              <li>Professional makeup design</li>
-              <li>2 hours, 2 looks, 2 edited photos</li>
               <li>
                 Professional makeup design with{' '}
                 <Link to="/syd-genco/">Syd Genco</Link>
               </li>
+              <li>2 hours, 2 looks, 2 edited photos</li>
             </ul>
           </div>
         </div>
