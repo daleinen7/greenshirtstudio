@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'gatsby';
 import { SEO } from '../components/seo';
 import Layout from '../components/Layout';
 import ImageAndContentHeader from '../components/ImageAndContentHeader';
@@ -318,6 +319,10 @@ const Headshots = () => {
               <li>Resources to help you prepare</li>
               <li>Professional makeup design</li>
               <li>2 hours, 2 looks, 2 edited photos</li>
+              <li>
+                Professional makeup design with{' '}
+                <Link to="/syd-genco/">Syd Genco</Link>
+              </li>
             </ul>
           </div>
         </div>
@@ -375,6 +380,11 @@ const Headshots = () => {
             title: 'I’m not an actor but need a headshot. Can you help? ',
             content:
               'While we specialize in actor headshot, you don’t need to be an actor to book a session with us. Need a new photo for your LinkedIn profile? We can help. ',
+          },
+          {
+            title: 'Why do I need professional makeup?',
+            content:
+              'Syd Genco, our makeup extraordinaire, does an incredible job of bringing out your best qualities and setting your face up for maximum balance. She will make you like yourself on your best day.',
           },
         ]}
       />
