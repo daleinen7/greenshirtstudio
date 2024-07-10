@@ -20,6 +20,9 @@ exports.handler = async ({ body, headers }) => {
       const metadata = stripeEvent.data.object.metadata;
       // console.log('Metadata: ', metadata);
 
+      // Immediately respond to Stripe
+      let responseBody = { received: true };
+
       // if purchase is a subscription
       if (eventObject.mode === 'subscription') {
         const date = new Date();
@@ -34,70 +37,79 @@ exports.handler = async ({ body, headers }) => {
         await stripe.subscriptions.update(eventObject.subscription, {
           cancel_at: oneMonthOut,
         });
+
+        responseBody.subscriptionUpdated = true;
       }
 
-      let spotsLeft;
+      // Perform the WordPress update asynchronously
+      (async () => {
+        try {
+          let spotsLeft;
 
-      // Sometimes databaseid is undefined, so we'll set it to dbid if that's the case
-      if (metadata.databaseId === undefined) {
-        metadata.databaseId = metadata.dbid;
-      }
+          // Sometimes databaseid is undefined, so we'll set it to dbid if that's the case
+          if (metadata.databaseId === undefined) {
+            metadata.databaseId = metadata.dbid;
+          }
 
-      // get current count of seats
-      const response = await fetch(`${API_ENDPOINT}/${metadata.databaseId}`)
-        .then((res) => res.json())
-        .then((data) => {
-          spotsLeft = data?.acf?.spots_left;
-        });
+          // get current count of seats
+          const response = await fetch(`${API_ENDPOINT}/${metadata.databaseId}`)
+            .then((res) => res.json())
+            .then((data) => {
+              spotsLeft = data?.acf?.spots_left;
+            });
 
-      // console.log('Spots left after initial call: ', spotsLeft);
+          // console.log('Spots left after initial call: ', spotsLeft);
 
-      const auth = Buffer.from(
-        process.env.WP_USER + ':' + process.env.WP_PW
-      ).toString('base64');
+          const auth = Buffer.from(
+            process.env.WP_USER + ':' + process.env.WP_PW
+          ).toString('base64');
 
-      // cast Spots Left to a number
-      spotsLeft = Number(spotsLeft);
+          // cast Spots Left to a number
+          spotsLeft = Number(spotsLeft);
 
-      let newSpotsLeft = spotsLeft - 1;
+          let newSpotsLeft = spotsLeft - 1;
 
-      console.log(
-        "Here's what's being sent: ",
-        JSON.stringify({
-          acf: {
-            spots_left: newSpotsLeft,
-          },
-        })
-      );
+          console.log(
+            "Here's what's being sent: ",
+            JSON.stringify({
+              acf: {
+                spots_left: newSpotsLeft,
+              },
+            })
+          );
 
-      const url = `${API_ENDPOINT}/${metadata.databaseId}`;
+          const url = `${API_ENDPOINT}/${metadata.databaseId}`;
 
-      console.log('URL: ', url);
+          console.log('URL: ', url);
 
-      const update = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Basic ${auth}`,
-        },
-        body: JSON.stringify({
-          acf: {
-            spots_left: newSpotsLeft,
-          },
-        }),
-      });
+          const update = await fetch(url, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Basic ${auth}`,
+            },
+            body: JSON.stringify({
+              acf: {
+                spots_left: newSpotsLeft,
+              },
+            }),
+          });
 
-      // Get Response body
-      const updateResponse = await update.json();
+          const updateResponse = await update.json();
+          // // Get Response body //
+          // const updateResponse = await update.json();
 
-      //console.log("SPOTS LEFT UPDATE: ", update);
-      console.log('Update Response: ', updateResponse);
-
-      console.log('Webhook successful!');
+          //console.log("SPOTS LEFT UPDATE: ", update);
+          console.log('Webhook successful!');
+          console.log('Update Response: ', updateResponse);
+        } catch (err) {
+          console.error('Error updating WordPress: ', err);
+        }
+      })();
 
       return {
         statusCode: 200,
-        body: JSON.stringify({ received: true, message: update }),
+        body: JSON.stringify(responseBody),
       };
     }
 
