@@ -2,6 +2,72 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST_KEY);
 
 const API_ENDPOINT = `${process.env.BACKEND_URL}/wp-json/wp/v2/class`;
 
+// Separate function to handle the WordPress update asynchronously
+const updateWordPress = async (metadata) => {
+  try {
+    let spotsLeft;
+
+    // Sometimes databaseid is undefined, so we'll set it to dbid if that's the case
+    if (metadata.databaseId === undefined) {
+      metadata.databaseId = metadata.dbid;
+    }
+
+    // get current count of seats
+    const response = await fetch(`${API_ENDPOINT}/${metadata.databaseId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        spotsLeft = data?.acf?.spots_left;
+      });
+
+    // console.log('Spots left after initial call: ', spotsLeft);
+
+    const auth = Buffer.from(
+      process.env.WP_USER + ':' + process.env.WP_PW
+    ).toString('base64');
+
+    // cast Spots Left to a number
+    spotsLeft = Number(spotsLeft);
+
+    let newSpotsLeft = spotsLeft - 1;
+
+    console.log(
+      "Here's what's being sent: ",
+      JSON.stringify({
+        acf: {
+          spots_left: newSpotsLeft,
+        },
+      })
+    );
+
+    const url = `${API_ENDPOINT}/${metadata.databaseId}`;
+
+    console.log('URL: ', url);
+
+    const update = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${auth}`,
+      },
+      body: JSON.stringify({
+        acf: {
+          spots_left: newSpotsLeft,
+        },
+      }),
+    });
+
+    const updateResponse = await update.json();
+    // // Get Response body //
+    // const updateResponse = await update.json();
+
+    //console.log("SPOTS LEFT UPDATE: ", update);
+    console.log('Webhook successful!');
+    console.log('Update Response: ', updateResponse);
+  } catch (err) {
+    console.error('Error updating WordPress: ', err);
+  }
+};
+
 exports.handler = async ({ body, headers }) => {
   console.log('BODY: ', body);
   // console.log("HEADERS: ", headers);
@@ -39,6 +105,8 @@ exports.handler = async ({ body, headers }) => {
 
         responseBody.subscriptionUpdated = true;
       }
+
+      console.log('now update wordpress with metadata: ', metadata);
 
       // Perform the WordPress update asynchronously
       updateWordPress(metadata);
