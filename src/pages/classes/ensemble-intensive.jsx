@@ -6,6 +6,7 @@ import AboutTeacher from '../../components/classComponents/AboutTeacher';
 import ClassDetails from '../../components/classComponents/ClassDetails';
 import Layout from '../../components/Layout';
 import Accordion from '../../components/Accordion';
+import { StyledClassHeader } from '../../components/classComponents/ClassHeader';
 
 const EnsembleIntensive = () => {
   const { wpClass } = {
@@ -93,7 +94,32 @@ const EnsembleIntensive = () => {
   return (
     <Layout>
       <StyledClassPage>
-        {/* // TODO: Add class header */}
+        <StyledClassHeader>
+          {wpClass.classGroup.classImage && (
+            <img
+              src={wpClass.classGroup.classImage.sourceUrl}
+              alt={wpClass.title}
+            />
+          )}
+          <div className="info">
+            <h2>{wpClass.title}</h2>
+            <p>
+              Mondays – Thursdays, January 6 – March 6, 6:30-9:30PM with Andrew
+              Gallant
+            </p>
+
+            <div className="price">
+              ${wpClass.classGroup.price}
+              <br />
+              <p>(payment plans available)</p>
+            </div>
+            <ul className="pricing-buttons">
+              <li>
+                <button className="register">Apply Now</button>
+              </li>
+            </ul>
+          </div>
+        </StyledClassHeader>
         <div className="main-content">
           <div className="left-column">
             <h2>Description</h2>
