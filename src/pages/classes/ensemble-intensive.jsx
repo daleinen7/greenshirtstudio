@@ -17,7 +17,7 @@ const EnsembleIntensive = () => {
         node: {
           name: 'Jack Schultz',
           description:
-            'Jack Schultz is an actor, teacher, and storyteller in Chicago. He’s the Artistic Director of Green Shirt Studio and former Artistic Director of The Agency where his solo show I’m Falling In Love All The Time enjoyed a sold out run on Chicago’s off-loop theatre scene. A story exploring opioid addiction through the lens of caffeine and romantic relationships, I’m Falling In Love All The Time now travels to colleges around the country to tackle stigma around substance use disorders. \r\n\r\nOther performance credits with The Agency include I Wish To Apologize to the People of Illinois, The Spirit of ’76, and Hellcab (2017 and 2018). Jack is a graduate of the iO Training Center, a 200 level RYT Yoga instructor, completed the True Acting Diploma Course with Master Meisner Teacher Larry Silverberg, created the Storytelling Program and teaches the Meisner technique at Green Shirt Studio. He also appears in Season 7 Episode 2 of The Carbonaro Effect where Michael Carbonaro tricked him into believing a viking skeleton tried to attack him at a construction site outside of O’Hare Airport. \r\n\r\nTo find out more about Jack visit jackgschultz.com.',
+            "Jack Schultz is an actor, teacher, and storyteller in Chicago. He's the Artistic Director of Green Shirt Studio and former Artistic Director of The Agency where his solo show I'm Falling In Love All The Time enjoyed a sold out run on Chicago's off-loop theatre scene. A story exploring opioid addiction through the lens of caffeine and romantic relationships, I'm Falling In Love All The Time now travels to colleges around the country to tackle stigma around substance use disorders. \r\n\r\nOther performance credits with The Agency include I Wish To Apologize to the People of Illinois, The Spirit of '76, and Hellcab (2017 and 2018). Jack is a graduate of the iO Training Center, a 200 level RYT Yoga instructor, completed the True Acting Diploma Course with Master Meisner Teacher Larry Silverberg, created the Storytelling Program and teaches the Meisner technique at Green Shirt Studio. He also appears in Season 7 Episode 2 of The Carbonaro Effect where Michael Carbonaro tricked him into believing a viking skeleton tried to attack him at a construction site outside of O'Hare Airport. \r\n\r\nTo find out more about Jack visit jackgschultz.com.",
         },
       },
       databaseId: 123456,
@@ -43,7 +43,7 @@ const EnsembleIntensive = () => {
           title: 'Andrew Gallant',
           slug: 'andrew-gallant',
           content:
-            '<p>Andrew Gallant holds an M.F.A in Acting from DePaul University, a postgraduate diploma from the Liverpool Institute for Performing Arts, a BA in Theatre from UW-Madison and is a proud member of Actor’s Equity. For the last 15 years, Andrew has worked professionally in Chicago as an actor, playwright, director, and artistic director. His plays I Wish to Apologize to the People of Illinois and At the Center both received 3-star reviews (out of 4) from the Chicago Tribune and his short play Mackerel Sky is currently being adapted into a short film with festival submissions pending.</p>\n<p>Before joining Dean, Andrew was an adjunct faculty member at DePaul University’s Theatre School as well as its Digital Cinema Program and was an adjunct professor of theatre and the director of theatre at Triton College. He is co-founder of Green Shirt Studio, an acting school in Chicago specializing the Meisner approach to actor training. His students have appeared in Stranger Things, Moonlight, Molly’s Game, Chicago PD, Chicago Fire, Chicago Med, 9-1-1: Lone Star, The Chi, Easy, Empire, Fargo, The Book of Mormon (Broadway), and many other projects all over the world.</p>\n',
+            "<p>Andrew Gallant holds an M.F.A in Acting from DePaul University, a postgraduate diploma from the Liverpool Institute for Performing Arts, a BA in Theatre from UW-Madison and is a proud member of Actor's Equity. For the last 15 years, Andrew has worked professionally in Chicago as an actor, playwright, director, and artistic director. His plays I Wish to Apologize to the People of Illinois and At the Center both received 3-star reviews (out of 4) from the Chicago Tribune and his short play Mackerel Sky is currently being adapted into a short film with festival submissions pending.</p>\n<p>Before joining Dean, Andrew was an adjunct faculty member at DePaul University's Theatre School as well as its Digital Cinema Program and was an adjunct professor of theatre and the director of theatre at Triton College. He is co-founder of Green Shirt Studio, an acting school in Chicago specializing the Meisner approach to actor training. His students have appeared in Stranger Things, Moonlight, Molly's Game, Chicago PD, Chicago Fire, Chicago Med, 9-1-1: Lone Star, The Chi, Easy, Empire, Fargo, The Book of Mormon (Broadway), and many other projects all over the world.</p>\n",
           instructors: {
             title: 'Co-Founder, Instructor',
             image: {
@@ -105,7 +105,7 @@ const EnsembleIntensive = () => {
           <div className="info">
             <h2>{wpClass.title}</h2>
             <p>
-              Mondays – Thursdays, January 6 – March 6, 6:30-9:30PM with Andrew
+              Mondays - Thursdays, January 6 - March 6, 6:30-9:30PM with Andrew
               Gallant
             </p>
 
@@ -131,7 +131,7 @@ const EnsembleIntensive = () => {
             <br />
             <StyledDescription>
               <Accordion
-                title="Over the nine weeks, you’ll grow by:"
+                title="Over the nine weeks, you'll grow by:"
                 defaultOpen={true}
                 h3
               >
@@ -148,7 +148,7 @@ const EnsembleIntensive = () => {
                     Experiencing in depth training in Meisner technique
                     including partner attention, connection to impulse,
                     emotional preparation, character point of view,
-                    personalization, script analysis 
+                    personalization, script analysis
                   </li>
                   <li>
                     Exploring physical and vocal expressivity that dynamic
@@ -163,7 +163,7 @@ const EnsembleIntensive = () => {
                     and how to prepare a side
                   </li>
                   <li>
-                    Getting a hands on introduction to Chicago’s acting industry
+                    Getting a hands on introduction to Chicago's acting industry
                   </li>
                   <li>
                     Attending a one-on-on coaching session to plan next steps on
@@ -171,7 +171,7 @@ const EnsembleIntensive = () => {
                   </li>
                 </ul>
               </Accordion>
-              <Accordion title="You’ll walk away with:" h3>
+              <Accordion title="You'll walk away with:" h3>
                 <ul>
                   <li>
                     A refined toolkit to tackle text for stage, TV, and film
