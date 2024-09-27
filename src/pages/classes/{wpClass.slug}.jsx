@@ -12,7 +12,7 @@ import ClassDetails from '../../components/classComponents/ClassDetails';
 
 import styled from 'styled-components';
 
-const StyledClassPage = styled.div`
+export const StyledClassPage = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -82,6 +82,8 @@ const StyledClassPage = styled.div`
 
 const ClassPage = (props) => {
   const { wpClass, allWpSession } = props.data;
+
+  console.log(props);
 
   // filter through allWpPage query to find the correct policy
   const workshopPolicy = props.data.allWpPage.edges.filter(
