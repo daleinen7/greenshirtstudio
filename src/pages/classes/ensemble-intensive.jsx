@@ -1,13 +1,11 @@
 import React from 'react';
 import { StyledClassPage } from './{wpClass.slug}';
-import ClassHeader from '../../components/classComponents/ClassHeader';
-import Description, {
-  StyledDescription,
-} from '../../components/classComponents/Description';
+import { StyledDescription } from '../../components/classComponents/Description';
 import SpecialMessage from '../../components/classComponents/SpecialMessage';
 import AboutTeacher from '../../components/classComponents/AboutTeacher';
 import ClassDetails from '../../components/classComponents/ClassDetails';
 import Layout from '../../components/Layout';
+import Accordion from '../../components/Accordion';
 
 const EnsembleIntensive = () => {
   const { wpClass } = {
@@ -98,7 +96,126 @@ const EnsembleIntensive = () => {
         {/* // TODO: Add class header */}
         <div className="main-content">
           <div className="left-column">
-            {/* // TODO: Add Description accordions */}
+            <h2>Description</h2>
+            <p>
+              Immerse yourself in your craft surrounded by a supportive
+              community in this nine-week intensive program.
+            </p>
+            <br />
+            <StyledDescription>
+              <Accordion
+                title="Over the nine weeks, you’ll grow by:"
+                defaultOpen={true}
+                h3
+              >
+                <ul>
+                  <li>
+                    Building trust as an ensemble and encouraging each other to
+                    grow as actors and artists
+                  </li>
+                  <li>
+                    Over 100 hours of classroom instruction with your lead
+                    instructor and Green Shirt co-founder Andrew Gallant
+                  </li>
+                  <li>
+                    Experiencing in depth training in Meisner technique
+                    including partner attention, connection to impulse,
+                    emotional preparation, character point of view,
+                    personalization, script analysis 
+                  </li>
+                  <li>
+                    Exploring physical and vocal expressivity that dynamic
+                    acting requires
+                  </li>
+                  <li>
+                    Gaining a working knowledge of consent based industry best
+                    practices
+                  </li>
+                  <li>
+                    Learning audition technique including self-tape, monologues,
+                    and how to prepare a side
+                  </li>
+                  <li>
+                    Getting a hands on introduction to Chicago’s acting industry
+                  </li>
+                  <li>
+                    Attending a one-on-on coaching session to plan next steps on
+                    how to market yourself as an actor
+                  </li>
+                </ul>
+              </Accordion>
+              <Accordion title="You’ll walk away with:" h3>
+                <ul>
+                  <li>
+                    A refined toolkit to tackle text for stage, TV, and film
+                  </li>
+                  <li>
+                    Coaching on materials to market yourself as an actor
+                    including headshots, clips for your online profiles, and
+                    resumes
+                  </li>
+                  <li>
+                    Guides outlining concrete steps on how to best produce your
+                    own digital content and shows in the Chicago theatre
+                    community
+                  </li>
+                  <li>
+                    Two handpicked audition monologues in collaboration with
+                    your instructor
+                  </li>
+                  <li>
+                    Showcase for invited friends, family, and industry
+                    professionals 
+                  </li>
+                  <li>
+                    You’ll finish the intensive with the skills, materials, and
+                    connections to take next steps in your acting and creative
+                    career
+                  </li>
+                </ul>
+              </Accordion>
+              <Accordion title="What is the commitment?" h3>
+                <ul>
+                  <li>
+                    All students are expected to be in-person at Green Shirt
+                    Studio Monday-Thursday evening 6:30-9:30pm
+                  </li>
+                  <li>
+                    Additional weekend hours will be scheduled to accommodate
+                    rehearsals and homework
+                  </li>
+                  <li>
+                    As this is an ensemble based training program, your
+                    attendance is extremely important. If you would like to
+                    apply but have conflicts, please contact us via email
+                    info@greenshirtstudio.com to discuss your conflicts
+                  </li>
+                </ul>
+              </Accordion>
+              <Accordion title="Who should apply?" h3>
+                <ul>
+                  <li>
+                    Adults ages 18+ interested in developing their skills in a
+                    fun, welcoming environment
+                  </li>
+                  <li>
+                    Actors who want to develop a reliable, solid technique to
+                    act on stage and for the camera
+                  </li>
+                  <li>
+                    No prerequisite is required. We are looking to work with
+                    dedicated, passionate students looking to immerse themselves
+                    in their craft and take next steps in their acting career.
+                  </li>
+                </ul>
+              </Accordion>
+              <Accordion title="Do you offer payment plans?" h3>
+                <p>
+                  Yes! We are able to discuss on a case by case basis upon
+                  acceptance into the program.
+                </p>
+              </Accordion>
+            </StyledDescription>
           </div>
           <div className="right-column">
             {wpClass.classGroup.optionalSpecialMessage && (
