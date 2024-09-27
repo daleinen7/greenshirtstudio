@@ -95,7 +95,7 @@ const Classes = ({ data }) => {
         imageAltText="group photo"
         info="A nine-week deep dive into the Meisner technique and business of acting . Classes meet four days a week."
         ctaText="See More Info and Apply"
-        ctaLink="/class/ensemble-intensive"
+        ctaLink="/classes/ensemble-intensive"
       />
       <SectionDivider />
       <ContentStack title={'Other Programs'} content={otherPrograms} />
