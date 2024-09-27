@@ -8,6 +8,7 @@ import Layout from '../../components/Layout';
 import Accordion from '../../components/Accordion';
 import { StyledClassHeader } from '../../components/classComponents/ClassHeader';
 import { SEO } from '../../components/seo';
+import EnsembleIntensiveProgram from '../../images/ensembleIntensiveProgram.png';
 
 const EnsembleIntensive = () => {
   const { wpClass } = {
@@ -97,10 +98,7 @@ const EnsembleIntensive = () => {
       <StyledClassPage>
         <StyledClassHeader>
           {wpClass.classGroup.classImage && (
-            <img
-              src={wpClass.classGroup.classImage.sourceUrl}
-              alt={wpClass.title}
-            />
+            <img src={EnsembleIntensiveProgram} alt={wpClass.title} />
           )}
           <div className="info">
             <h2>{wpClass.title}</h2>
