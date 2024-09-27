@@ -7,6 +7,7 @@ import ClassDetails from '../../components/classComponents/ClassDetails';
 import Layout from '../../components/Layout';
 import Accordion from '../../components/Accordion';
 import { StyledClassHeader } from '../../components/classComponents/ClassHeader';
+import { SEO } from '../../components/seo';
 
 const EnsembleIntensive = () => {
   const { wpClass } = {
@@ -257,3 +258,7 @@ const EnsembleIntensive = () => {
 };
 
 export default EnsembleIntensive;
+
+export const Head = () => (
+  <SEO title="Ensemble Intensive - Green Shirt Studio" />
+);
