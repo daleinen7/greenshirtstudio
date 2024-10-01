@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import styled from 'styled-components';
 
-const StyledClassHeader = styled.div`
+export const StyledClassHeader = styled.div`
   background: var(--white);
   display: flex;
   flex-direction: row;
@@ -55,6 +55,11 @@ const StyledClassHeader = styled.div`
 
       small {
         font-size: 1rem;
+        color: var(--dark-gray);
+      }
+
+      p {
+        margin-top: 1rem;
         color: var(--dark-gray);
       }
     }
