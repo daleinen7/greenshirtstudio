@@ -93,7 +93,7 @@ const Classes = ({ data }) => {
         title={'Ensemble Intensive'}
         image={EnsembleIntensiveProgram}
         imageAltText="group photo"
-        info="A nine-week deep dive into the Meisner technique and business of acting . Classes meet four days a week."
+        info="An accessible, step by step approach that demystifies the craft of acting. Classes meet once a week for eight weeks."
         ctaText="See More Info and Apply"
         ctaLink="/classes/ensemble-intensive"
       />

@@ -114,7 +114,19 @@ const EnsembleIntensive = () => {
             </div>
             <ul className="pricing-buttons">
               <li>
-                <button className="register">Apply Now</button>
+                <button
+                  className="register"
+                  onClick={() => {
+                    const newWindow = window.open(
+                      'https://forms.gle/bsh87cVnqSKb2MaK9',
+                      '_blank',
+                      'noopener,noreferrer'
+                    );
+                    if (newWindow) newWindow.opener = null;
+                  }}
+                >
+                  Apply Now
+                </button>
               </li>
             </ul>
           </div>
@@ -129,42 +141,42 @@ const EnsembleIntensive = () => {
             <br />
             <StyledDescription>
               <Accordion
-                title="Over the nine weeks, you'll grow by:"
+                title="Over the nine weeks, you'll:"
                 defaultOpen={true}
                 h3
               >
                 <ul>
                   <li>
-                    Building trust as an ensemble and encouraging each other to
-                    grow as actors and artists
+                    Build trust as an ensemble and encourage each other to grow
+                    as actors and artists
                   </li>
                   <li>
-                    Over 100 hours of classroom instruction with your lead
+                    Experience 100 hours of classroom instruction with your lead
                     instructor and Green Shirt co-founder Andrew Gallant
                   </li>
                   <li>
-                    Experiencing in depth training in Meisner technique
-                    including partner attention, connection to impulse,
-                    emotional preparation, character point of view,
-                    personalization, script analysis
+                    Cover in depth training in Meisner technique including
+                    partner attention, connection to impulse, emotional
+                    preparation, character point of view, personalization,
+                    script analysis
                   </li>
                   <li>
-                    Exploring physical and vocal expressivity that dynamic
-                    acting requires
+                    Explore physical and vocal expressivity that dynamic acting
+                    requires
                   </li>
                   <li>
-                    Gaining a working knowledge of consent based industry best
+                    Gain a working knowledge of consent based industry best
                     practices
                   </li>
                   <li>
-                    Learning audition technique including self-tape, monologues,
+                    Learn audition technique including self-tape, monologues,
                     and how to prepare a side
                   </li>
                   <li>
-                    Getting a hands on introduction to Chicago's acting industry
+                    Get a hands on introduction to Chicago's acting industry
                   </li>
                   <li>
-                    Attending a one-on-on coaching session to plan next steps on
+                    Attend a one-on-on coaching session to plan next steps on
                     how to market yourself as an actor
                   </li>
                 </ul>
