@@ -71,7 +71,7 @@ const Classes = ({ data }) => {
     </Link>,
   ];
 
-  const hack = `A step by step approach that demystifies the craft of acting and offers a specific process to tackle a script.   \n  \n
+  const hack = `An accessible, step by step approach that demystifies the craft of acting. Classes meet once a week for eight weeks.  \n  \n
   All experience levels are invited to join Level 1: Living Truthfully.`;
 
   return (
@@ -93,7 +93,7 @@ const Classes = ({ data }) => {
         title={'Ensemble Intensive'}
         image={EnsembleIntensiveProgram}
         imageAltText="group photo"
-        info="An accessible, step by step approach that demystifies the craft of acting. Classes meet once a week for eight weeks."
+        info="A nine-week deep dive into the Meisner technique and business of acting. Classes meet four days a week."
         ctaText="See More Info and Apply"
         ctaLink="/classes/ensemble-intensive"
       />
