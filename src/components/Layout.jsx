@@ -227,7 +227,8 @@ const StyledBanner = styled.p`
   position: sticky;
   top: 0;
   width: 100%;
-  background: salmon;
+  background: var(--green);
+  color: black;
   text-align: center;
   padding: 0.5em 1em;
   line-height: 1.3em;
@@ -257,9 +258,9 @@ const Layout = ({ children, headerColor }) => {
       <GlobalStyles />
       {location.pathname == '/' && (
         <StyledBanner>
-          Join The Ensemble: Check out our new Ensemble Intensive led by Green
-          Shirt co-founder Andrew Gallant.{' '}
-          <Link to="/classes/ensemble-intensive">Learn more here.</Link>
+          Check out our new intensive starting Jan 6, 2025 led by co-founder
+          Andrew Gallant.{' '}
+          <Link to="/classes/ensemble-intensive">Learn more.</Link>
         </StyledBanner>
       )}
       <StyledHeader headerColor={headerColor}>
