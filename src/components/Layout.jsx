@@ -12,6 +12,7 @@ import facebook from '../images/socialMedia/facebook.svg';
 import instagram from '../images/socialMedia/instagram.svg';
 import twitter from '../images/socialMedia/twitter.svg';
 import google from '../images/socialMedia/FaGoogle.svg';
+import { useLocation } from '@reach/router';
 
 import styled from 'styled-components';
 import { useEffect } from 'react';
@@ -221,8 +222,23 @@ const StyledFooter = styled.footer`
   }
 `;
 
+const StyledBanner = styled.p`
+  z-index: 10;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: var(--neon-green);
+  color: black;
+  text-align: center;
+  padding: 0.5em 1em;
+  line-height: 1.3em;
+  margin-bottom: 0.5em;
+  font-size: 1.1em;
+`;
+
 const Layout = ({ children, headerColor }) => {
   const [mobileNav, setMobileNav] = useState(false);
+  const location = useLocation();
 
   const toggleNav = () => {
     setMobileNav(!mobileNav);
@@ -240,6 +256,13 @@ const Layout = ({ children, headerColor }) => {
     <>
       <Reset />
       <GlobalStyles />
+      {location.pathname == '/' && (
+        <StyledBanner>
+          Check out our <b>new intensive</b> starting Jan 6 led by co-founder
+          Andrew Gallant.{' '}
+          <Link to="/classes/ensemble-intensive">Learn more.</Link>
+        </StyledBanner>
+      )}
       <StyledHeader headerColor={headerColor}>
         <div className="header-wrapper">
           <h1>
