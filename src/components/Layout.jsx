@@ -227,7 +227,7 @@ const StyledBanner = styled.p`
   position: sticky;
   top: 0;
   width: 100%;
-  background: var(--green);
+  background: var(--neon-green);
   color: black;
   text-align: center;
   padding: 0.5em 1em;
@@ -258,8 +258,8 @@ const Layout = ({ children, headerColor }) => {
       <GlobalStyles />
       {location.pathname == '/' && (
         <StyledBanner>
-          Check out our new intensive starting Jan 6, 2025 led by co-founder
-          Andrew Gallant.{' '}
+          Check out our <b>new intensive</b> starting Jan 6, 2025 led by
+          co-founder Andrew Gallant.{' '}
           <Link to="/classes/ensemble-intensive">Learn more.</Link>
         </StyledBanner>
       )}
