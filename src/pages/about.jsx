@@ -91,14 +91,28 @@ const About = ({ data }) => {
 
       <ContentStack
         title="Staff"
-        content={data.allWpInstructor.nodes.map((instructor) => (
-          <InstructorCard
-            instructor={instructor.title}
-            title={instructor.instructors.title}
-            img={instructor.instructors?.image?.publicUrl}
-            slug={instructor.slug}
-          />
-        ))}
+        content={data.allContentfulPerson.nodes
+          .sort((a, b) => {
+            if (a.name < b.name) {
+              return -1;
+            }
+            if (a.name > b.name) {
+              return 1;
+            }
+            return 0;
+          })
+          .map((instructor) => (
+            <InstructorCard
+              instructor={`${instructor.name}${
+                instructor.lastName ? ` ${instructor.lastName}` : ''
+              }`}
+              position={instructor.positions
+                .map((position) => position.name)
+                .join(', ')}
+              img={instructor.profilePicture?.gatsbyImageData}
+              slug={instructor.slug}
+            />
+          ))}
       />
     </Layout>
   );
@@ -113,17 +127,19 @@ export const Head = () => (
 );
 
 export const pageQuery = graphql`
-  query staff {
-    allWpInstructor {
+  query people {
+    allContentfulPerson {
       nodes {
-        title
         slug
-        instructors {
-          title
-          image {
-            altText
-            publicUrl
-          }
+        name
+        lastName
+        pronouns
+        positions {
+          name
+        }
+        profilePicture {
+          publicUrl
+          gatsbyImageData(width: 300)
         }
       }
     }
