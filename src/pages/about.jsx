@@ -14,6 +14,7 @@ import TextContent from '../components/TextContent';
 import styled from 'styled-components';
 import InstructorCard from '../components/InstructorCard';
 import { graphql } from 'gatsby';
+import { producePositionString } from '../utils/utils';
 
 const StyledImage = styled.img`
   margin: 0 auto 4.75rem;
@@ -106,9 +107,7 @@ const About = ({ data }) => {
               instructor={`${instructor.name}${
                 instructor.lastName ? ` ${instructor.lastName}` : ''
               }`}
-              position={instructor.positions
-                .map((position) => position.name)
-                .join(', ')}
+              position={producePositionString(instructor.positions)}
               img={instructor.profilePicture?.gatsbyImageData}
               slug={instructor.slug}
             />
