@@ -4,8 +4,8 @@ import { SEO } from '../components/seo';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 import Layout from '../components/Layout';
-import parse from 'html-react-parser';
 import { concatenateName, producePositionString } from '../utils/utils';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 const StyledUser = styled.div`
   display: flex;
@@ -44,9 +44,7 @@ const StyledUser = styled.div`
   }
 `;
 
-const Instructor = (props) => {
-  const { contentfulPerson } = props.data;
-  console.log(contentfulPerson);
+const Instructor = ({ data: { contentfulPerson } }) => {
   const concatenated_name = concatenateName(
     contentfulPerson.name,
     contentfulPerson.lastName
@@ -62,7 +60,9 @@ const Instructor = (props) => {
           />
           <h2>{concatenated_name}</h2>
           <h3>{producePositionString(contentfulPerson.positions)}</h3>
-          <div className="bio">{contentfulPerson.bio.raw}</div>
+          <div className="bio">
+            {documentToReactComponents(JSON.parse(contentfulPerson.bio.raw))}
+          </div>
         </div>
       </StyledUser>
     </Layout>
@@ -86,7 +86,7 @@ export const query = graphql`
         raw
       }
       profilePicture {
-        gatsbyImageData(width: 637, height: 637)
+        gatsbyImageData(width: 637)
       }
     }
   }
