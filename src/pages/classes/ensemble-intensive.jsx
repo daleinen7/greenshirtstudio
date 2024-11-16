@@ -169,8 +169,8 @@ const EnsembleIntensive = () => {
                     practices
                   </li>
                   <li>
-                    Learn audition technique including self-tape, monologues,
-                    and how to prepare a side
+                    Learn on camera audition technique including self-tape,
+                    monologues, and how to prepare a side
                   </li>
                   <li>
                     Get a hands on introduction to Chicago's acting industry
