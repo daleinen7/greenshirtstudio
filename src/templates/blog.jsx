@@ -51,27 +51,23 @@ const StyledBlogPost = styled.article`
 `;
 
 const BlogPostPage = ({ pageContext }) => {
+  const { title, author, date, coverImage, content } = pageContext;
   return (
     <Layout>
       <StyledBlogPost>
         <header>
-          <h2>{pageContext.title}</h2>
+          <h2>{title}</h2>
           <div className="author-date">
-            <Link to={`/${pageContext.author.slug}`}>
-              {concatenateName(
-                pageContext.author.name,
-                pageContext.author.lastName
-              )}
+            <Link to={`/${author.slug}`}>
+              {concatenateName(author.name, author.lastName)}
             </Link>
-            {pageContext.date && ` | ${dashToSlash(pageContext.date)}`}
+            {date && ` | ${dashToSlash(date)}`}
           </div>
         </header>
-        {pageContext.coverImage && (
-          <GatsbyImage image={pageContext.coverImage.gatsbyImageData} />
-        )}
-        {pageContext.content && (
+        {coverImage && <GatsbyImage image={coverImage.gatsbyImageData} />}
+        {content && (
           <div className="content">
-            {documentToReactComponents(JSON.parse(pageContext.content.raw))}
+            {documentToReactComponents(JSON.parse(content.raw))}
           </div>
         )}
       </StyledBlogPost>
