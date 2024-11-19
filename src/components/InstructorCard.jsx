@@ -49,7 +49,6 @@ const InstructorCard = ({ instructor, position, img, slug }) => {
       <Link to={`/${slug}`}>
         {img && (
           <div className="image-wrapper">
-            {/* <img src={img} alt={instructor} /> */}
             {img && <GatsbyImage image={img} alt={instructor} />}
           </div>
         )}
