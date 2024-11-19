@@ -83,8 +83,6 @@ export const StyledClassPage = styled.div`
 const ClassPage = (props) => {
   const { wpClass, allWpSession } = props.data;
 
-  console.log(props);
-
   // filter through allWpPage query to find the correct policy
   const workshopPolicy = props.data.allWpPage.edges.filter(
     (edge) => edge.node.title === 'Workshop Cancellation Policy'

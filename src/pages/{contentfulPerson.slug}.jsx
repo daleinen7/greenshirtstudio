@@ -54,15 +54,19 @@ const Instructor = ({ data: { contentfulPerson } }) => {
     <Layout>
       <StyledUser>
         <div className="content">
-          <GatsbyImage
-            image={contentfulPerson.profilePicture.gatsbyImageData}
-            alt={concatenated_name}
-          />
+          {contentfulPerson.profilePicture && (
+            <GatsbyImage
+              image={contentfulPerson.profilePicture.gatsbyImageData}
+              alt={concatenated_name}
+            />
+          )}
           <h2>{concatenated_name}</h2>
           <h3>{producePositionString(contentfulPerson.positions)}</h3>
-          <div className="bio">
-            {documentToReactComponents(JSON.parse(contentfulPerson.bio.raw))}
-          </div>
+          {contentfulPerson.bio && (
+            <div className="bio">
+              {documentToReactComponents(JSON.parse(contentfulPerson.bio.raw))}
+            </div>
+          )}
         </div>
       </StyledUser>
     </Layout>
