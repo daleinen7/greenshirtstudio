@@ -53,7 +53,13 @@ const BlogCardLarge = ({ title, author, img, slug }) => {
       <Link to={`${slug}`}>
         {img && (
           <div className="image-wrapper">
-            {img && <GatsbyImage image={img.gatsbyImageData} alt={title} />}
+            {img && (
+              <GatsbyImage
+                image={img.gatsbyImageData}
+                alt={title}
+                objectFit="contain"
+              />
+            )}
           </div>
         )}
       </Link>
