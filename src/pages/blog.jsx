@@ -52,7 +52,7 @@ export const blogsQuery = graphql`
       nodes {
         title
         coverImage {
-          gatsbyImageData
+          gatsbyImageData(width: 500)
         }
         author {
           name

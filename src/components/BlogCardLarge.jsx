@@ -20,13 +20,7 @@ const StyledBlogCardLarge = styled.article`
     display: flex;
     justify-content: center;
     height: 18.125rem;
-
-    img {
-      object-fit: contain;
-      border: 1px solid var(--light-gray);
-      width: 26rem;
-      margin-bottom: 0.5rem;
-    }
+    border: 1px solid var(--light-gray);
   }
 
   small {
