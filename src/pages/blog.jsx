@@ -1,11 +1,13 @@
-import React from "react";
-import { SEO } from "../components/seo";
-import Layout from "../components/Layout";
-import ContentStack from "../components/ContentStack";
-import { graphql } from "gatsby";
-import BlogCardLarge from "../components/BlogCardLarge";
-import HeadingEffect from "../components/HeadingEffect";
-import styled from "styled-components";
+import React from 'react';
+import { SEO } from '../components/seo';
+import Layout from '../components/Layout';
+import ContentStack from '../components/ContentStack';
+import { graphql } from 'gatsby';
+import BlogCardLarge from '../components/BlogCardLarge';
+import HeadingEffect from '../components/HeadingEffect';
+import styled from 'styled-components';
+import slugify from 'slugify';
+import { concatenateName } from '../utils/utils';
 
 const StyledHero = styled.div`
   display: flex;
@@ -25,16 +27,16 @@ const Blog = ({ data }) => {
   return (
     <Layout>
       <StyledHero>
-        <HeadingEffect text={"Blog"} />
+        <HeadingEffect text="Blog" />
       </StyledHero>
       <ContentStack
-        content={data.allWpPost.nodes.map((post) => {
+        content={data.allContentfulBlogPost.nodes.map((post) => {
           return (
             <BlogCardLarge
               title={post.title}
-              author={post.author.node.name}
-              img={post.featuredImage?.node.sourceUrl}
-              slug={post.slug}
+              author={concatenateName(post.author.name, post.author.lastName)}
+              img={post.coverImage}
+              slug={slugify(post.title, { strict: true, lower: true })}
             />
           );
         })}
@@ -44,21 +46,20 @@ const Blog = ({ data }) => {
 };
 export default Blog;
 
-export const blogsQuery = graphql`query blogsQuery {
-  allWpPost(sort: {date: DESC}) {
-    nodes {
-      featuredImage {
-        node {
-          sourceUrl
+export const blogsQuery = graphql`
+  query blogsQuery {
+    allContentfulBlogPost(sort: { date: DESC }) {
+      nodes {
+        title
+        coverImage {
+          gatsbyImageData(width: 500)
         }
-      }
-      author {
-        node {
+        author {
           name
+          lastName
         }
+        date
       }
-      title
-      slug
     }
   }
-}`;
+`;
