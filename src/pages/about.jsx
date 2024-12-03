@@ -14,6 +14,7 @@ import TextContent from '../components/TextContent';
 import styled from 'styled-components';
 import InstructorCard from '../components/InstructorCard';
 import { graphql } from 'gatsby';
+import { concatenateName, producePositionString } from '../utils/utils';
 
 const StyledImage = styled.img`
   margin: 0 auto 4.75rem;
@@ -91,14 +92,24 @@ const About = ({ data }) => {
 
       <ContentStack
         title="Staff"
-        content={data.allWpInstructor.nodes.map((instructor) => (
-          <InstructorCard
-            instructor={instructor.title}
-            title={instructor.instructors.title}
-            img={instructor.instructors?.image?.publicUrl}
-            slug={instructor.slug}
-          />
-        ))}
+        content={data.allContentfulPerson.nodes
+          .sort((a, b) => {
+            if (a.name < b.name) {
+              return -1;
+            }
+            if (a.name > b.name) {
+              return 1;
+            }
+            return 0;
+          })
+          .map((instructor) => (
+            <InstructorCard
+              instructor={concatenateName(instructor.name, instructor.lastName)}
+              position={producePositionString(instructor.positions)}
+              img={instructor.profilePicture?.gatsbyImageData}
+              slug={instructor.slug}
+            />
+          ))}
       />
     </Layout>
   );
@@ -113,17 +124,19 @@ export const Head = () => (
 );
 
 export const pageQuery = graphql`
-  query staff {
-    allWpInstructor {
+  query people {
+    allContentfulPerson {
       nodes {
-        title
         slug
-        instructors {
-          title
-          image {
-            altText
-            publicUrl
-          }
+        name
+        lastName
+        pronouns
+        positions {
+          name
+        }
+        profilePicture {
+          publicUrl
+          gatsbyImageData(width: 300)
         }
       }
     }

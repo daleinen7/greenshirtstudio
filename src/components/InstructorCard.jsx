@@ -1,6 +1,7 @@
-import React from "react";
-import { Link } from "gatsby";
-import styled from "styled-components";
+import React from 'react';
+import { Link } from 'gatsby';
+import styled from 'styled-components';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 const StyledInstructorCard = styled.article`
   max-width: 19rem;
@@ -13,7 +14,7 @@ const StyledInstructorCard = styled.article`
     text-align: left;
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
-    font-family: "Lato", sans-serif;
+    font-family: 'Lato', sans-serif;
   }
   .image-wrapper {
     display: flex;
@@ -42,20 +43,20 @@ const StyledInstructorCard = styled.article`
   }
 `;
 
-const InstructorCard = ({ instructor, title, img, slug }) => {
+const InstructorCard = ({ instructor, position, img, slug }) => {
   return (
     <StyledInstructorCard>
       <Link to={`/${slug}`}>
         {img && (
           <div className="image-wrapper">
-            <img src={img} alt={instructor} />
+            {img && <GatsbyImage image={img} alt={instructor} />}
           </div>
         )}
       </Link>
       <h3>
         <Link to={`/${slug}`}>{instructor}</Link>
       </h3>
-      <small>{title}</small>
+      <small>{position}</small>
     </StyledInstructorCard>
   );
 };
