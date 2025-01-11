@@ -5,7 +5,7 @@ import Layout from '../components/Layout';
 // import ClassHeader from '../../components/classComponents/ClassHeader';
 import Description from '../components/classComponents/Description';
 // import CancellationPolicy from '../../components/classComponents/CancellationPolicy';
-// import SpecialMessage from '../../components/classComponents/SpecialMessage';
+import SpecialMessage from '../components/classComponents/SpecialMessage';
 // import AboutTeacher from '../../components/classComponents/AboutTeacher';
 // import ClassDetails from '../../components/classComponents/ClassDetails';
 
@@ -91,20 +91,11 @@ const ClassPage = ({ pageContext }) => {
     coverImage,
     description,
     policies,
+    alertBannerTitle,
+    alertBannerContent,
     customAttendancePolicy,
     customCancellationPolicy,
   } = pageContext;
-
-  // filter through allWpPage query to find the correct policy
-  //   const workshopPolicy = props.data.allWpPage.edges.filter(
-  //     (edge) => edge.node.title === 'Workshop Cancellation Policy'
-  //   )[0].node.content;
-  //   const cancellationPolicy = props.data.allWpPage.edges.filter(
-  //     (edge) => edge.node.title === 'Cancellation Policy Gatsby'
-  //   )[0].node.content;
-  //   const attendancePolicy = props.data.allWpPage.edges.filter(
-  //     (edge) => edge.node.title === 'Attendance Policy'
-  //   )[0].node.content;
 
   return (
     <Layout>
@@ -115,7 +106,7 @@ const ClassPage = ({ pageContext }) => {
             <Description
               content={documentToReactComponents(JSON.parse(description.raw))}
             />
-            {(policies.includes('Default Attendance Policy') ||
+            {((policies && policies.includes('Default Attendance Policy')) ||
               customAttendancePolicy) && (
               <Policy title="Attendance Policy">
                 {customAttendancePolicy ? (
@@ -147,10 +138,11 @@ const ClassPage = ({ pageContext }) => {
                 )}
               </Policy>
             )}
-            {([
-              'Default Cancellation Policy (Student)',
-              'Default Cancellation Policy (Studio)',
-            ].some((policy) => policies.includes(policy)) ||
+            {((policies &&
+              [
+                'Default Cancellation Policy (Student)',
+                'Default Cancellation Policy (Studio)',
+              ].some((policy) => policies.includes(policy))) ||
               customCancellationPolicy) && (
               <Policy title="Cancellation Policy">
                 {customCancellationPolicy ? (
@@ -225,13 +217,18 @@ const ClassPage = ({ pageContext }) => {
               </Policy>
             )}
           </div>
-          {/* <div className="right-column">
-            {wpClass.classGroup.optionalSpecialMessage && (
-              <SpecialMessage wpClass={wpClass} />
+          <div className="right-column">
+            {(alertBannerTitle || alertBannerContent) && (
+              <SpecialMessage
+                title={alertBannerTitle}
+                content={documentToReactComponents(
+                  JSON.parse(alertBannerContent.raw)
+                )}
+              />
             )}
-            <AboutTeacher wpClass={wpClass} />
-            <ClassDetails wpClass={wpClass} />
-          </div> */}
+            {/* <AboutTeacher wpClass={wpClass} />
+            <ClassDetails wpClass={wpClass} /> */}
+          </div>
         </div>
       </StyledClassPage>
     </Layout>
