@@ -73,6 +73,7 @@ const ClassDetails = ({ class_info }) => {
           <dd>
             {class_info.instructors.map((instructor, idx) => (
               <span key={idx}>
+                {idx > 0 && ', '}
                 {concatenateName(instructor.name, instructor.lastName)}
               </span>
             ))}
