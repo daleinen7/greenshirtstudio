@@ -20,13 +20,61 @@ exports.createPages = async function ({ actions, graphql }) {
           date
         }
       }
+      allContentfulClass {
+        nodes {
+          name
+          type
+          description {
+            raw
+          }
+          coverImage {
+            gatsbyImageData(width: 637)
+          }
+          cost
+          instructors {
+            slug
+            bio {
+              raw
+            }
+          }
+          alertBannerTitle
+          alertBannerContent {
+            raw
+          }
+          day
+          startTime
+          endTime
+          dates
+          location
+          isVirtual
+          classSize
+          age
+          policies
+          customAttendancePolicy {
+            raw
+          }
+          customCancellationPolicy {
+            raw
+          }
+          stripeProductId
+          stripeInstallmentId
+        }
+      }
     }
   `);
 
   data.allContentfulBlogPost.nodes.forEach((node) => {
     actions.createPage({
-      path: `/blog/${slugify(node.title, { strict: true, lower: true })}`,
+      path: `/blogs/${slugify(node.title, { strict: true, lower: true })}`,
       component: require.resolve('./src/templates/blog.jsx'),
+      context: node,
+    });
+  });
+
+  data.allContentfulClass.nodes.forEach((node) => {
+    actions.createPage({
+      path: `/classes/${slugify(node.name, { strict: true, lower: true })}`,
+      component: require.resolve('./src/templates/class.jsx'),
       context: node,
     });
   });
