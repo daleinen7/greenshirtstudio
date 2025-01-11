@@ -1,6 +1,6 @@
 import React from 'react';
 // import { graphql } from 'gatsby';
-// import { SEO } from '../../components/seo';
+import { SEO } from '../components/seo';
 import Layout from '../components/Layout';
 // import ClassHeader from '../../components/classComponents/ClassHeader';
 import Description from '../components/classComponents/Description';
@@ -236,9 +236,9 @@ const ClassPage = ({ pageContext }) => {
 };
 export default ClassPage;
 
-// export const Head = ({ data }) => (
-//   <SEO title={`${data.wpClass.title} - Green Shirt Studio`} />
-// );
+export const Head = ({ pageContext }) => (
+  <SEO title={`${pageContext.name} - Green Shirt Studio`} />
+);
 
 // import React from 'react';
 // import { graphql } from 'gatsby';
