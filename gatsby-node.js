@@ -34,6 +34,7 @@ exports.createPages = async function ({ actions, graphql }) {
           instructors {
             slug
             name
+            lastName
             bio {
               raw
             }

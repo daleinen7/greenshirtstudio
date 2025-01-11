@@ -7,7 +7,7 @@ import Description from '../components/classComponents/Description';
 // import CancellationPolicy from '../../components/classComponents/CancellationPolicy';
 import SpecialMessage from '../components/classComponents/SpecialMessage';
 import AboutTeacher from '../components/classComponents/AboutTeacher';
-// import ClassDetails from '../../components/classComponents/ClassDetails';
+import ClassDetails from '../components/classComponents/ClassDetails';
 
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
@@ -227,7 +227,7 @@ const ClassPage = ({ pageContext }) => {
               />
             )}
             <AboutTeacher instructors={instructors} />
-            {/* <ClassDetails wpClass={wpClass} /> */}
+            <ClassDetails class_info={pageContext} />
           </div>
         </div>
       </StyledClassPage>

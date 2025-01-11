@@ -3,6 +3,7 @@ import { Link } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { concatenateName } from '../../utils/utils';
 
 const StyledAboutTeacher = styled.section`
   display: flex;
@@ -55,12 +56,17 @@ const StyledAboutTeacher = styled.section`
 const AboutTeacher = ({ instructors }) => {
   return (
     <>
-      {instructors.map((instructor) => {
+      {instructors.map((instructor, idx) => {
+        const concatenated_name = concatenateName(
+          instructor.name,
+          instructor.lastName
+        );
+
         return (
-          <StyledAboutTeacher>
+          <StyledAboutTeacher key={idx}>
             <GatsbyImage
               image={instructor.profilePicture.gatsbyImageData}
-              alt={instructor.name}
+              alt={concatenated_name}
             />
             <h3>About the Teacher</h3>
             <div className="bio">
@@ -68,7 +74,7 @@ const AboutTeacher = ({ instructors }) => {
             </div>
             <div className="learn-more">
               <Link to={`/${instructor.slug}`} className="button empty">
-                {`About ${instructor.name}`}
+                {`About ${concatenated_name}`}
               </Link>
             </div>
           </StyledAboutTeacher>
