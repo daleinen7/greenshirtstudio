@@ -28,13 +28,17 @@ exports.createPages = async function ({ actions, graphql }) {
             raw
           }
           coverImage {
-            gatsbyImageData(width: 637)
+            gatsbyImageData
           }
           cost
           instructors {
             slug
+            name
             bio {
               raw
+            }
+            profilePicture {
+              gatsbyImageData(width: 637)
             }
           }
           alertBannerTitle
