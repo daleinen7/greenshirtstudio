@@ -9,6 +9,7 @@ import Accordion from '../../components/Accordion';
 import { StyledClassHeader } from '../../components/classComponents/ClassHeader';
 import { SEO } from '../../components/seo';
 import EnsembleIntensiveProgram from '../../images/ensembleIntensiveProgram.png';
+import styled from 'styled-components';
 
 export const StyledClassPage = styled.div`
   display: flex;
