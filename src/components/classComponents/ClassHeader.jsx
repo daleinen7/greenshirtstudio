@@ -192,51 +192,49 @@ const ClassHeader = ({ class_info, session }) => {
     getSpotsLeft();
   }, []);
 
-  // const handlePurchase = async (e, paymentType) => {
-  //   e.preventDefault();
-  //   setLoading(true);
+  const handlePurchase = async (e, paymentType) => {
+    e.preventDefault();
+    setLoading(true);
 
-  //   const formData = {
-  //     test: wpClass.classGroup.program === 'Test',
-  //     paymentType: paymentType,
-  //     promotion: wpClass.classGroup.price > 0,
-  //     lineItems: [
-  //       {
-  //         price:
-  //           paymentType === 'payment'
-  //             ? wpClass.classGroup.stripeId
-  //             : wpClass.classGroup.stripeInstallmentId,
-  //         quantity: 1,
-  //       },
-  //     ],
-  //     dayOfWeek: wpClass.classGroup.day,
-  //     dbid: wpClass.databaseId,
-  //     className: wpClass.title,
-  //     time: wpClass.classGroup.time,
-  //     instructor: wpClass.classGroup.linkInstructor.title,
-  //     location: wpClass.classGroup.location,
-  //     slug: wpClass.slug,
-  //     classDates: wpClass.classGroup.dates,
-  //     session: session,
-  //   };
+    const formData = {
+      paymentType: paymentType,
+      promotion: class_info.cost > 0,
+      lineItems: [
+        {
+          price:
+            paymentType === 'payment'
+              ? class_info.stripeProductId
+              : class_info.stripeInstallmentId,
+          quantity: 1,
+        },
+      ],
+      dayOfWeek: class_info.day,
+      className: class_info.name,
+      time: class_info.startTime,
+      instructor: class_info.instructors[0].name,
+      location: class_info.location,
+      slug: class_info.slug,
+      classDates: class_info.dates.join(', '),
+      session: session,
+    };
 
-  //   const response = await fetch('/.netlify/functions/create-checkout', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(formData),
-  //   }).then((res) => res.json());
+    const response = await fetch('/.netlify/functions/create-checkout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    }).then((res) => res.json());
 
-  //   const stripe = await getStripe(wpClass.classGroup.program === 'Test');
-  //   const { error } = await stripe.redirectToCheckout({
-  //     sessionId: response.sessionId,
-  //   });
-  //   if (error) {
-  //     console.warn('Error:', error);
-  //     setLoading(false);
-  //   }
-  // };
+    const stripe = await getStripe(class_info.type === 'Test');
+    const { error } = await stripe.redirectToCheckout({
+      sessionId: response.sessionId,
+    });
+    if (error) {
+      console.warn('Error:', error);
+      setLoading(false);
+    }
+  };
 
   return (
     <StyledClassHeader>
@@ -275,9 +273,9 @@ const ClassHeader = ({ class_info, session }) => {
         </div>
 
         <ul className="pricing-buttons">
-          {/* <li>
-            {data ? (
-              data.acf.spots_left > 0 ? (
+          <li>
+            {spotsLeft != null ? (
+              spotsLeft > 0 ? (
                 <button
                   className={'register'}
                   disabled={loading}
@@ -293,13 +291,13 @@ const ClassHeader = ({ class_info, session }) => {
                 Register
               </button>
             )}
-          </li> */}
+          </li>
           {class_info.stripeInstallmentId && (
             <li>
               <button
                 className={'installment'}
-                // disabled={loading}
-                // onClick={(e) => handlePurchase(e, 'subscription')}
+                disabled={loading}
+                onClick={(e) => handlePurchase(e, 'subscription')}
               >
                 Payment Plan
               </button>

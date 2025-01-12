@@ -1,10 +1,9 @@
 exports.handler = async (req) => {
   const class_id = req.queryStringParameters['class_id'];
-  console.log(class_id);
 
   try {
     const airtable_res = await fetch(
-      `https://api.airtable.com/v0/${process.env.AIRTABLE_BASE}?fields%5B%5D=Student+Name&filterByFormula={Contentful+Class+ID}="${class_id}"`,
+      `https://api.airtable.com/v0/${process.env.AIRTABLE_BASE}?fields%5B%5D=Student+Name&filterByFormula={Contentful+Entry+ID}="${class_id}"`,
       {
         method: 'GET',
         headers: {
@@ -20,7 +19,6 @@ exports.handler = async (req) => {
       `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/entries/${class_id}?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}`
     );
     const contentful_data = await contentful_res.json();
-    console.log(contentful_data);
     const class_size = contentful_data.fields.classSize;
 
     return {
