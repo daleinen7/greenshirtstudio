@@ -162,7 +162,7 @@ const getStripe = (test) => {
   return stripePromise;
 };
 
-const ClassHeader = ({ class_info, session }) => {
+const ClassHeader = ({ class_info }) => {
   const [loading, setLoading] = useState(false);
   const [spotsLeft, setSpotsLeft] = useState(null);
   const [error, setError] = useState(null);
@@ -197,6 +197,7 @@ const ClassHeader = ({ class_info, session }) => {
     setLoading(true);
 
     const formData = {
+      test: true,
       paymentType: paymentType,
       promotion: class_info.cost > 0,
       lineItems: [
@@ -215,7 +216,7 @@ const ClassHeader = ({ class_info, session }) => {
       location: class_info.location,
       slug: class_info.slug,
       classDates: class_info.dates.join(', '),
-      session: session,
+      session: class_info.session,
     };
 
     const response = await fetch('/.netlify/functions/create-checkout', {
@@ -226,7 +227,7 @@ const ClassHeader = ({ class_info, session }) => {
       body: JSON.stringify(formData),
     }).then((res) => res.json());
 
-    const stripe = await getStripe(class_info.type === 'Test');
+    const stripe = await getStripe(true);
     const { error } = await stripe.redirectToCheckout({
       sessionId: response.sessionId,
     });

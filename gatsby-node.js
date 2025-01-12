@@ -48,6 +48,7 @@ exports.createPages = async function ({ actions, graphql }) {
           alertBannerContent {
             raw
           }
+          session
           day
           startTime
           endTime

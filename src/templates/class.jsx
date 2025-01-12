@@ -103,9 +103,11 @@ const ClassPage = ({ pageContext }) => {
         />
         <div className="main-content">
           <div className="left-column">
-            <Description
-              content={documentToReactComponents(JSON.parse(description.raw))}
-            />
+            {description && (
+              <Description
+                content={documentToReactComponents(JSON.parse(description.raw))}
+              />
+            )}
             {((policies && policies.includes('Default Attendance Policy')) ||
               customAttendancePolicy) && (
               <Policy title="Attendance Policy">
