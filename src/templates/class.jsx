@@ -1,18 +1,15 @@
 import React from 'react';
-// import { graphql } from 'gatsby';
 import { SEO } from '../components/seo';
 import Layout from '../components/Layout';
-// import ClassHeader from '../../components/classComponents/ClassHeader';
+import ClassHeader from '../components/classComponents/ClassHeader';
 import Description from '../components/classComponents/Description';
-// import CancellationPolicy from '../../components/classComponents/CancellationPolicy';
 import SpecialMessage from '../components/classComponents/SpecialMessage';
 import AboutTeacher from '../components/classComponents/AboutTeacher';
 import ClassDetails from '../components/classComponents/ClassDetails';
+import Policy from '../components/Policy';
 
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-
 import styled from 'styled-components';
-import Policy from '../components/Policy';
 
 export const StyledClassPage = styled.div`
   display: flex;
@@ -100,7 +97,10 @@ const ClassPage = ({ pageContext }) => {
   return (
     <Layout>
       <StyledClassPage>
-        {/* <ClassHeader wpClass={wpClass} session={allWpSession.nodes[0].title} /> */}
+        <ClassHeader
+          class_info={pageContext}
+          session={'January – March 2025'}
+        />
         <div className="main-content">
           <div className="left-column">
             <Description
