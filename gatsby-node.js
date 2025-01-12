@@ -24,6 +24,7 @@ exports.createPages = async function ({ actions, graphql }) {
         nodes {
           contentful_id
           name
+          slug
           type
           description {
             raw
@@ -69,9 +70,22 @@ exports.createPages = async function ({ actions, graphql }) {
     }
   `);
 
+  const existing_blogs = {};
   data.allContentfulBlogPost.nodes.forEach((node) => {
+    const curr_slug = `/blogs/${slugify(node.title, {
+      strict: true,
+      lower: true,
+    })}`;
+    let new_slug = curr_slug;
+    if (existing_blogs[curr_slug]) {
+      const new_dupe_count = existing_blogs[curr_slug] + 1;
+      new_slug = curr_slug + '-' + new_dupe_count;
+      existing_blogs[curr_slug] = new_dupe_count;
+    } else {
+      existing_blogs[curr_slug] = 1;
+    }
     actions.createPage({
-      path: `/blogs/${slugify(node.title, { strict: true, lower: true })}`,
+      path: new_slug,
       component: require.resolve('./src/templates/blog.jsx'),
       context: node,
     });
@@ -79,7 +93,7 @@ exports.createPages = async function ({ actions, graphql }) {
 
   data.allContentfulClass.nodes.forEach((node) => {
     actions.createPage({
-      path: `/classes/${slugify(node.name, { strict: true, lower: true })}`,
+      path: `/classes/${node.slug}`,
       component: require.resolve('./src/templates/class.jsx'),
       context: node,
     });

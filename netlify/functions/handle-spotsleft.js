@@ -21,9 +21,11 @@ exports.handler = async (req) => {
     const contentful_data = await contentful_res.json();
     const class_size = contentful_data.fields.classSize;
 
+    const spots_left = class_size - records_num;
+
     return {
       statusCode: 200,
-      body: JSON.stringify({ spots_left: class_size - records_num }),
+      body: JSON.stringify({ spots_left: spots_left <= 0 ? 0 : spots_left }),
     };
   } catch (err) {
     console.log(err);
