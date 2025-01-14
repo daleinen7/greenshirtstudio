@@ -9,14 +9,13 @@ import ClassCard from '../components/ClassCard';
 import { graphql } from 'gatsby';
 
 const Workshops = ({ data }) => {
-  const classes = data.allWpClass.nodes.map((actingClass) => (
+  const classes = data.allContentfulClass.nodes.map((actingClass) => (
     <ClassCard
       title={actingClass.title}
       slug={actingClass.slug}
-      image={actingClass.classGroup?.classImage?.gatsbyImage}
-      days={actingClass.classGroup.day}
-      program={actingClass.classGroup.program}
-      price={actingClass.classGroup.price}
+      image={actingClass.coverImage.gatsbyImageData}
+      program={actingClass.type}
+      price={actingClass.cost}
     />
   ));
 
@@ -41,18 +40,18 @@ export default Workshops;
 export const Head = () => <SEO title={`Workshops - Green Shirt Studio`} />;
 
 export const pageQuery = graphql`
-  query Workshops {
-    allWpClass(filter: { classGroup: { program: { eq: "Workshops" } } }) {
+  query SpecializedClasses {
+    allContentfulClass(filter: { type: { eq: "Workshop" } }) {
       nodes {
-        title
+        contentful_id
         slug
-        classGroup {
-          program
-          price
-          classImage {
-            altText
-            gatsbyImage(width: 416, height: 290)
-          }
+        title
+        type
+        cost
+        day
+        session
+        coverImage {
+          gatsbyImageData(width: 416, height: 290)
         }
       }
     }
