@@ -91,7 +91,6 @@ export const StyledClassHeader = styled.div`
     .register {
       border: none;
       background: var(--neon-green);
-      border: 2px solid var(--neon-green);
 
       :hover {
         opacity: 0.6;
@@ -100,6 +99,13 @@ export const StyledClassHeader = styled.div`
       :active {
         transform: translateY(2px) translateX(2px);
       }
+    }
+
+    .disabled {
+      pointer-events: none;
+      border: 2px solid var(--gray);
+      color: var(--gray);
+      background: none;
     }
 
     .installment {
@@ -160,7 +166,7 @@ const getStripe = () => {
 };
 
 const ClassHeader = ({ class_info }) => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [spotsLeft, setSpotsLeft] = useState(null);
   const [error, setError] = useState(null);
   const [fetching, setFetching] = useState(false);
@@ -281,35 +287,38 @@ const ClassHeader = ({ class_info }) => {
 
         <ul className="pricing-buttons">
           <li>
-            {spotsLeft != null ? (
+            {!loading ? (
               spotsLeft > 0 ? (
                 <button
                   className={'register'}
-                  disabled={loading}
                   onClick={(e) => handlePurchase(e, 'payment')}
                 >
                   Register
                 </button>
               ) : (
-                <button disabled>SOLD OUT</button>
+                <button disabled className="disabled">
+                  Sold Out
+                </button>
               )
             ) : (
-              <button disabled className={'register'}>
-                Register
+              <button disabled className="disabled">
+                Loading
               </button>
             )}
           </li>
-          {class_info.stripeInstallmentId && (
-            <li>
-              <button
-                className={'installment'}
-                disabled={loading}
-                onClick={(e) => handlePurchase(e, 'subscription')}
-              >
-                Payment Plan
-              </button>
-            </li>
-          )}
+          {class_info.stripeInstallmentId &&
+            spotsLeft !== null &&
+            spotsLeft > 0 && (
+              <li>
+                <button
+                  className="installment"
+                  disabled={loading}
+                  onClick={(e) => handlePurchase(e, 'subscription')}
+                >
+                  Payment Plan
+                </button>
+              </li>
+            )}
         </ul>
       </div>
     </StyledClassHeader>
