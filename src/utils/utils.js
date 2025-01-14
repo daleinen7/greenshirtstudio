@@ -19,7 +19,7 @@ export function dashToReadableDate(date) {
   const [year, month, day] = date.split('-');
   const date_obj = new Date(year, month - 1, day);
   return new Intl.DateTimeFormat('en-US', {
-    month: 'short',
+    month: 'long',
     day: 'numeric',
     year: 'numeric',
   }).format(date_obj);
