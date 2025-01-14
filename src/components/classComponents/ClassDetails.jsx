@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { concatenateName } from '../../utils/utils';
+import { concatenateName, dashToReadableDate } from '../../utils/utils';
 
 const StyledClassDetails = styled.section`
   border: 2px solid var(--light-gray);
@@ -53,17 +53,7 @@ const ClassDetails = ({ class_info }) => {
           <dd>
             <ul>
               {class_info.dates.map((date, idx) => {
-                const [year, month, day] = date.split('-');
-                const date_obj = new Date(year, month - 1, day);
-                return (
-                  <li key={idx}>
-                    {new Intl.DateTimeFormat('en-US', {
-                      month: 'short',
-                      day: 'numeric',
-                      year: 'numeric',
-                    }).format(date_obj)}
-                  </li>
-                );
+                return <li key={idx}>{dashToReadableDate(date)}</li>;
               })}
             </ul>
           </dd>
