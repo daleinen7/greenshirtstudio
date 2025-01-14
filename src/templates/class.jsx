@@ -90,8 +90,6 @@ const ClassPage = ({ pageContext }) => {
     customCancellationPolicy,
   } = pageContext;
 
-  console.log(pageContext);
-
   return (
     <Layout>
       <StyledClassPage>

@@ -41,7 +41,7 @@ export const Head = () => <SEO title={`Success! - Green Shirt Studio`} />;
 
 export const pageQuery = graphql`
   query SuccessQuery {
-    allContentfulClass {
+    allContentfulClass(filter: { type: { ne: "Test Class" } }) {
       nodes {
         contentful_id
         title

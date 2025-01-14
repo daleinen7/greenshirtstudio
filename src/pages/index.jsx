@@ -112,7 +112,7 @@ export const Head = () => (
 
 export const pageQuery = graphql`
   query IndexQuery {
-    allContentfulClass {
+    allContentfulClass(filter: { type: { ne: "Test Class" } }) {
       nodes {
         contentful_id
         title

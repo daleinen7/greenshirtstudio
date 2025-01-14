@@ -98,7 +98,7 @@ export const Head = () => <SEO title={`Page Not Found - Green Shirt Studio`} />;
 
 export const pageQuery = graphql`
   query FourOhFourQuery {
-    allContentfulClass {
+    allContentfulClass(filter: { type: { ne: "Test Class" } }) {
       nodes {
         contentful_id
         title
