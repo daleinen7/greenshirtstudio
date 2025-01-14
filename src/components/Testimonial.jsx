@@ -1,8 +1,8 @@
-import React from "react";
-import AliceCarousel from "react-alice-carousel";
-import "react-alice-carousel/lib/alice-carousel.css";
-import testimonails from "../lib/testimonials";
-import styled from "styled-components";
+import React from 'react';
+import AliceCarousel from 'react-alice-carousel';
+import 'react-alice-carousel/lib/alice-carousel.css';
+import testimonials from '../lib/testimonials';
+import styled from 'styled-components';
 
 const StyledTestimonial = styled.div`
   display: flex;
@@ -28,7 +28,7 @@ const StyledTestimonial = styled.div`
 
     margin: 0 auto;
     :after {
-      content: "";
+      content: '';
       position: absolute;
       top: 0;
       left: 0;
@@ -124,7 +124,7 @@ const StyledTestimonial = styled.div`
 `;
 
 const Testimonial = () => {
-  const items = testimonails.map((quote) => (
+  const items = testimonials.map((quote) => (
     <div className="band-aid">
       <div className="quote-block">
         <div className="quote-area">

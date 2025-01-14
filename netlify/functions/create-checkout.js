@@ -1,9 +1,5 @@
 exports.handler = async ({ body }) => {
   const params = JSON.parse(body);
-  console.log('Serverside baby!', params.paymentType);
-
-  console.log('This is a ', params.test ? 'test' : 'live', ' purchase.');
-
   const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
   try {
