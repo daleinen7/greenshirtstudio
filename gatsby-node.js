@@ -73,7 +73,7 @@ exports.createPages = async function ({ actions, graphql }) {
 
   const existing_blogs = {};
   data.allContentfulBlogPost.nodes.forEach((node) => {
-    const curr_slug = `/blogs/${slugify(node.title, {
+    const curr_slug = `/blog/${slugify(node.title, {
       strict: true,
       lower: true,
     })}`;
