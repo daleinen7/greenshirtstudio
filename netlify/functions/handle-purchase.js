@@ -6,7 +6,7 @@ exports.handler = async ({ body, headers }) => {
     const stripeEvent = stripe.webhooks.constructEvent(
       body,
       headers['stripe-signature'],
-      process.env.STRIPE_WEBHOOK_TEST_SECRET
+      process.env.STRIPE_WEBHOOK_SECRET
     );
 
     // only do stuff if this is a successful Stripe Checkout purchase

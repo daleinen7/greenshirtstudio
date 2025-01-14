@@ -4,16 +4,12 @@ exports.handler = async ({ body }) => {
 
   console.log('This is a ', params.test ? 'test' : 'live', ' purchase.');
 
-  const stripe = require('stripe')(
-    params.test
-      ? process.env.STRIPE_SECRET_TEST_KEY
-      : process.env.STRIPE_SECRET_KEY
-  );
+  const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
   try {
     const session = await stripe.checkout.sessions.create({
-      success_url: `${process.env.GATSBY_URL_ENVIRONMENT}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.GATSBY_URL_ENVIRONMENT}/classes/`,
+      success_url: `${params.success_url}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: params.cancel_url,
       payment_method_types: ['card'],
       line_items: params.lineItems,
       mode: params.paymentType,

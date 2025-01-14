@@ -151,13 +151,9 @@ export const StyledClassHeader = styled.div`
 `;
 
 let stripePromise;
-const getStripe = (test) => {
+const getStripe = () => {
   if (!stripePromise) {
-    stripePromise = loadStripe(
-      test
-        ? process.env.GATSBY_STRIPE_PUBLISHABLE_TEST_KEY
-        : process.env.GATSBY_STRIPE_PUBLISHABLE_KEY
-    );
+    stripePromise = loadStripe(process.env.GATSBY_STRIPE_PUBLISHABLE_KEY);
   }
   return stripePromise;
 };
@@ -196,8 +192,11 @@ const ClassHeader = ({ class_info }) => {
     e.preventDefault();
     setLoading(true);
 
+    const location = typeof window !== 'undefined' ? window.location.href : '';
+    const url = new URL(location);
     const formData = {
-      test: true,
+      success_url: `${url.protocol}//${url.host}`,
+      cancel_url: location,
       paymentType: paymentType,
       promotion: class_info.cost > 0,
       lineItems: [

@@ -9,7 +9,7 @@ exports.handler = async ({ body, headers }) => {
     const stripeEvent = stripe.webhooks.constructEvent(
       body,
       headers['stripe-signature'],
-      process.env.STRIPE_WEBHOOK_AIRTABLE_TEST_SECRET
+      process.env.STRIPE_WEBHOOK_AIRTABLE_SECRET
     );
 
     console.log('STRIPE EVENT: ', stripeEvent);
