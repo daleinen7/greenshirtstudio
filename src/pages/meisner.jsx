@@ -11,7 +11,7 @@ import { graphql } from 'gatsby';
 const Meisner = ({ data }) => {
   const classes_grouped = Object.groupBy(
     data.allContentfulClass.nodes,
-    ({ session }) => session
+    (classd) => classd.session
   );
 
   return (
@@ -95,7 +95,7 @@ export const pageQuery = graphql`
         day
         session
         coverImage {
-          gatsbyImageData(width: 416)
+          gatsbyImageData(width: 416, height: 290)
         }
       }
     }
