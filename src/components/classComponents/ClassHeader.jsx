@@ -168,8 +168,6 @@ const getStripe = () => {
 const ClassHeader = ({ class_info }) => {
   const [loading, setLoading] = useState(true);
   const [spotsLeft, setSpotsLeft] = useState(null);
-  const [error, setError] = useState(null);
-  const [fetching, setFetching] = useState(false);
 
   useEffect(() => {
     const getSpotsLeft = async (event, class_id) => {
@@ -186,7 +184,6 @@ const ClassHeader = ({ class_info }) => {
         const data = await response.json();
         setSpotsLeft(data.spots_left);
       } catch (err) {
-        setError(err.message);
         setSpotsLeft(null);
       } finally {
         setLoading(false);
