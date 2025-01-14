@@ -1,7 +1,8 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 exports.handler = async ({ body, headers }) => {
-  console.log('BODY: ', body);
+  // console.log('BODY: ', body);
+  console.log('HEADER: ', headers);
 
   try {
     // check the webhook to make sure it’s valid
