@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 const StyledBlogCard = styled.article`
   max-width: 19rem;
@@ -54,7 +55,7 @@ const BlogCard = ({ title, author, img, slug }) => {
       <Link to={`${slug}`}>
         {img && (
           <div className="image-wrapper">
-            <img src={img} alt={title} />
+            <GatsbyImage image={img} alt={title} />
           </div>
         )}
       </Link>

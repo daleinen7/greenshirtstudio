@@ -12,37 +12,37 @@ import Testimonial from '../components/Testimonial';
 import ClassCard from '../components/ClassCard';
 import BlogCard from '../components/BlogCard';
 import { graphql } from 'gatsby';
+import { concatenateName } from '../utils/utils';
+import slugify from 'slugify';
 
 const IndexPage = ({ data }) => {
-  const classes = data.allWpClass.nodes
+  const classes = data.allContentfulClass.nodes
     .sort((a, b) => {
-      if (a.title < b.title) {
-        return -1;
-      }
-      if (a.title > b.title) {
-        return 1;
-      }
+      if (a.title < b.title) return -1;
+      if (a.title > b.title) return 1;
       return 0;
     })
-    .filter((actingClass) => actingClass.classGroup.program !== 'Test')
     .map((actingClass) => (
       <ClassCard
         title={actingClass.title}
         slug={actingClass.slug}
-        image={actingClass.classGroup.classImage?.gatsbyImage}
-        days={actingClass.classGroup.day}
-        program={actingClass.classGroup.program}
-        price={actingClass.classGroup.price}
+        image={actingClass.coverImage.gatsbyImageData}
+        days={actingClass.day}
+        program={actingClass.type}
+        price={actingClass.cost}
       />
     ));
 
-  const posts = data.allWpPost.nodes.map((post) => {
+  const posts = data.allContentfulBlogPost.nodes.map((post) => {
     return (
       <BlogCard
         title={post.title}
-        author={post?.author?.node?.name}
-        img={post.featuredImage.node.sourceUrl}
-        slug={`blog/${post.slug}`}
+        author={concatenateName(post.author.name, post.author.lastName)}
+        img={post.coverImage.gatsbyImageData}
+        slug={`/blog/${slugify(post.title, {
+          strict: true,
+          lower: true,
+        })}`}
       />
     );
   });
@@ -112,34 +112,30 @@ export const Head = () => (
 
 export const pageQuery = graphql`
   query IndexQuery {
-    allWpClass {
+    allContentfulClass {
       nodes {
+        contentful_id
         title
+        type
+        cost
+        day
+        dates
         slug
-        classGroup {
-          day
-          price
-          program
-          classImage {
-            gatsbyImage(width: 304, height: 212, layout: FIXED, fit: COVER)
-          }
+        coverImage {
+          gatsbyImageData(width: 416)
         }
       }
     }
-    allWpPost(limit: 8, sort: { date: DESC }) {
+    allContentfulBlogPost(limit: 8, sort: { date: DESC }) {
       nodes {
         title
         author {
-          node {
-            name
-          }
+          name
+          lastName
         }
-        featuredImage {
-          node {
-            sourceUrl
-          }
+        coverImage {
+          gatsbyImageData
         }
-        slug
       }
     }
   }
