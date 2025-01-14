@@ -22,8 +22,8 @@ const FourOhFour = ({ data }) => {
         slug={actingClass.slug}
         image={actingClass.coverImage.gatsbyImageData}
         days={actingClass.day}
-        program={actingClass.program}
-        price={actingClass.price}
+        program={actingClass.type}
+        price={actingClass.cost}
       />
     ));
 
@@ -95,38 +95,6 @@ const FourOhFour = ({ data }) => {
 export default FourOhFour;
 
 export const Head = () => <SEO title={`Page Not Found - Green Shirt Studio`} />;
-
-// export const pageQuery = graphql`
-//   query FourOhFourQuery {
-//     allWpClass {
-//       nodes {
-//         title
-//         slug
-//         classGroup {
-//           day
-//           price
-//           program
-//           classImage {
-//             gatsbyImage(height: 212, layout: FIXED, fit: COVER)
-//           }
-//         }
-//       }
-//     }
-//     allWpEventbrite {
-//       nodes {
-//         title
-//         content
-//         events {
-//           featuredImage {
-//             gatsbyImage(height: 290)
-//           }
-//           eventDate
-//           eventbriteUrl
-//         }
-//       }
-//     }
-//   }
-// `;
 
 export const pageQuery = graphql`
   query FourOhFourQuery {
