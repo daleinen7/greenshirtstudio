@@ -203,7 +203,7 @@ const ClassHeader = ({ class_info }) => {
         {
           price:
             paymentType === 'payment'
-              ? class_info.stripeProductId
+              ? class_info.stripePriceId
               : class_info.stripeInstallmentId,
           quantity: 1,
         },
@@ -216,6 +216,7 @@ const ClassHeader = ({ class_info }) => {
       slug: class_info.slug,
       classDates: class_info.dates.join(', '),
       session: class_info.session,
+      contentfulEntryid: class_info.contentfulEntryid,
     };
 
     const response = await fetch('/.netlify/functions/create-checkout', {

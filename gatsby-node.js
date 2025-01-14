@@ -64,7 +64,7 @@ exports.createPages = async function ({ actions, graphql }) {
           customCancellationPolicy {
             raw
           }
-          stripeProductId
+          stripePriceId
           stripeInstallmentId
         }
       }
