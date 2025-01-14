@@ -216,7 +216,7 @@ const ClassHeader = ({ class_info }) => {
       slug: class_info.slug,
       classDates: class_info.dates.join(', '),
       session: class_info.session,
-      contentfulEntryid: class_info.contentfulEntryid,
+      contentfulEntryId: class_info.contentfulEntryId,
     };
 
     const response = await fetch('/.netlify/functions/create-checkout', {

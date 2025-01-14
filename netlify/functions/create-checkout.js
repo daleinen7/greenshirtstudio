@@ -24,7 +24,7 @@ exports.handler = async ({ body }) => {
         className: params.className,
         time: params.time,
         instructor: params.instructor,
-        classDates: params.dates,
+        classDates: params.classDates,
         location: params.location,
       },
     });
