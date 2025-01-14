@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import styled from 'styled-components';
 import { GatsbyImage } from 'gatsby-plugin-image';
-import { dashToReadableDate } from '../../utils/utils';
+import { dashToReadableDate, concatenateName } from '../../utils/utils';
 
 export const StyledClassHeader = styled.div`
   background: var(--white);
@@ -252,9 +252,12 @@ const ClassHeader = ({ class_info }) => {
           class_info.dates[0]
         )} - ${dashToReadableDate(
           class_info.dates[class_info.dates.length - 1]
-        )}, ${class_info.startTime} - ${class_info.endTime} with ${
-          class_info.instructors[0].name
-        }`}</p>
+        )}, ${class_info.startTime} - ${
+          class_info.endTime
+        } with ${concatenateName(
+          class_info.instructors[0].name,
+          class_info.instructors[0].lastName
+        )}`}</p>
 
         <div className="spots-left">
           <span>
