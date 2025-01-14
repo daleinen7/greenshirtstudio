@@ -36,7 +36,7 @@ exports.handler = async ({ body, headers }) => {
       } else {
         const airtableEndpoint = `https://api.airtable.com/v0/${process.env.AIRTABLE_BASE}/`;
 
-        // const event = body.data.object;
+        console.log(eventObject);
 
         // Update the Airtable record using the fetch API
         const airtableUpdateResponse = await fetch(airtableEndpoint, {

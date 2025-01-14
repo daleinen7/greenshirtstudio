@@ -19,13 +19,13 @@ exports.handler = async ({ body }) => {
       },
       metadata: {
         dayOfWeek: params.dayOfWeek,
-        contentfulEntryId: params.contentfulEntryId,
         session: params.session,
         className: params.className,
         time: params.time,
         instructor: params.instructor,
         classDates: params.classDates,
         location: params.location,
+        contentfulEntryId: params.contentfulEntryId,
       },
     });
 

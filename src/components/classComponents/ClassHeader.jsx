@@ -218,12 +218,15 @@ const ClassHeader = ({ class_info }) => {
       dayOfWeek: class_info.day,
       className: class_info.name,
       time: class_info.startTime,
-      instructor: class_info.instructors[0].name,
+      instructor: concatenateName(
+        class_info.instructors[0].name,
+        class_info.instructors[0].lastName
+      ),
       location: class_info.location,
       slug: class_info.slug,
       classDates: class_info.dates.join(', '),
       session: class_info.session,
-      contentfulEntryId: class_info.contentfulEntryId,
+      contentfulEntryId: class_info.contentful_id,
     };
 
     const response = await fetch('/.netlify/functions/create-checkout', {
