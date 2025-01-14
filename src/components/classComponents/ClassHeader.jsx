@@ -216,7 +216,7 @@ const ClassHeader = ({ class_info }) => {
         },
       ],
       dayOfWeek: class_info.day,
-      className: class_info.name,
+      classTitle: class_info.title,
       time: class_info.startTime,
       instructor: concatenateName(
         class_info.instructors[0].name,
@@ -252,11 +252,11 @@ const ClassHeader = ({ class_info }) => {
       {class_info.coverImage && (
         <GatsbyImage
           image={class_info.coverImage.gatsbyImageData}
-          alt={class_info.name}
+          alt={class_info.title}
         />
       )}
       <div className="info">
-        <h2>{class_info.name}</h2>
+        <h2>{class_info.title}</h2>
         <p>{`${class_info.day}, ${dashToReadableDate(
           class_info.dates[0]
         )} - ${dashToReadableDate(

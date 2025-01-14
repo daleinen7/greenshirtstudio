@@ -20,7 +20,7 @@ exports.handler = async ({ body }) => {
       metadata: {
         dayOfWeek: params.dayOfWeek,
         session: params.session,
-        className: params.className,
+        classTitle: params.classTitle,
         time: params.time,
         instructor: params.instructor,
         classDates: params.classDates,

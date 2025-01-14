@@ -23,7 +23,7 @@ exports.createPages = async function ({ actions, graphql }) {
       allContentfulClass {
         nodes {
           contentful_id
-          name
+          title
           slug
           type
           description {

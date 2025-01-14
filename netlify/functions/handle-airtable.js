@@ -55,7 +55,7 @@ exports.handler = async ({ body, headers }) => {
                   'Phone Number': eventObject.customer_details.phone,
                   'Payment Amount': eventObject.amount_total,
                   Session: eventObject.metadata.session,
-                  'Class Title': eventObject.metadata.className,
+                  'Class Title': eventObject.metadata.classTitle,
                   'Class Time': eventObject.metadata.time,
                   'Day of Week': eventObject.metadata.dayOfWeek,
                   Instructor: eventObject.metadata.instructor,
