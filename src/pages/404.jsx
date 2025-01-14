@@ -10,25 +10,20 @@ import parse from 'html-react-parser';
 import { graphql } from 'gatsby';
 
 const FourOhFour = ({ data }) => {
-  const classes = data.allWpClass.nodes
+  const classes = data.allContentfulClass.nodes
     .sort((a, b) => {
-      if (a.title < b.title) {
-        return -1;
-      }
-      if (a.title > b.title) {
-        return 1;
-      }
+      if (a.title < b.title) return -1;
+      if (a.title > b.title) return 1;
       return 0;
     })
-    .filter((actingClass) => actingClass.classGroup.program !== 'Test')
     .map((actingClass) => (
       <ClassCard
         title={actingClass.title}
         slug={actingClass.slug}
-        image={actingClass.classGroup.classImage?.gatsbyImage}
-        days={actingClass.classGroup.day}
-        program={actingClass.classGroup.program}
-        price={actingClass.classGroup.price}
+        image={actingClass.coverImage.gatsbyImageData}
+        days={actingClass.day}
+        program={actingClass.program}
+        price={actingClass.price}
       />
     ));
 
@@ -101,19 +96,50 @@ export default FourOhFour;
 
 export const Head = () => <SEO title={`Page Not Found - Green Shirt Studio`} />;
 
+// export const pageQuery = graphql`
+//   query FourOhFourQuery {
+//     allWpClass {
+//       nodes {
+//         title
+//         slug
+//         classGroup {
+//           day
+//           price
+//           program
+//           classImage {
+//             gatsbyImage(height: 212, layout: FIXED, fit: COVER)
+//           }
+//         }
+//       }
+//     }
+//     allWpEventbrite {
+//       nodes {
+//         title
+//         content
+//         events {
+//           featuredImage {
+//             gatsbyImage(height: 290)
+//           }
+//           eventDate
+//           eventbriteUrl
+//         }
+//       }
+//     }
+//   }
+// `;
+
 export const pageQuery = graphql`
   query FourOhFourQuery {
-    allWpClass {
+    allContentfulClass {
       nodes {
+        contentful_id
         title
+        type
+        cost
+        day
         slug
-        classGroup {
-          day
-          price
-          program
-          classImage {
-            gatsbyImage(height: 212, layout: FIXED, fit: COVER)
-          }
+        coverImage {
+          gatsbyImageData(width: 304, height: 212, layout: FIXED)
         }
       }
     }

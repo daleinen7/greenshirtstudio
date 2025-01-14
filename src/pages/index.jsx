@@ -119,10 +119,9 @@ export const pageQuery = graphql`
         type
         cost
         day
-        dates
         slug
         coverImage {
-          gatsbyImageData(width: 416)
+          gatsbyImageData(width: 304, height: 212, layout: FIXED)
         }
       }
     }
