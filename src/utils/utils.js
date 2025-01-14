@@ -6,7 +6,7 @@ export function producePositionString(positions) {
   return positions.map((position) => position.name).join(', ');
 }
 
-export function dashToSlash(date) {
+export function dashToSlashDate(date) {
   // TODO: add a `date` guard
   return new Date(date).toLocaleDateString('en-US', {
     year: 'numeric',
@@ -16,6 +16,7 @@ export function dashToSlash(date) {
 }
 
 export function dashToReadableDate(date) {
+  // TODO: add a `date` guard
   const [year, month, day] = date.split('-');
   const date_obj = new Date(year, month - 1, day);
   return new Intl.DateTimeFormat('en-US', {
