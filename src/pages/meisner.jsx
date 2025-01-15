@@ -7,10 +7,10 @@ import ContentStack from '../components/ContentStack';
 import MeisnerProgram from '../images/MeisnerProgram.png';
 import ClassCard from '../components/ClassCard';
 import { graphql } from 'gatsby';
-import { groupBy } from 'core-js/actual/array/group-by';
+import _ from 'lodash';
 
 const Meisner = ({ data }) => {
-  const classes_grouped = groupBy(
+  const classes_grouped = _.groupBy(
     data.allContentfulClass.nodes,
     (class_node) => class_node.session
   );
