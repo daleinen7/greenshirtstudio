@@ -169,8 +169,8 @@ const ClassHeader = ({ class_info }) => {
   const [loading, setLoading] = useState(true);
   const [spotsLeft, setSpotsLeft] = useState(null);
 
-  useEffect(() => {
-    const getSpotsLeft = async (event, class_id) => {
+  useEffect(async () => {
+    const getSpotsLeft = async () => {
       try {
         const response = await fetch(
           `/.netlify/functions/handle-spotsleft?class_id=${class_info.contentful_id}`,
@@ -185,11 +185,10 @@ const ClassHeader = ({ class_info }) => {
         setSpotsLeft(data.spots_left);
       } catch (err) {
         setSpotsLeft(null);
-      } finally {
-        setLoading(false);
       }
     };
-    getSpotsLeft();
+    await getSpotsLeft();
+    setLoading(false);
   }, []);
 
   const handlePurchase = async (e, paymentType) => {
@@ -267,7 +266,9 @@ const ClassHeader = ({ class_info }) => {
 
         <div className="spots-left">
           <span>
-            {spotsLeft == null ? 'Loading' : `${spotsLeft} spots left`}
+            {loading || spotsLeft == null
+              ? 'Loading'
+              : `${spotsLeft} spots left`}
           </span>
         </div>
 
@@ -287,7 +288,7 @@ const ClassHeader = ({ class_info }) => {
 
         <ul className="pricing-buttons">
           <li>
-            {!loading ? (
+            {!loading && spotsLeft !== null ? (
               spotsLeft > 0 ? (
                 <button
                   className={'register'}

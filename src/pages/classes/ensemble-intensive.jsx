@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledClassPage } from '../../templates/class';
+import { StyledClassPage } from '../../utils/utils';
 import { StyledDescription } from '../../components/classComponents/Description';
 import SpecialMessage from '../../components/classComponents/SpecialMessage';
 import AboutTeacher from '../../components/classComponents/AboutTeacher';
