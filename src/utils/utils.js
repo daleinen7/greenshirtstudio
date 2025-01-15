@@ -7,7 +7,8 @@ export function producePositionString(positions) {
 }
 
 function isValidDate(date) {
-  return date instanceof Date && !isNaN(date);
+  const parsedDate = new Date(date);
+  return parsedDate instanceof Date && !isNaN(parsedDate);
 }
 
 export function dashToSlashDate(date) {
