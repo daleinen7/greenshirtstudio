@@ -169,7 +169,7 @@ const ClassHeader = ({ class_info }) => {
   const [loading, setLoading] = useState(true);
   const [spotsLeft, setSpotsLeft] = useState(null);
 
-  useEffect(async () => {
+  useEffect(() => {
     const getSpotsLeft = async () => {
       try {
         const response = await fetch(
@@ -187,7 +187,7 @@ const ClassHeader = ({ class_info }) => {
         setSpotsLeft(null);
       }
     };
-    await getSpotsLeft();
+    getSpotsLeft();
     setLoading(false);
   }, []);
 
