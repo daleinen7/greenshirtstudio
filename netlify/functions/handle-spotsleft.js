@@ -16,9 +16,14 @@ exports.handler = async (req) => {
     const records_num = airtable_data.records.length;
 
     const contentful_res = await fetch(
-      `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/entries/${class_id}?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}`
+      `https://cdn.contentful.com/spaces/${
+        process.env.CONTENTFUL_SPACE_ID
+      }/environments/${
+        process.env.ENVIRONMENT == 'production' ? 'master' : 'uat'
+      }/entries/${class_id}?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}`
     );
     const contentful_data = await contentful_res.json();
+    console.log(contentful_data);
     const class_size = contentful_data.fields.classSize;
 
     const spots_left = class_size - records_num;
