@@ -1,7 +1,8 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 exports.handler = async ({ body, headers }) => {
-  console.log('BODY: ', body);
+  // console.log('BODY: ', body);
+  console.log('HEADER: ', headers);
 
   try {
     // check the webhook to make sure it’s valid
@@ -35,7 +36,7 @@ exports.handler = async ({ body, headers }) => {
       } else {
         const airtableEndpoint = `https://api.airtable.com/v0/${process.env.AIRTABLE_BASE}/`;
 
-        // const event = body.data.object;
+        console.log(eventObject);
 
         // Update the Airtable record using the fetch API
         const airtableUpdateResponse = await fetch(airtableEndpoint, {
@@ -54,12 +55,13 @@ exports.handler = async ({ body, headers }) => {
                   'Phone Number': eventObject.customer_details.phone,
                   'Payment Amount': eventObject.amount_total,
                   Session: eventObject.metadata.session,
-                  'Class Title': eventObject.metadata.className,
+                  'Class Title': eventObject.metadata.classTitle,
                   'Class Time': eventObject.metadata.time,
                   'Day of Week': eventObject.metadata.dayOfWeek,
                   Instructor: eventObject.metadata.instructor,
                   'Class Dates': eventObject.metadata.classDates,
                   Location: eventObject.metadata.location,
+                  'Contentful Entry ID': eventObject.metadata.contentfulEntryId,
                 },
               },
             ],

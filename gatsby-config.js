@@ -57,6 +57,10 @@ module.exports = {
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        // 'master' has to be checked on Contentful
+        // https://stackoverflow.com/questions/60892938/accessing-your-contentful-space-failed-with-gatsby-source-contentful
+        // https://github.com/gatsbyjs/gatsby/issues/19392
+        environment: process.env.ENVIRONMENT == 'production' ? 'master' : 'uat',
       },
     },
     'gatsby-plugin-image',

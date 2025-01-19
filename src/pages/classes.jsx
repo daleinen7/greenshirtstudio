@@ -71,9 +71,6 @@ const Classes = ({ data }) => {
     </Link>,
   ];
 
-  const hack = `An accessible, step by step approach that demystifies the craft of acting. Classes meet once a week for eight weeks.  \n  \n
-  All experience levels are invited to join Level 1: Living Truthfully.`;
-
   return (
     <Layout>
       <StyledHero>
@@ -84,7 +81,8 @@ const Classes = ({ data }) => {
         title={'Meisner Acting Program'}
         image={MeisnerProgram}
         imageAltText={'placeholder image'}
-        info={hack}
+        info={`An accessible, step by step approach that demystifies the craft of acting. Classes meet once a week for eight weeks.  \n  \n
+  All experience levels are invited to join Level 1: Living Truthfully.`}
         ctaText={'View Class Schedule'}
         ctaLink={'/meisner'}
       />

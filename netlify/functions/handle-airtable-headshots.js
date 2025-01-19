@@ -16,7 +16,7 @@ exports.handler = async ({ body, headers }) => {
       const eventObject = stripeEvent.data.object;
 
       // return if class session signup
-      if (eventObject.metadata.className) {
+      if (eventObject.metadata.classTitle) {
         return {
           statusCode: 200,
           body: JSON.stringify({

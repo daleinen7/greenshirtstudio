@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-// import useSWR from 'swr';
 import { loadStripe } from '@stripe/stripe-js';
 import styled from 'styled-components';
+import { GatsbyImage } from 'gatsby-plugin-image';
+import { dashToReadableDate, concatenateName } from '../../utils/utils';
 
 export const StyledClassHeader = styled.div`
   background: var(--white);
@@ -19,9 +20,9 @@ export const StyledClassHeader = styled.div`
     margin-bottom: 1rem;
   }
 
-  img {
+  .gatsby-image-wrapper {
     width: 62%;
-    padding-right: 1rem;
+    margin-right: 1rem;
   }
 
   .info {
@@ -90,7 +91,6 @@ export const StyledClassHeader = styled.div`
     .register {
       border: none;
       background: var(--neon-green);
-      border: 2px solid var(--neon-green);
 
       :hover {
         opacity: 0.6;
@@ -99,6 +99,13 @@ export const StyledClassHeader = styled.div`
       :active {
         transform: translateY(2px) translateX(2px);
       }
+    }
+
+    .disabled {
+      pointer-events: none;
+      border: 2px solid var(--gray);
+      color: var(--gray);
+      background: none;
     }
 
     .installment {
@@ -131,7 +138,7 @@ export const StyledClassHeader = styled.div`
   @media (max-width: 970px) {
     flex-direction: column;
 
-    img,
+    .gatsby-image-wrapper,
     .info {
       width: 100%;
       padding: 0;
@@ -140,7 +147,7 @@ export const StyledClassHeader = styled.div`
     .info {
       padding: 0 1rem;
     }
-    img {
+    .gatsby-image-wrapper {
       margin-bottom: 2rem;
     }
     button {
@@ -151,82 +158,71 @@ export const StyledClassHeader = styled.div`
 `;
 
 let stripePromise;
-const getStripe = (test) => {
+const getStripe = () => {
   if (!stripePromise) {
-    stripePromise = loadStripe(
-      test
-        ? process.env.GATSBY_STRIPE_PUBLISHABLE_TEST_KEY
-        : process.env.GATSBY_STRIPE_PUBLISHABLE_KEY
-    );
+    stripePromise = loadStripe(process.env.GATSBY_STRIPE_PUBLISHABLE_KEY);
   }
   return stripePromise;
 };
 
-// const fetcher = (...args) => fetch(...args).then((res) => res.json());
-
-const ClassHeader = ({ wpClass, session }) => {
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
-  const [fetching, setFetching] = useState(false);
-
-  // const { data, error } = useSWR(
-  //   `https://greenshirtstudiowp.us/wp-json/wp/v2/class/${wpClass.databaseId}`,
-  //   fetcher
-  // );
+const ClassHeader = ({ class_info }) => {
+  const [loading, setLoading] = useState(true);
+  const [spotsLeft, setSpotsLeft] = useState(null);
 
   useEffect(() => {
-    const getData = async () => {
+    const getSpotsLeft = async () => {
       try {
         const response = await fetch(
-          `https://greenshirtstudiowp.us/wp-json/wp/v2/class/${wpClass.databaseId}`
+          `/.netlify/functions/handle-spotsleft?class_id=${class_info.contentful_id}`,
+          {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
         );
-        if (!response.ok) {
-          throw new Error(
-            `This is an HTTP error: The status is ${response.status}`
-          );
-        }
-        let actualData = await response.json();
-        setData(actualData);
-        setError(null);
+        const data = await response.json();
+        setSpotsLeft(data.spots_left);
       } catch (err) {
-        setError(err.message);
-        setData(null);
-      } finally {
-        setLoading(false);
+        setSpotsLeft(null);
       }
     };
-    getData();
+    getSpotsLeft();
+    setLoading(false);
   }, []);
-
-  const spotsLeft = data ? `${data.acf.spots_left} spots left` : 'loading';
 
   const handlePurchase = async (e, paymentType) => {
     e.preventDefault();
     setLoading(true);
 
+    const location = typeof window !== 'undefined' ? window.location.href : '';
+    const url = new URL(location);
     const formData = {
-      test: wpClass.classGroup.program === 'Test',
+      success_url: `${url.protocol}//${url.host}`,
+      cancel_url: location,
       paymentType: paymentType,
-      promotion: wpClass.classGroup.price > 0,
+      promotion: class_info.cost > 0,
       lineItems: [
         {
           price:
             paymentType === 'payment'
-              ? wpClass.classGroup.stripeId
-              : wpClass.classGroup.stripeInstallmentId,
+              ? class_info.stripePriceId
+              : class_info.stripeInstallmentId,
           quantity: 1,
         },
       ],
-      dayOfWeek: wpClass.classGroup.day,
-      dbid: wpClass.databaseId,
-      className: wpClass.title,
-      time: wpClass.classGroup.time,
-      instructor: wpClass.classGroup.linkInstructor.title,
-      location: wpClass.classGroup.location,
-      slug: wpClass.slug,
-      classDates: wpClass.classGroup.dates,
-      session: session,
+      dayOfWeek: class_info.day,
+      classTitle: class_info.title,
+      time: class_info.startTime,
+      instructor: concatenateName(
+        class_info.instructors[0].name,
+        class_info.instructors[0].lastName
+      ),
+      location: class_info.location,
+      slug: class_info.slug,
+      classDates: class_info.dates.join(', '),
+      session: class_info.session,
+      contentfulEntryId: class_info.contentful_id,
     };
 
     const response = await fetch('/.netlify/functions/create-checkout', {
@@ -237,7 +233,7 @@ const ClassHeader = ({ wpClass, session }) => {
       body: JSON.stringify(formData),
     }).then((res) => res.json());
 
-    const stripe = await getStripe(wpClass.classGroup.program === 'Test');
+    const stripe = await getStripe(true);
     const { error } = await stripe.redirectToCheckout({
       sessionId: response.sessionId,
     });
@@ -249,31 +245,39 @@ const ClassHeader = ({ wpClass, session }) => {
 
   return (
     <StyledClassHeader>
-      {wpClass.classGroup.classImage && (
-        <img
-          src={wpClass.classGroup.classImage.sourceUrl}
-          alt={wpClass.title}
+      {class_info.coverImage && (
+        <GatsbyImage
+          image={class_info.coverImage.gatsbyImageData}
+          alt={class_info.title}
         />
       )}
       <div className="info">
-        <h2>{wpClass.title}</h2>
-        <p>{`${wpClass.classGroup.day}, ${wpClass.classGroup.dates[0].date} - ${
-          wpClass.classGroup.dates[wpClass.classGroup.dates.length - 1].date
-        }, ${wpClass.classGroup.time} with ${
-          wpClass.classGroup.linkInstructor.title
-        }`}</p>
+        <h2>{class_info.title}</h2>
+        <p>{`${class_info.day}, ${dashToReadableDate(
+          class_info.dates[0]
+        )} - ${dashToReadableDate(
+          class_info.dates[class_info.dates.length - 1]
+        )}, ${class_info.startTime} - ${
+          class_info.endTime
+        } with ${concatenateName(
+          class_info.instructors[0].name,
+          class_info.instructors[0].lastName
+        )}`}</p>
 
         <div className="spots-left">
-          <span>{spotsLeft}</span>
+          <span>
+            {loading || spotsLeft == null
+              ? 'Loading'
+              : `${spotsLeft} spots left`}
+          </span>
         </div>
 
         <div className="price">
-          {data &&
-            data.acf.spots_left > 0 &&
-            (wpClass.classGroup.price > 0 ? (
+          {spotsLeft > 0 &&
+            (class_info.cost > 0 ? (
               <>
-                ${wpClass.classGroup.price} <br />
-                {wpClass.classGroup.stripeInstallmentId && (
+                ${class_info.cost} <br />
+                {class_info.stripeInstallmentId && (
                   <small>or pay in three installments (payment plan)</small>
                 )}
               </>
@@ -284,35 +288,38 @@ const ClassHeader = ({ wpClass, session }) => {
 
         <ul className="pricing-buttons">
           <li>
-            {data ? (
-              data.acf.spots_left > 0 ? (
+            {!loading && spotsLeft !== null ? (
+              spotsLeft > 0 ? (
                 <button
                   className={'register'}
-                  disabled={loading}
                   onClick={(e) => handlePurchase(e, 'payment')}
                 >
                   Register
                 </button>
               ) : (
-                <button disabled>SOLD OUT</button>
+                <button disabled className="disabled">
+                  Sold Out
+                </button>
               )
             ) : (
-              <button disabled className={'register'}>
-                Register
+              <button disabled className="disabled">
+                Loading
               </button>
             )}
           </li>
-          {wpClass.classGroup.stripeInstallmentId && (
-            <li>
-              <button
-                className={'installment'}
-                disabled={loading}
-                onClick={(e) => handlePurchase(e, 'subscription')}
-              >
-                Payment Plan
-              </button>
-            </li>
-          )}
+          {class_info.stripeInstallmentId &&
+            spotsLeft !== null &&
+            spotsLeft > 0 && (
+              <li>
+                <button
+                  className="installment"
+                  disabled={loading}
+                  onClick={(e) => handlePurchase(e, 'subscription')}
+                >
+                  Payment Plan
+                </button>
+              </li>
+            )}
         </ul>
       </div>
     </StyledClassHeader>

@@ -8,14 +8,14 @@ import CTACard from '../components/CTAContentCard';
 import { graphql } from 'gatsby';
 
 const Success = ({ data }) => {
-  const classes = data.allWpClass.nodes.map((actingClass) => (
+  const classes = data.allContentfulClass.nodes.map((actingClass) => (
     <ClassCard
       title={actingClass.title}
       slug={actingClass.slug}
-      image={actingClass.classGroup?.classImage?.gatsbyImage}
-      days={actingClass.classGroup.day}
-      program={actingClass.classGroup.program}
-      price={actingClass.classGroup.price}
+      image={actingClass.coverImage.gatsbyImageData}
+      days={actingClass.day}
+      program={actingClass.type}
+      price={actingClass.cost}
     />
   ));
   return (
@@ -41,17 +41,16 @@ export const Head = () => <SEO title={`Success! - Green Shirt Studio`} />;
 
 export const pageQuery = graphql`
   query SuccessQuery {
-    allWpClass {
+    allContentfulClass(filter: { type: { ne: "Test Class" } }) {
       nodes {
+        contentful_id
         title
+        type
+        cost
+        day
         slug
-        classGroup {
-          day
-          price
-          program
-          classImage {
-            gatsbyImage(height: 212, layout: FIXED)
-          }
+        coverImage {
+          gatsbyImageData(width: 304, height: 212, layout: FIXED)
         }
       }
     }

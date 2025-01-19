@@ -1,30 +1,11 @@
-exports.handler = async ({ body, headers }) => {
+exports.handler = async ({ body }) => {
   const params = JSON.parse(body);
-  console.log('Serverside baby!', params.paymentType);
-
-  console.log('This is a ', params.test ? 'test' : 'live', ' purchase.');
-
-  const stripe = require('stripe')(
-    params.test
-      ? process.env.STRIPE_SECRET_TEST_KEY
-      : process.env.STRIPE_SECRET_KEY
-  );
-
-  // console.log('GATSBY URL ENVIRONMENT: ', process.env.GATSBY_URL_ENVIRONMENT);
-
-  // console.log('Params Available: ', params.classDates);
-
-  const formattedDates = params.classDates
-    .map((date) => date.date)
-    .join(' \n ')
-    .slice(0, -2);
-
-  console.log('Formatted Dates: ', formattedDates);
+  const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
   try {
     const session = await stripe.checkout.sessions.create({
-      success_url: `${process.env.GATSBY_URL_ENVIRONMENT}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.GATSBY_URL_ENVIRONMENT}/cancel`,
+      success_url: `${params.success_url}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: params.cancel_url,
       payment_method_types: ['card'],
       line_items: params.lineItems,
       mode: params.paymentType,
@@ -34,17 +15,15 @@ exports.handler = async ({ body, headers }) => {
       },
       metadata: {
         dayOfWeek: params.dayOfWeek,
-        databaseId: params.dbid,
         session: params.session,
-        className: params.className,
+        classTitle: params.classTitle,
         time: params.time,
         instructor: params.instructor,
-        classDates: formattedDates,
+        classDates: params.classDates,
         location: params.location,
+        contentfulEntryId: params.contentfulEntryId,
       },
     });
-
-    // console.log('SESSION: ', session);
 
     return {
       statusCode: 200,

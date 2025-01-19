@@ -9,14 +9,13 @@ import ClassCard from '../components/ClassCard';
 import { graphql } from 'gatsby';
 
 const HighSchoolSummerImmersive = ({ data }) => {
-  const classes = data.allWpClass.nodes.map((actingClass) => (
+  const classes = data.allContentfulClass.nodes.map((actingClass) => (
     <ClassCard
       title={actingClass.title}
       slug={actingClass.slug}
-      image={actingClass.classGroup?.classImage?.gatsbyImage}
-      days={actingClass.classGroup.day}
-      program={actingClass.classGroup.program}
-      price={actingClass.classGroup.price}
+      image={actingClass.coverImage.gatsbyImageData}
+      program={actingClass.type}
+      price={actingClass.cost}
     />
   ));
 
@@ -42,22 +41,20 @@ export const Head = () => (
 );
 
 export const pageQuery = graphql`
-  query HighSchoolSummerImmersive {
-    allWpClass(
-      filter: {
-        classGroup: { program: { eq: "High School Summer Immersive" } }
-      }
+  query SpecializedClasses {
+    allContentfulClass(
+      filter: { type: { eq: "High School Summer Intensive" } }
     ) {
       nodes {
-        title
+        contentful_id
         slug
-        classGroup {
-          program
-          price
-          classImage {
-            altText
-            gatsbyImage(width: 416, height: 290)
-          }
+        title
+        type
+        cost
+        day
+        session
+        coverImage {
+          gatsbyImageData(width: 416, height: 290)
         }
       }
     }

@@ -4,7 +4,7 @@ import { SEO } from '../components/seo';
 import Layout from '../components/Layout';
 import styled from 'styled-components';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { concatenateName, dashToSlash } from '../utils/utils';
+import { concatenateName, dashToSlashDate } from '../utils/utils';
 import { GatsbyImage } from 'gatsby-plugin-image';
 
 const StyledBlogPost = styled.article`
@@ -61,7 +61,7 @@ const BlogPostPage = ({ pageContext }) => {
             <Link to={`/${author.slug}`}>
               {concatenateName(author.name, author.lastName)}
             </Link>
-            {date && ` | ${dashToSlash(date)}`}
+            {date && ` | ${dashToSlashDate(date)}`}
           </div>
         </header>
         {coverImage && <GatsbyImage image={coverImage.gatsbyImageData} />}
