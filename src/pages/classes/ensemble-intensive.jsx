@@ -16,12 +16,10 @@ const EnsembleIntensive = () => {
     age: 'This is an adult acting class ages 18+',
     classSize: '12 students maximum',
     type: 'Meisner Acting Program',
-    stripePriceId: 'price_1LeMSaJ2Dog8kO2SNmtDUxcG',
-    stripeInstallmentId: 'price_1LeMSaJ2Dog8kO2SW3zbfQFT',
     day: 'Mondays - Thursdays',
     startTime: '6:30 PM',
     endTime: '9:30 PM',
-    dates: ['January 6 - March 6', 'Showcase on March 8'],
+    dates: ['June 9 - August 7', 'Showcase on August 9'],
     cost: 2950,
     instructors: [
       {
