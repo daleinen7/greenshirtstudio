@@ -258,9 +258,8 @@ const Layout = ({ children, headerColor }) => {
       <GlobalStyles />
       {location.pathname == '/' && (
         <StyledBanner>
-          Check out our <b>new intensive</b> starting Jan 6 led by co-founder
-          Andrew Gallant.{' '}
-          <Link to="/classes/ensemble-intensive">Learn more.</Link>
+          Spring Classes start March 24. <b>Enroll now!</b>{' '}
+          <Link to="/classes">Learn more.</Link>
         </StyledBanner>
       )}
       <StyledHeader headerColor={headerColor}>
