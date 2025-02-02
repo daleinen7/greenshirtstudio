@@ -95,6 +95,8 @@ const CTACard = ({
   info,
   ctaText,
   ctaLink,
+  ctaSecondaryText,
+  ctaSecondaryLink,
   video,
 }) => {
   const size = useWindowSize();
@@ -113,6 +115,22 @@ const CTACard = ({
           ) : (
             <Link to={ctaLink}>
               {size.width < 915 && size.width > 785 ? 'Learn More' : ctaText}
+            </Link>
+          )
+        }
+        {
+          // ctaLink has to be a full URL, not a relative path
+          ctaSecondaryLink.includes('http') ? (
+            <a href={ctaSecondaryLink}>
+              {size.width < 915 && size.width > 785
+                ? 'Learn More'
+                : ctaSecondaryText}
+            </a>
+          ) : (
+            <Link to={ctaSecondaryLink}>
+              {size.width < 915 && size.width > 785
+                ? 'Learn More'
+                : ctaSecondaryText}
             </Link>
           )
         }
