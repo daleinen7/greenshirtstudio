@@ -118,9 +118,9 @@ const CTACard = ({
             </Link>
           )
         }
-        {
+        {!!ctaSecondaryLink &&
           // ctaLink has to be a full URL, not a relative path
-          ctaSecondaryLink.includes('http') ? (
+          (ctaSecondaryLink.includes('http') ? (
             <a href={ctaSecondaryLink}>
               {size.width < 915 && size.width > 785
                 ? 'Learn More'
@@ -132,8 +132,7 @@ const CTACard = ({
                 ? 'Learn More'
                 : ctaSecondaryText}
             </Link>
-          )
-        }
+          ))}
       </div>
       {video ? (
         <video src={video} autoPlay loop muted playsInline></video>
