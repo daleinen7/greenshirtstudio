@@ -40,12 +40,13 @@ const StyledCTACard = styled.div`
   }
 
   a {
+    display: inline-block;
     font-weight: 900;
     color: var(--black);
     background: var(--neon-green);
     text-decoration: none;
     font-size: 1.25rem;
-    padding: 1rem 1.5rem;
+    padding: 0.8rem 1.5rem;
     border: 2px solid var(--neon-green);
     :hover {
       background: var(--white);
@@ -59,6 +60,10 @@ const StyledCTACard = styled.div`
       font-size: 1rem;
       padding: 0.75rem 1.5rem;
     }
+  }
+
+  .second-link {
+    display: inline-block;
   }
 
   @media (max-width: 785px) {
@@ -106,33 +111,27 @@ const CTACard = ({
       <div className="info">
         <h3>{title}</h3>
         <ReactMarkdown children={info.replace(/\n/gi, '\n &nbsp;')} />
-        {
-          // ctaLink has to be a full URL, not a relative path
-          ctaLink.includes('http') ? (
-            <a href={ctaLink}>
-              {size.width < 915 && size.width > 785 ? 'Learn More' : ctaText}
-            </a>
-          ) : (
-            <Link to={ctaLink}>
-              {size.width < 915 && size.width > 785 ? 'Learn More' : ctaText}
-            </Link>
-          )
-        }
-        {!!ctaSecondaryLink &&
-          // ctaLink has to be a full URL, not a relative path
-          (ctaSecondaryLink.includes('http') ? (
-            <a href={ctaSecondaryLink}>
-              {size.width < 915 && size.width > 785
-                ? 'Learn More'
-                : ctaSecondaryText}
-            </a>
-          ) : (
-            <Link to={ctaSecondaryLink}>
-              {size.width < 915 && size.width > 785
-                ? 'Learn More'
-                : ctaSecondaryText}
-            </Link>
-          ))}
+        <div>
+          {
+            // ctaLink has to be a full URL, not a relative path
+            ctaLink.includes('http') ? (
+              <a href={ctaLink}>{ctaText}</a>
+            ) : (
+              <Link to={ctaLink}>{ctaText}</Link>
+            )
+          }
+          {!!ctaSecondaryLink &&
+            // ctaLink has to be a full URL, not a relative path
+            (ctaSecondaryLink.includes('http') ? (
+              <a href={ctaSecondaryLink} class="second-link">
+                {ctaSecondaryText}
+              </a>
+            ) : (
+              <Link to={ctaSecondaryLink} class="second-link">
+                {ctaSecondaryText}
+              </Link>
+            ))}
+        </div>
       </div>
       {video ? (
         <video src={video} autoPlay loop muted playsInline></video>
