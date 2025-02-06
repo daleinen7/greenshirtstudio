@@ -36,11 +36,17 @@ const StyledCTACard = styled.div`
     font-size: 1.25rem;
     font-weight: 400;
     line-height: 1.875rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  .button-group {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1rem;
   }
 
   a {
-    display: inline-block;
+    display: block;
     font-weight: 900;
     color: var(--black);
     background: var(--neon-green);
@@ -104,14 +110,12 @@ const CTACard = ({
   ctaSecondaryLink,
   video,
 }) => {
-  const size = useWindowSize();
-
   return (
     <StyledCTACard headerAlign={headerAlign}>
       <div className="info">
         <h3>{title}</h3>
         <ReactMarkdown children={info.replace(/\n/gi, '\n &nbsp;')} />
-        <div>
+        <div className="button-group">
           {
             // ctaLink has to be a full URL, not a relative path
             ctaLink.includes('http') ? (
