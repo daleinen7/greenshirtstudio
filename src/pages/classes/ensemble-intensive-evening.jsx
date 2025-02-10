@@ -241,5 +241,5 @@ const EnsembleIntensive = () => {
 export default EnsembleIntensive;
 
 export const Head = () => (
-  <SEO title="Ensemble Intensive - Green Shirt Studio" />
+  <SEO title="Ensemble Intensive (Evening) - Green Shirt Studio" />
 );
