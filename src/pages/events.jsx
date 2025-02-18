@@ -51,7 +51,10 @@ const Events = ({ data }) => {
     return (
       <EventCard
         title={evt.title}
-        description={parse(evt.content)}
+        description={parse(
+          // Incredibly hacky fix because for some reason, something upstream has randomly started to inject the body tag.
+          evt.content.replace('<body>', '').replace('</body>', '')
+        )}
         link={evt.events.eventbriteUrl}
         image={evt.events?.featuredImage?.gatsbyImage}
         date={eventDate}
