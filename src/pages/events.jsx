@@ -16,76 +16,70 @@ import EventsImg from '../images/eventshero.png';
 import CurtainCall from '../images/curtaincall.png';
 import LightbulbReel from '../images/lightbulbreel.mp4';
 import styled from 'styled-components';
+import _ from 'lodash';
 
-const StyledLink = styled.div`
+const StyledUpcomingEvents = styled.section`
   display: flex;
-  justify-content: center;
-  width: 100%;
-  a {
-    margin-top: -4rem;
-    margin-bottom: 4rem;
+  flex-direction: column;
+  align-items: center;
+  max-width: 40rem;
+  margin: 0 auto;
+  margin-bottom: 4.75rem;
+
+  h3 {
+    font-size: 2rem;
+  }
+
+  p {
     text-align: center;
+    line-height: 1.875rem;
+  }
+
+  a {
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 500px) {
+    p {
+      line-height: 1.5rem;
+    }
   }
 `;
 
 const Events = ({ data }) => {
-  const today = new Date();
-
-  const cardifyEvent = (evt, small) => {
-    const eventDate = new Date(evt.events.eventDate).toLocaleDateString(
-      'en-US',
-      {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      }
-    );
-    const eventTime = new Date(evt.events.eventDate).toLocaleTimeString(
-      'en-US',
-      {
-        hour: 'numeric',
-        minute: '2-digit',
-      }
-    );
+  const cardifyEvent = (event, small) => {
+    const eventDate = new Date(event.datetime).toLocaleDateString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+    const eventTime = new Date(event.datetime).toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      minute: '2-digit',
+    });
     return (
       <EventCard
-        title={evt.title}
-        description={parse(
-          // Incredibly hacky fix because for some reason, something upstream has randomly started to inject the body tag.
-          evt.content.replace('<body>', '').replace('</body>', '')
-        )}
-        link={evt.events.eventbriteUrl}
-        image={evt.events?.featuredImage?.gatsbyImage}
+        title={event.name}
+        description={event.description.description}
+        link={event.link}
+        image={event.coverImage.gatsbyImageData}
         date={eventDate}
         time={eventTime}
-        small={small}
-        key={evt.events.eventDate}
       />
     );
   };
 
-  const futureEventsObj = {};
-
-  let futureEventsData = data.allWpEventbrite.nodes
-    .filter((evt) => {
-      return today < new Date(evt.events.eventDate);
-    })
-    .reverse();
-
-  // for each event
-  futureEventsData.forEach((evt) => {
-    const eventDate = new Date(evt.events.eventDate);
-    if (!futureEventsObj[eventDate.getMonth()]) {
-      futureEventsObj[eventDate.getMonth()] = [];
-    }
-
-    futureEventsObj[eventDate.getMonth()].push(cardifyEvent(evt));
-  });
-
-  const pastEvents = data.allWpEventbrite.nodes
-    .filter((evt) => today >= new Date(evt.events.eventDate))
-    .map((evt) => cardifyEvent(evt, true));
+  const futureEventGrouped = _.groupBy(
+    data.allContentfulEvent.nodes.filter(
+      (event) => new Date() < new Date(event.datetime)
+    ),
+    (event) =>
+      new Date(event.datetime).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+      })
+  );
 
   return (
     <Layout>
@@ -94,31 +88,27 @@ const Events = ({ data }) => {
         title="Shows & Events"
         content="Join our vibrant artistic community, by participating in or attending our shows and events. We offer a diverse range of offerings, including free and donation-based gatherings, along with opportunities to host your very own show."
       />
-      {futureEventsData.length > 0 ? (
+      {Object.keys(futureEventGrouped).length > 0 ? (
         <>
-          <UpcomingEvents />
-          {Object.entries(futureEventsObj).map((month) => {
-            const firstDate = new Date(month[1][0].key);
-            const prettyMonth = firstDate.toLocaleString('default', {
-              month: 'long',
-            });
-            const prettyYear = firstDate.toLocaleString('default', {
-              year: 'numeric',
-            });
-            return (
-              <ContentStack
-                key={month[0]}
-                title={prettyMonth + ' ' + prettyYear}
-                content={month[1]
-                  .sort((a, b) => {
-                    // Turn your strings into dates, and then subtract them
-                    // to get a value that is either negative, positive, or zero.
-                    return new Date(b.key) - new Date(a.key);
-                  })
-                  .reverse()}
-              />
-            );
-          })}
+          <StyledUpcomingEvents>
+            <h3>Upcoming Events</h3>
+            <p>
+              Select an event to learn more details and reserve your tickets.
+            </p>
+          </StyledUpcomingEvents>
+          {Object.entries(futureEventGrouped).map(
+            ([monthSection, groupedEvents]) => {
+              return (
+                <ContentStack
+                  key={monthSection}
+                  title={monthSection}
+                  content={groupedEvents
+                    .reverse()
+                    .map((event) => cardifyEvent(event))}
+                />
+              );
+            }
+          )}
           <CTAContentCard
             headerAlign={'left'}
             title={'Reserve your tickets on Eventbrite'}
@@ -148,7 +138,6 @@ const Events = ({ data }) => {
           }
         />
       )}
-
       <CTAContentCard
         headerAlign={'right'}
         title={'Host your show at Green Shirt Studio'}
@@ -160,16 +149,6 @@ const Events = ({ data }) => {
         ctaText={'Learn More'}
         ctaLink={'/hosting'}
       />
-      <Content
-        heading={'Past Events'}
-        paragraph={'See what our community has been up to.'}
-      />
-      <Carousel items={pastEvents} />
-      <StyledLink>
-        <Link to="/past-events" className="button fill center">
-          View All Past Events
-        </Link>
-      </StyledLink>
       <Subscribe
         buttonText="Subscribe"
         messaging="Sign up to our newsletter to hear about upcoming events"
@@ -186,18 +165,18 @@ export const Head = () => (
   />
 );
 
-export const pageQuery = graphql`
-  query Events {
-    allWpEventbrite {
+export const eventsQuery = graphql`
+  query eventsQuery {
+    allContentfulEvent(sort: { datetime: DESC }) {
       nodes {
-        title
-        content
-        events {
-          featuredImage {
-            gatsbyImage(width: 416, height: 290)
-          }
-          eventDate
-          eventbriteUrl
+        name
+        link
+        datetime
+        coverImage {
+          gatsbyImageData
+        }
+        description {
+          description
         }
       }
     }
