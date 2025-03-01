@@ -109,24 +109,11 @@ const Events = ({ data }) => {
               );
             }
           )}
-          <CTAContentCard
-            headerAlign={'left'}
-            title={'Reserve your tickets on Eventbrite'}
-            image={CurtainCall}
-            imageAltText={'Audience attending Green Shirt Studio Event'}
-            info={
-              'Click the link to view all of our upcoming events and reserve your tickets on Eventbrite.'
-            }
-            ctaText={'Get Tickets'}
-            ctaLink={
-              'https://www.eventbrite.com/cc/shows-events-at-green-shirt-studio-1248579'
-            }
-          />
         </>
       ) : (
         <CTAContentCard
           headerAlign={'left'}
-          title={'Check us out on Eventbrite'}
+          title={'Reserve your tickets on Eventbrite'}
           image={CurtainCall}
           imageAltText={'Audience attending Green Shirt Studio Event'}
           info={
