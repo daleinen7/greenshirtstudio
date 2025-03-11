@@ -20,7 +20,7 @@ exports.createPages = async function ({ actions, graphql }) {
           date
         }
       }
-      allContentfulClass {
+      allContentfulClass(filter: { type: { ne: "Test Class" } }) {
         nodes {
           contentful_id
           title
