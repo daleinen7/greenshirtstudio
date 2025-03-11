@@ -20,7 +20,7 @@ exports.createPages = async function ({ actions, graphql }) {
           date
         }
       }
-      allContentfulClass {
+      allContentfulClass(filter: { type: { ne: "Test Class" } }) {
         nodes {
           contentful_id
           title
@@ -92,6 +92,7 @@ exports.createPages = async function ({ actions, graphql }) {
     });
   });
 
+  // Contentful GraphQL schema messes up if a field is not used at all: https://stackoverflow.com/a/64198953, https://github.com/gatsbyjs/gatsby/discussions/29874, ugh.
   data.allContentfulClass.nodes.forEach((node) => {
     actions.createPage({
       path: `/classes/${node.slug}`,
