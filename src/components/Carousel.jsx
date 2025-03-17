@@ -114,9 +114,7 @@ const Carousel = ({ title, items, link, linkDisplay }) => {
         disableDotsControls
         mouseTracking
         items={items}
-        infinite
         responsive={responsive}
-        autoWidth
       />
       {link && (
         <Link role="button" to={`/${link}`}>

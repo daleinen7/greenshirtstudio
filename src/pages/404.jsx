@@ -29,40 +29,32 @@ const FourOhFour = ({ data }) => {
 
   const today = new Date();
 
-  const cardifyEvent = (evt, small) => {
-    const eventDate = new Date(evt.events.eventDate).toLocaleDateString(
-      'en-US',
-      {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      }
-    );
-    const eventTime = new Date(evt.events.eventDate).toLocaleTimeString(
-      'en-US',
-      {
-        hour: 'numeric',
-        minute: '2-digit',
-      }
-    );
+  const cardifyEvent = (event, small) => {
+    const eventDate = new Date(event.datetime).toLocaleDateString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+    const eventTime = new Date(event.datetime).toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      minute: '2-digit',
+    });
     return (
       <EventCard
-        title={evt.title}
-        description={parse(evt.content)}
-        link={evt.events.eventbriteUrl}
-        image={evt.events?.featuredImage?.gatsbyImage}
+        title={event.name}
+        description={event.description.description}
+        link={event.link}
+        image={event.coverImage.gatsbyImageData}
         date={eventDate}
         time={eventTime}
-        small={small}
-        key={evt.events.eventDate}
       />
     );
   };
 
-  const events = data.allWpEventbrite.nodes
-    .filter((evt) => today <= new Date(evt.events.eventDate))
-    .map((evt) => cardifyEvent(evt, true));
+  const events = data.allContentfulEvent.nodes
+    .filter((event) => today <= new Date(event.datetime))
+    .map((event) => cardifyEvent(event, true));
 
   return (
     <Layout>
@@ -111,16 +103,16 @@ export const pageQuery = graphql`
         }
       }
     }
-    allWpEventbrite {
+    allContentfulEvent(sort: { datetime: DESC }) {
       nodes {
-        title
-        content
-        events {
-          featuredImage {
-            gatsbyImage(height: 290)
-          }
-          eventDate
-          eventbriteUrl
+        name
+        link
+        datetime
+        coverImage {
+          gatsbyImageData
+        }
+        description {
+          description
         }
       }
     }
