@@ -115,7 +115,6 @@ const Carousel = ({ title, items, link, linkDisplay }) => {
         mouseTracking
         items={items}
         responsive={responsive}
-        autoWidth
       />
       {link && (
         <Link role="button" to={`/${link}`}>
