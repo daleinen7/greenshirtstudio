@@ -12,16 +12,12 @@ import Shows from '../images/ShowsOfferings.jpg';
 import Events from '../images/EventsOffrerings.jpg';
 import ContentCardCTA from '../components/ContentCardCTA';
 import ContentStack from '../components/ContentStack';
-import { graphql } from 'gatsby';
-
 
 const Offerings = ({ data }) => {
   const ourOfferings = [
     <ContentCardCTA
       title={'Group Acting Classes'}
-      content={
-        'Group classes for all experience levels. Beginners welcome.'
-      }
+      content={'Group classes for all experience levels. Beginners welcome.'}
       image={Accessibility}
       altText="All level of actors"
       link="Get Started"
@@ -29,9 +25,7 @@ const Offerings = ({ data }) => {
     />,
     <ContentCardCTA
       title={'Private Acting Coaching'}
-      content={
-        'Reach your goals with the guidance of an experienced coach.'
-      }
+      content={'Reach your goals with the guidance of an experienced coach.'}
       image={Diversity}
       altText="Diverse actors"
       link="Get Started"
@@ -96,21 +90,3 @@ export const Head = () => (
     description={`Contact Green Shirt Studio`}
   />
 );
-
-export const pageQuery = graphql`
-  query staff {
-    allWpInstructor {
-      nodes {
-        title
-        slug
-        instructors {
-          title
-          image {
-            altText
-            publicUrl
-          }
-        }
-      }
-    }
-  }
-`;

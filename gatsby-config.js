@@ -65,16 +65,6 @@ module.exports = {
     },
     'gatsby-plugin-image',
     {
-      /*
-       * https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-source-wordpress/README.md
-       */
-      resolve: `gatsby-source-wordpress`,
-      options: {
-        // the only required plugin option for WordPress is the GraphQL url.
-        url: 'https://greenshirtstudiowp.us/graphql',
-      },
-    },
-    {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
         fonts: [
