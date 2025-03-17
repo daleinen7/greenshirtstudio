@@ -52,7 +52,7 @@ const FourOhFour = ({ data }) => {
     );
   };
 
-  const events = data.nodes
+  const events = data.allContentfulEvent.nodes
     .filter((event) => today <= new Date(event.datetime))
     .map((event) => cardifyEvent(event, true));
 
@@ -118,34 +118,3 @@ export const pageQuery = graphql`
     }
   }
 `;
-
-// export const pageQuery = graphql`
-//   query FourOhFourQuery {
-//     allContentfulClass(filter: { type: { ne: "Test Class" } }) {
-//       nodes {
-//         contentful_id
-//         title
-//         type
-//         cost
-//         day
-//         slug
-//         coverImage {
-//           gatsbyImageData(width: 304, height: 212, layout: FIXED)
-//         }
-//       }
-//     }
-//     allWpEventbrite {
-//       nodes {
-//         title
-//         content
-//         events {
-//           featuredImage {
-//             gatsbyImage(height: 290)
-//           }
-//           eventDate
-//           eventbriteUrl
-//         }
-//       }
-//     }
-//   }
-// `;
