@@ -8,7 +8,6 @@ import Layout from '../../components/Layout';
 import Accordion from '../../components/Accordion';
 import { StyledClassHeader } from '../../components/classComponents/ClassHeader';
 import { SEO } from '../../components/seo';
-import EnsembleIntensiveProgram from '../../images/ensembleIntensiveProgram.png';
 import ensembleIntensiveVideo from '../../images/ensemble-intensive-video.mp4';
 
 const EnsembleIntensive = () => {

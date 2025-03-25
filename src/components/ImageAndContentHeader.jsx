@@ -44,7 +44,8 @@ const StyledImageAndContent = styled.div`
       font-size: 2.25rem;
     }
 
-    img {
+    img,
+    video {
       width: auto;
       margin-bottom: 1.25rem;
       padding: 0;
