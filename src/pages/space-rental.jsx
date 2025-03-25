@@ -13,6 +13,7 @@ import space4013 from '../images/space-rental/401.3.png';
 import smallMiddleStudio from '../images/space-rental/smallMiddleStudio.png';
 import greencheck from '../images/greencheck.svg';
 import styled from 'styled-components';
+import { graphql } from 'gatsby';
 
 const Pricing = styled.section`
   display: flex;
@@ -97,7 +98,8 @@ const Pricing = styled.section`
   }
 `;
 
-const SpaceRental = () => {
+const SpaceRental = ({ data }) => {
+  console.log(data);
   return (
     <Layout>
       <ImageAndContentHeader
@@ -121,44 +123,29 @@ const SpaceRental = () => {
       <Pricing>
         <h3>Pricing</h3>
         <div className="pricing">
-          <div className="pricing-table">
-            <h4>303-B</h4>
-            <div className="price">
-              <span className="cost">$35</span>/hour
-            </div>
-            <ul>
-              <li>Space Rental Policies</li>
-              <li>Tables & Chairs</li>
-              <li>Wifi & Kitchenette</li>
-            </ul>
-            <a
-              href="https://studio303-b.youcanbook.me/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="button fill"
-            >
-              See availability & book now
-            </a>
-          </div>
-          <div className="pricing-table">
-            <h4>401-E</h4>
-            <div className="price">
-              <span className="cost">$25</span>/hour
-            </div>
-            <ul>
-              <li>Space Rental Policies</li>
-              <li>Tables & Chairs</li>
-              <li>Backdrops available</li>
-            </ul>
-            <a
-              href="https://studio401-e.youcanbook.me/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="button fill"
-            >
-              See availability & book now
-            </a>
-          </div>
+          {data.allContentfulSpaceRental.nodes.map((space, idx) => {
+            return (
+              <div className="pricing-table" key={idx}>
+                <h4>{space.name}</h4>
+                <div className="price">
+                  <span className="cost">${space.perHourCost}</span>/hour
+                </div>
+                <ul>
+                  {space.amenities.map((amenity, amenity_index) => {
+                    return <li key={amenity_index}>{amenity}</li>;
+                  })}
+                </ul>
+                <a
+                  href={space.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="button fill"
+                >
+                  See availability & book now
+                </a>
+              </div>
+            );
+          })}
           <div className="pricing-table">
             <h4>Working for a 501-(C)(3)?</h4>
             <p>Ask about nonprofit pricing.</p>
@@ -182,3 +169,16 @@ export const Head = () => (
     description={`Affordable Chicago space rental for artists. $25-$35. Space rental for photoshoots, rehearsals, workshops, and live shows. Tons of natural light.`}
   />
 );
+
+export const pageQuery = graphql`
+  query SpaceRental {
+    allContentfulSpaceRental {
+      nodes {
+        name
+        perHourCost
+        amenities
+        bookingLink
+      }
+    }
+  }
+`;
