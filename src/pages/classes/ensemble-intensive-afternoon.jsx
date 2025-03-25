@@ -9,6 +9,7 @@ import Accordion from '../../components/Accordion';
 import { StyledClassHeader } from '../../components/classComponents/ClassHeader';
 import { SEO } from '../../components/seo';
 import EnsembleIntensiveProgram from '../../images/ensembleIntensiveProgram.png';
+import ensembleIntensiveVideo from '../../images/ensemble-intensive-video.mp4';
 
 const EnsembleIntensive = () => {
   const class_info = {
@@ -65,10 +66,13 @@ const EnsembleIntensive = () => {
     <Layout>
       <StyledClassPage>
         <StyledClassHeader>
-          <img
-            className="gatsby-image-wrapper"
-            src={EnsembleIntensiveProgram}
-            alt={class_info.title}
+          <video
+            src={ensembleIntensiveVideo}
+            controls
+            autoPlay
+            loop
+            muted
+            playsInline
           />
           <div className="info">
             <h2>{class_info.title}</h2>

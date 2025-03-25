@@ -20,7 +20,8 @@ export const StyledClassHeader = styled.div`
     margin-bottom: 1rem;
   }
 
-  .gatsby-image-wrapper {
+  .gatsby-image-wrapper,
+  video {
     width: 62%;
     margin-right: 1rem;
   }
