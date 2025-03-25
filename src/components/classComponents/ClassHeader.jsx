@@ -20,7 +20,8 @@ export const StyledClassHeader = styled.div`
     margin-bottom: 1rem;
   }
 
-  .gatsby-image-wrapper {
+  .gatsby-image-wrapper,
+  video {
     width: 62%;
     margin-right: 1rem;
   }
@@ -139,15 +140,18 @@ export const StyledClassHeader = styled.div`
     flex-direction: column;
 
     .gatsby-image-wrapper,
+    video,
     .info {
       width: 100%;
       padding: 0;
+      margin-right: 0;
     }
 
     .info {
       padding: 0 1rem;
     }
-    .gatsby-image-wrapper {
+    .gatsby-image-wrapper,
+    video {
       margin-bottom: 2rem;
     }
     button {
