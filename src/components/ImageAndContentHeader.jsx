@@ -78,7 +78,7 @@ const ImageAndContentHeader = ({ title, content, image, video }) => {
         <ReactMarkdown children={content.replace(/\n/gi, '\n &nbsp;')} />
       </div>
       {video ? (
-        <video src={video} autoPlay loop muted playsInline></video>
+        <video src={video} controls autoPlay loop muted playsInline></video>
       ) : (
         <img src={image} alt={title} />
       )}
