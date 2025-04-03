@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'gatsby';
+import React, { useState, useMemo } from 'react';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import useWindowSize from '../lib/useWindowSize';
 import Nav from './Nav';
 import MobileNav from './MobileNav';
@@ -13,6 +13,7 @@ import instagram from '../images/socialMedia/instagram.svg';
 import twitter from '../images/socialMedia/twitter.svg';
 import google from '../images/socialMedia/FaGoogle.svg';
 import { useLocation } from '@reach/router';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 import styled from 'styled-components';
 import { useEffect } from 'react';
@@ -237,6 +238,21 @@ const StyledBanner = styled.p`
 `;
 
 const Layout = ({ children, headerColor }) => {
+  const { allContentfulBanner } = useStaticQuery(graphql`
+    query banners {
+      allContentfulBanner(sort: { datetime: DESC }) {
+        edges {
+          node {
+            datetime
+            text {
+              raw
+            }
+          }
+        }
+      }
+    }
+  `);
+
   const [mobileNav, setMobileNav] = useState(false);
   const location = useLocation();
 
@@ -252,16 +268,25 @@ const Layout = ({ children, headerColor }) => {
     }
   }, [size]);
 
+  const filtered_banners = useMemo(() => {
+    return allContentfulBanner.edges.filter(
+      (banner) => new Date(banner.node.datetime) <= new Date()
+    );
+  }, []);
+
   return (
     <>
       <Reset />
       <GlobalStyles />
-      {location.pathname == '/' && (
-        <StyledBanner>
-          Spring Classes start March 24. <b>Enroll now!</b>{' '}
-          <Link to="/classes">Learn more.</Link>
-        </StyledBanner>
-      )}
+      {location.pathname == '/' &&
+        filtered_banners[0] &&
+        filtered_banners[0].node.text && (
+          <StyledBanner>
+            {documentToReactComponents(
+              JSON.parse(filtered_banners[0].node.text.raw)
+            )}
+          </StyledBanner>
+        )}
       <StyledHeader headerColor={headerColor}>
         <div className="header-wrapper">
           <h1>
