@@ -79,7 +79,6 @@ const EnsembleIntensive = () => {
               Mondays - Thursdays, June 9 - August 7, 11:00 AM - 2:00 PM with
               Andrew Gallant
             </p>
-
             <div className="price">
               ${class_info.cost}
               <br />
