@@ -136,7 +136,7 @@ const SpaceRental = ({ data }) => {
                   })}
                 </ul>
                 <a
-                  href={space.link}
+                  href={space.bookingLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="button fill"
