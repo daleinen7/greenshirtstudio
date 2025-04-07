@@ -3,7 +3,6 @@ import { Link } from 'gatsby';
 import { SEO } from '../components/seo';
 import SectionDivider from '../components/SectionDivider';
 import MeisnerProgram from '../images/MeisnerProgram.png';
-import EnsembleIntensiveProgram from '../images/ensembleIntensiveProgram.png';
 import special from '../images/special.png';
 import coaching from '../images/coaching.png';
 import workshop from '../images/workshop.png';
@@ -16,7 +15,6 @@ import ContentStack from '../components/ContentStack';
 import ContentCard from '../components/ContentCard';
 import FAQSection from '../components/FAQSection';
 import Subscribe from '../components/Subscribe';
-import { graphql } from 'gatsby';
 
 import styled from 'styled-components';
 
@@ -83,17 +81,6 @@ const Classes = ({ data }) => {
   All experience levels are invited to join Level 1: Living Truthfully.`}
         ctaText={'View Class Schedule'}
         ctaLink={'/meisner'}
-      />
-      <CTACard
-        headerAlign={'right'}
-        title={'Ensemble Intensive'}
-        image={EnsembleIntensiveProgram}
-        imageAltText="group photo"
-        info="A nine-week deep dive into the Meisner technique and business of acting. Classes meet four days a week."
-        ctaText="Afternoon Schedule"
-        ctaLink="/classes/ensemble-intensive-afternoon"
-        ctaSecondaryText="Evening Schedule"
-        ctaSecondaryLink="/classes/ensemble-intensive-evening"
       />
       <SectionDivider />
       <ContentStack title={'Other Programs'} content={otherPrograms} />
