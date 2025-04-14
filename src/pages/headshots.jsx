@@ -3,10 +3,8 @@ import { Link } from 'gatsby';
 import { SEO } from '../components/seo';
 import Layout from '../components/Layout';
 import ImageAndContentHeader from '../components/ImageAndContentHeader';
-import EventCard from '../components/EventCard';
 import headshotHero from '../images/headshots/headshot-hero.png';
 import greencheck from '../images/greencheck.svg';
-import ContentStack from '../components/ContentStack';
 import FAQSection from '../components/FAQSection';
 import proxy from '../images/headshots/Proxy.png';
 import proxy1 from '../images/headshots/Proxy1.png';
@@ -76,12 +74,20 @@ const StyledContent = styled.div`
   }
 `;
 
+const StyledBookingForm = styled.section`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 0 2rem;
+`;
+
 const Pricing = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 4.625rem;
-  margin-bottom: 4.625rem;
+  margin: 0 auto;
+  flex-shrink: 0;
 
   h3 {
     font-size: 2rem;
@@ -92,8 +98,7 @@ const Pricing = styled.section`
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 2rem;
-    margin: 3rem 0;
+    margin: 1rem 0;
   }
 
   .pricing-table {
@@ -107,7 +112,7 @@ const Pricing = styled.section`
     h3 {
       font-family: 'Lato', sans-serif;
       font-weight: 400;
-      font-size: 3rem;
+      font-size: 2rem;
     }
 
     h4 {
@@ -158,6 +163,64 @@ const Pricing = styled.section`
         font-size: 1rem;
       }
     }
+  }
+`;
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-flow: column;
+  flex-grow: 1;
+
+  label {
+    display: flex;
+    flex-flow: column;
+    color: var(--dark-gray);
+    margin-top: 0.5rem;
+    margin-bottom: 0.1563rem;
+  }
+
+  fieldset {
+    border: none;
+    padding: 0;
+    margin-top: 0.5rem;
+    margin-left: 0;
+
+    label {
+      display: block;
+    }
+
+    input {
+      width: auto;
+      height: auto;
+    }
+  }
+
+  form input,
+  textarea {
+    width: 100%;
+    border: 1px solid var(--dark-gray);
+    border-radius: 2px;
+    margin-top: 0.1563rem;
+  }
+
+  form input,
+  select {
+    height: 2.1875rem;
+    color: var(--dark-gray);
+  }
+
+  textarea {
+    height: 4.375rem;
+    width: 100%;
+    resize: vertical;
+  }
+
+  .other-textbox {
+    margin-left: 0.5rem;
+  }
+
+  .button {
+    margin-top: 20px;
   }
 `;
 
@@ -241,39 +304,125 @@ const Headshots = () => {
         </div>
       </StyledContent>
 
-      <Pricing>
-        <div className="pricing">
-          <div className="pricing-table">
-            <h3>Booking Includes</h3>
-            <h4>In Studio 401-E</h4>
-
-            <ul>
-              <li>Resources to help you prepare</li>
-              <li>
-                Professional makeup design with{' '}
-                <Link to="/syd-genco/">Syd Genco</Link>
-              </li>
-              <li>2 hours, 2 looks, 2 edited photos</li>
-            </ul>
-          </div>
-        </div>
-      </Pricing>
       <StyledContent>
         <h3>Book an Upcoming Session</h3>
         <p>
-          Our upcoming headshot sessions are currently full, but don't worry!
-          New sessions are added regularly. In the meantime, reach out to us to
-          express your interest in booking a headshot session. We'll notify you
-          as soon as new dates become available. Your career deserves to stand
-          out, and we can't wait to work with you soon!
+          Please fill out this form and a member of our team will reach out to
+          you within two business days! A standard session (1 hour makeup/1 hour
+          photos) costs $400. Current and former students of our Meisner Acting
+          Program get $50 off!
         </p>
-        <a
-          href="mailto:info@greenshirtstudio.com?subject=Headshots%20Inquiry"
-          className="button fill"
-        >
-          Contact Us
-        </a>
       </StyledContent>
+
+      <StyledBookingForm>
+        <Pricing>
+          <div className="pricing">
+            <div className="pricing-table">
+              <h3>Booking Includes</h3>
+              <h4>In Studio 401-E</h4>
+              <ul>
+                <li>Resources to help you prepare</li>
+                <li>
+                  Professional makeup design with{' '}
+                  <Link to="/syd-genco/">Syd Genco</Link>
+                </li>
+                <li>2 hours, 2 looks, 2 edited photos</li>
+              </ul>
+            </div>
+          </div>
+        </Pricing>
+        <StyledForm>
+          <label>
+            Name:
+            <input type="text" />
+          </label>
+          <label>
+            Pronouns:
+            <select>
+              <option>He/him</option>
+              <option>She/her</option>
+              <option>They/them</option>
+              <option>Other (Please specify in comment below)</option>
+            </select>
+          </label>
+          <label>
+            Email:
+            <input type="email" />
+          </label>
+          <label>
+            Phone Number:
+            <input type="tel" />
+          </label>
+
+          <fieldset>
+            <legend>I am a:</legend>
+            <label>
+              <input
+                type="radio"
+                name="customerType"
+                value="Green Shirt student"
+              />
+              Green Shirt student
+            </label>
+            <label>
+              <input type="radio" name="customerType" value="Actor" />
+              Actor
+            </label>
+            <label>
+              <input type="radio" name="customerType" value="Other" />
+              Other
+              <input type="text" name="customerType" class="other-textbox" />
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>
+              I'm available for a shoot (Please check all that apply):
+            </legend>
+            <label>
+              <input type="checkbox" name="availability" value="On a weekday" />
+              On a weekday
+            </label>
+            <label>
+              <input type="checkbox" name="availability" value="On a weekend" />
+              On a weekend
+            </label>
+            <label>
+              <input type="checkbox" name="availability" value="I'm flexible" />
+              I'm flexible
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>I'd like to schedule a shoot:</legend>
+            <label>
+              <input type="radio" name="schedule" value="ASAP" />
+              ASAP
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="schedule"
+                value="In the next few weeks"
+              />
+              In the next few weeks
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="schedule"
+                value="In the next few months"
+              />
+              In the next few months
+            </label>
+          </fieldset>
+          <label>
+            Anything else you'd like us to know:
+            <textarea name="additionalComments" />
+          </label>
+          <input type="submit" value="Submit" class="button fill" />
+        </StyledForm>
+      </StyledBookingForm>
 
       <FAQSection
         FAQs={[

@@ -5,7 +5,7 @@ const StyledGallery = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(236px, 1fr));
   gap: 1rem;
-  margin: 9.5rem 0;
+  margin: 3.5rem 0;
   padding: 0 2rem;
   @media (max-width: 640px) {
     padding: 0 1rem;
