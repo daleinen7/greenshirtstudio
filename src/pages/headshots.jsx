@@ -162,74 +162,6 @@ const Pricing = styled.section`
 `;
 
 const Headshots = () => {
-  const [headshotSessions, setHeadshotSessions] = React.useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          '/.netlify/functions/get-headshot-sessions'
-        );
-        if (!response.ok) {
-          throw new Error('Failed to fetch data from the server');
-        }
-        const data = await response.json();
-        setHeadshotSessions(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  const sessions =
-    headshotSessions &&
-    headshotSessions
-      .filter((session) => session.bookingStatus === 'Open')
-      .sort((a, b) => {
-        const monthMap = {
-          January: 0,
-          February: 1,
-          March: 2,
-          April: 3,
-          May: 4,
-          June: 5,
-          July: 6,
-          August: 7,
-          September: 8,
-          October: 9,
-          November: 10,
-          December: 11,
-        };
-        const dateA = new Date(
-          parseInt(a.year),
-          monthMap[a.month],
-          parseInt(a.dayOfMonth)
-        );
-        const dateB = new Date(
-          parseInt(b.year),
-          monthMap[b.month],
-          parseInt(b.dayOfMonth)
-        );
-        return dateA - dateB;
-      })
-      .map((session) => {
-        return (
-          <EventCard
-            title={`${session.dayOfWeek}, ${session.month} ${session.dayOfMonth}, ${session.year}`}
-            description={session.description}
-            image={session.image}
-            altText={session.name}
-            link={`/headshot/${session.id}`}
-            date={session.time}
-            time={session.name}
-            price={session.price}
-            headshot
-          />
-        );
-      });
-
   const examples = [
     {
       image: proxy,
@@ -326,59 +258,44 @@ const Headshots = () => {
           </div>
         </div>
       </Pricing>
-
-      {sessions.length > 0 ? (
-        <>
-          <StyledContent>
-            <h3>Book an Upcoming Session Below</h3>
-            <p>
-              Find a date and time below that work for you. We can't wait to
-              help you shine in front of the camera!
-            </p>
-          </StyledContent>
-
-          {sessions ? <ContentStack content={sessions} /> : <p>Loading...</p>}
-        </>
-      ) : (
-        <StyledContent>
-          <h3>Book an Upcoming Session</h3>
-          <p>
-            Our upcoming headshot sessions are currently full, but don't worry!
-            New sessions are added regularly. In the meantime, reach out to us
-            to express your interest in booking a headshot session. We'll notify
-            you as soon as new dates become available. Your career deserves to
-            stand out, and we can't wait to work with you soon!
-          </p>
-          <a
-            href="mailto:info@greenshirtstudio.com?subject=Headshots%20Inquiry"
-            className="button fill"
-          >
-            Contact Us
-          </a>
-        </StyledContent>
-      )}
+      <StyledContent>
+        <h3>Book an Upcoming Session</h3>
+        <p>
+          Our upcoming headshot sessions are currently full, but don't worry!
+          New sessions are added regularly. In the meantime, reach out to us to
+          express your interest in booking a headshot session. We'll notify you
+          as soon as new dates become available. Your career deserves to stand
+          out, and we can't wait to work with you soon!
+        </p>
+        <a
+          href="mailto:info@greenshirtstudio.com?subject=Headshots%20Inquiry"
+          className="button fill"
+        >
+          Contact Us
+        </a>
+      </StyledContent>
 
       <FAQSection
         FAQs={[
           {
             title: 'Why do I need a professional headshot? ',
             content:
-              'To audition for a role, you’ll need a headshot. A professional headshot will help you stand out and let the person casting the project know that you’re taking the audition process seriously. ',
+              "To audition for a role, you'll need a headshot. A professional headshot will help you stand out and let the person casting the project know that you're taking the audition process seriously.",
           },
           {
             title: 'When should I get my first headshot? ',
             content:
-              'Getting your headshots taken can feel intimating. Especially your first time! Our team is dedicated to helping you through the process, step by step. When you think you might like to try auditioning sometime in the not too distant future, about six months or so, it’s time to get your first professional headshot. ',
+              "Getting your headshots taken can feel intimating. Especially your first time! Our team is dedicated to helping you through the process, step by step. When you think you might like to try auditioning sometime in the not too distant future, about six months or so, it's time to get your first professional headshot.",
           },
           {
             title: 'How will you help me prepare? ',
             content:
-              'After you book a session, we’ll send you a worksheet and instructional video to help you prepare. These tools will help you decide on a few artistic choices you need to make before you come to your shoot. Our staff is also available to answer your questions and help you feel confident to step into the studio. ',
+              "After you book a session, we'll send you a worksheet and instructional video to help you prepare. These tools will help you decide on a few artistic choices you need to make before you come to your shoot. Our staff is also available to answer your questions and help you feel confident to step into the studio.",
           },
           {
-            title: 'I’m not an actor but need a headshot. Can you help? ',
+            title: "I'm not an actor but need a headshot. Can you help?",
             content:
-              'While we specialize in actor headshot, you don’t need to be an actor to book a session with us. Need a new photo for your LinkedIn profile? We can help. ',
+              "While we specialize in actor headshot, you don't need to be an actor to book a session with us. Need a new photo for your LinkedIn profile? We can help.",
           },
           {
             title: 'Why do I need professional makeup?',
