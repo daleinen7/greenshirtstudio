@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'gatsby';
 import { SEO } from '../components/seo';
 import Layout from '../components/Layout';
@@ -225,6 +225,55 @@ const StyledForm = styled.form`
 `;
 
 const Headshots = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    pronouns: '',
+    email: '',
+    phone: '',
+    customerType: '',
+    otherCustomerType: '',
+    availability: [],
+    schedule: '',
+    additionalComment: '',
+  });
+
+  const handleFormChange = (evt) => {
+    setFormData((prevFormData) => {
+      return { ...prevFormData, [evt.target.name]: evt.target.value };
+    });
+  };
+
+  const handleCustomerType = (evt) => {
+    setFormData((prevFormData) => {
+      return {
+        ...prevFormData,
+        [evt.target.name]: evt.target.value,
+        otherCustomerType:
+          evt.target.value == 'Other' ? prevFormData.otherCustomerType : '',
+      };
+    });
+  };
+
+  const handleCheckbox = (evt) => {
+    setFormData((prevFormData) => {
+      const name = evt.target.name;
+      const val = evt.target.value;
+      const arr = [...prevFormData[name]];
+      const val_idx = arr.findIndex((ele) => ele == val);
+      if (val_idx < 0) {
+        arr.push(val);
+      } else {
+        arr.splice(val_idx, 1);
+      }
+      return {
+        ...prevFormData,
+        [name]: arr,
+      };
+    });
+  };
+
+  console.log(formData);
+
   const examples = [
     {
       image: proxy,
@@ -334,11 +383,12 @@ const Headshots = () => {
         <StyledForm>
           <label>
             Name:
-            <input type="text" />
+            <input type="text" name="name" onChange={handleFormChange} />
           </label>
           <label>
             Pronouns:
-            <select>
+            <select name="pronouns" onChange={handleFormChange}>
+              <option style={{ display: 'none' }}>Select One</option>
               <option>He/him</option>
               <option>She/her</option>
               <option>They/them</option>
@@ -347,11 +397,11 @@ const Headshots = () => {
           </label>
           <label>
             Email:
-            <input type="email" />
+            <input type="email" name="email" onChange={handleFormChange} />
           </label>
           <label>
             Phone Number:
-            <input type="tel" />
+            <input type="tel" name="phone" onChange={handleFormChange} />
           </label>
 
           <fieldset>
@@ -361,17 +411,35 @@ const Headshots = () => {
                 type="radio"
                 name="customerType"
                 value="Green Shirt student"
+                onChange={handleCustomerType}
               />
               Green Shirt student
             </label>
             <label>
-              <input type="radio" name="customerType" value="Actor" />
+              <input
+                type="radio"
+                name="customerType"
+                onChange={handleCustomerType}
+                value="Actor"
+              />
               Actor
             </label>
             <label>
-              <input type="radio" name="customerType" value="Other" />
+              <input
+                type="radio"
+                name="customerType"
+                onChange={handleCustomerType}
+                value="Other"
+              />
               Other
-              <input type="text" name="customerType" class="other-textbox" />
+              {formData.customerType == 'Other' && (
+                <input
+                  type="text"
+                  name="otherCustomerType"
+                  onChange={handleFormChange}
+                  className="other-textbox"
+                />
+              )}
             </label>
           </fieldset>
 
@@ -380,15 +448,30 @@ const Headshots = () => {
               I'm available for a shoot (Please check all that apply):
             </legend>
             <label>
-              <input type="checkbox" name="availability" value="On a weekday" />
+              <input
+                type="checkbox"
+                name="availability"
+                value="On a weekday"
+                onChange={handleCheckbox}
+              />
               On a weekday
             </label>
             <label>
-              <input type="checkbox" name="availability" value="On a weekend" />
+              <input
+                type="checkbox"
+                name="availability"
+                value="On a weekend"
+                onChange={handleCheckbox}
+              />
               On a weekend
             </label>
             <label>
-              <input type="checkbox" name="availability" value="I'm flexible" />
+              <input
+                type="checkbox"
+                name="availability"
+                value="I'm flexible"
+                onChange={handleCheckbox}
+              />
               I'm flexible
             </label>
           </fieldset>
@@ -396,7 +479,12 @@ const Headshots = () => {
           <fieldset>
             <legend>I'd like to schedule a shoot:</legend>
             <label>
-              <input type="radio" name="schedule" value="ASAP" />
+              <input
+                type="radio"
+                name="schedule"
+                value="ASAP"
+                onChange={handleFormChange}
+              />
               ASAP
             </label>
             <label>
@@ -404,6 +492,7 @@ const Headshots = () => {
                 type="radio"
                 name="schedule"
                 value="In the next few weeks"
+                onChange={handleFormChange}
               />
               In the next few weeks
             </label>
@@ -412,15 +501,16 @@ const Headshots = () => {
                 type="radio"
                 name="schedule"
                 value="In the next few months"
+                onChange={handleFormChange}
               />
               In the next few months
             </label>
           </fieldset>
           <label>
             Anything else you'd like us to know:
-            <textarea name="additionalComments" />
+            <textarea name="additionalComment" onChange={handleFormChange} />
           </label>
-          <input type="submit" value="Submit" class="button fill" />
+          <input type="submit" value="Submit" className="button fill" />
         </StyledForm>
       </StyledBookingForm>
 
