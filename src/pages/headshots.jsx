@@ -272,8 +272,6 @@ const Headshots = () => {
     });
   };
 
-  console.log(formData);
-
   const examples = [
     {
       image: proxy,
