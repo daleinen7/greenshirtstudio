@@ -221,6 +221,16 @@ const StyledForm = styled.form`
 
   .button {
     margin-top: 20px;
+
+    &:disabled {
+      color: gray;
+      pointer-events: none;
+      background-color: lightgray;
+    }
+  }
+
+  .required {
+    color: red;
   }
 `;
 
@@ -236,6 +246,13 @@ const Headshots = () => {
     schedule: '',
     additionalComment: '',
   });
+  const isFormDisabled =
+    !formData.name ||
+    !formData.pronouns ||
+    !formData.email ||
+    !formData.customerType ||
+    !formData.availability.length ||
+    !formData.schedule;
 
   const handleFormChange = (evt) => {
     setFormData((prevFormData) => {
@@ -274,6 +291,7 @@ const Headshots = () => {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
+    if (isFormDisabled) return;
     const response = await fetch(
       '/.netlify/functions/handle-headshots-airtable',
       {
@@ -395,11 +413,20 @@ const Headshots = () => {
         </Pricing>
         <StyledForm onSubmit={handleSubmit}>
           <label>
-            Name:
-            <input type="text" name="name" onChange={handleFormChange} />
+            <span>
+              Name <span className="required">*</span>
+            </span>
+            <input
+              type="text"
+              name="name"
+              onChange={handleFormChange}
+              required
+            />
           </label>
           <label>
-            Pronouns:
+            <span>
+              Pronouns <span className="required">*</span>
+            </span>
             <select name="pronouns" onChange={handleFormChange}>
               <option style={{ display: 'none' }}>Select One</option>
               <option>He/him</option>
@@ -409,16 +436,19 @@ const Headshots = () => {
             </select>
           </label>
           <label>
-            Email:
+            <span>
+              Email <span className="required">*</span>
+            </span>
             <input type="email" name="email" onChange={handleFormChange} />
           </label>
           <label>
             Phone Number:
             <input type="tel" name="phone" onChange={handleFormChange} />
           </label>
-
           <fieldset>
-            <legend>I am a:</legend>
+            <legend>
+              I am a <span className="required">*</span>
+            </legend>
             <label>
               <input
                 type="radio"
@@ -458,7 +488,8 @@ const Headshots = () => {
 
           <fieldset>
             <legend>
-              I'm available for a shoot (Please check all that apply):
+              I'm available for a shoot (Please check all that apply){' '}
+              <span className="required">*</span>
             </legend>
             <label>
               <input
@@ -490,7 +521,9 @@ const Headshots = () => {
           </fieldset>
 
           <fieldset>
-            <legend>I'd like to schedule a shoot:</legend>
+            <legend>
+              I'd like to schedule a shoot <span className="required">*</span>
+            </legend>
             <label>
               <input
                 type="radio"
@@ -520,10 +553,15 @@ const Headshots = () => {
             </label>
           </fieldset>
           <label>
-            Anything else you'd like us to know:
+            Anything else you'd like us to know
             <textarea name="additionalComment" onChange={handleFormChange} />
           </label>
-          <input type="submit" value="Submit" className="button fill" />
+          <input
+            type="submit"
+            value="Submit"
+            className="button fill"
+            disabled={isFormDisabled}
+          />
         </StyledForm>
       </StyledBookingForm>
 
