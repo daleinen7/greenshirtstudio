@@ -272,6 +272,21 @@ const Headshots = () => {
     });
   };
 
+  const handleSubmit = async (evt) => {
+    evt.preventDefault();
+    const response = await fetch(
+      '/.netlify/functions/handle-headshots-airtable',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      }
+    ).then((res) => res.json());
+    console.log(response);
+  };
+
   const examples = [
     {
       image: proxy,
@@ -378,7 +393,7 @@ const Headshots = () => {
             </div>
           </div>
         </Pricing>
-        <StyledForm>
+        <StyledForm onSubmit={handleSubmit}>
           <label>
             Name:
             <input type="text" name="name" onChange={handleFormChange} />
