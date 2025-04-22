@@ -18,6 +18,7 @@ const StyledContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 5rem;
   width: 100%;
 
   padding: 0 2rem;
@@ -28,7 +29,7 @@ const StyledContent = styled.div`
   .container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     width: 100%;
     max-width: 40rem;
   }
@@ -339,7 +340,7 @@ const Headshots = () => {
           <ol>
             <li>
               <h4>The Preparation</h4>
-              <p>Resources to help you prepare and Zoom consult included</p>
+              <p>Zoom consult to help you prepare</p>
             </li>
             <li>
               <h4>The Shoot</h4>
@@ -360,12 +361,10 @@ const Headshots = () => {
       </StyledContent>
 
       <StyledContent>
-        <h3>Book an Upcoming Session</h3>
+        <h3>How much does it cost?</h3>
         <p>
-          Please fill out this form and a member of our team will reach out to
-          you within two business days! A standard session (1 hour makeup/1 hour
-          photos) costs $400. Current and former students of our Meisner Acting
-          Program get $50 off!
+          A standard session (1 hour makeup/1 hour of photos) costs $400.
+          Current and former Green Shirt students get $50 off!
         </p>
       </StyledContent>
 
@@ -376,7 +375,7 @@ const Headshots = () => {
               <h3>Booking Includes</h3>
               <h4>In Studio 401-E</h4>
               <ul>
-                <li>Resources to help you prepare</li>
+                <li>A meeting to help you prepare</li>
                 <li>
                   Professional makeup design with{' '}
                   <Link to="/syd-genco/">Syd Genco</Link>
@@ -551,11 +550,6 @@ const Headshots = () => {
             title: 'When should I get my first headshot? ',
             content:
               "Getting your headshots taken can feel intimating. Especially your first time! Our team is dedicated to helping you through the process, step by step. When you think you might like to try auditioning sometime in the not too distant future, about six months or so, it's time to get your first professional headshot.",
-          },
-          {
-            title: 'How will you help me prepare? ',
-            content:
-              "After you book a session, we'll send you a worksheet and instructional video to help you prepare. These tools will help you decide on a few artistic choices you need to make before you come to your shoot. Our staff is also available to answer your questions and help you feel confident to step into the studio.",
           },
           {
             title: "I'm not an actor but need a headshot. Can you help?",
