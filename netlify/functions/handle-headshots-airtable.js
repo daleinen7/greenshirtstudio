@@ -17,8 +17,8 @@ exports.handler = async ({ body, headers }) => {
           Email: parsedBody.email,
           'Phone Number': parsedBody.phone,
           'Customer Type':
-            parsedBody.otherCustomerType || parsedBody.customerType,
-          Availability: ['asdf'],
+            parsedBody.otherCustomerType ?? parsedBody.customerType,
+          Availability: parsedBody.availability,
           Schedule: parsedBody.schedule,
           'Additional Comments': parsedBody.additionalComment,
         },
