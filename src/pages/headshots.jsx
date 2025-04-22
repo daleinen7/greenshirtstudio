@@ -230,19 +230,24 @@ const StyledForm = styled.form`
   }
 `;
 
+const defaultFormState = {
+  name: '',
+  pronouns: '',
+  email: '',
+  phone: '',
+  customerType: '',
+  otherCustomerType: '',
+  availability: [],
+  schedule: '',
+  additionalComment: '',
+};
+
 const Headshots = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    pronouns: '',
-    email: '',
-    phone: '',
-    customerType: '',
-    otherCustomerType: '',
-    availability: [],
-    schedule: '',
-    additionalComment: '',
-  });
+  const [formData, setFormData] = useState(defaultFormState);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const isFormDisabled =
+    isLoading ||
     !formData.name ||
     !formData.pronouns ||
     !formData.email ||
@@ -288,17 +293,25 @@ const Headshots = () => {
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     if (isFormDisabled) return;
-    const response = await fetch(
-      '/.netlify/functions/handle-headshots-airtable',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      }
-    ).then((res) => res.json());
-    console.log(response);
+    setIsLoading(true);
+    try {
+      const response = await fetch(
+        '/.netlify/functions/handle-headshots-airtable',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        }
+      ).then((res) => res.json());
+      console.log(response);
+      setFormSubmitted(true);
+      setFormData(defaultFormState);
+    } catch (err) {
+      setFormSubmitted('error');
+    }
+    setIsLoading(false);
   };
 
   const examples = [
@@ -393,6 +406,7 @@ const Headshots = () => {
             <input
               type="text"
               name="name"
+              value={formData.name}
               onChange={handleFormChange}
               required
             />
@@ -401,7 +415,11 @@ const Headshots = () => {
             <span>
               Pronouns <span className="required">*</span>
             </span>
-            <select name="pronouns" onChange={handleFormChange}>
+            <select
+              name="pronouns"
+              onChange={handleFormChange}
+              value={formData.pronouns}
+            >
               <option style={{ display: 'none' }}>Select One</option>
               <option>He/him</option>
               <option>She/her</option>
@@ -413,11 +431,21 @@ const Headshots = () => {
             <span>
               Email <span className="required">*</span>
             </span>
-            <input type="email" name="email" onChange={handleFormChange} />
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleFormChange}
+            />
           </label>
           <label>
             Phone Number:
-            <input type="tel" name="phone" onChange={handleFormChange} />
+            <input
+              type="tel"
+              name="phone"
+              value={formData.phone}
+              onChange={handleFormChange}
+            />
           </label>
           <fieldset>
             <legend>
@@ -428,6 +456,7 @@ const Headshots = () => {
                 type="radio"
                 name="customerType"
                 value="Green Shirt student"
+                checked={formData.customerType == 'Green Shirt student'}
                 onChange={handleCustomerType}
               />
               Green Shirt student
@@ -436,8 +465,9 @@ const Headshots = () => {
               <input
                 type="radio"
                 name="customerType"
-                onChange={handleCustomerType}
                 value="Actor"
+                checked={formData.customerType == 'Actor'}
+                onChange={handleCustomerType}
               />
               Actor
             </label>
@@ -445,14 +475,16 @@ const Headshots = () => {
               <input
                 type="radio"
                 name="customerType"
-                onChange={handleCustomerType}
                 value="Other"
+                checked={formData.customerType == 'Other'}
+                onChange={handleCustomerType}
               />
               Other
               {formData.customerType == 'Other' && (
                 <input
                   type="text"
                   name="otherCustomerType"
+                  value={formData.otherCustomerType}
                   onChange={handleFormChange}
                   className="other-textbox"
                 />
@@ -470,6 +502,7 @@ const Headshots = () => {
                 type="checkbox"
                 name="availability"
                 value="On a weekday"
+                checked={formData.availability.includes('On a weekday')}
                 onChange={handleCheckbox}
               />
               On a weekday
@@ -479,6 +512,7 @@ const Headshots = () => {
                 type="checkbox"
                 name="availability"
                 value="On a weekend"
+                checked={formData.availability.includes('On a weekend')}
                 onChange={handleCheckbox}
               />
               On a weekend
@@ -488,6 +522,7 @@ const Headshots = () => {
                 type="checkbox"
                 name="availability"
                 value="I'm flexible"
+                checked={formData.availability.includes("I'm flexible")}
                 onChange={handleCheckbox}
               />
               I'm flexible
@@ -503,6 +538,7 @@ const Headshots = () => {
                 type="radio"
                 name="schedule"
                 value="ASAP"
+                checked={formData.schedule == 'ASAP'}
                 onChange={handleFormChange}
               />
               ASAP
@@ -512,6 +548,7 @@ const Headshots = () => {
                 type="radio"
                 name="schedule"
                 value="In the next few weeks"
+                checked={formData.schedule == 'In the next few weeks'}
                 onChange={handleFormChange}
               />
               In the next few weeks
@@ -521,6 +558,7 @@ const Headshots = () => {
                 type="radio"
                 name="schedule"
                 value="In the next few months"
+                checked={formData.schedule == 'In the next few months'}
                 onChange={handleFormChange}
               />
               In the next few months
@@ -528,7 +566,11 @@ const Headshots = () => {
           </fieldset>
           <label>
             Anything else you'd like us to know
-            <textarea name="additionalComment" onChange={handleFormChange} />
+            <textarea
+              name="additionalComment"
+              onChange={handleFormChange}
+              value={formData.additionalComment}
+            />
           </label>
           <input
             type="submit"
@@ -536,6 +578,21 @@ const Headshots = () => {
             className="button fill"
             disabled={isFormDisabled}
           />
+          {formSubmitted && (
+            <p>
+              {formSubmitted == 'error' ? (
+                <>
+                  We were unable to receive your form. Please try again or reach
+                  out to us at info@greenshirtstudio.com
+                </>
+              ) : (
+                <>
+                  We have received your request; we will get back to you
+                  shortly.
+                </>
+              )}
+            </p>
+          )}
         </StyledForm>
       </StyledBookingForm>
 
