@@ -11,11 +11,6 @@ import proxy1 from '../images/headshots/Proxy1.png';
 import proxy2 from '../images/headshots/Proxy2.png';
 import proxy3 from '../images/headshots/Proxy3.png';
 import proxy4 from '../images/headshots/Proxy4.png';
-import proxy5 from '../images/headshots/Proxy5.png';
-import proxy6 from '../images/headshots/Proxy6.png';
-import proxy7 from '../images/headshots/Proxy7.png';
-import proxy8 from '../images/headshots/Proxy8.png';
-import proxy9 from '../images/headshots/Proxy9.png';
 import PhotoGallery from '../components/PhotoGallery';
 import styled from 'styled-components';
 
@@ -325,26 +320,6 @@ const Headshots = () => {
     {
       image: proxy4,
       caption: 'Photographer: Collin Quinn Rice',
-    },
-    {
-      image: proxy5,
-      caption: 'Photographer: Kaleb Jackson',
-    },
-    {
-      image: proxy6,
-      caption: 'Photographer: Kaleb Jackson',
-    },
-    {
-      image: proxy7,
-      caption: 'Photographer: Kaleb Jackson',
-    },
-    {
-      image: proxy8,
-      caption: 'Photographer: Kaleb Jackson',
-    },
-    {
-      image: proxy9,
-      caption: 'Photographer: Kaleb Jackson',
     },
   ];
 
