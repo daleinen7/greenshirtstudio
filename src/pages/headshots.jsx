@@ -305,7 +305,7 @@ const Headshots = () => {
           body: JSON.stringify(formData),
         }
       ).then((res) => res.json());
-      console.log(response);
+      if (response.error) throw response.error;
       setFormSubmitted(true);
       setFormData(defaultFormState);
     } catch (err) {
