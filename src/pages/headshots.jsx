@@ -1,23 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'gatsby';
 import { SEO } from '../components/seo';
 import Layout from '../components/Layout';
 import ImageAndContentHeader from '../components/ImageAndContentHeader';
-import EventCard from '../components/EventCard';
 import headshotHero from '../images/headshots/headshot-hero.png';
 import greencheck from '../images/greencheck.svg';
-import ContentStack from '../components/ContentStack';
 import FAQSection from '../components/FAQSection';
 import proxy from '../images/headshots/Proxy.png';
 import proxy1 from '../images/headshots/Proxy1.png';
 import proxy2 from '../images/headshots/Proxy2.png';
 import proxy3 from '../images/headshots/Proxy3.png';
 import proxy4 from '../images/headshots/Proxy4.png';
-import proxy5 from '../images/headshots/Proxy5.png';
-import proxy6 from '../images/headshots/Proxy6.png';
-import proxy7 from '../images/headshots/Proxy7.png';
-import proxy8 from '../images/headshots/Proxy8.png';
-import proxy9 from '../images/headshots/Proxy9.png';
 import PhotoGallery from '../components/PhotoGallery';
 import styled from 'styled-components';
 
@@ -25,6 +18,7 @@ const StyledContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 5rem;
   width: 100%;
 
   padding: 0 2rem;
@@ -35,7 +29,7 @@ const StyledContent = styled.div`
   .container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     width: 100%;
     max-width: 40rem;
   }
@@ -76,12 +70,20 @@ const StyledContent = styled.div`
   }
 `;
 
+const StyledBookingForm = styled.section`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 0 2rem;
+`;
+
 const Pricing = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 4.625rem;
-  margin-bottom: 4.625rem;
+  margin: 0 auto;
+  flex-shrink: 0;
 
   h3 {
     font-size: 2rem;
@@ -92,8 +94,7 @@ const Pricing = styled.section`
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 2rem;
-    margin: 3rem 0;
+    margin: 1rem 0;
   }
 
   .pricing-table {
@@ -107,7 +108,7 @@ const Pricing = styled.section`
     h3 {
       font-family: 'Lato', sans-serif;
       font-weight: 400;
-      font-size: 3rem;
+      font-size: 2rem;
     }
 
     h4 {
@@ -161,74 +162,157 @@ const Pricing = styled.section`
   }
 `;
 
+const StyledForm = styled.form`
+  display: flex;
+  flex-flow: column;
+  flex-grow: 1;
+
+  label {
+    display: flex;
+    flex-flow: column;
+    color: var(--dark-gray);
+    margin-top: 0.5rem;
+    margin-bottom: 0.1563rem;
+  }
+
+  fieldset {
+    border: none;
+    padding: 0;
+    margin-top: 0.5rem;
+    margin-left: 0;
+
+    label {
+      display: block;
+    }
+
+    input {
+      width: auto;
+      height: auto;
+    }
+  }
+
+  form input,
+  textarea {
+    width: 100%;
+    border: 1px solid var(--dark-gray);
+    border-radius: 2px;
+    margin-top: 0.1563rem;
+  }
+
+  form input,
+  select {
+    height: 2.1875rem;
+    color: var(--dark-gray);
+  }
+
+  textarea {
+    height: 4.375rem;
+    width: 100%;
+    resize: vertical;
+  }
+
+  .other-textbox {
+    margin-left: 0.5rem;
+  }
+
+  .button {
+    margin-top: 20px;
+
+    &:disabled {
+      color: gray;
+      pointer-events: none;
+      background-color: lightgray;
+    }
+  }
+
+  .required {
+    color: red;
+  }
+`;
+
+const defaultFormState = {
+  name: '',
+  pronouns: '',
+  email: '',
+  phone: '',
+  customerType: '',
+  otherCustomerType: '',
+  availability: [],
+  schedule: '',
+  additionalComment: '',
+};
+
 const Headshots = () => {
-  const [headshotSessions, setHeadshotSessions] = React.useState([]);
+  const [formData, setFormData] = useState(defaultFormState);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const isFormDisabled =
+    isLoading ||
+    !formData.name ||
+    !formData.pronouns ||
+    !formData.email ||
+    !formData.customerType ||
+    !formData.availability.length ||
+    !formData.schedule;
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          '/.netlify/functions/get-headshot-sessions'
-        );
-        if (!response.ok) {
-          throw new Error('Failed to fetch data from the server');
-        }
-        const data = await response.json();
-        setHeadshotSessions(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
+  const handleFormChange = (evt) => {
+    setFormData((prevFormData) => {
+      return { ...prevFormData, [evt.target.name]: evt.target.value };
+    });
+  };
+
+  const handleCustomerType = (evt) => {
+    setFormData((prevFormData) => {
+      return {
+        ...prevFormData,
+        [evt.target.name]: evt.target.value,
+        otherCustomerType:
+          evt.target.value == 'Other' ? prevFormData.otherCustomerType : '',
+      };
+    });
+  };
+
+  const handleCheckbox = (evt) => {
+    setFormData((prevFormData) => {
+      const name = evt.target.name;
+      const val = evt.target.value;
+      const arr = [...prevFormData[name]];
+      const val_idx = arr.findIndex((ele) => ele == val);
+      if (val_idx < 0) {
+        arr.push(val);
+      } else {
+        arr.splice(val_idx, 1);
       }
-    };
+      return {
+        ...prevFormData,
+        [name]: arr,
+      };
+    });
+  };
 
-    fetchData();
-  }, []);
-
-  const sessions =
-    headshotSessions &&
-    headshotSessions
-      .filter((session) => session.bookingStatus === 'Open')
-      .sort((a, b) => {
-        const monthMap = {
-          January: 0,
-          February: 1,
-          March: 2,
-          April: 3,
-          May: 4,
-          June: 5,
-          July: 6,
-          August: 7,
-          September: 8,
-          October: 9,
-          November: 10,
-          December: 11,
-        };
-        const dateA = new Date(
-          parseInt(a.year),
-          monthMap[a.month],
-          parseInt(a.dayOfMonth)
-        );
-        const dateB = new Date(
-          parseInt(b.year),
-          monthMap[b.month],
-          parseInt(b.dayOfMonth)
-        );
-        return dateA - dateB;
-      })
-      .map((session) => {
-        return (
-          <EventCard
-            title={`${session.dayOfWeek}, ${session.month} ${session.dayOfMonth}, ${session.year}`}
-            description={session.description}
-            image={session.image}
-            altText={session.name}
-            link={`/headshot/${session.id}`}
-            date={session.time}
-            time={session.name}
-            price={session.price}
-            headshot
-          />
-        );
-      });
+  const handleSubmit = async (evt) => {
+    evt.preventDefault();
+    if (isFormDisabled) return;
+    setIsLoading(true);
+    try {
+      const response = await fetch(
+        '/.netlify/functions/handle-headshots-airtable',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        }
+      ).then((res) => res.json());
+      if (response.error) throw response.error;
+      setFormSubmitted(true);
+      setFormData(defaultFormState);
+    } catch (err) {
+      setFormSubmitted('error');
+    }
+    setIsLoading(false);
+  };
 
   const examples = [
     {
@@ -251,26 +335,6 @@ const Headshots = () => {
       image: proxy4,
       caption: 'Photographer: Collin Quinn Rice',
     },
-    {
-      image: proxy5,
-      caption: 'Photographer: Kaleb Jackson',
-    },
-    {
-      image: proxy6,
-      caption: 'Photographer: Kaleb Jackson',
-    },
-    {
-      image: proxy7,
-      caption: 'Photographer: Kaleb Jackson',
-    },
-    {
-      image: proxy8,
-      caption: 'Photographer: Kaleb Jackson',
-    },
-    {
-      image: proxy9,
-      caption: 'Photographer: Kaleb Jackson',
-    },
   ];
 
   return (
@@ -289,7 +353,7 @@ const Headshots = () => {
           <ol>
             <li>
               <h4>The Preparation</h4>
-              <p>Resources to help you prepare and Zoom consult included</p>
+              <p>Zoom consult to help you prepare</p>
             </li>
             <li>
               <h4>The Shoot</h4>
@@ -309,76 +373,245 @@ const Headshots = () => {
         </div>
       </StyledContent>
 
-      <Pricing>
-        <div className="pricing">
-          <div className="pricing-table">
-            <h3>Booking Includes</h3>
-            <h4>In Studio 401-E</h4>
+      <StyledContent>
+        <h3>How much does it cost?</h3>
+        <p>
+          A standard session (1 hour makeup/1 hour of photos) costs $400.
+          Current and former Green Shirt students get $50 off!
+        </p>
+      </StyledContent>
 
-            <ul>
-              <li>Resources to help you prepare</li>
-              <li>
-                Professional makeup design with{' '}
-                <Link to="/syd-genco/">Syd Genco</Link>
-              </li>
-              <li>2 hours, 2 looks, 2 edited photos</li>
-            </ul>
+      <StyledBookingForm>
+        <Pricing>
+          <div className="pricing">
+            <div className="pricing-table">
+              <h3>Booking Includes</h3>
+              <h4>In Studio 401-E</h4>
+              <ul>
+                <li>A meeting to help you prepare</li>
+                <li>
+                  Professional makeup design with{' '}
+                  <Link to="/syd-genco/">Syd Genco</Link>
+                </li>
+                <li>2 hours, 2 looks, 2 edited photos</li>
+              </ul>
+            </div>
           </div>
-        </div>
-      </Pricing>
+        </Pricing>
+        <StyledForm onSubmit={handleSubmit}>
+          <label>
+            <span>
+              Name <span className="required">*</span>
+            </span>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleFormChange}
+              required
+            />
+          </label>
+          <label>
+            <span>
+              Pronouns <span className="required">*</span>
+            </span>
+            <select
+              name="pronouns"
+              onChange={handleFormChange}
+              value={formData.pronouns}
+            >
+              <option style={{ display: 'none' }}>Select One</option>
+              <option>He/him</option>
+              <option>She/her</option>
+              <option>They/them</option>
+              <option>Other (Please specify in comment below)</option>
+            </select>
+          </label>
+          <label>
+            <span>
+              Email <span className="required">*</span>
+            </span>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleFormChange}
+            />
+          </label>
+          <label>
+            Phone Number:
+            <input
+              type="tel"
+              name="phone"
+              value={formData.phone}
+              onChange={handleFormChange}
+            />
+          </label>
+          <fieldset>
+            <legend>
+              I am a <span className="required">*</span>
+            </legend>
+            <label>
+              <input
+                type="radio"
+                name="customerType"
+                value="Green Shirt student"
+                checked={formData.customerType == 'Green Shirt student'}
+                onChange={handleCustomerType}
+              />
+              Green Shirt student
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="customerType"
+                value="Actor"
+                checked={formData.customerType == 'Actor'}
+                onChange={handleCustomerType}
+              />
+              Actor
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="customerType"
+                value="Other"
+                checked={formData.customerType == 'Other'}
+                onChange={handleCustomerType}
+              />
+              Other
+              {formData.customerType == 'Other' && (
+                <input
+                  type="text"
+                  name="otherCustomerType"
+                  value={formData.otherCustomerType}
+                  onChange={handleFormChange}
+                  className="other-textbox"
+                />
+              )}
+            </label>
+          </fieldset>
 
-      {sessions.length > 0 ? (
-        <>
-          <StyledContent>
-            <h3>Book an Upcoming Session Below</h3>
-            <p>
-              Find a date and time below that work for you. We can't wait to
-              help you shine in front of the camera!
-            </p>
-          </StyledContent>
+          <fieldset>
+            <legend>
+              I'm available for a shoot (Please check all that apply){' '}
+              <span className="required">*</span>
+            </legend>
+            <label>
+              <input
+                type="checkbox"
+                name="availability"
+                value="On a weekday"
+                checked={formData.availability.includes('On a weekday')}
+                onChange={handleCheckbox}
+              />
+              On a weekday
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="availability"
+                value="On a weekend"
+                checked={formData.availability.includes('On a weekend')}
+                onChange={handleCheckbox}
+              />
+              On a weekend
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="availability"
+                value="I'm flexible"
+                checked={formData.availability.includes("I'm flexible")}
+                onChange={handleCheckbox}
+              />
+              I'm flexible
+            </label>
+          </fieldset>
 
-          {sessions ? <ContentStack content={sessions} /> : <p>Loading...</p>}
-        </>
-      ) : (
-        <StyledContent>
-          <h3>Book an Upcoming Session</h3>
-          <p>
-            Our upcoming headshot sessions are currently full, but don't worry!
-            New sessions are added regularly. In the meantime, reach out to us
-            to express your interest in booking a headshot session. We'll notify
-            you as soon as new dates become available. Your career deserves to
-            stand out, and we can't wait to work with you soon!
-          </p>
-          <a
-            href="mailto:info@greenshirtstudio.com?subject=Headshots%20Inquiry"
+          <fieldset>
+            <legend>
+              I'd like to schedule a shoot <span className="required">*</span>
+            </legend>
+            <label>
+              <input
+                type="radio"
+                name="schedule"
+                value="ASAP"
+                checked={formData.schedule == 'ASAP'}
+                onChange={handleFormChange}
+              />
+              ASAP
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="schedule"
+                value="In the next few weeks"
+                checked={formData.schedule == 'In the next few weeks'}
+                onChange={handleFormChange}
+              />
+              In the next few weeks
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="schedule"
+                value="In the next few months"
+                checked={formData.schedule == 'In the next few months'}
+                onChange={handleFormChange}
+              />
+              In the next few months
+            </label>
+          </fieldset>
+          <label>
+            Anything else you'd like us to know
+            <textarea
+              name="additionalComment"
+              onChange={handleFormChange}
+              value={formData.additionalComment}
+            />
+          </label>
+          <input
+            type="submit"
+            value="Submit"
             className="button fill"
-          >
-            Contact Us
-          </a>
-        </StyledContent>
-      )}
+            disabled={isFormDisabled}
+          />
+          {formSubmitted && (
+            <p>
+              {formSubmitted == 'error' ? (
+                <>
+                  We were unable to receive your form. Please try again or reach
+                  out to us at info@greenshirtstudio.com
+                </>
+              ) : (
+                <>
+                  We have received your request; we will get back to you
+                  shortly.
+                </>
+              )}
+            </p>
+          )}
+        </StyledForm>
+      </StyledBookingForm>
 
       <FAQSection
         FAQs={[
           {
             title: 'Why do I need a professional headshot? ',
             content:
-              'To audition for a role, you’ll need a headshot. A professional headshot will help you stand out and let the person casting the project know that you’re taking the audition process seriously. ',
+              "To audition for a role, you'll need a headshot. A professional headshot will help you stand out and let the person casting the project know that you're taking the audition process seriously.",
           },
           {
             title: 'When should I get my first headshot? ',
             content:
-              'Getting your headshots taken can feel intimating. Especially your first time! Our team is dedicated to helping you through the process, step by step. When you think you might like to try auditioning sometime in the not too distant future, about six months or so, it’s time to get your first professional headshot. ',
+              "Getting your headshots taken can feel intimating. Especially your first time! Our team is dedicated to helping you through the process, step by step. When you think you might like to try auditioning sometime in the not too distant future, about six months or so, it's time to get your first professional headshot.",
           },
           {
-            title: 'How will you help me prepare? ',
+            title: "I'm not an actor but need a headshot. Can you help?",
             content:
-              'After you book a session, we’ll send you a worksheet and instructional video to help you prepare. These tools will help you decide on a few artistic choices you need to make before you come to your shoot. Our staff is also available to answer your questions and help you feel confident to step into the studio. ',
-          },
-          {
-            title: 'I’m not an actor but need a headshot. Can you help? ',
-            content:
-              'While we specialize in actor headshot, you don’t need to be an actor to book a session with us. Need a new photo for your LinkedIn profile? We can help. ',
+              "While we specialize in actor headshot, you don't need to be an actor to book a session with us. Need a new photo for your LinkedIn profile? We can help.",
           },
           {
             title: 'Why do I need professional makeup?',
