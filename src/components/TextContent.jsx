@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "gatsby";
-import styled from "styled-components";
+import React from 'react';
+import { Link } from 'gatsby';
+import styled from 'styled-components';
 
 const StyledTextContent = styled.div`
   max-width: 40rem;
@@ -9,10 +9,14 @@ const StyledTextContent = styled.div`
   margin: 6rem auto;
 
   h3 {
-    font-family: "Zona Pro", serif;
+    font-family: 'Zona Pro', serif;
     font-weight: 900;
     font-size: 2rem;
     margin-bottom: 1.5rem;
+  }
+
+  h3:not(:first-child) {
+    margin-top: 3rem;
   }
 
   p {
@@ -22,7 +26,9 @@ const StyledTextContent = styled.div`
   }
 
   ul {
+    font-size: 1.25rem;
     padding-left: 1rem;
+    margin: 0;
     li {
       list-style-type: circle;
     }

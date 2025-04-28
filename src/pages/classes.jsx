@@ -6,7 +6,7 @@ import MeisnerProgram from '../images/MeisnerProgram.png';
 import special from '../images/special.png';
 import coaching from '../images/coaching.png';
 import workshop from '../images/workshop.png';
-import HighSchoolSummerImmersive from '../images/highschoolsummerimmersive.jpg';
+import corporateTraining from '../images/corporateTraining.jpg';
 import Scholarships from '../images/Scholarships.png';
 import Layout from '../components/Layout';
 import HeadingEffect from '../components/HeadingEffect';
@@ -55,15 +55,8 @@ const Classes = ({ data }) => {
         altText="promising students awaiting coaching"
       />
     </Link>,
-    <Link to={'/high-school-summer-immersive'}>
-      <ContentCard
-        title={'High School Summer Immersive'}
-        // content={
-        //   "One-on-one attention to help you work towards your goals. Audition, monologue, and storytelling coaching available."
-        // }
-        image={HighSchoolSummerImmersive}
-        altText="promising students awaiting coaching"
-      />
+    <Link to={'/corporate-training'}>
+      <ContentCard title={'Corporate Training'} image={corporateTraining} />
     </Link>,
   ];
 
