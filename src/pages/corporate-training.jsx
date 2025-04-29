@@ -25,15 +25,27 @@ const CorporateTraining = () => {
               shared commitment to creating safer, more inclusive workplaces.
             </p>
             <p>
-              Human(ity) Resources brings expertise in leadership development
-              through actor-led simulations and applied theater techniques,
-              transforming development training into engaging, behavior-changing
-              experiences.
+              <a
+                href="https://www.humanity-resources.com/about"
+                target="_blank"
+                referrerPolicy="no-referrer"
+              >
+                Human(ity) Resources
+              </a>{' '}
+              brings expertise in leadership development through actor-led
+              simulations and applied theater techniques, transforming
+              development training into engaging, behavior-changing experiences.
             </p>
             <p>
-              Terilyn Eisenhauer adds deep HR knowledge and a proven track
-              record of building people-first cultures rooted in respect and
-              accountability.
+              <a
+                href="https://www.helloterilyn.com/consulting"
+                target="_blank"
+                referrerPolicy="no-referrer"
+              >
+                Terilyn Eisenhauer
+              </a>{' '}
+              adds deep HR knowledge and a proven track record of building
+              people-first cultures rooted in respect and accountability.
             </p>
             <p>
               With Green Shirt Studios' long-standing dedication to
