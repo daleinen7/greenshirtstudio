@@ -74,11 +74,7 @@ const Events = ({ data }) => {
     data.allContentfulEvent.nodes.filter(
       (event) => new Date() < new Date(event.datetime)
     ),
-    (event) =>
-      new Date(event.datetime).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-      })
+    (event) => event.datetime.slice(0, 7)
   );
 
   return (
@@ -96,8 +92,18 @@ const Events = ({ data }) => {
               Select an event to learn more details and reserve your tickets.
             </p>
           </StyledUpcomingEvents>
-          {Object.entries(futureEventGrouped).map(
-            ([monthSection, groupedEvents]) => {
+          {Object.entries(futureEventGrouped)
+            .sort(
+              (a, b) => new Date(a[0]).getMonth() - new Date(b[0]).getMonth()
+            )
+            .map(([datetime, groupedEvents]) => {
+              const monthSection = new Date(datetime).toLocaleDateString(
+                'en-US',
+                {
+                  year: 'numeric',
+                  month: 'long',
+                }
+              );
               return (
                 <ContentStack
                   key={monthSection}
@@ -107,8 +113,7 @@ const Events = ({ data }) => {
                     .map((event) => cardifyEvent(event))}
                 />
               );
-            }
-          )}
+            })}
         </>
       ) : (
         <CTAContentCard
