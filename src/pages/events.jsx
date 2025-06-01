@@ -57,6 +57,7 @@ const Events = ({ data }) => {
     const eventTime = new Date(event.datetime).toLocaleTimeString('en-US', {
       hour: 'numeric',
       minute: '2-digit',
+      timeZone: 'America/Chicago',
     });
     return (
       <EventCard
