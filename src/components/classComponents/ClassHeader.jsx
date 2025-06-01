@@ -24,6 +24,10 @@ export const StyledClassHeader = styled.div`
   video {
     width: 62%;
     margin-right: 1rem;
+
+    div {
+      max-width: unset !important;
+    }
   }
 
   .info {

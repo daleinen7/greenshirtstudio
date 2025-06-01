@@ -51,7 +51,7 @@ export const pageQuery = graphql`
         day
         session
         coverImage {
-          gatsbyImageData(width: 416, height: 290)
+          gatsbyImageData
         }
       }
     }
