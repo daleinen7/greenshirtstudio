@@ -94,16 +94,19 @@ const Events = ({ data }) => {
           </StyledUpcomingEvents>
           {Object.entries(futureEventGrouped)
             .sort(
-              (a, b) => new Date(a[0]).getMonth() - new Date(b[0]).getMonth()
+              (a, b) =>
+                new Date(a[0]).getUTCMonth() - new Date(b[0]).getUTCMonth()
             )
             .map(([datetime, groupedEvents]) => {
-              const monthSection = new Date(datetime).toLocaleDateString(
-                'en-US',
-                {
-                  year: 'numeric',
-                  month: 'long',
-                }
-              );
+              const [year, month] = datetime.split('-');
+              const monthSection = new Date(
+                year,
+                month - 1,
+                1
+              ).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+              });
               return (
                 <ContentStack
                   key={monthSection}
