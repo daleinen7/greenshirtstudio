@@ -23,6 +23,14 @@ exports.handler = async ({ body }) => {
         location: params.location,
         contentfulEntryId: params.contentfulEntryId,
       },
+      consent_collection: {
+        terms_of_service: 'required',
+      },
+      custom_text: {
+        terms_of_service_acceptance: {
+          message: `I agree to the [Attendance and Cancellation policies](${params.cancel_url}).`,
+        },
+      },
     });
 
     return {
