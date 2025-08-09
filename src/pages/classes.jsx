@@ -15,6 +15,7 @@ import ContentStack from '../components/ContentStack';
 import ContentCard from '../components/ContentCard';
 import FAQSection from '../components/FAQSection';
 import Subscribe from '../components/Subscribe';
+import IrelandPic from '../images/you-are-enough-shirt.jpg';
 
 import styled from 'styled-components';
 
@@ -57,6 +58,9 @@ const Classes = ({ data }) => {
     </Link>,
     <Link to={'/corporate-training'}>
       <ContentCard title={'Corporate Training'} image={corporateTraining} />
+    </Link>,
+    <Link to={'/ireland'}>
+      <ContentCard title={'Ireland Retreat'} image={IrelandPic} />
     </Link>,
   ];
 
