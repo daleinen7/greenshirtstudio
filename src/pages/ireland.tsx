@@ -7,12 +7,10 @@ import { StyledClassHeader } from '../components/classComponents/ClassHeader';
 import { SEO } from '../components/seo';
 import irelandVid from '../images/ireland-vid.mp4';
 
-const EnsembleIntensive = () => {
+const IrelandRetreat = () => {
   const class_info = {
-    title: 'Green Shirt Goes to Ireland',
-    dates: ['May 21 - 26, 2026'],
+    title: 'Ireland Retreat',
     cost: 2950,
-    location: '4001 N Ravenswood Ave Unit 303-B Chicago, IL 60657',
   };
 
   return (
@@ -23,7 +21,7 @@ const EnsembleIntensive = () => {
           <div className="info">
             <h2>{class_info.title}</h2>
             <p>May 21 - 28, 2026</p>
-            <p>A week of theater, nature, and music on the Emerald Isle</p>
+            <p>A week of theater, music, and nature</p>
             <div className="price">
               ${class_info.cost}
               <br />
@@ -35,7 +33,7 @@ const EnsembleIntensive = () => {
                   className="register"
                   onClick={() => {
                     const newWindow = window.open(
-                      'https://forms.gle/bsh87cVnqSKb2MaK9',
+                      'https://forms.gle/3J4dgkPzB4zUphBJ6',
                       '_blank',
                       'noopener,noreferrer'
                     );
@@ -51,15 +49,17 @@ const EnsembleIntensive = () => {
         <div className="main-content">
           <StyledDescription>
             <p>
-              On our <b>study abroad trip for adults</b>, you'll have the
-              opportunity to experience a new theatrical perspective that
-              inspires artistic growth - plus an incredible vacation in a
-              beautiful place.
+              Never studied abroad or wishing you could again? Join us for our
+              Ireland Retreat! Trip details below and please reach out to
+              <a href="mailto:info@greenshirtstudio.com">
+                info@greenshirtstudio.com
+              </a>{' '}
+              if you have any questions. A study abroad trip for adults!
             </p>
             <br />
             <h2>What's Included</h2>
             <br />
-            <Accordion title="Part 1: Dublin (2 Nights)" defaultOpen={true} h3>
+            <Accordion title="Part 1: Dublin (2 Nights)" h3>
               <ul>
                 <li>
                   Lodging in city center: Double occupancy - single occupancy
@@ -74,13 +74,12 @@ const EnsembleIntensive = () => {
             </Accordion>
             <Accordion
               title="Part 2: Wicklow/Wexford Countryside (4 Nights)"
-              defaultOpen
               h3
             >
               <ul>
                 <li>
-                  Lodging in the beautiful countryside: Double occupancy -
-                  single occupancy available for additional fee
+                  Lodging in beautiful county Wexford: Double occupancy - single
+                  occupancy available for additional fee
                 </li>
                 <li>4 breakfasts, 2 packed lunches, 1 dinner</li>
                 <li>3 theatre workshops with Irish director Sally Stevens</li>
@@ -91,7 +90,7 @@ const EnsembleIntensive = () => {
             </Accordion>
             <h2>Important Details</h2>
             <br />
-            <Accordion title="What's Not Included" defaultOpen h3>
+            <Accordion title="What's Not Included" h3>
               <ul>
                 <li>
                   Flights are not included - early booking of flights is
@@ -101,7 +100,7 @@ const EnsembleIntensive = () => {
                 <li>All participants must have a valid passport</li>
               </ul>
             </Accordion>
-            <Accordion title="Leading Up To The Trip" defaultOpen h3>
+            <Accordion title="Leading Up To The Trip" h3>
               <ul>
                 <li>
                   Green Shirt Studio will host a class & mixer in Chicago to
@@ -119,7 +118,7 @@ const EnsembleIntensive = () => {
                 </li>
               </ul>
             </Accordion>
-            <Accordion title="Payment Plans" defaultOpen h3>
+            <Accordion title="Payment Plans" h3>
               <ul>
                 <li>
                   Two payment plans are available: non-refundable $500 deposit
@@ -137,8 +136,6 @@ const EnsembleIntensive = () => {
   );
 };
 
-export default EnsembleIntensive;
+export default IrelandRetreat;
 
-export const Head = () => (
-  <SEO title="Ensemble Intensive (Afternoon) - Green Shirt Studio" />
-);
+export const Head = () => <SEO title="Ireland Retreat - Green Shirt Studio" />;

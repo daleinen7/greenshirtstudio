@@ -60,7 +60,11 @@ const Classes = ({ data }) => {
       <ContentCard title={'Corporate Training'} image={corporateTraining} />
     </Link>,
     <Link to={'/ireland'}>
-      <ContentCard title={'Ireland Retreat'} image={IrelandPic} />
+      <ContentCard
+        title={'Ireland Retreat'}
+        image={IrelandPic}
+        content="A week of theater, music, and nature"
+      />
     </Link>,
   ];
 
