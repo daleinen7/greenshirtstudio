@@ -50,7 +50,7 @@ const IrelandRetreat = () => {
           <StyledDescription>
             <p>
               Never studied abroad or wishing you could again? Join us for our
-              Ireland Retreat! Trip details below and please reach out to
+              Ireland Retreat! Trip details below and please reach out to{' '}
               <a href="mailto:info@greenshirtstudio.com">
                 info@greenshirtstudio.com
               </a>{' '}
