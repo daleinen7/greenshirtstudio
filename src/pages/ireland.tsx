@@ -40,7 +40,7 @@ const IrelandRetreat = () => {
                     if (newWindow) newWindow.opener = null;
                   }}
                 >
-                  Apply Now
+                  Register
                 </button>
               </li>
             </ul>
@@ -54,7 +54,7 @@ const IrelandRetreat = () => {
               <a href="mailto:info@greenshirtstudio.com">
                 info@greenshirtstudio.com
               </a>{' '}
-              if you have any questions. A study abroad trip for adults!
+              if you have any questions.
             </p>
             <br />
             <h2>What's Included</h2>
