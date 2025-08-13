@@ -30,6 +30,10 @@ export const StyledClassHeader = styled.div`
     }
   }
 
+  video {
+    max-height: 500px;
+  }
+
   .info {
     padding-left: 1rem;
     padding-right: 2.25rem;
