@@ -1,4 +1,3 @@
-import React from 'react';
 import { StyledClassPage } from '../utils/utils';
 import { StyledDescription } from '../components/classComponents/Description';
 import Layout from '../components/Layout';
@@ -49,43 +48,50 @@ const IrelandRetreat = () => {
         <div className="main-content">
           <StyledDescription>
             <p>
-              Never studied abroad or wishing you could again? Join us for our
-              Ireland Retreat! Trip details below and please reach out to{' '}
+              Never studied abroad, or wishing you could again? Join us for our
+              Ireland Retreat! You'll have the opportunity to experience a new
+              theatrical perspective that inspires artistic growth - plus an
+              incredible vacation in a beautiful place with the Green Shirt
+              Studio community. See below for full trip details, and please
+              reach out to{' '}
               <a href="mailto:info@greenshirtstudio.com">
                 info@greenshirtstudio.com
               </a>{' '}
-              if you have any questions.
+              with any questions.
             </p>
             <br />
             <h2>What's Included</h2>
             <br />
-            <Accordion title="Part 1: Dublin (2 Nights)" h3>
+            <Accordion title="Dublin (2 Nights)" h3>
               <ul>
                 <li>
-                  Lodging in city center: Double occupancy - single occupancy
-                  available for additional fee
+                  4-star hotel lodging in city center: Double occupancy (single
+                  occupancy available for additional fee)
                 </li>
-                <li>2 breakfasts, 1 group dinner</li>
-                <li>Two theatre performances</li>
-                <li>Guinness Storehouse tour & tasting</li>
-                <li>Irish traditional music experience</li>
-                <li>Free time for exploration and rest</li>
+                <li>2 breakfasts</li>
+                <li>Airport shuttle into Dublin</li>
+                <li>Tickets to 2 plays</li>
+                <li>Guinness Storehouse experience</li>
+                <li>Optional group historical activity</li>
+                <li>Free time to explore the city</li>
               </ul>
             </Accordion>
-            <Accordion
-              title="Part 2: Wicklow/Wexford Countryside (4 Nights)"
-              h3
-            >
+            <Accordion title="Wexford (4 Nights):" h3>
               <ul>
                 <li>
-                  Lodging in beautiful county Wexford: Double occupancy - single
-                  occupancy available for additional fee
+                  4-star lodging in beautiful county Wexford: Double occupancy
+                  (single occupancy available for additional fee)
                 </li>
-                <li>4 breakfasts, 2 packed lunches, 1 dinner</li>
-                <li>3 theatre workshops with Irish director Sally Stevens</li>
-                <li>Private bus excursions to hikes and local sights</li>
-                <li>Optional morning yoga or nature walks</li>
-                <li>Evening play reading & closing group event</li>
+                <li>4 breakfasts, 2 lunches, 2 dinners</li>
+                <li>3 Irish theater workshops with director Sally Stevens</li>
+                <li>Private bus transport</li>
+                <li>Optional yoga classes/nature walks</li>
+                <li>Additional specialty workshop</li>
+                <li>Community event with local artists</li>
+                <li>
+                  Sightseeing excursions to historic locations including
+                  Glendalough Monastery and Ferns Castle
+                </li>
               </ul>
             </Accordion>
             <h2>Important Details</h2>
