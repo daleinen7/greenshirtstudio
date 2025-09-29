@@ -1,3 +1,4 @@
+import React from 'react';
 import { StyledClassPage } from '../utils/utils';
 import { StyledDescription } from '../components/classComponents/Description';
 import Layout from '../components/Layout';
