@@ -294,7 +294,7 @@ const ClassHeader = ({ class_info }) => {
                 )}
               </>
             ) : (
-              <>Free/Donation</>
+              <>Sliding Scale</>
             ))}
         </div>
 
