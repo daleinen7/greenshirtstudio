@@ -75,7 +75,7 @@ const ClassCard = ({
         </h4>
         <small className="program">{program}</small>
         <br />
-        {price > 0 ? <small>${price}</small> : <small>Free / Donation</small>}
+        {price > 0 ? <small>${price}</small> : <small>Sliding Scale</small>}
       </Link>
     </StyledClassCard>
   );
