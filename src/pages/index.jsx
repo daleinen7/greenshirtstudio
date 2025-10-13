@@ -26,7 +26,7 @@ const IndexPage = ({ data }) => {
       <ClassCard
         title={actingClass.title}
         slug={actingClass.slug}
-        image={actingClass.coverImage.gatsbyImageData}
+        image={actingClass.coverImage?.gatsbyImageData}
         days={actingClass.day}
         program={actingClass.type}
         price={actingClass.cost}
@@ -38,7 +38,7 @@ const IndexPage = ({ data }) => {
       <BlogCard
         title={post.title}
         author={concatenateName(post.author.name, post.author.lastName)}
-        img={post.coverImage.gatsbyImageData}
+        img={post.coverImage?.gatsbyImageData}
         slug={`/blog/${slugify(post.title, {
           strict: true,
           lower: true,

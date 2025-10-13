@@ -64,7 +64,7 @@ const Events = ({ data }) => {
         title={event.name}
         description={event.description.description}
         link={event.link}
-        image={event.coverImage.gatsbyImageData}
+        image={event.coverImage?.gatsbyImageData}
         date={eventDate}
         time={eventTime}
       />

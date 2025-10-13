@@ -259,7 +259,7 @@ const ClassHeader = ({ class_info }) => {
     <StyledClassHeader>
       {class_info.coverImage && (
         <GatsbyImage
-          image={class_info.coverImage.gatsbyImageData}
+          image={class_info.coverImage?.gatsbyImageData}
           alt={class_info.title}
         />
       )}

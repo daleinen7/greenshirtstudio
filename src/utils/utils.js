@@ -111,3 +111,22 @@ export const StyledClassPage = styled.div`
     }
   }
 `;
+
+export const combineDateAndTime = (date, time) => {
+  const sanitized_time = time.replace(/(AM|PM)$/i, ' $1').trim();
+
+  const [unformatted_time, modifier] = sanitized_time.split(' ');
+  let [hours, minutes] = unformatted_time.split(':').map(Number);
+
+  // Convert to 24-hour format
+  if (/PM/i.test(modifier) && hours !== 12) hours += 12;
+  if (/AM/i.test(modifier) && hours === 12) hours = 0;
+
+  // Combine date and time
+  const dateTimeString = `${date}T${String(hours).padStart(2, '0')}:${String(
+    minutes
+  ).padStart(2, '0')}:00`;
+
+  // Create Date object (local time)
+  return new Date(dateTimeString);
+};
