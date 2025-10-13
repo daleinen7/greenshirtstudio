@@ -11,14 +11,14 @@ import { combineDateAndTime } from '../utils/utils';
 import _ from 'lodash';
 
 const Workshops = ({ data }) => {
-  console.log(data);
-
-  const grouped_classes = _.groupBy(
-    data.allContentfulClass.nodes,
-    (class_node) => class_node.dates[0].slice(0, 7)
+  const filtered_classes = data.allContentfulClass.nodes.filter(
+    (class_node) =>
+      combineDateAndTime(class_node.dates[0], class_node.startTime) > new Date()
   );
 
-  console.log(Object.entries(grouped_classes));
+  const grouped_classes = _.groupBy(filtered_classes, (class_node) =>
+    class_node.dates[0].slice(0, 7)
+  );
 
   return (
     <Layout headerColor="white">
