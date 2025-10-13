@@ -8,26 +8,17 @@ import ImageAndContentHeader from '../components/ImageAndContentHeader';
 import ClassCard from '../components/ClassCard';
 import { graphql } from 'gatsby';
 import { combineDateAndTime } from '../utils/utils';
+import _ from 'lodash';
 
 const Workshops = ({ data }) => {
   console.log(data);
 
-  const sorted_classes = data.allContentfulClass.nodes.sort((a, b) => {
-    const a_datetime = combineDateAndTime(a.dates[0], a.startTime);
-    const b_datetime = combineDateAndTime(b.dates[0], b.startTime);
+  const grouped_classes = _.groupBy(
+    data.allContentfulClass.nodes,
+    (class_node) => class_node.dates[0].slice(0, 7)
+  );
 
-    return a_datetime - b_datetime;
-  });
-
-  const classes = sorted_classes.map((actingClass) => (
-    <ClassCard
-      title={actingClass.title}
-      slug={actingClass.slug}
-      image={actingClass.coverImage?.gatsbyImageData}
-      program={actingClass.type}
-      price={actingClass.cost}
-    />
-  ));
+  console.log(Object.entries(grouped_classes));
 
   return (
     <Layout headerColor="white">
@@ -36,7 +27,34 @@ const Workshops = ({ data }) => {
         title="Workshops"
         content="Great for sharpening your skills without committing too much of your time."
       />
-      <ContentStack title="Upcoming Workshops" content={classes} />
+      {Object.entries(grouped_classes)
+        .sort((a, b) => new Date(a[0]) - new Date(b[0]))
+        .map(([group_title, group]) => {
+          const classes = group
+            .sort((a, b) => {
+              const a_datetime = combineDateAndTime(a.dates[0], a.startTime);
+              const b_datetime = combineDateAndTime(b.dates[0], b.startTime);
+              return a_datetime - b_datetime;
+            })
+            .map((actingClass) => (
+              <ClassCard
+                title={actingClass.title}
+                slug={actingClass.slug}
+                image={actingClass.coverImage?.gatsbyImageData}
+                program={actingClass.type}
+                price={actingClass.cost}
+              />
+            ));
+
+          const [year, month] = group_title.split('-').map(Number);
+          const date = new Date(year, month - 1); // months are 0-indexed
+          const formatted_title = date.toLocaleString('en-US', {
+            month: 'long',
+            year: 'numeric',
+          });
+
+          return <ContentStack title={formatted_title} content={classes} />;
+        })}
       <Subscribe
         messaging={
           'Sign up to our newsletter to hear about upcoming events Newsletter Registration'
