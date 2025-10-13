@@ -7,13 +7,23 @@ import ContentStack from '../components/ContentStack';
 import ImageAndContentHeader from '../components/ImageAndContentHeader';
 import ClassCard from '../components/ClassCard';
 import { graphql } from 'gatsby';
+import { combineDateAndTime } from '../utils/utils';
 
 const Workshops = ({ data }) => {
-  const classes = data.allContentfulClass.nodes.map((actingClass) => (
+  console.log(data);
+
+  const sorted_classes = data.allContentfulClass.nodes.sort((a, b) => {
+    const a_datetime = combineDateAndTime(a.dates[0], a.startTime);
+    const b_datetime = combineDateAndTime(b.dates[0], b.startTime);
+
+    return a_datetime - b_datetime;
+  });
+
+  const classes = sorted_classes.map((actingClass) => (
     <ClassCard
       title={actingClass.title}
       slug={actingClass.slug}
-      image={actingClass.coverImage.gatsbyImageData}
+      image={actingClass.coverImage?.gatsbyImageData}
       program={actingClass.type}
       price={actingClass.cost}
     />
@@ -49,7 +59,8 @@ export const pageQuery = graphql`
         type
         cost
         day
-        session
+        dates
+        startTime
         coverImage {
           gatsbyImageData
         }
