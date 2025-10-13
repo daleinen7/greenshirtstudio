@@ -64,7 +64,7 @@ const BlogPostPage = ({ pageContext }) => {
             {date && ` | ${dashToSlashDate(date)}`}
           </div>
         </header>
-        {coverImage && <GatsbyImage image={coverImage.gatsbyImageData} />}
+        {coverImage && <GatsbyImage image={coverImage?.gatsbyImageData} />}
         {content && (
           <div className="content">
             {documentToReactComponents(JSON.parse(content.raw))}

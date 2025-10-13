@@ -38,7 +38,7 @@ const IndexPage = ({ data }) => {
       <BlogCard
         title={post.title}
         author={concatenateName(post.author.name, post.author.lastName)}
-        img={post.coverImage.gatsbyImageData}
+        img={post.coverImage?.gatsbyImageData}
         slug={`/blog/${slugify(post.title, {
           strict: true,
           lower: true,

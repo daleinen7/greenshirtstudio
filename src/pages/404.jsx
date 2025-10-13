@@ -20,7 +20,7 @@ const FourOhFour = ({ data }) => {
       <ClassCard
         title={actingClass.title}
         slug={actingClass.slug}
-        image={actingClass.coverImage.gatsbyImageData}
+        image={actingClass.coverImage?.gatsbyImageData}
         days={actingClass.day}
         program={actingClass.type}
         price={actingClass.cost}
@@ -45,7 +45,7 @@ const FourOhFour = ({ data }) => {
         title={event.name}
         description={event.description.description}
         link={event.link}
-        image={event.coverImage.gatsbyImageData}
+        image={event.coverImage?.gatsbyImageData}
         date={eventDate}
         time={eventTime}
       />

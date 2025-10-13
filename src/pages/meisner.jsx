@@ -61,7 +61,7 @@ const Meisner = ({ data }) => {
             <ClassCard
               title={actingClass.title}
               slug={actingClass.slug}
-              image={actingClass.coverImage.gatsbyImageData}
+              image={actingClass.coverImage?.gatsbyImageData}
               days={actingClass.day}
               program={actingClass.type}
               price={actingClass.cost}
